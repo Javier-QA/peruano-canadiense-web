@@ -12,7 +12,7 @@ import { ESTADISTICAS_SCHEMA, ESTADISTICAS_TABS } from './estadisticas.schema';
       [editor]="this"
       modulo="estadisticas"
       titulo="Estadísticas"
-      sub="Los cambios guardados se actualizarán directamente en la sección Estadísticas de la web."
+      sub="Mantén actualizadas las cifras y los documentos estadísticos."
       publicPath="/estadisticas"
       [tabs]="tabs"
       [schema]="schema"
