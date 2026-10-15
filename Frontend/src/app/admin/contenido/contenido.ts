@@ -20,7 +20,7 @@ import { ToastService } from '../shared/toast/toast';
         <div>
           <h1 class="page-title">Contenido del portal</h1>
           <p class="page-sub">
-            Módulos autogestionados. El público lee de estos stores, no de las constantes.
+            Administra las páginas, documentos y secciones visibles en el portal institucional.
           </p>
         </div>
         <button type="button" class="btn-ghost" (click)="confirmar.set(true)">
@@ -28,9 +28,9 @@ import { ToastService } from '../shared/toast/toast';
         </button>
       </header>
 
-      <div class="modulo-grid">
+      <div class="modulo-grid" aria-label="Módulos del portal público">
         @for (mod of filas(); track mod.id) {
-          <a class="admin-card modulo-tile" [routerLink]="mod.adminPath">
+          <a class="admin-card modulo-tile" [routerLink]="mod.adminPath" [attr.aria-label]="'Editar ' + mod.titulo">
             <div>
               <i class="fa {{ mod.icon }}" aria-hidden="true"></i>
               <h2 class="page-title" style="font-size:1.05rem;margin-top:8px">{{ mod.titulo }}</h2>
@@ -107,6 +107,10 @@ import { ToastService } from '../shared/toast/toast';
       border-top: 1px solid var(--adm-line);
     }
     .modulo-tile:hover { border-color: #f0b98f; }
+    .modulo-tile:focus-visible { outline: 3px solid var(--adm-brand); outline-offset: 3px; }
+    .modulo-tile .stat-row { align-items: center; gap: 8px 12px; line-height: 1.5; }
+    .modulo-tile .page-title { overflow-wrap: anywhere; }
+    @media (prefers-reduced-motion: reduce) { .modulo-tile { transition: none; } }
     @media (max-width: 720px) {
       .page-header { padding: 18px; }
       .modulo-tile { min-height: 150px; padding: 20px; }
