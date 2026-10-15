@@ -65,7 +65,7 @@
         }
       </div>
     </header>
-    <main class="admin-main">
+    <main class="admin-main" [attr.data-admin-route]="rutaActual()">
       <router-outlet></router-outlet>
     </main>
   </div>
