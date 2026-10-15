@@ -12,7 +12,7 @@ import { HORARIOS_SCHEMA, HORARIOS_TABS } from './horarios.schema';
       [editor]="this"
       modulo="horarios"
       titulo="Horarios"
-      sub="Los cambios guardados se actualizarán directamente en la sección Horarios de la web."
+      sub="Edita la información y los documentos de los horarios institucionales."
       publicPath="/horarios"
       [tabs]="tabs"
       [schema]="schema"
