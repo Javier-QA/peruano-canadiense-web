@@ -164,6 +164,10 @@ import { DialogComponent } from '../../../shared/ui';
       background: linear-gradient(115deg, #fff8f2, #fff 70%);
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
+    .page-header { align-items: center; padding: 26px 34px; border-radius: 18px; }
+    .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); }
+    .page-header .page-sub { font-size: .94rem; }
+    @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: 100%; } }
     .page-header .page-title { letter-spacing: -.025em; }
     .page-header .page-sub { line-height: 1.6; max-width: 70ch; }
     .page-header-actions { gap: 10px; }
