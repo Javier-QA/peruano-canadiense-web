@@ -88,8 +88,9 @@
 
 .admin-shell .page-title {
   margin: 0 0 4px;
-  font-size: 1.45rem;
-  font-weight: 700;
+  font-size: clamp(1.45rem, 2vw, 1.75rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
   color: var(--adm-ink);
 }
 
@@ -115,7 +116,7 @@
 }
 
 .admin-shell .admin-card-body {
-  padding: 20px 22px;
+  padding: 24px 26px;
 }
 
 .admin-shell .admin-table {
@@ -130,15 +131,15 @@
 
 .admin-shell .admin-table th {
   text-align: left;
-  padding: 10px 16px;
+  padding: 13px 18px;
   font-size: 0.76rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--adm-muted);
   border-bottom: 1px solid var(--adm-line);
 }
 
 .admin-shell .admin-table td {
-  padding: 10px 16px;
+  padding: 14px 18px;
   color: var(--adm-ink);
   border-bottom: 1px solid var(--adm-line);
   vertical-align: middle;
@@ -183,10 +184,10 @@
 }
 
 .admin-shell .btn-icon {
-  width: 32px;
-  height: 32px;
-  border: 1px solid transparent;
-  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--adm-line);
+  border-radius: 9px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -212,9 +213,9 @@
 .admin-shell .btn-add,
 .admin-shell .btn-ghost,
 .admin-shell .btn-danger {
-  min-height: 40px;
-  padding: 8px 16px;
-  border-radius: 8px;
+  min-height: 42px;
+  padding: 9px 17px;
+  border-radius: 10px;
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
@@ -519,10 +520,10 @@
 .admin-shell .form-row select,
 .admin-shell .form-row textarea {
   width: 100%;
-  min-height: 40px;
-  padding: 8px 12px;
+  min-height: 44px;
+  padding: 10px 13px;
   border: 1px solid var(--adm-line);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--adm-surface);
   color: var(--adm-ink);
   font: inherit;
@@ -776,4 +777,99 @@
   .admin-shell .form-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Rediseño transversal: mejoras de interacción sin alterar la lógica de los módulos. */
+.admin-shell .admin-card,
+.admin-shell .modulo-tile,
+.admin-shell .btn-save,
+.admin-shell .btn-add,
+.admin-shell .btn-cancel,
+.admin-shell .btn-ghost,
+.admin-shell .btn-danger {
+  transition: border-color .18s ease, background-color .18s ease,
+    box-shadow .18s ease, transform .18s ease;
+}
+
+.admin-shell .admin-card:focus-within {
+  border-color: color-mix(in srgb, var(--adm-brand) 25%, var(--adm-line));
+}
+
+.admin-shell .admin-table th {
+  white-space: nowrap;
+  letter-spacing: .015em;
+}
+
+.admin-shell .admin-table tbody tr {
+  transition: background-color .15s ease;
+}
+
+.admin-shell .admin-table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--adm-bg) 42%, var(--adm-surface));
+}
+
+.admin-shell .admin-table tbody tr:hover {
+  background: color-mix(in srgb, var(--adm-brand) 5%, var(--adm-surface));
+}
+
+.admin-shell .btn-save:hover:not(:disabled),
+.admin-shell .btn-add:hover:not(:disabled) {
+  box-shadow: 0 5px 14px color-mix(in srgb, var(--adm-brand) 22%, transparent);
+}
+
+.admin-shell .btn-icon:focus-visible,
+.admin-shell .form-row input:focus-visible,
+.admin-shell .form-row select:focus-visible,
+.admin-shell .form-row textarea:focus-visible,
+.admin-shell .admin-tab:focus-visible {
+  outline: 2px solid var(--adm-brand);
+  outline-offset: 2px;
+}
+
+.admin-shell .form-row label {
+  line-height: 1.4;
+}
+
+.admin-shell .form-hint,
+.admin-shell .page-sub {
+  line-height: 1.55;
+}
+
+.admin-shell .form-row input:disabled,
+.admin-shell .form-row select:disabled,
+.admin-shell .form-row textarea:disabled {
+  background: var(--adm-muted-bg);
+  color: var(--adm-muted);
+  cursor: not-allowed;
+}
+
+.admin-shell .admin-tab.active {
+  box-shadow: 0 1px 4px rgba(28, 44, 68, .06);
+}
+
+.admin-shell .modulo-tile:hover {
+  background: color-mix(in srgb, var(--adm-brand) 3%, var(--adm-surface));
+}
+
+@media (max-width: 720px) {
+  .admin-shell .admin-card-body { padding: 18px; }
+  .admin-shell .page-header { gap: 12px; }
+  .admin-shell .page-header-actions { width: 100%; }
+  .admin-shell .page-header-actions > button,
+  .admin-shell .page-header-actions > a { max-width: 100%; }
+  .admin-shell .admin-table th,
+  .admin-shell .admin-table td { padding: 11px 12px; }
+  .admin-shell .save-bar { flex-wrap: wrap; }
+  .admin-shell .modulo-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell .admin-card,
+  .admin-shell .modulo-tile,
+  .admin-shell .admin-table tbody tr,
+  .admin-shell .btn-save,
+  .admin-shell .btn-add,
+  .admin-shell .btn-cancel,
+  .admin-shell .btn-ghost,
+  .admin-shell .btn-danger { transition: none; }
 }
