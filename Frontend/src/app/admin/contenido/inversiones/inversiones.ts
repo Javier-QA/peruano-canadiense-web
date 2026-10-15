@@ -12,7 +12,7 @@ import { INVERSIONES_SCHEMA, INVERSIONES_TABS } from './inversiones.schema';
       [editor]="this"
       modulo="inversiones"
       titulo="Inversiones"
-      sub="Los cambios guardados se actualizarán directamente en la sección Inversiones de la web."
+      sub="Organiza la información y los documentos públicos sobre inversiones."
       publicPath="/inversiones"
       [tabs]="tabs"
       [schema]="schema"
