@@ -133,22 +133,22 @@ export interface MarcoTab {
     .page-header {
       flex-wrap: nowrap;
       align-items: center;
-      padding: 26px 34px;
+      padding: 18px 24px;
       border: 1px solid #f1dfd2;
       border-radius: 18px;
       background: linear-gradient(115deg, #fff8f2, #fff 70%);
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
-    .portal-header-identity { display: flex; align-items: flex-start; gap: 15px; flex: 1 1 auto; min-width: 0; }
+    .portal-header-identity { display: flex; align-items: flex-start; gap: 12px; flex: 1 1 auto; min-width: 0; }
     .portal-header-copy { min-width: 0; }
-    .portal-title-icon { display: inline-flex; flex: 0 0 44px; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 13px; background: #fff0e4; color: var(--adm-brand); font-size: 1.08rem; }
-    .portal-header-copy .page-title { margin: 0 0 7px; line-height: 1.25; }
+    .portal-title-icon { display: inline-flex; flex: 0 0 38px; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 13px; background: #fff0e4; color: var(--adm-brand); font-size: .96rem; }
+    .portal-header-copy .page-title { margin: 0 0 3px; line-height: 1.25; }
     .portal-header-copy .page-sub { margin: 0; }
     @media (max-width: 600px) { .portal-header-identity { gap: 11px; } .portal-title-icon { flex-basis: 38px; width: 38px; height: 38px; } }
-    .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); letter-spacing: -.025em; }
-    .page-header .page-sub { max-width: 75ch; font-size: .94rem; line-height: 1.6; }
-    .page-header-actions { flex: 0 0 auto; min-width: 0; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
+    .page-header .page-title { font-size: clamp(1.4rem, 2vw, 1.75rem); letter-spacing: -.025em; }
+    .page-header .page-sub { max-width: 75ch; font-size: .85rem; line-height: 1.6; }
+    .page-header-actions { align-self: center; flex: 0 0 auto; min-width: 0; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
     .page-header-actions .btn-ghost { white-space: nowrap; padding-inline: 12px; font-size: .78rem; }
     .page-header-actions .badge { white-space: nowrap; }
     @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: auto; } }
