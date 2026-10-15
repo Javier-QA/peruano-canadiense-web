@@ -31,7 +31,7 @@ import { DialogComponent } from '../../../shared/ui';
     <div class="admin-page">
       <header class="page-header">
         <div>
-          <h1 class="page-title">{{ titulo() }}</h1>
+          <h1 class="page-title"><i class="fa-solid {{ icono() }} portal-title-icon" aria-hidden="true"></i>{{ titulo() }}</h1>
           <p class="page-sub">
             {{ descripcion() }}
           </p>
@@ -165,6 +165,7 @@ import { DialogComponent } from '../../../shared/ui';
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header { align-items: center; padding: 26px 34px; border-radius: 18px; }
+    .portal-title-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-right: 12px; border-radius: 11px; background: #fff0e4; color: var(--adm-brand); font-size: 1.05rem; vertical-align: middle; }
     .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); }
     .page-header .page-sub { font-size: .94rem; }
     @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: 100%; } }
@@ -213,6 +214,17 @@ export class ModuloEditor implements PuedeSalirConCambios {
   private readonly toast = inject(ToastService);
   private readonly api = inject(PortalApi);
 
+  readonly icono = computed(() => ({
+    '/inicio': 'fa-house',
+    '/nosotros': 'fa-building-columns',
+    '/admision': 'fa-user-graduate',
+    '/becas': 'fa-hand-holding-heart',
+    '/costos': 'fa-coins',
+    '/estadisticas': 'fa-chart-column',
+    '/horarios': 'fa-calendar-days',
+    '/inversiones': 'fa-chart-line',
+    '/licenciamiento': 'fa-certificate',
+  } as Record<string, string>)[this.publicPath()] ?? 'fa-file-lines');
   readonly modulo = input.required<ModuloId>();
   readonly titulo = input.required<string>();
   readonly publicPath = input.required<string>();
