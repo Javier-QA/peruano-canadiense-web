@@ -11,6 +11,18 @@ import { ToastService } from '../shared/toast/toast';
 @Component({
   selector: 'app-admin-mi-cuenta',
   standalone: true,
+  styles: `
+    :host { display: block; min-width: 0; }
+    .admin-page { display: flex; flex-direction: column; gap: 20px; max-width: 1000px; }
+    .page-header { padding: 24px 28px; border: 1px solid #f1dfd2; border-radius: 16px; background: linear-gradient(115deg,#fff8f2,#fff 70%); }
+    .page-header .page-sub { line-height: 1.6; }
+    .admin-card { padding: 26px 28px; }
+    .admin-card > .page-title { font-size: 1.18rem; margin-bottom: 12px; }
+    .admin-card > .form-hint { margin: 0 0 22px; line-height: 1.6; }
+    .form-grid { gap: 18px 22px; }
+    .form-row > p { margin: 0; font-weight: 650; color: var(--adm-ink); }
+    @media(max-width:720px){ .page-header,.admin-card { padding: 18px; } }
+  `,
   template: `
     <div class="admin-page">
       <header class="page-header">
