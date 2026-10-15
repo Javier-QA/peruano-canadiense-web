@@ -1342,3 +1342,44 @@
   [data-admin-route="/admin/usuarios"]
   ) .page-header { min-height: 0; padding: 16px; }
 }
+
+/* Tablas administrativas: mantener columnas y acciones legibles al contraer o
+   expandir el sidebar. El contenedor desplaza horizontalmente si hace falta. */
+.admin-shell .admin-card:has(> .admin-table),
+.admin-shell .admin-card:has(> .investigaciones-scroll) {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+.admin-shell .admin-card > .admin-table:has(.td-actions) {
+  min-width: 820px;
+}
+.admin-shell .admin-table:has(.td-actions) th:last-child {
+  min-width: 108px;
+}
+.admin-shell .admin-table .td-actions {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+  white-space: nowrap;
+  min-width: 108px;
+}
+.admin-shell .admin-table .td-actions > .btn-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  vertical-align: middle;
+  margin: 2px;
+}
+.admin-shell .admin-table td,
+.admin-shell .admin-table th {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.admin-shell .admin-table td .badge,
+.admin-shell .admin-table td .btn-ghost {
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .admin-shell .admin-card > .admin-table:has(.td-actions) { min-width: 760px; }
+}
