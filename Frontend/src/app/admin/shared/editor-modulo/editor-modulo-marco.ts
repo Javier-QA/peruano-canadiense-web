@@ -23,9 +23,8 @@ export interface MarcoTab {
     <div class="admin-page">
       <header class="page-header">
         <div class="portal-header-identity">
-          <span class="portal-title-icon" aria-hidden="true"><i class="fa-solid {{ icono() }}"></i></span>
           <div class="portal-header-copy">
-            <h1 class="page-title">{{ titulo() }}</h1>
+            <h1 class="page-title"><i class="fa-solid {{ icono() }} portal-title-icon" aria-hidden="true"></i>{{ titulo() }}</h1>
             <p class="page-sub">{{ sub() }}</p>
           </div>
         </div>
@@ -140,14 +139,14 @@ export interface MarcoTab {
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
-    .portal-header-identity { display: flex; align-items: flex-start; gap: 12px; flex: 1 1 auto; min-width: 0; }
+    .portal-header-identity { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
     .portal-header-copy { min-width: 0; }
-    .portal-title-icon { display: inline-flex; flex: 0 0 38px; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 13px; background: #fff0e4; color: var(--adm-brand); font-size: .96rem; }
-    .portal-header-copy .page-title { margin: 0 0 3px; line-height: 1.25; }
+    .portal-title-icon { display: inline-block; margin-right: 10px; color: var(--adm-brand); font-size: .72em; vertical-align: .08em; }
+    .portal-header-copy .page-title { display: flex; align-items: center; gap: 0; margin: 0 0 3px; line-height: 1.22; }
     .portal-header-copy .page-sub { margin: 0; }
-    @media (max-width: 600px) { .portal-header-identity { gap: 11px; } .portal-title-icon { flex-basis: 38px; width: 38px; height: 38px; } }
-    .page-header .page-title { font-size: clamp(1.4rem, 2vw, 1.75rem); letter-spacing: -.025em; }
-    .page-header .page-sub { max-width: 75ch; font-size: .85rem; line-height: 1.6; }
+    @media (max-width: 600px) { .portal-title-icon { margin-right: 8px; } }
+    .page-header .page-title { font-size: clamp(1.35rem, 1.8vw, 1.65rem); letter-spacing: -.025em; }
+    .page-header .page-sub { max-width: 75ch; font-size: .83rem; line-height: 1.45; }
     .page-header-actions { align-self: center; flex: 0 0 auto; min-width: 0; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
     .page-header-actions .btn-ghost { white-space: nowrap; padding-inline: 12px; font-size: .78rem; }
     .page-header-actions .badge { white-space: nowrap; }
