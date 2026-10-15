@@ -110,8 +110,8 @@ import type { CampoSchema } from './schema';
     }
 
     :host > .form-row + .form-row {
-      margin-top: 18px;
-      padding-top: 18px;
+      margin-top: 24px;
+      padding-top: 24px;
       border-top: 1px solid var(--adm-line);
     }
 
@@ -128,7 +128,7 @@ import type { CampoSchema } from './schema';
 
     .campo-imagen {
       display: flex;
-      gap: 14px;
+      gap: 20px;
       align-items: flex-start;
     }
 
