@@ -1083,3 +1083,262 @@
   margin-bottom: 0;
   align-self: stretch;
 }
+
+/* Diseño unificado para Páginas de servicio y Gestión. Las reglas están
+   limitadas a sus rutas para no alterar Portal público ni Dashboard. */
+.admin-shell .admin-main:is(
+  [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+) .page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  min-height: 92px;
+  padding: 14px 22px;
+  margin-bottom: 18px;
+  border: 1px solid #f1dfd2;
+  border-radius: 16px;
+  background: linear-gradient(115deg, #fff8f2, #fff 70%);
+}
+.admin-shell .admin-main:is(
+  [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+) .page-header .page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 3px;
+  font-size: clamp(1.35rem, 1.8vw, 1.65rem);
+  line-height: 1.25;
+}
+.admin-shell .admin-main:is(
+  [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+) .page-header .page-sub {
+  margin: 0;
+  font-size: .84rem;
+  line-height: 1.45;
+  max-width: 75ch;
+}
+.admin-shell .admin-main:is(
+  [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+) .page-header-actions { align-items: center; gap: 8px; }
+.admin-shell .admin-main:is(
+  [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+) .admin-card { min-width: 0; }
+.admin-shell .admin-main:is(
+  [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+) .admin-tabs { max-width: 100%; overflow-x: auto; }
+.admin-shell .admin-main:is(
+  [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+) .page-header .page-title::before {
+  content: "\\f15c";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: .72em;
+  color: var(--adm-brand);
+  flex: 0 0 auto;
+}
+.admin-shell .admin-main[data-admin-route="/admin/servicios"] .page-header .page-title::before { content: "\f004"; }
+.admin-shell .admin-main[data-admin-route="/admin/transparencia"] .page-header .page-title::before { content: "\f15c"; }
+.admin-shell .admin-main[data-admin-route="/admin/reglamentos"] .page-header .page-title::before { content: "\f24e"; }
+.admin-shell .admin-main[data-admin-route="/admin/procedimientos"] .page-header .page-title::before { content: "\f0ae"; }
+.admin-shell .admin-main[data-admin-route="/admin/psicopedagogico"] .page-header .page-title::before { content: "\f5dc"; }
+.admin-shell .admin-main[data-admin-route="/admin/servicio-social"] .page-header .page-title::before { content: "\f4c4"; }
+.admin-shell .admin-main[data-admin-route="/admin/soporte-medico"] .page-header .page-title::before { content: "\f0fa"; }
+.admin-shell .admin-main[data-admin-route="/admin/pagina-reclamaciones"] .page-header .page-title::before { content: "\f02d"; }
+.admin-shell .admin-main[data-admin-route="/admin/privacidad"] .page-header .page-title::before { content: "\f21b"; }
+.admin-shell .admin-main[data-admin-route="/admin/repositorio-copy"] .page-header .page-title::before { content: "\f02d"; }
+.admin-shell .admin-main[data-admin-route="/admin/programas"] .page-header .page-title::before { content: "\f19d"; }
+.admin-shell .admin-main[data-admin-route="/admin/menu"] .page-header .page-title::before { content: "\f0e8"; }
+.admin-shell .admin-main[data-admin-route="/admin/noticias"] .page-header .page-title::before { content: "\f1ea"; }
+.admin-shell .admin-main[data-admin-route="/admin/comunicados"] .page-header .page-title::before { content: "\f0a1"; }
+.admin-shell .admin-main[data-admin-route="/admin/personal"] .page-header .page-title::before { content: "\f51c"; }
+.admin-shell .admin-main[data-admin-route="/admin/contactos"] .page-header .page-title::before { content: "\f2b9"; }
+.admin-shell .admin-main[data-admin-route="/admin/investigaciones"] .page-header .page-title::before { content: "\f0c3"; }
+.admin-shell .admin-main[data-admin-route="/admin/documentos"] .page-header .page-title::before { content: "\f07c"; }
+.admin-shell .admin-main[data-admin-route="/admin/mesa-de-partes"] .page-header .page-title::before { content: "\f0e0"; }
+.admin-shell .admin-main[data-admin-route="/admin/reclamaciones"] .page-header .page-title::before { content: "\f24e"; }
+.admin-shell .admin-main[data-admin-route="/admin/accesibilidad"] .page-header .page-title::before { content: "\f4ce"; }
+.admin-shell .admin-main[data-admin-route="/admin/solicitudes"] .page-header .page-title::before { content: "\f01c"; }
+.admin-shell .admin-main[data-admin-route="/admin/usuarios"] .page-header .page-title::before { content: "\f0c0"; }
+@media (max-width: 720px) {
+  .admin-shell .admin-main:is(
+    [data-admin-route="/admin/servicios"],
+  [data-admin-route="/admin/transparencia"],
+  [data-admin-route="/admin/reglamentos"],
+  [data-admin-route="/admin/procedimientos"],
+  [data-admin-route="/admin/psicopedagogico"],
+  [data-admin-route="/admin/servicio-social"],
+  [data-admin-route="/admin/soporte-medico"],
+  [data-admin-route="/admin/pagina-reclamaciones"],
+  [data-admin-route="/admin/privacidad"],
+  [data-admin-route="/admin/repositorio-copy"],
+  [data-admin-route="/admin/programas"],
+  [data-admin-route="/admin/menu"],
+  [data-admin-route="/admin/noticias"],
+  [data-admin-route="/admin/comunicados"],
+  [data-admin-route="/admin/personal"],
+  [data-admin-route="/admin/contactos"],
+  [data-admin-route="/admin/investigaciones"],
+  [data-admin-route="/admin/documentos"],
+  [data-admin-route="/admin/mesa-de-partes"],
+  [data-admin-route="/admin/reclamaciones"],
+  [data-admin-route="/admin/accesibilidad"],
+  [data-admin-route="/admin/solicitudes"],
+  [data-admin-route="/admin/usuarios"]
+  ) .page-header { min-height: 0; padding: 16px; }
+}
