@@ -69,6 +69,7 @@ export class AdminLayoutComponent {
   private readonly nav = inject(AdminNavStore);
 
   readonly pageTitle = signal('Dashboard');
+  readonly rutaActual = signal(this.router.url.split('?')[0]);
   readonly usuario = this.auth.usuario;
   readonly menuAbierto = signal(false);
   /** Cajón de navegación en móvil. */
@@ -105,6 +106,7 @@ export class AdminLayoutComponent {
         takeUntilDestroyed(),
       )
       .subscribe((e) => {
+        this.rutaActual.set(e.urlAfterRedirects.split('?')[0].split('#')[0]);
         this.pageTitle.set(ROUTE_TITLES[e.urlAfterRedirects] ?? 'Admin');
         this.menuAbierto.set(false);
         this.nav.cerrarCajon();
