@@ -143,10 +143,11 @@ export abstract class EditorModuloBase<K extends ModuloId>
     if (!this.dirty() || this.guardando()) return;
     this.guardando.set(true);
     try {
-      await this.contenido.publicar(this.moduloId, structuredClone(this.draft()));
-      this.snapshot = JSON.stringify(this.draft());
-      this.guardado.set(true);
-      this.toast.success(this.mensajeGuardado);
+      const enviado = structuredClone(this.draft());
+      await this.contenido.publicar(this.moduloId, enviado);
+      this.snapshot = JSON.stringify(enviado);
+      this.guardado.set(!this.dirty());
+      this.toast.success(this.dirty() ? 'Cambios anteriores publicados. Hay ediciones nuevas pendientes.' : this.mensajeGuardado);
     } catch {
       this.toast.error(
         'No se pudieron guardar los cambios. Revise la conexión e intente de nuevo.',
