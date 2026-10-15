@@ -6,20 +6,20 @@
   width: 260px;
   flex: 0 0 260px;
   height: 100vh;
-  background: linear-gradient(180deg, #2a2a3e 0%, #1e1e2e 100%);
+  background: linear-gradient(180deg, #222b3c 0%, #172032 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
   position: sticky;
   top: 0;
-  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 4px 0 24px rgba(17, 24, 39, 0.10);
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 24px 20px;
+  padding: 22px 18px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
 }
@@ -63,7 +63,7 @@
 
 .sidebar-nav {
   flex: 1;
-  padding: 14px 12px;
+  padding: 16px 10px;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -86,14 +86,14 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 11px 14px;
+  padding: 11px 13px;
   border-radius: 10px;
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   white-space: nowrap;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   position: relative;
 }
 
@@ -113,8 +113,8 @@
 .sidebar-link:hover {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  transform: translateX(2px);
 }
+
 
 .sidebar-link:hover::before {
   height: 60%;
@@ -126,11 +126,11 @@
 }
 
 .sidebar-link.active {
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15), rgba(255, 133, 51, 0.1));
+  background: rgba(255, 102, 0, 0.17);
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(255, 102, 0, 0.25);
-  border: 1px solid rgba(255, 102, 0, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.14);
+  border: 1px solid transparent;
 }
 
 .sidebar-link.active::before {
@@ -204,7 +204,7 @@
   .admin-sidebar.is-collapsed:hover,
   .admin-sidebar.is-collapsed:focus-within {
     width: 260px;
-    box-shadow: 12px 0 44px rgba(20, 19, 30, 0.45);
+    box-shadow: 12px 0 44px rgba(20, 19, 30, 0.25);
   }
 
   .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .brand-text,
