@@ -88,14 +88,14 @@ import { ToastService } from '../shared/toast/toast';
     :host { display: block; min-width: 0; }
     .admin-page { display: flex; flex-direction: column; gap: 22px; }
     .page-header {
-      padding: 18px 24px; border: 1px solid #f1dfd2;
+      padding: 14px 20px; border: 1px solid #f1dfd2;
       border-radius: 16px; background: linear-gradient(115deg, #fff8f2, #fff 70%);
     }
-    .page-header { align-items: center; padding: 18px 24px; border-radius: 18px; }
-    .portal-header-identity { display: flex; align-items: flex-start; gap: 12px; flex: 1 1 auto; min-width: 0; }
+    .page-header { align-items: center; padding: 14px 20px; border-radius: 16px; }
+    .portal-header-identity { display: flex; align-items: center; gap: 10px; flex: 1 1 auto; min-width: 0; }
     .portal-header-copy { min-width: 0; }
-    .portal-title-icon { display: inline-flex; flex: 0 0 38px; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 13px; background: #fff0e4; color: var(--adm-brand); font-size: .96rem; }
-    .portal-header-copy .page-title { margin: 0 0 3px; line-height: 1.25; }
+    .portal-title-icon { display: inline-flex; flex: 0 0 34px; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 13px; background: #fff0e4; color: var(--adm-brand); font-size: .96rem; }
+    .portal-header-copy .page-title { margin: 0 0 2px; line-height: 1.25; }
     .portal-header-copy .page-sub { margin: 0; }
     @media (max-width: 600px) { .portal-header-identity { gap: 11px; } .portal-title-icon { flex-basis: 38px; width: 38px; height: 38px; } }
     .page-header .page-title { font-size: clamp(1.4rem, 2vw, 1.75rem); }
