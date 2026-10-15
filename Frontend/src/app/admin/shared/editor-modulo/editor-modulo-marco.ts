@@ -139,10 +139,12 @@ export interface MarcoTab {
     .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
     .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); letter-spacing: -.025em; }
     .page-header .page-sub { max-width: 75ch; font-size: .94rem; line-height: 1.6; }
-    .page-header-actions { flex: 0 1 auto; min-width: 0; justify-content: flex-end; gap: 8px; }
-    .page-header-actions .btn-ghost { white-space: nowrap; }
+    .page-header-actions { flex: 0 0 auto; min-width: 0; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
+    .page-header-actions .btn-ghost { white-space: nowrap; padding-inline: 12px; font-size: .78rem; }
+    .page-header-actions .badge { white-space: nowrap; }
     @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: auto; } }
-    @media (max-width: 900px) { .page-header { gap: 12px; } .page-header-actions { flex-wrap: wrap; } }
+    @media (max-width: 900px) { .page-header { gap: 12px; } .page-header-actions { flex-wrap: nowrap; } }
+    @media (max-width: 760px) { .page-header { flex-wrap: wrap; } .page-header-actions { width: 100%; flex-wrap: wrap; justify-content: flex-start; } }
 
     .marco-lienzo {
       min-width: 0;
