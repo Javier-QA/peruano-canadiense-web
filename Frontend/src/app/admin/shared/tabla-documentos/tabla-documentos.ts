@@ -34,6 +34,18 @@ const VACIO: DocForm = {
   selector: 'app-tabla-documentos',
   standalone: true,
   imports: [AppSrc, DialogComponent, SelectorArchivo, VisorPdf, EditorQuill],
+  styles: `
+    :host { display: block; min-width: 0; }
+    .page-header { margin-bottom: 16px !important; padding: 18px 22px; border-radius: 13px; background: #fff8f2; border: 1px solid #f1dfd2; }
+    .page-header .page-title { letter-spacing: -.02em; }
+    .page-header .page-sub { line-height: 1.6; }
+    .admin-card { min-width: 0; }
+    .admin-table { font-variant-numeric: tabular-nums; }
+    .admin-table td { line-height: 1.5; }
+    .admin-table .btn-icon { background: #fff; }
+    .empty-state { padding: 32px 20px; border: 1px dashed var(--adm-line); border-radius: 12px; background: #fff; }
+    @media (max-width: 720px) { .page-header { padding: 16px; } }
+  `,
   template: `
     <div class="page-header" style="margin-bottom:12px">
       <div>
