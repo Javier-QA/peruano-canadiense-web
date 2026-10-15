@@ -959,3 +959,61 @@
   .admin-shell .btn-ghost,
   .admin-shell .btn-danger { transition: none; }
 }
+
+/* Capa final de consistencia visual en todas las pantallas administrativas. */
+.admin-shell .admin-main { scrollbar-gutter: stable; }
+.admin-shell .page-header-actions { row-gap: 10px; }
+.admin-shell .page-header-actions .badge { min-height: 28px; }
+.admin-shell .admin-card + .admin-card { margin-top: 18px; }
+.admin-shell .admin-card:has(> .admin-table) { overflow-x: auto; }
+.admin-shell .admin-table { min-width: 520px; }
+.admin-shell .admin-table th { white-space: nowrap; letter-spacing: .015em; }
+.admin-shell .admin-table td { overflow-wrap: anywhere; }
+.admin-shell .admin-table tbody tr { transition: background-color .16s ease; }
+.admin-shell .admin-table tbody tr:hover { background: #fffaf6; }
+.admin-shell .admin-table .td-actions { min-width: 92px; }
+.admin-shell .admin-card .form-row:has(> label) { min-width: 0; }
+.admin-shell .form-row input:not([type='checkbox']):not([type='radio']),
+.admin-shell .form-row textarea,
+.admin-shell .form-row select { max-width: 100%; }
+.admin-shell .form-row input[type='file'] { font-size: .83rem; }
+.admin-shell .form-row input[type='file']::file-selector-button {
+  padding: 8px 12px; margin-right: 12px;
+  border: 1px solid var(--adm-line); border-radius: 8px;
+  background: #fff; color: var(--adm-ink); font: inherit; cursor: pointer;
+}
+.admin-shell .form-row input[type='file']::file-selector-button:hover { border-color: var(--adm-brand); }
+.admin-shell .admin-card .form-hint { line-height: 1.6; }
+.admin-shell .btn-add, .admin-shell .btn-save, .admin-shell .btn-ghost,
+.admin-shell .btn-cancel, .admin-shell .btn-danger {
+  text-decoration: none; line-height: 1.3;
+  transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.admin-shell .btn-add:focus-visible, .admin-shell .btn-save:focus-visible,
+.admin-shell .btn-ghost:focus-visible, .admin-shell .btn-cancel:focus-visible,
+.admin-shell .btn-danger:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: 3px; }
+.admin-shell .btn-add:hover:not(:disabled), .admin-shell .btn-save:hover:not(:disabled) {
+  box-shadow: 0 5px 14px rgba(242, 106, 22, .16);
+}
+.admin-shell .badge { line-height: 1.35; }
+.admin-shell .form-grid > * { min-width: 0; }
+.admin-shell .modulo-tile { transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+.admin-shell .admin-tabs { max-width: 100%; }
+.admin-shell .admin-tab { text-align: center; }
+@media (max-width: 900px) {
+  .admin-shell .admin-main { padding: 22px 20px 32px; }
+}
+@media (max-width: 600px) {
+  .admin-shell .admin-main { padding: 16px 12px 28px; }
+  .admin-shell .page-header-actions { align-items: stretch; }
+  .admin-shell .page-header-actions > .btn-add,
+  .admin-shell .page-header-actions > .btn-save { flex: 1 1 auto; }
+  .admin-shell .admin-card + .admin-card { margin-top: 14px; }
+  .admin-shell .admin-table { font-size: .8rem; }
+  .admin-shell .admin-table .td-actions { min-width: 76px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell .admin-table tbody tr, .admin-shell .modulo-tile,
+  .admin-shell .btn-add, .admin-shell .btn-save, .admin-shell .btn-ghost,
+  .admin-shell .btn-cancel, .admin-shell .btn-danger { transition: none; }
+}
