@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DialogComponent } from '../../../shared/ui';
 import { AvisoCambios } from '../aviso-cambios/aviso-cambios';
@@ -23,7 +23,7 @@ export interface MarcoTab {
     <div class="admin-page">
       <header class="page-header">
         <div>
-          <h1 class="page-title">{{ titulo() }}</h1>
+          <h1 class="page-title"><i class="fa-solid {{ icono() }} portal-title-icon" aria-hidden="true"></i>{{ titulo() }}</h1>
           <p class="page-sub">{{ sub() }}</p>
         </div>
         <div class="page-header-actions">
@@ -137,6 +137,7 @@ export interface MarcoTab {
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
+    .portal-title-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-right: 12px; border-radius: 11px; background: #fff0e4; color: var(--adm-brand); font-size: 1.05rem; vertical-align: middle; }
     .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); letter-spacing: -.025em; }
     .page-header .page-sub { max-width: 75ch; font-size: .94rem; line-height: 1.6; }
     .page-header-actions { flex: 0 0 auto; min-width: 0; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
@@ -194,6 +195,17 @@ export interface MarcoTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditorModuloMarco {
+  readonly icono = computed(() => ({
+    '/inicio': 'fa-house',
+    '/nosotros': 'fa-building-columns',
+    '/admision': 'fa-user-graduate',
+    '/becas': 'fa-hand-holding-heart',
+    '/costos': 'fa-coins',
+    '/estadisticas': 'fa-chart-column',
+    '/horarios': 'fa-calendar-days',
+    '/inversiones': 'fa-chart-line',
+    '/licenciamiento': 'fa-certificate',
+  } as Record<string, string>)[this.publicPath()] ?? 'fa-file-lines');
   readonly editor = input.required<EditorModuloVista>();
   readonly titulo = input.required<string>();
   readonly sub = input.required<string>();
