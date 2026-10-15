@@ -44,11 +44,15 @@ export interface MarcoTab {
         </div>
       </header>
 
-      <nav class="admin-tabs" [attr.aria-label]="'Secciones de ' + titulo()">
+      <nav class="admin-tabs" role="tablist" [attr.aria-label]="'Secciones de ' + titulo()">
         @for (tab of tabs(); track tab.id) {
           <button
             type="button"
+            role="tab"
             class="admin-tab"
+            [attr.id]="'portal-tab-' + tab.id"
+            [attr.aria-controls]="'portal-panel-' + tab.id"
+            [attr.aria-selected]="activa() === tab.id"
             [class.active]="activa() === tab.id"
             [attr.aria-current]="activa() === tab.id ? 'true' : null"
             (click)="activa.set(tab.id)"
@@ -58,7 +62,7 @@ export interface MarcoTab {
         }
       </nav>
 
-      <div class="marco-lienzo">
+      <div class="marco-lienzo" role="tabpanel" [attr.id]="'portal-panel-' + activa()" [attr.aria-labelledby]="'portal-tab-' + activa()">
         <ng-content />
       </div>
 
@@ -124,10 +128,11 @@ export interface MarcoTab {
     }
 
     .marco-lienzo {
-      padding: 22px;
+      min-width: 0;
+      padding: 24px;
       border: 1px solid var(--adm-line);
       border-radius: var(--adm-radius);
-      background: var(--adm-bg);
+      background: linear-gradient(180deg, #fffaf6 0, var(--adm-bg) 130px);
       box-shadow: var(--adm-shadow);
     }
 
@@ -135,6 +140,9 @@ export interface MarcoTab {
       margin-top: 22px;
     }
 
+    .admin-tabs { scroll-padding-inline: 12px; }
+    .admin-tab[aria-selected="true"] { color: var(--adm-brand); }
+    .marco-lienzo :focus-visible { outline-color: var(--adm-brand); }
     .page-header-actions .fa {
       font-size: 0.72rem;
     }
