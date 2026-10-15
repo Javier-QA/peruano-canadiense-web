@@ -99,8 +99,8 @@ import { DialogComponent } from '../../../shared/ui';
         <button type="button" class="btn-cancel" (click)="cancelar()" [disabled]="!dirty()">
           Cancelar
         </button>
-        <button type="button" class="btn-save" (click)="guardar()" [disabled]="!dirty()">
-          Guardar
+        <button type="button" class="btn-save" (click)="guardar()" [disabled]="!dirty() || guardando()">
+          {{ guardando() ? 'Guardando…' : 'Guardar cambios' }}
         </button>
       </div>
     </div>
@@ -226,6 +226,7 @@ export class ModuloEditor implements PuedeSalirConCambios {
   readonly versiones = signal<ContenidoVersion[]>([]);
   readonly versionActiva = signal<ContenidoVersion | null>(null);
   readonly restaurandoVersion = signal(false);
+  readonly guardando = signal(false);
 
   private snapshot = '';
   private loadedFor: ModuloId | null = null;
@@ -270,12 +271,16 @@ export class ModuloEditor implements PuedeSalirConCambios {
   }
 
   async guardar(): Promise<void> {
+    if (!this.dirty() || this.guardando()) return;
+    this.guardando.set(true);
     try {
       await this.contenido.publicar(this.modulo(), this.draft() as never);
       this.snapshot = JSON.stringify(this.draft());
       this.toast.success('Contenido guardado.');
     } catch {
       this.toast.error('No se pudo guardar. Revise la conexión; el borrador sigue aquí.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
