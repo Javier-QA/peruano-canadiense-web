@@ -33,7 +33,7 @@ import { DialogComponent } from '../../../shared/ui';
         <div>
           <h1 class="page-title">{{ titulo() }}</h1>
           <p class="page-sub">
-            Edita el contenido de esta sección y pulsa Guardar para publicar los cambios.
+            {{ descripcion() }}
           </p>
         </div>
         <div class="page-header-actions">
@@ -215,6 +215,7 @@ export class ModuloEditor implements PuedeSalirConCambios {
   readonly schema = input.required<CampoSchema[]>();
   readonly tabs = input.required<readonly { id: string; label: string }[]>();
   readonly mostrarDocumentos = input(true);
+  readonly descripcion = input('Edita la información y los documentos de esta página pública.');
 
   readonly remoto = environment.useRemoteApi;
   readonly draft = signal<unknown>({});
