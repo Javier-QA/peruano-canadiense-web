@@ -20,7 +20,7 @@ const TABS: MarcoTab[] = [
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Nosotros"
-      sub="Los cambios guardados se actualizarán directamente en la sección Nosotros de la web."
+      sub="Actualiza la presentación institucional, misión, visión, organigrama e historia."
       publicPath="/nosotros"
       [tabs]="tabs"
       [(activa)]="activa"
