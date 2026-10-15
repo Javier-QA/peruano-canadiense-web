@@ -127,6 +127,19 @@ export interface MarcoTab {
       display: block;
     }
 
+    .page-header {
+      align-items: center;
+      padding: 26px 34px;
+      border: 1px solid #f1dfd2;
+      border-radius: 18px;
+      background: linear-gradient(115deg, #fff8f2, #fff 70%);
+      box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
+    }
+    .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); letter-spacing: -.025em; }
+    .page-header .page-sub { max-width: 75ch; font-size: .94rem; line-height: 1.6; }
+    .page-header-actions { gap: 10px; }
+    @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: 100%; } }
+
     .marco-lienzo {
       min-width: 0;
       padding: 24px;
