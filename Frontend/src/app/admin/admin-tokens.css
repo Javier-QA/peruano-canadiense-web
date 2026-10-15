@@ -1,10 +1,20 @@
+/* Sistema visual compartido por todos los módulos del panel administrativo. */
 .admin-shell {
-  --adm-brand:#FF6600; --adm-brand-hover:#e65c00;   /* Naranja Peruano Canadiense */
-  --adm-ink:#44425A;   --adm-ink-soft:#7c7a91;
-  --adm-surface:#ffffff; --adm-bg:#f5f7fb; --adm-line:#e6e9f2;
-  --adm-ok:#1a8a4a;     --adm-ok-bg:#eafaf1;      /* Activo / Publicado */
-  --adm-warn:#c47000;   --adm-warn-bg:#fff4e5;    /* SOLO Pendiente */
-  --adm-danger:#c0392b; --adm-danger-bg:#fdecea;
-  --adm-muted:#5b6478;  --adm-muted-bg:#eef0f6;   /* Inactivo vive aquí */
-  --adm-radius:12px;    --adm-shadow:0 2px 14px rgba(50,63,124,.08);
+  --adm-brand: #f26a16;
+  --adm-brand-hover: #d9550b;
+  --adm-ink: #222b3c;
+  --adm-ink-soft: #64748b;
+  --adm-surface: #ffffff;
+  --adm-bg: #f3f6fa;
+  --adm-line: #e2e8f0;
+  --adm-ok: #16834b;
+  --adm-ok-bg: #eafaf1;
+  --adm-warn: #a96200;
+  --adm-warn-bg: #fff4e5;
+  --adm-danger: #b93835;
+  --adm-danger-bg: #fdecea;
+  --adm-muted: #526174;
+  --adm-muted-bg: #edf2f7;
+  --adm-radius: 14px;
+  --adm-shadow: 0 3px 18px rgba(28, 44, 68, 0.055);
 }
