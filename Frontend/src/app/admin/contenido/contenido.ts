@@ -105,23 +105,23 @@ import { ToastService } from '../shared/toast/toast';
     @media (max-width: 720px) { .page-header { padding: 20px; } }
     .page-header .page-sub { max-width: 68ch; line-height: 1.6; }
     /* Diseño de tarjetas aprobado; nombres aislados de los estilos globales. */
-    .classic-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-    .classic-card { display: flex; flex-direction: column; justify-content: space-between; gap: 25px; min-width: 0; min-height: 207px; padding: 24px; margin: 0; background: var(--adm-surface, #fff); border: 1px solid var(--adm-line, #dfe5ee); border-radius: 19px; color: inherit; text-decoration: none; box-shadow: 0 4px 18px rgba(27,41,61,.035); transition: border-color .16s ease, box-shadow .16s ease; }
-    .classic-card-heading { display: flex; align-items: center; gap: 14px; min-width: 0; }
-    .classic-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 52px; width: 52px; height: 52px; border-radius: 14px; background: #fff0e4; color: var(--adm-brand, #f26a16); font-size: 1.15rem; }
-    .classic-name { flex: 1 1 auto; min-width: 0; margin: 0; font-size: 1.08rem; line-height: 1.3; font-weight: 750; color: var(--adm-ink, #1e293b); }
+    .classic-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+    .classic-card { display: flex; flex-direction: column; justify-content: space-between; gap: 15px; min-width: 0; min-height: 158px; padding: 17px; margin: 0; background: var(--adm-surface, #fff); border: 1px solid var(--adm-line, #dfe5ee); border-radius: 19px; color: inherit; text-decoration: none; box-shadow: 0 4px 18px rgba(27,41,61,.035); transition: border-color .16s ease, box-shadow .16s ease; }
+    .classic-card-heading { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .classic-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 42px; width: 42px; height: 42px; border-radius: 11px; background: #fff0e4; color: var(--adm-brand, #f26a16); font-size: 1rem; }
+    .classic-name { flex: 1 1 auto; min-width: 0; margin: 0; font-size: 1rem; line-height: 1.3; font-weight: 750; color: var(--adm-ink, #1e293b); }
     .classic-link-icon { flex: 0 0 auto; color: #9cabbc; font-size: .82rem; }
-    .classic-card-footer { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 17px; border-top: 1px solid var(--adm-line, #dfe5ee); }
-    .classic-counts { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 16px; color: var(--adm-muted, #61728c); font-size: .84rem; line-height: 1.4; }
+    .classic-card-footer { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-top: 11px; border-top: 1px solid var(--adm-line, #dfe5ee); }
+    .classic-counts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; color: var(--adm-muted, #61728c); font-size: .79rem; line-height: 1.4; }
     .classic-counts span { white-space: nowrap; }
     .classic-counts strong { font-weight: 750; color: var(--adm-ink, #1e293b); }
-    .classic-status { display: inline-flex; padding: 5px 13px; border-radius: 999px; background: var(--adm-brand, #f26a16); color: #fff; font-size: .77rem; line-height: 1.2; font-weight: 700; white-space: nowrap; }
+    .classic-status { display: inline-flex; padding: 4px 11px; border-radius: 999px; background: var(--adm-brand, #f26a16); color: #fff; font-size: .73rem; line-height: 1.2; font-weight: 700; white-space: nowrap; }
     .classic-card:hover { border-color: #efbb97; box-shadow: 0 9px 25px rgba(27,41,61,.07); }
     .classic-card:hover .classic-link-icon { color: var(--adm-brand, #f26a16); }
     .classic-card:focus-visible { outline: 3px solid var(--adm-brand, #f26a16); outline-offset: 3px; }
     @media (max-width: 1350px) { .classic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     @media (max-width: 1000px) { .classic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 650px) { .classic-grid { grid-template-columns: 1fr; gap: 14px; } .classic-card { min-height: 175px; padding: 19px; } .page-header { padding: 16px; } }
+    @media (max-width: 650px) { .classic-grid { grid-template-columns: 1fr; gap: 14px; } .classic-card { min-height: 150px; padding: 16px; } .page-header { padding: 16px; } }
     @media (prefers-reduced-motion: reduce) { .classic-card { transition: none; } }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
