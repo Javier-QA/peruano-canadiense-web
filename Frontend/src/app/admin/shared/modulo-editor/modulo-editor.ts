@@ -274,9 +274,10 @@ export class ModuloEditor implements PuedeSalirConCambios {
     if (!this.dirty() || this.guardando()) return;
     this.guardando.set(true);
     try {
-      await this.contenido.publicar(this.modulo(), this.draft() as never);
-      this.snapshot = JSON.stringify(this.draft());
-      this.toast.success('Contenido guardado.');
+      const enviado = structuredClone(this.draft());
+      await this.contenido.publicar(this.modulo(), enviado as never);
+      this.snapshot = JSON.stringify(enviado);
+      this.toast.success(this.dirty() ? 'Cambios anteriores publicados. Quedan ediciones pendientes.' : 'Contenido guardado.');
     } catch {
       this.toast.error('No se pudo guardar. Revise la conexión; el borrador sigue aquí.');
     } finally {
