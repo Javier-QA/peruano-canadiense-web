@@ -1,16 +1,21 @@
 ﻿.dash {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
 }
 
 .dash .page-header {
   margin-bottom: 0;
-  padding: 8px 0 4px;
+  padding: 27px 30px;
+  border: 1px solid #f6dfcf;
+  border-radius: 18px;
+  background: linear-gradient(115deg, #fff7f0 0%, #fff 66%);
+  box-shadow: 0 5px 24px rgba(48, 59, 81, .035);
+  align-items: center;
 }
 
 .dash .page-title {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
   letter-spacing: -0.025em;
 }
 
@@ -29,8 +34,12 @@
 
 .dash-updated {
   margin: -6px 0 0;
-  font-size: 0.74rem;
-  color: var(--adm-ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-start;
+  font-size: 0.78rem;
+  color: var(--adm-muted);
 }
 
 .dash-spin {
@@ -46,6 +55,7 @@
 /* ---------- Bloque 1: solicitudes sin atender (héroe) ---------- */
 
 .panel-solicitudes {
+  border-left: 4px solid var(--adm-brand);
   animation: dash-rise 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -115,7 +125,7 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 16px 18px;
+  padding: 15px 18px;
   border: 1px solid var(--adm-line);
   border-radius: 12px;
   background: var(--adm-surface);
@@ -228,11 +238,13 @@
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  gap: 8px;
-  padding: 18px;
+  gap: 12px;
+  padding: 20px;
   border: 1px solid var(--adm-line);
-  border-radius: 12px;
-  background: var(--adm-bg);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(26, 38, 60, .025);
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
   min-width: 0;
 }
 
@@ -252,13 +264,20 @@
 }
 
 .stat-strip i {
-  align-self: center;
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #fff0e4;
   font-size: 1.15rem;
   color: var(--adm-brand);
 }
 
 .stat-n {
-  font-size: clamp(1.55rem, 2.2vw, 2rem);
+  font-size: clamp(1.75rem, 2.4vw, 2.2rem);
   font-weight: 800;
   line-height: 1.1;
   color: var(--adm-ink);
@@ -266,7 +285,8 @@
 }
 
 .stat-l {
-  font-size: 0.82rem;
+  font-size: 0.83rem;
+  font-weight: 550;
   color: var(--adm-muted);
   transition: color 0.15s ease;
 }
@@ -414,4 +434,56 @@
   .dash .page-header-actions { width: 100%; }
   .dash .page-header-actions > * { flex: 1; }
   .stat-strip li { padding: 14px; }
+}
+
+/* Encabezado editorial: bienvenida y acciones sin exceso de espacio vacío. */
+.dash-welcome-copy { min-width: 0; flex: 1 1 360px; }
+.dash-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 12px; color: #aa4c10; font-size: .74rem;
+  font-weight: 800; text-transform: uppercase; letter-spacing: .09em;
+}
+.dash .page-header-actions { justify-content: flex-end; }
+.dash .page-header-actions .btn-ghost { background: #fff; }
+.dash-updated i { color: var(--adm-ok); font-size: .78rem; }
+.panel-heading-icon {
+  display: inline-flex; width: 34px; height: 34px; flex: none;
+  align-items: center; justify-content: center; border-radius: 10px;
+  color: var(--adm-brand); background: #fff0e4; font-size: .95rem;
+}
+.panel-head .panel-title, .activity-card .panel-title {
+  display: flex; align-items: center; gap: 10px;
+}
+.panel-solicitudes .admin-card-body { padding: 24px 28px; }
+.panel-solicitudes .bandeja { background: #fafbfe; }
+.bandeja-open { color: var(--adm-brand); border-color: #f5d4be; }
+.bandeja-clear { line-height: 1.6; }
+.dash-section-heading { display: flex; justify-content: space-between; align-items: center; }
+.dash-section-kicker {
+  display: block; margin-bottom: 6px; color: var(--adm-brand);
+  font-size: .68rem; font-weight: 800; letter-spacing: .1em;
+}
+.dash-section-heading .panel-sub { margin-top: 7px; line-height: 1.5; }
+.stat-strip li:hover, .stat-strip li:focus-within {
+  border-color: #f0b98f; transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(45, 52, 67, .07);
+}
+.stat-strip li a { flex: 1; }
+.stat-strip li a:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: 3px; }
+.stat-strip .badge { align-self: flex-start; }
+.activity-card .panel-intro { padding-bottom: 18px; }
+.activity-card .panel-sub { margin-top: 8px; }
+@media (max-width: 900px) {
+  .dash .page-header { padding: 22px; }
+  .dash .page-header-actions { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .dash .page-header { padding: 20px 18px; }
+  .dash .page-header-actions { flex-direction: column; align-items: stretch; }
+  .dash .page-header-actions > * { width: 100%; }
+  .panel-solicitudes .admin-card-body { padding: 20px 18px; }
+  .stat-strip li { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat-strip li { transition: none; }
 }
