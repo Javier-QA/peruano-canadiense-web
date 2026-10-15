@@ -24,7 +24,7 @@ const TABS: MarcoTab[] = [
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Inicio"
-      sub="Los cambios se publicarán automáticamente en el portal web al guardar."
+      sub="Administra las imágenes de portada, servicios y logotipos institucionales. Guarda para publicar."
       publicPath="/inicio"
       [tabs]="tabs"
       [(activa)]="activa"
