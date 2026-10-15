@@ -154,41 +154,45 @@ import { DialogComponent } from '../../../shared/ui';
     </app-dialog>
   `,
   styles: `
-    :host {
-      display: block;
+    :host { display: block; min-width: 0; }
+    .admin-page { display: flex; flex-direction: column; gap: 20px; }
+    .page-header {
+      padding: 24px 28px;
+      border: 1px solid #f1dfd2;
+      border-radius: 16px;
+      background: linear-gradient(115deg, #fff8f2, #fff 70%);
+      box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
-
-    .seccion-card {
-      overflow: visible;
-    }
-
+    .page-header .page-title { letter-spacing: -.025em; }
+    .page-header .page-sub { line-height: 1.6; max-width: 70ch; }
+    .page-header-actions { gap: 10px; }
+    .admin-tabs { margin-bottom: 0; }
+    .seccion-card { overflow: visible; border-radius: 16px; }
     .seccion-head {
-      padding: 16px 22px;
+      padding: 22px 28px;
       border-bottom: 1px solid var(--adm-line);
-      background: linear-gradient(180deg, var(--adm-bg), var(--adm-surface));
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(110deg, #fff8f2, #fff 75%);
     }
-
     .seccion-titulo {
       margin: 0;
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.18rem;
+      font-weight: 750;
       color: var(--adm-ink);
-      letter-spacing: -0.01em;
+      letter-spacing: -.018em;
     }
-
     .seccion-sub {
-      margin: 3px 0 0;
-      font-size: 0.78rem;
+      margin: 8px 0 0;
+      font-size: .84rem;
+      line-height: 1.55;
       color: var(--adm-ink-soft);
     }
-
-    .seccion-cuerpo {
-      padding: 20px 22px 24px;
-      background: var(--adm-bg);
-    }
-
-    .seccion-docs {
-      margin-top: 22px;
+    .seccion-cuerpo { padding: 26px 28px 30px; background: #f8fafc; }
+    .seccion-docs { margin-top: 26px; }
+    @media (max-width: 720px) {
+      .page-header { padding: 18px; }
+      .seccion-head { padding: 18px; }
+      .seccion-cuerpo { padding: 18px; }
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
