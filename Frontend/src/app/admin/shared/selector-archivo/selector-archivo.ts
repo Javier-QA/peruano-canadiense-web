@@ -52,6 +52,12 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
     }
   `,
   styles: `
+    :host { display: block; min-width: 0; }
+    .dropzone { border-radius: 13px; }
+    .dropzone:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: 3px; }
+    .dropzone.over { border-color: var(--adm-brand); background: #fff5ec; }
+    .selector-boton { min-height: 40px; }
+
     .selector-boton {
       display: inline-flex;
       align-items: center;
