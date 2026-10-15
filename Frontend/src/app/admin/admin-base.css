@@ -1075,3 +1075,11 @@
     outline-color: Highlight;
   }
 }
+
+/* Las tarjetas del catálogo usan el gap del grid, no el margen entre tarjetas genéricas. */
+.admin-shell .modulo-grid > .modulo-tile,
+.admin-shell .modulo-grid > .modulo-tile + .modulo-tile {
+  margin-top: 0;
+  margin-bottom: 0;
+  align-self: stretch;
+}
