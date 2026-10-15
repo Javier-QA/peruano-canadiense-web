@@ -1,6 +1,7 @@
 ﻿<div class="admin-page dash" [class.dash--busy]="refrescando()">
-  <header class="page-header">
-    <div>
+  <header class="page-header dash-welcome">
+    <div class="dash-welcome-copy">
+      <span class="dash-eyebrow"><i class="fa fa-gauge-high" aria-hidden="true"></i> Resumen general</span>
       <h1 class="page-title">
         @if (usuario(); as u) {
           Hola, {{ u.nombre }}
@@ -17,7 +18,7 @@
       </p>
     </div>
     <div class="page-header-actions">
-      <a class="btn-ghost" href="/inicio" target="_blank" rel="noopener">Ver portal público</a>
+      <a class="btn-ghost" href="/inicio" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square" aria-hidden="true"></i> Ver portal público</a>
       <button type="button" class="btn-ghost" (click)="cargar()" [disabled]="cargando()">
         <i class="fa fa-rotate" [class.dash-spin]="cargando()" aria-hidden="true"></i>
         {{ refrescando() ? 'Actualizando…' : 'Actualizar' }}
@@ -26,7 +27,7 @@
   </header>
 
   @if (actualizadoEn()) {
-    <p class="dash-updated" aria-live="polite">Actualizado {{ relativa() }}</p>
+    <p class="dash-updated" aria-live="polite"><i class="fa fa-circle-check" aria-hidden="true"></i> Datos actualizados {{ relativa() }}</p>
   }
 
   @if (primeraCarga()) {
@@ -50,7 +51,7 @@
     <section class="admin-card panel-solicitudes" [class.is-urgent]="hayUrgencia()">
       <div class="admin-card-body">
         <div class="panel-head">
-          <h2 class="panel-title">Solicitudes sin atender</h2>
+          <h2 class="panel-title"><span class="panel-heading-icon"><i class="fa fa-inbox" aria-hidden="true"></i></span> Solicitudes sin atender</h2>
           @if (totalPendientes()) {
             <span class="panel-count" [class.panel-count--warn]="hayUrgencia()">
               {{ totalPendientes() }}
@@ -99,7 +100,7 @@
     @if (esAdmin()) {
       <section class="admin-card">
         <div class="admin-card-body">
-          <h2 class="panel-title">Estado del contenido</h2>
+          <div class="dash-section-heading"><div><span class="dash-section-kicker">PUBLICACIONES</span><h2 class="panel-title">Estado del contenido</h2><p class="panel-sub">Accede rápidamente al contenido publicado en el portal.</p></div></div>
           <ul class="stat-strip">
             <li>
               <a routerLink="/admin/documentos">
@@ -141,7 +142,7 @@
 
     <section class="admin-card activity-card">
       <div class="admin-card-body panel-intro">
-        <h2 class="panel-title">Actividad reciente</h2>
+        <h2 class="panel-title"><span class="panel-heading-icon"><i class="fa fa-clock-rotate-left" aria-hidden="true"></i></span> Actividad reciente</h2>
         <p class="panel-sub">Revisa las acciones recientes del panel administrativo.</p>
       </div>
       <div class="dash-tablewrap">
