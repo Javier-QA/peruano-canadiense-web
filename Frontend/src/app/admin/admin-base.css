@@ -300,8 +300,8 @@
 }
 
 .admin-shell .empty-state {
-  min-height: 140px;
-  padding: 24px;
+  min-height: 160px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -325,12 +325,12 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .admin-shell .form-row label {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--adm-ink);
 }
 
@@ -377,7 +377,7 @@
 .admin-shell .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px 16px;
+  gap: 18px 20px;
 }
 
 .admin-shell .form-grid .span-2 {
@@ -386,13 +386,13 @@
 
 .admin-shell .admin-tabs {
   display: flex;
-  gap: 2px;
+  gap: 6px;
   overflow-x: auto;
-  padding: 5px;
-  margin-bottom: 16px;
-  background: var(--adm-surface);
+  padding: 6px;
+  margin-bottom: 22px;
+  background: #f0f3f8;
   border: 1px solid var(--adm-line);
-  border-radius: 11px;
+  border-radius: 13px;
   scrollbar-width: thin;
 }
 
@@ -400,8 +400,8 @@
   all: unset;
   box-sizing: border-box;
   cursor: pointer;
-  padding: 9px 16px;
-  border-radius: 8px;
+  padding: 11px 17px;
+  border-radius: 9px;
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--adm-muted);
@@ -417,8 +417,9 @@
 }
 
 .admin-shell .admin-tab.active {
-  background: color-mix(in srgb, var(--adm-brand) 12%, var(--adm-surface));
+  background: var(--adm-surface);
   color: var(--adm-brand);
+  box-shadow: 0 2px 7px rgba(35, 45, 65, .07);
   font-weight: 700;
 }
 
@@ -447,14 +448,14 @@
   justify-content: flex-end;
   gap: 8px;
   margin-top: 20px;
-  padding: 12px 0 4px;
-  background: linear-gradient(180deg, transparent, var(--adm-bg) 28%);
+  padding: 16px 4px 10px;
+  background: linear-gradient(180deg, transparent, var(--adm-bg) 24%);
 }
 
 .admin-shell .dropzone {
   border: 1.5px dashed var(--adm-line);
-  border-radius: 10px;
-  padding: 22px 16px;
+  border-radius: 14px;
+  padding: 28px 20px;
   text-align: center;
   color: var(--adm-muted);
   background: var(--adm-bg);
@@ -478,7 +479,7 @@
 .admin-shell .historial-lista {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   max-height: 220px;
   overflow: auto;
 }
@@ -490,7 +491,7 @@
   align-items: center;
   padding: 10px 12px;
   border: 1px solid var(--adm-line);
-  border-radius: 8px;
+  border-radius: 11px;
   background: var(--adm-surface);
   text-align: left;
   font: inherit;
@@ -677,14 +678,14 @@
 .admin-shell .modulo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 14px;
+  gap: 18px;
 }
 
 .admin-shell .modulo-tile {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 18px;
+  gap: 12px;
+  padding: 24px;
   text-decoration: none;
   color: inherit;
   height: 100%;
