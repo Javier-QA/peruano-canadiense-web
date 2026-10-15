@@ -34,7 +34,7 @@ import { ToastService } from '../shared/toast/toast';
         @for (mod of filas(); track mod.id) {
           <a class="admin-card modulo-tile" [routerLink]="mod.adminPath" [attr.aria-label]="'Editar ' + mod.titulo">
             <div class="modulo-tile-head">
-              <span class="modulo-icon"><i class="fa {{ mod.icon }}" aria-hidden="true"></i></span>
+              <span class="modulo-icon"><i class="fa-solid {{ mod.icon }}" aria-hidden="true"></i></span>
               <h2 class="modulo-name">{{ mod.titulo }}</h2>
               <i class="fa fa-arrow-up-right-from-square modulo-arrow" aria-hidden="true"></i>
             </div>
