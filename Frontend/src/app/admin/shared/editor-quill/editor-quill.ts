@@ -37,9 +37,12 @@ const BARRA = [
     />
   `,
   styles: `
-    :host {
-      display: block;
-    }
+    :host { display: block; min-width: 0; }
+    :host ::ng-deep .ql-toolbar.ql-snow { border-radius: 11px 11px 0 0; background: #f8fafc; }
+    :host ::ng-deep .ql-container.ql-snow { border-radius: 0 0 11px 11px; background: #fff; }
+    :host ::ng-deep .ql-editor { line-height: 1.7; padding: 16px 18px; }
+    :host ::ng-deep .ql-editor:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: -2px; }
+
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
