@@ -18,7 +18,7 @@ import { ToastService } from '../shared/toast/toast';
     <div class="admin-page">
       <header class="page-header">
         <div>
-          <h1 class="page-title">Contenido del portal</h1>
+          <h1 class="page-title"><i class="fa-solid fa-layer-group portal-title-icon" aria-hidden="true"></i>Contenido del portal</h1>
           <p class="page-sub">
             Administra las páginas, documentos y secciones visibles en el portal institucional.
           </p>
@@ -89,6 +89,7 @@ import { ToastService } from '../shared/toast/toast';
       border-radius: 16px; background: linear-gradient(115deg, #fff8f2, #fff 70%);
     }
     .page-header { align-items: center; padding: 26px 34px; border-radius: 18px; }
+    .portal-title-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-right: 12px; border-radius: 11px; background: #fff0e4; color: var(--adm-brand); font-size: 1.05rem; vertical-align: middle; }
     .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); }
     .page-header .page-sub { font-size: .94rem; }
     @media (max-width: 720px) { .page-header { padding: 20px; } }
