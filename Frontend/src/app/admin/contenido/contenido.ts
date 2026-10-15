@@ -30,26 +30,34 @@ import { ToastService } from '../shared/toast/toast';
         </button>
       </header>
 
-      <div class="modulo-grid" aria-label="Módulos del portal público">
-        @for (mod of filas(); track mod.id) {
-          <a class="admin-card modulo-tile" [routerLink]="mod.adminPath" [attr.aria-label]="'Editar ' + mod.titulo">
-            <span class="modulo-icon"><i class="fa-solid {{ mod.icon }}" aria-hidden="true"></i></span>
-            <div class="modulo-info">
-              <h2 class="modulo-name">{{ mod.titulo }}</h2>
-              <div class="modulo-counts">
-                <span><strong>{{ mod.publicados }}</strong> publicados</span>
-                <span><strong>{{ mod.borradores }}</strong> borradores</span>
+      <section class="catalogo-panel" aria-labelledby="catalogo-title">
+        <div class="catalogo-heading">
+          <div>
+            <h2 id="catalogo-title">Secciones del portal</h2>
+            <p>Selecciona una sección para administrar su contenido.</p>
+          </div>
+          <span class="catalogo-total">{{ filas().length }} secciones</span>
+        </div>
+        <div class="modulo-grid" aria-label="Módulos del portal público">
+          @for (mod of filas(); track mod.id) {
+            <a class="modulo-tile" [routerLink]="mod.adminPath" [attr.aria-label]="'Editar ' + mod.titulo">
+              <span class="modulo-icon"><i class="fa-solid {{ mod.icon }}" aria-hidden="true"></i></span>
+              <div class="modulo-info">
+                <h3 class="modulo-name">{{ mod.titulo }}</h3>
+                <p class="modulo-counts">
+                  <span>{{ mod.publicados }} publicados</span>
+                  <span class="count-divider" aria-hidden="true">·</span>
+                  <span>{{ mod.borradores }} borradores</span>
+                </p>
               </div>
-            </div>
-            <div class="modulo-side">
-              <i class="fa-solid fa-chevron-right modulo-arrow" aria-hidden="true"></i>
               @if (mod.modificado) {
-                <span class="badge badge-modificado">Modificado</span>
+                <span class="modulo-status">Modificado</span>
               }
-            </div>
-          </a>
-        }
-      </div>
+              <i class="fa-solid fa-chevron-right modulo-arrow" aria-hidden="true"></i>
+            </a>
+          }
+        </div>
+      </section>
     </div>
 
     <app-dialog
@@ -104,11 +112,29 @@ import { ToastService } from '../shared/toast/toast';
     .page-header .page-sub { font-size: .85rem; }
     @media (max-width: 720px) { .page-header { padding: 20px; } }
     .page-header .page-sub { max-width: 68ch; line-height: 1.6; }
+    .catalogo-panel {
+      min-width: 0;
+      background: var(--adm-surface, #fff);
+      border: 1px solid var(--adm-line, #dfe5ee);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(27, 41, 61, .035);
+    }
+    .catalogo-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 19px 24px;
+      border-bottom: 1px solid var(--adm-line, #e5e9f0);
+    }
+    .catalogo-heading h2 { margin: 0 0 3px; font-size: 1.08rem; font-weight: 750; color: var(--adm-ink); }
+    .catalogo-heading p { margin: 0; font-size: .82rem; color: var(--adm-muted); }
+    .catalogo-total { color: var(--adm-muted); font-size: .78rem; white-space: nowrap; }
     .modulo-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      align-items: stretch;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
     }
     .modulo-grid > .modulo-tile,
     .modulo-grid > .modulo-tile + .modulo-tile {
@@ -116,77 +142,62 @@ import { ToastService } from '../shared/toast/toast';
     }
     .modulo-tile {
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: flex-start;
-      gap: 12px;
-      min-height: 102px;
-      padding: 16px;
+      gap: 14px;
       min-width: 0;
-      border: 1px solid var(--adm-line);
-      border-radius: 15px;
-      background: var(--adm-surface);
-      box-shadow: 0 3px 14px rgba(27, 41, 61, .035);
+      min-height: 88px;
+      padding: 15px 22px;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--adm-line, #e5e9f0);
       color: inherit;
       text-decoration: none;
-      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+      transition: background .16s ease;
     }
+    .modulo-tile:nth-child(odd) { border-right: 1px solid var(--adm-line, #e5e9f0); }
     .modulo-icon {
       display: inline-flex;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
       align-items: center;
       justify-content: center;
-      flex: 0 0 42px;
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: #fff0e4;
+      border-radius: 10px;
+      background: #fff3e9;
       color: var(--adm-brand);
-      font-size: 1.04rem;
+      font-size: .95rem;
     }
     .modulo-info { flex: 1 1 auto; min-width: 0; }
-    .modulo-name {
-      margin: 0 0 7px;
-      font-size: .99rem;
-      line-height: 1.3;
-      font-weight: 750;
-      color: var(--adm-ink);
-      overflow-wrap: normal;
-    }
-    .modulo-counts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px 10px;
-      color: var(--adm-muted);
-      font-size: .72rem;
-      line-height: 1.35;
-    }
-    .modulo-counts span { white-space: nowrap; }
-    .modulo-counts strong { color: var(--adm-ink); font-weight: 750; }
-    .modulo-side {
-      display: flex;
+    .modulo-name { margin: 0 0 5px; font-size: .94rem; line-height: 1.3; font-weight: 750; color: var(--adm-ink); }
+    .modulo-counts { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 7px; margin: 0; font-size: .76rem; line-height: 1.4; color: var(--adm-muted); }
+    .count-divider { color: #aab4c2; }
+    .modulo-status {
       flex: 0 0 auto;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: space-between;
-      align-self: stretch;
-      gap: 10px;
+      padding: 5px 9px;
+      border: 1px solid #f4d8c5;
+      border-radius: 7px;
+      background: #fff7f0;
+      color: #b64c0b;
+      font-size: .71rem;
+      font-weight: 650;
+      white-space: nowrap;
     }
-    .modulo-arrow { color: var(--adm-ink-soft); opacity: .6; font-size: .78rem; }
-    .modulo-tile .badge { white-space: nowrap; font-size: .68rem; padding: 4px 8px; }
-    .modulo-tile:hover { border-color: #f0b98f; box-shadow: 0 10px 24px rgba(27,41,61,.08); transform: translateY(-2px); }
-    .modulo-tile:hover .modulo-arrow { color: var(--adm-brand); opacity: 1; }
-    .modulo-tile:focus-visible { outline: 3px solid var(--adm-brand); outline-offset: 3px; }
-    @media (max-width: 1370px) { .modulo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (max-width: 1050px) { .modulo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 640px) {
-      .modulo-grid { grid-template-columns: 1fr; gap: 10px; }
-      .modulo-tile { min-height: 88px; padding: 14px; }
+    .modulo-arrow { flex: 0 0 auto; margin-left: 4px; color: #a1adbc; font-size: .75rem; }
+    .modulo-tile:hover { background: #fffaf6; }
+    .modulo-tile:hover .modulo-arrow { color: var(--adm-brand); }
+    .modulo-tile:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: -3px; }
+    @media (max-width: 900px) {
+      .modulo-grid { grid-template-columns: 1fr; }
+      .modulo-tile:nth-child(odd) { border-right: 0; }
+    }
+    @media (max-width: 600px) {
+      .catalogo-heading { padding: 16px; align-items: flex-start; }
+      .modulo-tile { padding: 13px 14px; gap: 10px; }
+      .modulo-icon { width: 36px; height: 36px; flex-basis: 36px; }
+      .modulo-status { font-size: .66rem; padding: 4px 6px; }
       .page-header { padding: 16px; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .modulo-tile { transition: none; }
-      .modulo-tile:hover { transform: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { .modulo-tile { transition: none; } }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
