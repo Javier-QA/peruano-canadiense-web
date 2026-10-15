@@ -18,9 +18,8 @@ import { ToastService } from '../shared/toast/toast';
     <div class="admin-page">
       <header class="page-header">
         <div class="portal-header-identity">
-          <span class="portal-title-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
           <div class="portal-header-copy">
-            <h1 class="page-title">Contenido del portal</h1>
+            <h1 class="page-title"><i class="fa-solid fa-layer-group portal-title-icon" aria-hidden="true"></i>Contenido del portal</h1>
             <p class="page-sub">
             Administra las páginas, documentos y secciones visibles en el portal institucional.
           </p>
@@ -88,16 +87,16 @@ import { ToastService } from '../shared/toast/toast';
     :host { display: block; min-width: 0; }
     .admin-page { display: flex; flex-direction: column; gap: 22px; }
     .page-header {
-      padding: 14px 20px; border: 1px solid #f1dfd2;
+      padding: 14px 22px; border: 1px solid #f1dfd2;
       border-radius: 16px; background: linear-gradient(115deg, #fff8f2, #fff 70%);
     }
     .page-header { align-items: center; padding: 14px 20px; border-radius: 16px; }
-    .portal-header-identity { display: flex; align-items: center; gap: 10px; flex: 1 1 auto; min-width: 0; }
+    .portal-header-identity { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
     .portal-header-copy { min-width: 0; }
-    .portal-title-icon { display: inline-flex; flex: 0 0 34px; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 13px; background: #fff0e4; color: var(--adm-brand); font-size: .96rem; }
-    .portal-header-copy .page-title { margin: 0 0 2px; line-height: 1.25; }
+    .portal-title-icon { display: inline-block; margin-right: 10px; color: var(--adm-brand); font-size: .72em; vertical-align: .08em; }
+    .portal-header-copy .page-title { display: flex; align-items: center; gap: 0; margin: 0 0 3px; line-height: 1.22; }
     .portal-header-copy .page-sub { margin: 0; }
-    @media (max-width: 600px) { .portal-header-identity { gap: 11px; } .portal-title-icon { flex-basis: 38px; width: 38px; height: 38px; } }
+    @media (max-width: 600px) { .portal-title-icon { margin-right: 8px; } }
     .page-header .page-title { font-size: clamp(1.4rem, 2vw, 1.75rem); }
     .page-header .page-sub { font-size: .85rem; }
     @media (max-width: 720px) { .page-header { padding: 20px; } }
