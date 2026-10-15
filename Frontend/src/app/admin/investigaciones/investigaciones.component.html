@@ -29,16 +29,17 @@
     </div>
   </div>
 
-  <div class="admin-card">
-    <table class="admin-table">
+  <div class="admin-card investigaciones-listado">
+    <div class="investigaciones-scroll" role="region" aria-label="Listado de investigaciones" tabindex="0">
+    <table class="admin-table investigaciones-tabla">
       <thead>
         <tr>
           <th>Título</th>
           <th>Autores</th>
           <th>Programa</th>
-          <th>Año</th>
-          <th>PDF</th>
-          <th></th>
+          <th class="col-anio">Año</th>
+          <th class="col-pdf">PDF</th>
+          <th class="col-acciones">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -52,8 +53,8 @@
             </td>
             <td>{{ tesis.autores.join(', ') }}</td>
             <td>{{ tesis.programa }}</td>
-            <td>{{ tesis.anio }}</td>
-            <td>
+            <td class="col-anio">{{ tesis.anio }}</td>
+            <td class="col-pdf">
               @if (tesis.pdfUrl) {
                 <a
                   class="badge badge-publicado"
@@ -65,7 +66,7 @@
               } @else if (subiendo() === tesis.id) {
                 <span class="form-hint">Subiendo…</span>
               } @else {
-                <label class="btn-ghost">
+                <label class="btn-ghost btn-subir-pdf">
                   Subir PDF
                   <input
                     type="file"
@@ -76,7 +77,7 @@
                 </label>
               }
             </td>
-            <td class="td-actions">
+            <td class="td-actions col-acciones">
               <a
                 class="btn-icon"
                 [href]="'/repositorio/' + tesis.id"
@@ -111,6 +112,7 @@
         }
       </tbody>
     </table>
+    </div>
   </div>
 </div>
 
