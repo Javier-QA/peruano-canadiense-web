@@ -98,7 +98,7 @@ export const MODULO_META: readonly ModuloMeta[] = [
     titulo: 'Servicios',
     path: '/servicios',
     adminPath: '/admin/servicios',
-    icon: 'fa-hands-holding-heart',
+    icon: 'fa-heart',
   },
   {
     id: 'transparencia',
