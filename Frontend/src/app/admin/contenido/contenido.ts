@@ -81,6 +81,37 @@ import { ToastService } from '../shared/toast/toast';
       </div>
     </app-dialog>
   `,
+  styles: `
+    :host { display: block; min-width: 0; }
+    .admin-page { display: flex; flex-direction: column; gap: 22px; }
+    .page-header {
+      padding: 24px 28px; border: 1px solid #f1dfd2;
+      border-radius: 16px; background: linear-gradient(115deg, #fff8f2, #fff 70%);
+    }
+    .page-header .page-sub { max-width: 68ch; line-height: 1.6; }
+    .modulo-grid { gap: 18px; }
+    .modulo-tile {
+      position: relative; min-height: 175px; padding: 24px;
+      border-radius: 16px; background: #fff;
+      border: 1px solid var(--adm-line);
+      box-shadow: 0 3px 14px rgba(27, 41, 61, .035);
+    }
+    .modulo-tile > div:first-child > i {
+      display: inline-flex; width: 46px; height: 46px;
+      align-items: center; justify-content: center;
+      border-radius: 13px; background: #fff0e4;
+      color: var(--adm-brand); font-size: 1.2rem;
+    }
+    .modulo-tile .stat-row {
+      flex-wrap: wrap; margin-top: auto; padding-top: 14px;
+      border-top: 1px solid var(--adm-line);
+    }
+    .modulo-tile:hover { border-color: #f0b98f; }
+    @media (max-width: 720px) {
+      .page-header { padding: 18px; }
+      .modulo-tile { min-height: 150px; padding: 20px; }
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminContenido {
