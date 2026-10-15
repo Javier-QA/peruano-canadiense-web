@@ -33,8 +33,7 @@ import { DialogComponent } from '../../../shared/ui';
         <div>
           <h1 class="page-title">{{ titulo() }}</h1>
           <p class="page-sub">
-            Los cambios se publican en el portal. Con el API remoto se envían al módulo de
-            contenido.
+            Edita el contenido de esta sección y pulsa Guardar para publicar los cambios.
           </p>
         </div>
         <div class="page-header-actions">
@@ -51,11 +50,13 @@ import { DialogComponent } from '../../../shared/ui';
         </div>
       </header>
 
-      <nav class="admin-tabs" [attr.aria-label]="'Secciones de ' + titulo()">
+      <nav class="admin-tabs" role="tablist" [attr.aria-label]="'Secciones de ' + titulo()">
         @for (tab of tabs(); track tab.id) {
           <button
             type="button"
+            role="tab"
             class="admin-tab"
+            [attr.aria-selected]="active() === tab.id"
             [class.active]="active() === tab.id"
             [attr.aria-current]="active() === tab.id ? 'true' : null"
             (click)="active.set(tab.id)"
@@ -65,7 +66,7 @@ import { DialogComponent } from '../../../shared/ui';
         }
       </nav>
 
-      <div class="admin-card seccion-card">
+      <div class="admin-card seccion-card" role="tabpanel" [attr.aria-label]="tabActivaLabel()">
         <header class="seccion-head">
           <h2 class="seccion-titulo">{{ tabActivaLabel() }}</h2>
           <p class="seccion-sub">
@@ -188,7 +189,12 @@ import { DialogComponent } from '../../../shared/ui';
       color: var(--adm-ink-soft);
     }
     .seccion-cuerpo { padding: 26px 28px 30px; background: #f8fafc; }
-    .seccion-docs { margin-top: 26px; }
+    .seccion-docs { margin-top: 16px; min-width: 0; }
+    .admin-tab[aria-selected="true"] { color: var(--adm-brand); }
+    .seccion-card { min-width: 0; }
+    .seccion-cuerpo { min-width: 0; }
+    .save-bar { align-items: center; }
+    @media (max-width: 600px) { .save-bar > button { flex: 1 1 auto; } }
     @media (max-width: 720px) {
       .page-header { padding: 18px; }
       .seccion-head { padding: 18px; }
