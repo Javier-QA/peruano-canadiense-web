@@ -12,100 +12,97 @@ import { ToastService } from '../shared/toast/toast';
   selector: 'app-admin-mi-cuenta',
   standalone: true,
   styles: `
-    :host { display: block; min-width: 0; }
-    .admin-page { display: flex; flex-direction: column; gap: 20px; max-width: 1000px; }
-    .page-header { padding: 24px 28px; border: 1px solid #f1dfd2; border-radius: 16px; background: linear-gradient(115deg,#fff8f2,#fff 70%); }
-    .page-header .page-sub { line-height: 1.6; }
-    .admin-card { padding: 26px 28px; }
-    .admin-card > .page-title { font-size: 1.18rem; margin-bottom: 12px; }
-    .admin-card > .form-hint { margin: 0 0 22px; line-height: 1.6; }
-    .form-grid { gap: 18px 22px; }
-    .form-row > p { margin: 0; font-weight: 650; color: var(--adm-ink); }
-    @media(max-width:720px){ .page-header,.admin-card { padding: 18px; } }
+    :host { display:block; min-width:0; }
+    .admin-page { width:100%; max-width:1080px; margin-inline:auto; display:grid; gap:18px; }
+    .page-header { display:flex; align-items:center; gap:12px; padding:17px 22px; border:1px solid #f1dfd2; border-radius:16px; background:linear-gradient(115deg,#fff8f2,#fff 70%); }
+    .account-icon { display:inline-flex; align-items:center; justify-content:center; flex:none; width:40px; height:40px; border-radius:12px; background:#fff0e4; color:var(--adm-brand); font-size:1rem; }
+    .page-header .page-title { margin:0 0 3px; font-size:clamp(1.4rem,2vw,1.7rem); }
+    .page-header .page-sub { line-height:1.45; margin:0; }
+    .admin-card { padding:22px 26px; }
+    .card-heading { display:flex; align-items:center; gap:10px; margin:0 0 17px; font-size:1.08rem; font-weight:750; color:var(--adm-ink); }
+    .card-heading i { color:var(--adm-brand); font-size:.9rem; }
+    .identity-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .identity-field { padding:13px 16px; border:1px solid var(--adm-line); border-radius:11px; background:var(--adm-bg); min-width:0; }
+    .identity-label { display:block; margin-bottom:5px; font-size:.77rem; font-weight:650; color:var(--adm-muted); }
+    .identity-value { display:block; font-weight:700; overflow-wrap:anywhere; }
+    .role-note { margin:14px 0 0; line-height:1.5; }
+    .security-note { display:flex; gap:9px; align-items:flex-start; padding:11px 13px; margin:0 0 20px; background:#f7f9fc; border:1px solid var(--adm-line); border-radius:10px; font-size:.82rem; line-height:1.5; color:var(--adm-muted); }
+    .security-note i { margin-top:3px; color:var(--adm-brand); }
+    .form-grid { gap:16px 18px; }
+    .form-row { min-width:0; margin-bottom:0; }
+    .password-wrap { position:relative; }
+    .password-wrap input { padding-right:48px !important; }
+    .visibility-button { position:absolute; right:5px; top:50%; transform:translateY(-50%); width:38px; height:36px; border:0; border-radius:8px; background:transparent; color:var(--adm-muted); cursor:pointer; }
+    .visibility-button:hover { background:var(--adm-bg); color:var(--adm-brand); }
+    .visibility-button:focus-visible { outline:2px solid var(--adm-brand); }
+    .form-hint { margin:5px 0 0; }
+    .password-error { margin:5px 0 0; font-size:.78rem; color:var(--adm-danger); }
+    .save-bar { margin-top:19px; padding:15px 0 0; border-top:1px solid var(--adm-line); background:none; }
+    @media(max-width:720px) { .admin-page { gap:14px; } .page-header,.admin-card { padding:16px; } .identity-grid,.form-grid { grid-template-columns:1fr; } .form-grid .span-2 { grid-column:auto; } .save-bar .btn-save { width:100%; } }
   `,
   template: `
     <div class="admin-page">
       <header class="page-header">
+        <span class="account-icon" aria-hidden="true"><i class="fa-solid fa-user-gear"></i></span>
         <div>
           <h1 class="page-title">Mi cuenta</h1>
-          <p class="page-sub">Datos de la sesión y cambio de contraseña.</p>
+          <p class="page-sub">Consulta tus datos y administra la seguridad de tu acceso.</p>
         </div>
       </header>
 
-      <div class="admin-card">
-        <div class="form-grid">
-          <div class="form-row">
-            <label>Nombre</label>
-            <p>{{ usuario()?.nombre || '—' }}</p>
+      <section class="admin-card" aria-labelledby="account-data-title">
+        <h2 id="account-data-title" class="card-heading"><i class="fa-solid fa-id-card" aria-hidden="true"></i> Información de la cuenta</h2>
+        <div class="identity-grid">
+          <div class="identity-field">
+            <span class="identity-label">Nombre</span>
+            <span class="identity-value">{{ usuario()?.nombre || '—' }}</span>
           </div>
-          <div class="form-row">
-            <label>Rol</label>
-            <p>{{ usuario()?.rol === 'admin' ? 'Administrador' : 'Editor' }}</p>
+          <div class="identity-field">
+            <span class="identity-label">Rol</span>
+            <span class="identity-value">{{ usuario()?.rol === 'admin' ? 'Administrador' : 'Editor' }}</span>
           </div>
         </div>
         @if (usuario()?.rol === 'editor') {
-          <p class="form-hint">
-            Como editor puede gestionar todo el contenido del portal. Crear o eliminar
-            cuentas está reservado a los administradores.
-          </p>
+          <p class="form-hint role-note">Puedes gestionar el contenido del portal. La administración de cuentas está reservada a los administradores.</p>
         }
-      </div>
+      </section>
 
-      <div class="admin-card">
-        <h2 class="page-title">Cambiar contraseña</h2>
-        <p class="form-hint">
-          Al cambiarla se cierra la sesión en todos los dispositivos y tendrá que entrar
-          de nuevo. Es lo que hace que una contraseña filtrada deje de servir.
-        </p>
-
-        <div class="form-grid">
-          <div class="form-row span-2">
-            <label for="pw-actual">Contraseña actual</label>
-            <input
-              id="pw-actual"
-              type="password"
-              autocomplete="current-password"
-              [value]="actual()"
-              (input)="actual.set($any($event.target).value)"
-            />
+      <section class="admin-card" aria-labelledby="account-password-title">
+        <h2 id="account-password-title" class="card-heading"><i class="fa-solid fa-lock" aria-hidden="true"></i> Cambiar contraseña</h2>
+        <p class="security-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Al cambiar tu contraseña se cerrarán las sesiones abiertas y tendrás que iniciar sesión nuevamente.</span></p>
+        <form (submit)="$event.preventDefault(); cambiar()">
+          <div class="form-grid">
+            <div class="form-row span-2">
+              <label for="pw-actual">Contraseña actual</label>
+              <div class="password-wrap">
+                <input id="pw-actual" [type]="verActual() ? 'text' : 'password'" autocomplete="current-password" [value]="actual()" (input)="actual.set($any($event.target).value)" />
+                <button type="button" class="visibility-button" [attr.aria-label]="verActual() ? 'Ocultar contraseña actual' : 'Mostrar contraseña actual'" [attr.aria-pressed]="verActual()" (click)="verActual.set(!verActual())"><i class="fa-solid" [class.fa-eye]="!verActual()" [class.fa-eye-slash]="verActual()"></i></button>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="pw-nueva">Nueva contraseña</label>
+              <div class="password-wrap">
+                <input id="pw-nueva" [type]="verNueva() ? 'text' : 'password'" autocomplete="new-password" [value]="nueva()" (input)="nueva.set($any($event.target).value)" />
+                <button type="button" class="visibility-button" [attr.aria-label]="verNueva() ? 'Ocultar nueva contraseña' : 'Mostrar nueva contraseña'" [attr.aria-pressed]="verNueva()" (click)="verNueva.set(!verNueva())"><i class="fa-solid" [class.fa-eye]="!verNueva()" [class.fa-eye-slash]="verNueva()"></i></button>
+              </div>
+              <p class="form-hint">Mínimo 8 caracteres.</p>
+            </div>
+            <div class="form-row">
+              <label for="pw-repetir">Confirmar nueva contraseña</label>
+              <div class="password-wrap">
+                <input id="pw-repetir" [type]="verRepetir() ? 'text' : 'password'" autocomplete="new-password" [value]="repetir()" (input)="repetir.set($any($event.target).value)" [attr.aria-invalid]="repetir() && !coinciden() ? true : null" [attr.aria-describedby]="repetir() && !coinciden() ? 'pw-error' : null" />
+                <button type="button" class="visibility-button" [attr.aria-label]="verRepetir() ? 'Ocultar confirmación' : 'Mostrar confirmación'" [attr.aria-pressed]="verRepetir()" (click)="verRepetir.set(!verRepetir())"><i class="fa-solid" [class.fa-eye]="!verRepetir()" [class.fa-eye-slash]="verRepetir()"></i></button>
+              </div>
+              @if (repetir() && !coinciden()) {
+                <p id="pw-error" class="password-error">Las contraseñas no coinciden.</p>
+              }
+            </div>
           </div>
-          <div class="form-row">
-            <label for="pw-nueva">Nueva contraseña</label>
-            <input
-              id="pw-nueva"
-              type="password"
-              autocomplete="new-password"
-              [value]="nueva()"
-              (input)="nueva.set($any($event.target).value)"
-            />
-            <p class="form-hint">Mínimo 8 caracteres.</p>
+          <div class="save-bar">
+            <button type="submit" class="btn-save" [disabled]="!puedeGuardar() || guardando()"><i class="fa-solid fa-key" aria-hidden="true"></i> {{ guardando() ? 'Actualizando…' : 'Actualizar contraseña' }}</button>
           </div>
-          <div class="form-row">
-            <label for="pw-repetir">Repetir la nueva</label>
-            <input
-              id="pw-repetir"
-              type="password"
-              autocomplete="new-password"
-              [value]="repetir()"
-              (input)="repetir.set($any($event.target).value)"
-            />
-            @if (repetir() && !coinciden()) {
-              <p class="campo-error">Las dos contraseñas no coinciden.</p>
-            }
-          </div>
-        </div>
-
-        <div class="save-bar">
-          <button
-            type="button"
-            class="btn-save"
-            [disabled]="!puedeGuardar() || guardando()"
-            (click)="cambiar()"
-          >
-            {{ guardando() ? 'Cambiando…' : 'Cambiar contraseña' }}
-          </button>
-        </div>
-      </div>
+        </form>
+      </section>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -121,6 +118,9 @@ export class AdminMiCuenta {
   readonly nueva = signal('');
   readonly repetir = signal('');
   readonly guardando = signal(false);
+  readonly verActual = signal(false);
+  readonly verNueva = signal(false);
+  readonly verRepetir = signal(false);
 
   readonly coinciden = computed(() => this.nueva() === this.repetir());
 
