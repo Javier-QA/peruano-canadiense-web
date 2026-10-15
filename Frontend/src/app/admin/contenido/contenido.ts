@@ -30,34 +30,26 @@ import { ToastService } from '../shared/toast/toast';
         </button>
       </header>
 
-      <section class="executive-catalog" aria-labelledby="catalog-title">
-        <div class="executive-heading">
-          <div>
-            <h2 id="catalog-title">Secciones del portal</h2>
-            <p>Selecciona una sección para gestionar su contenido.</p>
-          </div>
-          <span class="executive-total">{{ filas().length }} secciones</span>
-        </div>
-        <div class="executive-grid" aria-label="Módulos del portal público">
-          @for (mod of filas(); track mod.id) {
-            <a class="executive-card" [routerLink]="mod.adminPath" [attr.aria-label]="'Editar ' + mod.titulo">
-              <div class="executive-card-top">
-                <span class="executive-icon"><i class="fa-solid {{ mod.icon }}" aria-hidden="true"></i></span>
-                <i class="fa-solid fa-arrow-up-right-from-square executive-arrow" aria-hidden="true"></i>
+      <div class="classic-grid" aria-label="Módulos del portal público">
+        @for (mod of filas(); track mod.id) {
+          <a class="classic-card" [routerLink]="mod.adminPath" [attr.aria-label]="'Editar ' + mod.titulo">
+            <div class="classic-card-heading">
+              <span class="classic-icon"><i class="fa-solid {{ mod.icon }}" aria-hidden="true"></i></span>
+              <h2 class="classic-name">{{ mod.titulo }}</h2>
+              <i class="fa-solid fa-arrow-up-right-from-square classic-link-icon" aria-hidden="true"></i>
+            </div>
+            <div class="classic-card-footer">
+              <div class="classic-counts">
+                <span><strong>{{ mod.publicados }}</strong> publicados</span>
+                <span><strong>{{ mod.borradores }}</strong> en borrador</span>
               </div>
-              <div class="executive-card-bottom">
-                <h3 class="executive-name">{{ mod.titulo }}</h3>
-                <div class="executive-card-meta">
-                  <span class="executive-counts">{{ mod.publicados }} publicados <span aria-hidden="true">·</span> {{ mod.borradores }} borradores</span>
-                  @if (mod.modificado) {
-                    <span class="executive-status">Modificado</span>
-                  }
-                </div>
-              </div>
-            </a>
-          }
-        </div>
-      </section>
+              @if (mod.modificado) {
+                <span class="classic-status">Modificado</span>
+              }
+            </div>
+          </a>
+        }
+      </div>
     </div>
 
     <app-dialog
@@ -112,76 +104,25 @@ import { ToastService } from '../shared/toast/toast';
     .page-header .page-sub { font-size: .85rem; }
     @media (max-width: 720px) { .page-header { padding: 20px; } }
     .page-header .page-sub { max-width: 68ch; line-height: 1.6; }
-    /* Nombres exclusivos: evitan el selector global .admin-shell .modulo-tile,
-       responsable de apilar verticalmente el catálogo anterior. */
-    .executive-catalog { min-width: 0; }
-    .executive-heading {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 12px; margin: 0 0 16px;
-    }
-    .executive-heading h2 { margin: 0 0 3px; font-size: 1.1rem; color: var(--adm-ink); font-weight: 750; }
-    .executive-heading p { margin: 0; color: var(--adm-muted); font-size: .82rem; }
-    .executive-total { white-space: nowrap; color: var(--adm-muted); font-size: .79rem; }
-    .executive-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      align-items: stretch;
-    }
-    .executive-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 20px;
-      min-width: 0;
-      min-height: 168px;
-      margin: 0;
-      padding: 19px;
-      border: 1px solid var(--adm-line, #dfe5ee);
-      border-radius: 16px;
-      background: var(--adm-surface, #fff);
-      color: inherit;
-      text-decoration: none;
-      box-shadow: 0 3px 12px rgba(24, 38, 60, .035);
-      transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
-    }
-    .executive-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-    .executive-icon {
-      display: inline-flex; align-items: center; justify-content: center;
-      flex: 0 0 43px; width: 43px; height: 43px;
-      border-radius: 12px; background: #fff0e4; color: var(--adm-brand);
-      font-size: 1.04rem;
-    }
-    .executive-arrow { color: #98a4b5; font-size: .76rem; margin-top: 2px; }
-    .executive-card-bottom { min-width: 0; }
-    .executive-name { margin: 0 0 11px; color: var(--adm-ink); font-size: 1rem; font-weight: 750; line-height: 1.35; }
-    .executive-card-meta {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 8px;
-    }
-    .executive-counts { font-size: .75rem; color: var(--adm-muted); line-height: 1.4; }
-    .executive-counts span { margin-inline: 3px; color: #a5b0bd; }
-    .executive-status {
-      flex: 0 0 auto; white-space: nowrap;
-      padding: 4px 8px; border-radius: 7px;
-      background: #fff4e9; color: #ad4a0e;
-      font-size: .68rem; font-weight: 700;
-    }
-    .executive-card:hover { border-color: #edb78e; box-shadow: 0 9px 22px rgba(24, 38, 60, .08); transform: translateY(-2px); }
-    .executive-card:hover .executive-arrow { color: var(--adm-brand); }
-    .executive-card:focus-visible { outline: 3px solid var(--adm-brand); outline-offset: 3px; }
-    @media (max-width: 1250px) { .executive-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (max-width: 940px) { .executive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 590px) {
-      .executive-grid { grid-template-columns: 1fr; gap: 12px; }
-      .executive-card { min-height: 146px; padding: 16px; }
-      .executive-heading { align-items: flex-start; }
-      .page-header { padding: 16px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .executive-card { transition: none; }
-      .executive-card:hover { transform: none; }
-    }
+    /* Diseño de tarjetas aprobado; nombres aislados de los estilos globales. */
+    .classic-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+    .classic-card { display: flex; flex-direction: column; justify-content: space-between; gap: 25px; min-width: 0; min-height: 207px; padding: 24px; margin: 0; background: var(--adm-surface, #fff); border: 1px solid var(--adm-line, #dfe5ee); border-radius: 19px; color: inherit; text-decoration: none; box-shadow: 0 4px 18px rgba(27,41,61,.035); transition: border-color .16s ease, box-shadow .16s ease; }
+    .classic-card-heading { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .classic-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 52px; width: 52px; height: 52px; border-radius: 14px; background: #fff0e4; color: var(--adm-brand, #f26a16); font-size: 1.15rem; }
+    .classic-name { flex: 1 1 auto; min-width: 0; margin: 0; font-size: 1.08rem; line-height: 1.3; font-weight: 750; color: var(--adm-ink, #1e293b); }
+    .classic-link-icon { flex: 0 0 auto; color: #9cabbc; font-size: .82rem; }
+    .classic-card-footer { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 17px; border-top: 1px solid var(--adm-line, #dfe5ee); }
+    .classic-counts { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 16px; color: var(--adm-muted, #61728c); font-size: .84rem; line-height: 1.4; }
+    .classic-counts span { white-space: nowrap; }
+    .classic-counts strong { font-weight: 750; color: var(--adm-ink, #1e293b); }
+    .classic-status { display: inline-flex; padding: 5px 13px; border-radius: 999px; background: var(--adm-brand, #f26a16); color: #fff; font-size: .77rem; line-height: 1.2; font-weight: 700; white-space: nowrap; }
+    .classic-card:hover { border-color: #efbb97; box-shadow: 0 9px 25px rgba(27,41,61,.07); }
+    .classic-card:hover .classic-link-icon { color: var(--adm-brand, #f26a16); }
+    .classic-card:focus-visible { outline: 3px solid var(--adm-brand, #f26a16); outline-offset: 3px; }
+    @media (max-width: 1350px) { .classic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 1000px) { .classic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 650px) { .classic-grid { grid-template-columns: 1fr; gap: 14px; } .classic-card { min-height: 175px; padding: 19px; } .page-header { padding: 16px; } }
+    @media (prefers-reduced-motion: reduce) { .classic-card { transition: none; } }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
