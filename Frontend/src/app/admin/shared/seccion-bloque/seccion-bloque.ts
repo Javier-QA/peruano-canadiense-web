@@ -25,14 +25,16 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     :host {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 18px;
     }
 
     .sb-head {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--adm-line);
     }
 
     .sb-titulo {
