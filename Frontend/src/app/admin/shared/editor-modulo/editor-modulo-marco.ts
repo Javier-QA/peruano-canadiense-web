@@ -128,6 +128,7 @@ export interface MarcoTab {
     }
 
     .page-header {
+      flex-wrap: nowrap;
       align-items: center;
       padding: 26px 34px;
       border: 1px solid #f1dfd2;
@@ -135,10 +136,13 @@ export interface MarcoTab {
       background: linear-gradient(115deg, #fff8f2, #fff 70%);
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
+    .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
     .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); letter-spacing: -.025em; }
     .page-header .page-sub { max-width: 75ch; font-size: .94rem; line-height: 1.6; }
-    .page-header-actions { gap: 10px; }
-    @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: 100%; } }
+    .page-header-actions { flex: 0 1 auto; min-width: 0; justify-content: flex-end; gap: 8px; }
+    .page-header-actions .btn-ghost { white-space: nowrap; }
+    @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: auto; } }
+    @media (max-width: 900px) { .page-header { gap: 12px; } .page-header-actions { flex-wrap: wrap; } }
 
     .marco-lienzo {
       min-width: 0;
