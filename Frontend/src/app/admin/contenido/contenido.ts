@@ -88,6 +88,10 @@ import { ToastService } from '../shared/toast/toast';
       padding: 24px 28px; border: 1px solid #f1dfd2;
       border-radius: 16px; background: linear-gradient(115deg, #fff8f2, #fff 70%);
     }
+    .page-header { align-items: center; padding: 26px 34px; border-radius: 18px; }
+    .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); }
+    .page-header .page-sub { font-size: .94rem; }
+    @media (max-width: 720px) { .page-header { padding: 20px; } }
     .page-header .page-sub { max-width: 68ch; line-height: 1.6; }
     .modulo-grid { gap: 18px; }
     .modulo-tile {
