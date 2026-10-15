@@ -17,11 +17,14 @@ import { ToastService } from '../shared/toast/toast';
   template: `
     <div class="admin-page">
       <header class="page-header">
-        <div>
-          <h1 class="page-title"><i class="fa-solid fa-layer-group portal-title-icon" aria-hidden="true"></i>Contenido del portal</h1>
-          <p class="page-sub">
+        <div class="portal-header-identity">
+          <span class="portal-title-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
+          <div class="portal-header-copy">
+            <h1 class="page-title">Contenido del portal</h1>
+            <p class="page-sub">
             Administra las páginas, documentos y secciones visibles en el portal institucional.
           </p>
+          </div>
         </div>
         <button type="button" class="btn-ghost" (click)="confirmar.set(true)">
           Restaurar todo
@@ -89,7 +92,12 @@ import { ToastService } from '../shared/toast/toast';
       border-radius: 16px; background: linear-gradient(115deg, #fff8f2, #fff 70%);
     }
     .page-header { align-items: center; padding: 26px 34px; border-radius: 18px; }
-    .portal-title-icon { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-right: 12px; border-radius: 11px; background: #fff0e4; color: var(--adm-brand); font-size: 1.05rem; vertical-align: middle; }
+    .portal-header-identity { display: flex; align-items: flex-start; gap: 15px; flex: 1 1 auto; min-width: 0; }
+    .portal-header-copy { min-width: 0; }
+    .portal-title-icon { display: inline-flex; flex: 0 0 44px; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 13px; background: #fff0e4; color: var(--adm-brand); font-size: 1.08rem; }
+    .portal-header-copy .page-title { margin: 0 0 7px; line-height: 1.25; }
+    .portal-header-copy .page-sub { margin: 0; }
+    @media (max-width: 600px) { .portal-header-identity { gap: 11px; } .portal-title-icon { flex-basis: 38px; width: 38px; height: 38px; } }
     .page-header .page-title { font-size: clamp(1.5rem, 2.3vw, 2rem); }
     .page-header .page-sub { font-size: .94rem; }
     @media (max-width: 720px) { .page-header { padding: 20px; } }
