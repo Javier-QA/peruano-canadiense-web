@@ -44,6 +44,8 @@ export interface ColumnaBandeja {
     .admin-table { font-variant-numeric: tabular-nums; }
     .admin-table td { line-height: 1.55; }
     .admin-table td:last-child { white-space: nowrap; }
+    .admin-table tbody tr:hover { background: #fffaf6; }
+
     .admin-table .btn-icon { border: 1px solid var(--adm-line); background: #fff; }
     .admin-table .btn-icon:hover { border-color: var(--adm-brand); color: var(--adm-brand); }
     .empty-state { padding: 36px 24px; }
