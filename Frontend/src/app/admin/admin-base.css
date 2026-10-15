@@ -1017,3 +1017,61 @@
   .admin-shell .btn-add, .admin-shell .btn-save, .admin-shell .btn-ghost,
   .admin-shell .btn-cancel, .admin-shell .btn-danger { transition: none; }
 }
+
+
+/* Accesibilidad y pantallas pequeñas: controles alcanzables y estados claros. */
+.admin-shell *,
+.admin-shell *::before,
+.admin-shell *::after {
+  box-sizing: border-box;
+}
+.admin-shell :is(button, input, select, textarea, a):focus-visible {
+  outline: 2px solid var(--adm-brand);
+  outline-offset: 2px;
+}
+.admin-shell :is(button, input, select, textarea):disabled {
+  cursor: not-allowed;
+}
+.admin-shell .admin-tabs {
+  overscroll-behavior-inline: contain;
+}
+.admin-shell .admin-table {
+  font-variant-numeric: tabular-nums;
+}
+.admin-shell .admin-card:has(> .admin-table) {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+.admin-shell .page-title,
+.admin-shell .topbar-title {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  .admin-shell .admin-topbar {
+    min-height: 62px;
+    gap: 8px;
+  }
+  .admin-shell .admin-card-body {
+    padding: 16px;
+  }
+  .admin-shell .save-bar {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+  .admin-shell .toast-host {
+    top: max(12px, env(safe-area-inset-top));
+    right: 12px;
+    max-width: calc(100vw - 24px);
+  }
+}
+@media (forced-colors: active) {
+  .admin-shell .admin-tab.active,
+  .admin-shell .badge,
+  .admin-shell .btn-add,
+  .admin-shell .btn-save {
+    border: 1px solid ButtonText;
+  }
+  .admin-shell :is(button, a, input, select, textarea):focus-visible {
+    outline-color: Highlight;
+  }
+}
