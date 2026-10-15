@@ -33,16 +33,19 @@ import { ToastService } from '../shared/toast/toast';
       <div class="modulo-grid" aria-label="Módulos del portal público">
         @for (mod of filas(); track mod.id) {
           <a class="admin-card modulo-tile" [routerLink]="mod.adminPath" [attr.aria-label]="'Editar ' + mod.titulo">
-            <div>
-              <i class="fa {{ mod.icon }}" aria-hidden="true"></i>
-              <h2 class="page-title" style="font-size:1.05rem;margin-top:8px">{{ mod.titulo }}</h2>
+            <div class="modulo-tile-head">
+              <span class="modulo-icon"><i class="fa {{ mod.icon }}" aria-hidden="true"></i></span>
+              <h2 class="modulo-name">{{ mod.titulo }}</h2>
+              <i class="fa fa-arrow-up-right-from-square modulo-arrow" aria-hidden="true"></i>
             </div>
-            <div class="stat-row">
+            <div class="modulo-tile-footer">
+              <div class="modulo-counts">
+                <span><strong>{{ mod.publicados }}</strong> publicados</span>
+                <span><strong>{{ mod.borradores }}</strong> en borrador</span>
+              </div>
               @if (mod.modificado) {
                 <span class="badge badge-modificado">Modificado</span>
               }
-              <span>{{ mod.publicados }} publicados</span>
-              <span>{{ mod.borradores }} en borrador</span>
             </div>
           </a>
         }
@@ -101,32 +104,39 @@ import { ToastService } from '../shared/toast/toast';
     .page-header .page-sub { font-size: .85rem; }
     @media (max-width: 720px) { .page-header { padding: 20px; } }
     .page-header .page-sub { max-width: 68ch; line-height: 1.6; }
-    .modulo-grid { gap: 18px; }
+    .modulo-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
     .modulo-tile {
-      position: relative; min-height: 175px; padding: 24px;
-      border-radius: 16px; background: #fff;
+      display: flex; flex-direction: column; justify-content: space-between;
+      gap: 22px; min-height: 154px; padding: 20px;
+      border-radius: 16px; background: var(--adm-surface);
       border: 1px solid var(--adm-line);
       box-shadow: 0 3px 14px rgba(27, 41, 61, .035);
+      color: inherit; text-decoration: none;
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
     }
-    .modulo-tile > div:first-child > i {
-      display: inline-flex; width: 46px; height: 46px;
-      align-items: center; justify-content: center;
-      border-radius: 13px; background: #fff0e4;
-      color: var(--adm-brand); font-size: 1.2rem;
+    .modulo-tile-head { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .modulo-icon {
+      display: inline-flex; flex: 0 0 42px; width: 42px; height: 42px;
+      align-items: center; justify-content: center; border-radius: 12px;
+      background: #fff0e4; color: var(--adm-brand); font-size: 1.05rem;
     }
-    .modulo-tile .stat-row {
-      flex-wrap: wrap; margin-top: auto; padding-top: 14px;
-      border-top: 1px solid var(--adm-line);
-    }
-    .modulo-tile:hover { border-color: #f0b98f; }
+    .modulo-name { margin: 0; min-width: 0; font-size: 1.02rem; line-height: 1.3; font-weight: 750; color: var(--adm-ink); }
+    .modulo-arrow { margin-left: auto; flex: 0 0 auto; font-size: .75rem; color: var(--adm-ink-soft); opacity: .55; }
+    .modulo-tile-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding-top: 13px; border-top: 1px solid var(--adm-line); }
+    .modulo-counts { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 13px; color: var(--adm-muted); font-size: .78rem; }
+    .modulo-counts strong { color: var(--adm-ink); font-weight: 750; }
+    .modulo-tile .badge { white-space: nowrap; }
+    .modulo-tile:hover { border-color: #f0b98f; box-shadow: 0 10px 24px rgba(27,41,61,.08); transform: translateY(-2px); }
+    .modulo-tile:hover .modulo-arrow { color: var(--adm-brand); opacity: 1; }
     .modulo-tile:focus-visible { outline: 3px solid var(--adm-brand); outline-offset: 3px; }
-    .modulo-tile .stat-row { align-items: center; gap: 8px 12px; line-height: 1.5; }
-    .modulo-tile .page-title { overflow-wrap: anywhere; }
-    @media (prefers-reduced-motion: reduce) { .modulo-tile { transition: none; } }
-    @media (max-width: 720px) {
-      .page-header { padding: 18px; }
-      .modulo-tile { min-height: 150px; padding: 20px; }
+    @media (max-width: 1250px) { .modulo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 950px) { .modulo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) {
+      .modulo-grid { grid-template-columns: 1fr; gap: 12px; }
+      .modulo-tile { min-height: 130px; padding: 16px; gap: 18px; }
+      .page-header { padding: 16px; }
     }
+    @media (prefers-reduced-motion: reduce) { .modulo-tile { transition: none; } .modulo-tile:hover { transform: none; } }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
