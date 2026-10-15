@@ -3,7 +3,8 @@
 }
 
 .admin-sidebar {
-  width: 280px;
+  width: 260px;
+  flex: 0 0 260px;
   height: 100vh;
   background: linear-gradient(180deg, #2a2a3e 0%, #1e1e2e 100%);
   color: #fff;
