@@ -12,6 +12,7 @@ import { BECAS_SCHEMA, BECAS_TABS } from './becas.schema';
       #editor
       modulo="becas"
       titulo="Becas y créditos"
+      descripcion="Gestiona la información y los documentos de becas y créditos."
       publicPath="/becas"
       [schema]="schema"
       [tabs]="tabs"
