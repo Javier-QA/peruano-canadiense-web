@@ -96,7 +96,7 @@
   </nav>
 </div>
 
-<app-dialog [open]="formAbierto()" title="Noticia" (openChange)="formAbierto.set($event)">
+<app-dialog [open]="formAbierto()" title="Noticia" (openChange)="alCambiarDialogo($event)">
   <div class="form-row">
     <label>Título</label>
     <input type="text" [value]="form().title" (input)="patch('title', $any($event.target).value)" />
@@ -174,7 +174,7 @@
     Publicar en /noticias (si no, queda como borrador)
   </label>
   <div dialog-footer>
-    <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
+    <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
     <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">
       {{ guardando() ? 'Guardando…' : (form().publicada ? 'Publicar' : 'Guardar borrador') }}
     </button>
