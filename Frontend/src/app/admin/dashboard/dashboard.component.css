@@ -458,7 +458,7 @@
 }
 .panel-solicitudes .admin-card-body { padding: 24px 28px; }
 .panel-solicitudes .bandeja { background: #fafbfe; }
-.bandeja-open { color: var(--adm-brand); border-color: #f5d4be; }
+.bandeja-open { color: var(--adm-brand); border-color: #efc4ca; }
 .bandeja-clear { line-height: 1.6; }
 .dash-section-heading { display: flex; justify-content: space-between; align-items: center; }
 .dash-section-kicker {
@@ -467,7 +467,7 @@
 }
 .dash-section-heading .panel-sub { margin-top: 7px; line-height: 1.5; }
 .stat-strip li:hover, .stat-strip li:focus-within {
-  border-color: #f0b98f; transform: translateY(-2px);
+  border-color: #dfa6ad; transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(45, 52, 67, .07);
 }
 .stat-strip li a { flex: 1; }
@@ -536,7 +536,7 @@
   color: var(--adm-ink);
 }
 .stat-strip li .badge { margin: 0 22px 16px; }
-.stat-strip li:hover { background: #fffaf6; }
+.stat-strip li:hover { background: #fff7f7; }
 .stat-strip li:hover a::after { color: var(--adm-brand-hover); }
 @media (max-width: 560px) {
   .stat-strip li { padding: 0; }
