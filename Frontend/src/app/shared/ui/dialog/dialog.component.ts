@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
         <div
           class="relative z-50 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl transition-all duration-300 animate-in zoom-in-95 border border-[#E2E1EC]"
           [class.confirm-dialog]="variant !== 'default'"
-          [class.confirm-danger]="variant === 'danger'"
+          [class.confirm-danger]="variant === 'danger' || variant === 'logout'"
           [class.confirm-warning]="variant === 'warning'"
           [class.confirm-success]="variant === 'success'"
           role="dialog"
@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
         >
           @if (variant !== 'default') {
             <div class="confirm-symbol" aria-hidden="true">
-              <i class="fa-solid" [class.fa-trash-can]="variant === 'danger'" [class.fa-triangle-exclamation]="variant === 'warning'" [class.fa-circle-check]="variant === 'success'"></i>
+              <i class="fa-solid" [class.fa-trash-can]="variant === 'danger'" [class.fa-triangle-exclamation]="variant === 'warning'" [class.fa-circle-check]="variant === 'success'" [class.fa-right-from-bracket]="variant === 'logout'"></i>
             </div>
           }
           <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#E2E1EC]" [class.confirm-heading]="variant !== 'default'">
@@ -75,7 +75,7 @@ export class DialogComponent {
   @Input() open = false;
   @Input() title = '';
   @Input() showFooter = true;
-  @Input() variant: 'default' | 'danger' | 'warning' | 'success' = 'default';
+  @Input() variant: 'default' | 'danger' | 'warning' | 'success' | 'logout' = 'default';
   @Output() openChange = new EventEmitter<boolean>();
 
   onClose() {
