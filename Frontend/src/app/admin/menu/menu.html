@@ -51,6 +51,7 @@
             @for (item of porZona()[zona.id]; track item.id; let primero = $first, ultimo = $last) {
               <tr>
                 <td class="td-actions">
+                  <span class="menu-order-number">{{ item.orden }}</span>
                   <button
                     type="button"
                     class="btn-icon"
@@ -101,8 +102,8 @@
                   </button>
                   <button
                     type="button"
-                    class="btn-icon"
-                    (click)="eliminar(item)"
+                    class="btn-icon btn-delete"
+                    (click)="pendienteEliminar.set(item)"
                     aria-label="Eliminar"
                   >
                     <i class="fa fa-trash"></i>
@@ -186,5 +187,13 @@
     >
       {{ guardando() ? 'Guardando…' : 'Guardar' }}
     </button>
+  </div>
+</app-dialog>
+
+<app-dialog [open]="!!pendienteEliminar()" title="Eliminar enlace" variant="danger" (openChange)="!$event && pendienteEliminar.set(null)">
+  <p>¿Deseas eliminar el enlace «{{ pendienteEliminar()?.etiqueta }}» del menú del portal?</p>
+  <div dialog-footer>
+    <button type="button" class="btn-cancel" (click)="pendienteEliminar.set(null)">Cancelar</button>
+    <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>
