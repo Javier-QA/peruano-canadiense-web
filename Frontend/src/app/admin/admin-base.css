@@ -1849,3 +1849,34 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
   color:var(--adm-muted);
   opacity:.65;
 }
+
+/* Notificaciones: misma estética y contraste en ambos modos. */
+.admin-shell[data-modo="oscuro"] .toast {
+  border-color:var(--adm-line);
+  border-top-color:var(--toast-accent);
+  background:linear-gradient(145deg,color-mix(in srgb,var(--toast-accent) 10%,var(--adm-surface)),var(--adm-surface) 48%);
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] .toast-title { color:var(--adm-ink); }
+.admin-shell[data-modo="oscuro"] .toast-message { color:var(--adm-muted); }
+.admin-shell[data-modo="oscuro"] .toast-symbol {
+  background:color-mix(in srgb,var(--toast-accent) 16%,var(--adm-surface));
+  border-color:color-mix(in srgb,var(--toast-accent) 30%,var(--adm-line));
+}
+.admin-shell[data-modo="oscuro"] .toast-close {
+  background:var(--adm-muted-bg);
+  color:var(--adm-ink-soft);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .toast-close:hover {
+  background:var(--adm-brand-soft);
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] app-dialog .confirm-dialog [dialog-footer] .btn-cancel {
+  background:var(--adm-muted-bg);
+  border-color:var(--adm-line);
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] app-dialog .confirm-dialog [dialog-footer] .btn-cancel:hover {
+  background:var(--adm-brand-soft);
+}
