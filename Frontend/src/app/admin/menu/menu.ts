@@ -42,6 +42,7 @@ export class AdminMenu {
   readonly cargando = signal(true);
   readonly error = signal<string | null>(null);
   readonly guardando = signal(false);
+  readonly pendienteEliminar = signal<MenuItem | null>(null);
 
   readonly formAbierto = signal(false);
   readonly editandoId = signal<string | null>(null);
@@ -131,10 +132,13 @@ export class AdminMenu {
     }
   }
 
-  async eliminar(item: MenuItem): Promise<void> {
+  async confirmarEliminacion(): Promise<void> {
+    const item = this.pendienteEliminar();
+    if (!item) return;
     try {
       await this.api.borrarMenuItem(item.id);
       this.items.update((l) => l.filter((i) => i.id !== item.id));
+      this.pendienteEliminar.set(null);
       this.propagar();
       this.toast.success(`"${item.etiqueta}" se quitó del menú.`);
     } catch {
