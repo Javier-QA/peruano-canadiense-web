@@ -111,6 +111,7 @@ export interface MarcoTab {
     <app-dialog
       [open]="!!editor().confirmacion()"
       [title]="editor().confirmacion()?.titulo ?? ''"
+      variant="danger"
       (openChange)="$event || editor().cancelarConfirmacion()"
     >
       <p>{{ editor().confirmacion()?.detalle }}</p>
