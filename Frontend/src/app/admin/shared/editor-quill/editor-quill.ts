@@ -38,9 +38,13 @@ const BARRA = [
   `,
   styles: `
     :host { display: block; min-width: 0; }
-    :host ::ng-deep .ql-toolbar.ql-snow { border-radius: 11px 11px 0 0; background: #f8fafc; }
-    :host ::ng-deep .ql-container.ql-snow { border-radius: 0 0 11px 11px; background: #fff; }
-    :host ::ng-deep .ql-editor { line-height: 1.7; padding: 16px 18px; }
+    :host ::ng-deep .ql-toolbar.ql-snow { border-radius: 11px 11px 0 0; background: var(--adm-bg); border-color: var(--adm-line); }
+    :host ::ng-deep .ql-container.ql-snow { border-radius: 0 0 11px 11px; background: var(--adm-surface); border-color: var(--adm-line); }
+    :host ::ng-deep .ql-editor { line-height: 1.7; padding: 16px 18px; color: var(--adm-ink); }
+    :host ::ng-deep .ql-toolbar .ql-picker-label { color: var(--adm-ink); }
+    :host ::ng-deep .ql-toolbar .ql-stroke { stroke: var(--adm-ink-soft); }
+    :host ::ng-deep .ql-toolbar .ql-fill { fill: var(--adm-ink-soft); }
+    :host ::ng-deep .ql-editor.ql-blank::before { color: var(--adm-muted); }
     :host ::ng-deep .ql-editor:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: -2px; }
 
   `,
