@@ -111,7 +111,7 @@
   </nav>
 </div>
 
-<app-dialog [open]="formAbierto()" title="Ficha de personal" (openChange)="formAbierto.set($event)">
+<app-dialog [open]="formAbierto()" title="Ficha de personal" (openChange)="alCambiarDialogo($event)">
   <div class="form-grid">
     <div class="form-row">
       <label>Nombres</label>
@@ -202,7 +202,7 @@
     </div>
   </div>
   <div dialog-footer>
-    <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
+    <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
     <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
   </div>
 </app-dialog>
