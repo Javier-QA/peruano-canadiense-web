@@ -35,7 +35,7 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
         [attr.aria-label]="etiqueta()"
         (click)="!subiendo() && input.click()"
         (keydown.enter)="!subiendo() && input.click()"
-        (keydown.space)="$event.preventDefault(); input.click()"
+        (keydown.space)="$event.preventDefault(); !subiendo() && input.click()"
         (dragover)="onOver($event)"
         (dragleave)="over.set(false)"
         (drop)="onDrop($event)"
@@ -47,6 +47,9 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
       </div>
       @if (subiendo()) {
         <p class="form-hint" role="status" aria-live="polite">Guardando archivo…</p>
+      }
+      @if (referencia() && modo() !== 'pdf') {
+        <p class="form-hint">Imagen seleccionada</p>
       }
       @if (nombre()) {
         <p class="form-hint" role="status" aria-live="polite">{{ nombre() }}</p>
@@ -138,7 +141,7 @@ export class SelectorArchivo {
 
   onOver(event: DragEvent): void {
     event.preventDefault();
-    this.over.set(true);
+    if (!this.subiendo()) this.over.set(true);
   }
 
   onDrop(event: DragEvent): void {
