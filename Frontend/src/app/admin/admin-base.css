@@ -1792,3 +1792,27 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
   background:var(--adm-surface);
   border-color:var(--adm-line);
 }
+
+/* Componentes del editor de contenido compartidos por las 19 secciones. */
+.admin-shell[data-modo="oscuro"] .admin-main .seccion-card {
+  background:var(--adm-surface);
+  border-color:var(--adm-line);
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .seccion-head {
+  background:linear-gradient(110deg,var(--adm-brand-soft),var(--adm-surface) 75%);
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .seccion-cuerpo {
+  background:var(--adm-bg);
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .admin-view-header {
+  background:linear-gradient(115deg,var(--adm-brand-soft),var(--adm-surface) 70%);
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(.seccion-card,.seccion-cuerpo,.admin-view-header) :is(h1,h2,h3,label) {
+  color:var(--adm-ink);
+}
