@@ -45,7 +45,7 @@
       rgba(48, 46, 66, 0.95) 0%,
       rgba(48, 46, 66, 0.82) 40%,
       rgba(122, 52, 0, 0.58) 78%,
-      rgba(255, 102, 0, 0.42) 100%
+      rgba(185, 28, 43, 0.42) 100%
     );
 }
 
@@ -173,7 +173,7 @@
   margin: 0;
   padding: 12px 14px;
   border-radius: 12px;
-  background: var(--inst-primary-light, #fff0e6);
+  background: var(--inst-primary-light, #fce9ec);
   color: #8a3d00;
   font-size: 0.8rem;
   line-height: 1.5;
@@ -220,11 +220,11 @@
 }
 
 .field__toggle:hover {
-  color: var(--inst-primary, #ff6600);
+  color: var(--inst-primary, #b91c2b);
 }
 
 .field__toggle:focus-visible {
-  outline: 2px solid var(--inst-primary, #ff6600);
+  outline: 2px solid var(--inst-primary, #b91c2b);
   outline-offset: 2px;
 }
 
