@@ -157,7 +157,7 @@ export class AdminMenu {
       this.propagar();
       this.toast.success(actualizado.visible ? 'Enlace visible.' : 'Enlace oculto.');
     } catch {
-      this.toast.error('No se pudo cambiar la visibilidad.
+      this.toast.error('No se pudo cambiar la visibilidad.');
     }
   }
 
