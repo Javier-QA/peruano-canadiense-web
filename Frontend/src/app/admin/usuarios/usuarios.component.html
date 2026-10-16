@@ -171,7 +171,7 @@
   [open]="!!confirmar()"
   title="Eliminar cuenta"
   (openChange)="confirmar.set($event ? confirmar() : null)"
->
+ variant="danger">
   <p>La persona dejará de poder entrar al panel. Sus cambios anteriores se conservan.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirmar.set(null)">Cancelar</button>
