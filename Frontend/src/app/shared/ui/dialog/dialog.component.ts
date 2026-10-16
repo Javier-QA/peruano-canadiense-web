@@ -35,7 +35,7 @@ import { CommonModule } from '@angular/common';
             <button
               type="button"
               (click)="onClose()"
-              class="rounded-lg p-1.5 dialog-close transition-colors transition-colors"
+              class="rounded-lg p-1.5 dialog-close transition-colors"
               aria-label="Cerrar modal"
             >
               <i class="fa fa-times text-base"></i>
@@ -83,6 +83,11 @@ import { CommonModule } from '@angular/common';
     :host-context(.admin-shell[data-modo="oscuro"]) .confirm-dialog > div:nth-last-child(2) { color:var(--adm-muted); }
     :host-context(.admin-shell[data-modo="oscuro"]) .confirm-dialog > div:last-child { background:var(--adm-bg); border-color:var(--adm-line); }
     :host-context(.admin-shell[data-modo="oscuro"]) .confirm-heading button { background:var(--adm-muted-bg); color:var(--adm-ink); border-color:var(--adm-line); }
+    :host-context(.admin-shell[data-modo="oscuro"]) .confirm-dialog .dialog-content { color:var(--adm-muted); }
+    :host-context(.admin-shell[data-modo="oscuro"]) .confirm-dialog .confirm-symbol {
+      background:color-mix(in srgb,var(--confirm-color) 14%,var(--adm-surface));
+      border-color:color-mix(in srgb,var(--confirm-color) 28%,var(--adm-line));
+    }
     .confirm-dialog { --confirm-color: #e1282d; --confirm-tint: #ffe7e9; position: relative; max-width: 430px; padding: 20px 20px 0; border: 1px solid #cfdae5; border-top: 4px solid var(--confirm-color); border-radius: 16px; background: linear-gradient(155deg, var(--confirm-tint), #f2f5f9 43%); text-align: center; box-shadow: 0 14px 38px rgba(17, 29, 48, .20); }
     .confirm-warning { --confirm-color: #d68a14; --confirm-tint: #fff2d9; }
     .confirm-success { --confirm-color: #21874e; --confirm-tint: #e5f6ea; }
