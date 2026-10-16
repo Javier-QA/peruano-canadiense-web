@@ -36,7 +36,7 @@ const VACIO: DocForm = {
   imports: [AppSrc, DialogComponent, SelectorArchivo, VisorPdf, EditorQuill],
   styles: `
     :host { display: block; min-width: 0; }
-    .page-header { margin-bottom: 16px !important; padding: 18px 22px; border-radius: 13px; background: #fff8f2; border: 1px solid #f1dfd2; }
+    .page-header { margin-bottom: 16px !important; padding: 18px 22px; border-radius: 13px; background: #fff6f6; border: 1px solid #f0d7da; }
     .page-header .page-title { letter-spacing: -.02em; }
     .page-header .page-sub { line-height: 1.6; }
     .admin-card { min-width: 0; }
