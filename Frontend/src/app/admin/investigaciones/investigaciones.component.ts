@@ -42,6 +42,8 @@ export class AdminInvestigacionesComponent {
   readonly form = signal<TesisForm>({ ...VACIO });
   readonly confirmar = signal<TesisItem | null>(null);
   readonly subiendo = signal<string | null>(null);
+  readonly guardando = signal(false);
+  readonly eliminando = signal(false);
   readonly filtroPrograma = signal('todos');
 
   readonly programas = this.repositorio.programas;
@@ -111,6 +113,8 @@ export class AdminInvestigacionesComponent {
       resumen: datos.resumen.trim(),
     };
 
+    if (this.guardando()) return;
+    this.guardando.set(true);
     try {
       const id = this.editandoId();
       if (id) {
@@ -123,6 +127,8 @@ export class AdminInvestigacionesComponent {
       this.formAbierto.set(false);
     } catch {
       this.toast.error('No se pudo guardar la investigación.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
@@ -134,8 +140,14 @@ export class AdminInvestigacionesComponent {
     const input = evento.target as HTMLInputElement;
     const file = input.files?.[0];
     if (!file) return;
+    if (this.subiendo()) { input.value = ''; return; }
     if (file.type !== 'application/pdf') {
       this.toast.error('El archivo debe ser un PDF.');
+      input.value = '';
+      return;
+    }
+    if (file.size > 15 * 1024 * 1024) {
+      this.toast.error('El PDF no puede superar 15 MB.');
       input.value = '';
       return;
     }
@@ -153,13 +165,16 @@ export class AdminInvestigacionesComponent {
 
   async eliminar(): Promise<void> {
     const tesis = this.confirmar();
-    if (!tesis) return;
+    if (!tesis || this.eliminando()) return;
+    this.eliminando.set(true);
     try {
       await this.repositorio.eliminar(tesis.id);
       this.confirmar.set(null);
       this.toast.success('Se quitó del repositorio público.');
     } catch {
       this.toast.error('No se pudo eliminar la investigación.');
+    } finally {
+      this.eliminando.set(false);
     }
   }
 }
