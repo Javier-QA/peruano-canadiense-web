@@ -699,3 +699,12 @@
   .dash .dash-welcome-meta { align-items:flex-start; }
   .dash .dash-welcome-description { flex:1 1 100%; }
 }
+
+/* Texto explicativo en su propia línea, inmediatamente bajo el saludo. */
+.dash .dash-welcome-copy > .dash-welcome-description {
+  display:block;
+  margin:7px 0 0;
+  color:var(--adm-muted);
+  font-size:.82rem;
+  line-height:1.45;
+}
