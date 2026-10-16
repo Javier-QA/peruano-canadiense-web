@@ -1976,3 +1976,39 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 ) {
   border-color:var(--adm-line);
 }
+
+
+/* Iconos de encabezados de módulos: marco fino como el icono de referencia.
+   Respeta iconos existentes y no altera iconos de acciones o controles. */
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .page-title > :is(i,.portal-title-icon),
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .page-title::before {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 54px;
+  width:54px;
+  height:54px;
+  margin:0 12px 0 0;
+  border:1px solid color-mix(in srgb,var(--adm-brand) 43%,var(--adm-line));
+  border-radius:14px;
+  background:color-mix(in srgb,var(--adm-brand) 5%,var(--adm-surface));
+  color:var(--adm-brand);
+  font-size:1.12rem;
+  line-height:1;
+  box-sizing:border-box;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .page-title {
+  display:flex;
+  align-items:center;
+  min-width:0;
+}
+@media(max-width:600px) {
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .page-title > :is(i,.portal-title-icon),
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .page-title::before {
+    flex-basis:44px;
+    width:44px;
+    height:44px;
+    margin-right:10px;
+    border-radius:12px;
+  }
+}
