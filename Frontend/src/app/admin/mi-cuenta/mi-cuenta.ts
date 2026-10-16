@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { AuthService } from '../../core/auth/auth.service';
 import { PortalApi } from '../../core/api/portal.api';
 import { ToastService } from '../shared/toast/toast';
+import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional } from '../shared/admin-paleta.service';
 
 /**
  * La cuenta de quien está usando el panel. Existe porque gestionar cuentas vive
@@ -38,8 +39,18 @@ import { ToastService } from '../shared/toast/toast';
     .visibility-button:focus-visible { outline:2px solid var(--adm-brand); }
     .form-hint { margin:5px 0 0; }
     .password-error { margin:5px 0 0; font-size:.78rem; color:var(--adm-danger); }
+    .palette-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .palette-option { display:flex; flex-direction:column; align-items:flex-start; gap:9px; padding:15px; border:2px solid var(--adm-line); border-radius:12px; background:var(--adm-surface); color:var(--adm-ink); text-align:left; cursor:pointer; font:inherit; }
+    .palette-option.is-selected { border-color:var(--adm-brand); box-shadow:0 0 0 2px color-mix(in srgb,var(--adm-brand) 12%,transparent); }
+    .palette-option:focus-visible { outline:2px solid var(--adm-brand); outline-offset:3px; }
+    .palette-swatches { display:flex; gap:5px; }
+    .palette-swatches span { display:block; width:28px; height:28px; border:1px solid rgba(0,0,0,.08); border-radius:8px; }
+    .palette-name { font-weight:750; font-size:.9rem; }
+    .palette-desc { font-size:.78rem; color:var(--adm-muted); line-height:1.4; }
+    .palette-note { margin:12px 0 0; font-size:.8rem; color:var(--adm-muted); }
+    .palette-actions { display:flex; justify-content:flex-end; margin-top:14px; }
     .save-bar { margin-top:19px; padding:15px 0 0; border-top:1px solid var(--adm-line); background:none; }
-    @media(max-width:720px) { .admin-page { gap:14px; } .page-header,.admin-card { padding:16px; } .identity-grid,.form-grid { grid-template-columns:1fr; } .form-grid .span-2 { grid-column:auto; } .save-bar .btn-save { width:100%; } }
+    @media(max-width:720px) { .palette-grid { grid-template-columns:1fr; } .admin-page { gap:14px; } .page-header,.admin-card { padding:16px; } .identity-grid,.form-grid { grid-template-columns:1fr; } .form-grid .span-2 { grid-column:auto; } .save-bar .btn-save { width:100%; } }
   `,
   template: `
     <div class="admin-page">
@@ -66,6 +77,30 @@ import { ToastService } from '../shared/toast/toast';
         @if (usuario()?.rol === 'editor') {
           <p class="form-hint role-note">Puedes gestionar el contenido del portal. La administración de cuentas está reservada a los administradores.</p>
         }
+      </section>
+
+      <section class="admin-card" aria-labelledby="account-palette-title">
+        <h2 id="account-palette-title" class="card-heading"><i class="fa-solid fa-palette" aria-hidden="true"></i> Paleta de colores</h2>
+        <p class="form-hint" style="margin:0 0 16px">Selecciona una combinación inspirada en los colores del instituto. Al guardar, el panel completo actualizará sus colores.</p>
+        <div class="palette-grid" role="group" aria-label="Paleta institucional">
+          @for (opcion of paletas; track opcion.id) {
+            <button type="button" class="palette-option" [class.is-selected]="seleccionada() === opcion.id" [attr.aria-pressed]="seleccionada() === opcion.id" (click)="seleccionada.set(opcion.id)">
+              <span class="palette-swatches" aria-hidden="true">
+                <span [style.background]="opcion.principal"></span>
+                <span [style.background]="opcion.secundario"></span>
+                <span [style.background]="opcion.suave"></span>
+              </span>
+              <span class="palette-name">{{ opcion.nombre }} @if (seleccionada() === opcion.id) { <i class="fa-solid fa-circle-check" aria-hidden="true"></i> }</span>
+              <span class="palette-desc">{{ opcion.descripcion }}</span>
+            </button>
+          }
+        </div>
+        <div class="palette-actions">
+          <button type="button" class="btn-save" [disabled]="seleccionada() === paleta.actual()" (click)="guardarPaleta()">
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Aplicar colores
+          </button>
+        </div>
+        <p class="palette-note">Esta preferencia se conserva en este navegador. No modifica los colores de la página pública.</p>
       </section>
 
       <section class="admin-card" aria-labelledby="account-password-title">
@@ -112,6 +147,9 @@ export class AdminMiCuenta {
   private readonly auth = inject(AuthService);
   private readonly api = inject(PortalApi);
   private readonly toast = inject(ToastService);
+  readonly paleta = inject(AdminPaletaService);
+  readonly paletas = PALETAS_INSTITUCIONALES;
+  readonly seleccionada = signal<PaletaInstitucional>(this.paleta.actual());
 
   readonly usuario = this.auth.usuario;
 
@@ -128,6 +166,11 @@ export class AdminMiCuenta {
   readonly puedeGuardar = computed(
     () => !!this.actual() && this.nueva().length >= 8 && this.coinciden(),
   );
+
+  guardarPaleta(): void {
+    this.paleta.guardar(this.seleccionada());
+    this.toast.success('Colores del panel actualizados.');
+  }
 
   async cambiar(): Promise<void> {
     if (!this.puedeGuardar()) return;
