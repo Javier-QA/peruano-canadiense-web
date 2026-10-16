@@ -17,10 +17,10 @@
   <div class="admin-list-toolbar"><label for="buscar-usuarios">Buscar</label><input id="buscar-usuarios" type="search" [value]="busqueda()" (input)="buscar($any($event.target).value)" placeholder="Buscar cuentas" /><span>{{ filtrados().length }} resultados</span></div>
   <div class="admin-card">
     @if (cargando()) {
-      <p class="form-hint">Cargando cuentas…</p>
+      <p class="form-hint" role="status" aria-live="polite">Cargando cuentas…</p>
     } @else if (error()) {
       <div class="empty-state">
-        <p>{{ error() }}</p>
+        <p role="alert">{{ error() }}</p><button type="button" class="btn-ghost" (click)="cargar()">Reintentar</button>
       </div>
     } @else {
       <table class="admin-table">
@@ -58,7 +58,7 @@
                   type="button"
                   class="btn-icon"
                   (click)="abrirEditar(usuario)"
-                  aria-label="Editar"
+                  [attr.aria-label]="'Editar cuenta de ' + usuario.nombre"
                 >
                   <i class="fa fa-pen"></i>
                 </button>
@@ -67,7 +67,7 @@
                     type="button"
                     class="btn-icon btn-delete"
                     (click)="confirmar.set(usuario)"
-                    aria-label="Eliminar"
+                    [attr.aria-label]="'Eliminar cuenta de ' + usuario.nombre"
                   >
                     <i class="fa fa-trash"></i>
                   </button>
@@ -93,25 +93,32 @@
 >
   <div class="form-grid">
     <div class="form-row">
-      <label>Nombre completo</label>
+      <label for="usuario-nombre">Nombre completo *</label>
       <input
+        id="usuario-nombre"
         type="text"
+        required
+        [attr.aria-invalid]="!form().nombre.trim()"
         [value]="form().nombre"
         (input)="patch('nombre', $any($event.target).value)"
       />
     </div>
     <div class="form-row">
-      <label>Usuario</label>
+      <label for="usuario-username">Usuario *</label>
       <input
+        id="usuario-username"
         type="text"
+        required
+        [attr.aria-invalid]="!form().username.trim()"
         [value]="form().username"
         (input)="patch('username', $any($event.target).value)"
       />
       <p class="form-hint">Letras, números, punto, guion y guion bajo.</p>
     </div>
     <div class="form-row">
-      <label>Correo institucional</label>
+      <label for="usuario-email">Correo institucional</label>
       <input
+        id="usuario-email"
         type="email"
         [value]="form().email"
         (input)="patch('email', $any($event.target).value)"
@@ -125,9 +132,12 @@
       </select>
     </div>
     <div class="form-row">
-      <label>Contraseña</label>
+      <label for="usuario-password">Contraseña {{ editandoId() ? '(opcional)' : '*' }}</label>
       <input
+        id="usuario-password"
         type="password"
+        [required]="!editandoId()"
+        minlength="8"
         autocomplete="new-password"
         [value]="form().password"
         (input)="patch('password', $any($event.target).value)"
