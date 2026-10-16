@@ -1671,3 +1671,51 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 @media(prefers-reduced-motion:reduce) {
   html.admin-theme-reveal::view-transition-new(root) { animation:none; }
 }
+
+/* Compatibilidad global de los módulos con el modo oscuro.
+   No cambia tamaños, disposición, iconos ni comportamiento. */
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .page-header, .admin-card, .classic-card, .stat-strip li,
+  .panel-solicitudes .bandeja, .identity-field, .security-note,
+  .admin-tabs, .admin-list-toolbar, .historial-item
+) {
+  background-color:var(--adm-surface);
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .page-header, .admin-card, .classic-card, .stat-strip li,
+  .panel-solicitudes .bandeja, .identity-field
+) :is(h1,h2,h3,h4,strong,label) { color:var(--adm-ink); }
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .page-sub, .panel-sub, .panel-lead, .form-hint, .identity-label
+) { color:var(--adm-muted); }
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea, select
+) {
+  background-color:var(--adm-surface);
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  input,textarea
+)::placeholder { color:var(--adm-ink-soft); opacity:1; }
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .admin-table thead, .admin-table tbody tr:hover, .admin-tab:hover,
+  .dropzone, .historial-json
+) { background-color:var(--adm-bg); }
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .btn-ghost,.btn-cancel,.btn-icon
+) { background-color:var(--adm-surface); color:var(--adm-ink); border-color:var(--adm-line); }
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .btn-ghost,.btn-cancel,.btn-icon
+):hover { background-color:var(--adm-muted-bg); }
+.admin-shell[data-modo="oscuro"] .admin-main .admin-tab.active {
+  background-color:var(--adm-surface);
+  color:var(--adm-brand);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .badge-publicado,.badge-borrador,.badge-modificado,.classic-status,
+  .btn-save,.btn-add,.btn-danger
+) { /* Conservar colores semánticos y de las paletas. */ }
