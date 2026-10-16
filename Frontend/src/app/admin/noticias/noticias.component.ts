@@ -53,6 +53,8 @@ export class AdminNoticiasComponent {
   readonly editingId = signal<string | null>(null);
   readonly form = signal<NoticiaForm>({ ...VACIO });
   readonly confirm = signal<NewsItem | null>(null);
+  readonly guardando = signal(false);
+  readonly eliminando = signal(false);
 
   abrirNueva(): void {
     this.editingId.set(null);
@@ -124,6 +126,8 @@ export class AdminNoticiasComponent {
       this.toast.error('Título, bajada y al menos un párrafo son obligatorios.');
       return;
     }
+    if (this.guardando()) return;
+    this.guardando.set(true);
     try {
       const id = this.editingId();
       if (id) {
@@ -142,14 +146,23 @@ export class AdminNoticiasComponent {
       this.formAbierto.set(false);
     } catch {
       this.toast.error('No se pudo guardar la noticia.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
   async eliminar(): Promise<void> {
     const item = this.confirm();
-    if (!item) return;
-    await this.news.eliminar(item.id);
-    this.confirm.set(null);
-    this.toast.success('Se quitó del listado público.');
+    if (!item || this.eliminando()) return;
+    this.eliminando.set(true);
+    try {
+      await this.news.eliminar(item.id);
+      this.confirm.set(null);
+      this.toast.success('Se quitó del listado público.');
+    } catch {
+      this.toast.error('No se pudo eliminar la noticia.');
+    } finally {
+      this.eliminando.set(false);
+    }
   }
 }
