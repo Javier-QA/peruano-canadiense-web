@@ -64,6 +64,16 @@ export class AdminPersonalComponent {
   readonly formAbierto = signal(false);
   readonly editingId = signal<number | null>(null);
   readonly form = signal<PersonaForm>({ ...VACIO });
+  private formularioInicial = '';
+  readonly hayCambios = computed(() => this.formAbierto() && JSON.stringify(this.form()) !== this.formularioInicial);
+  cerrarFormulario(): void {
+    if (this.guardando()) return;
+    if (this.hayCambios() && !window.confirm('Hay cambios sin guardar. ¿Desea descartarlos?')) return;
+    this.formAbierto.set(false);
+  }
+  alCambiarDialogo(abierto: boolean): void {
+    if (!abierto) this.cerrarFormulario();
+  }
   readonly confirm = signal<FacultyMember | null>(null);
   readonly guardando = signal(false);
   readonly eliminando = signal(false);
@@ -78,6 +88,7 @@ export class AdminPersonalComponent {
     const max = this.lista().reduce((n, item) => Math.max(n, item.order), 0);
     this.editingId.set(null);
     this.form.set({ ...VACIO, order: max + 1 });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -95,6 +106,7 @@ export class AdminPersonalComponent {
       cvUrl: member.cvUrl ?? '',
       order: member.order,
     });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
