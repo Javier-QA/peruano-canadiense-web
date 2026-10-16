@@ -1450,3 +1450,25 @@
   .admin-shell .admin-list-toolbar .form-hint { margin-left: 0; }
   .admin-shell .admin-pagination { justify-content: space-between; }
 }
+
+/* Resiliencia de los formularios y tablas en pantallas estrechas. */
+.admin-shell .admin-page .admin-list-toolbar,
+.admin-shell .admin-page .admin-pagination { min-width: 0; max-width: 100%; }
+.admin-shell .admin-card:has(> table.admin-table) { overflow-x: auto; }
+.admin-shell .admin-table { width: 100%; }
+.admin-shell .admin-table td.td-actions { white-space: nowrap; }
+.admin-shell .form-row :is(input, select, textarea) { max-width: 100%; }
+.admin-shell .form-row :is(input, select, textarea):focus-visible {
+  border-color: var(--adm-brand);
+}
+.admin-shell .admin-list-toolbar input[type="search"]:focus-visible {
+  outline: 2px solid var(--adm-brand);
+  outline-offset: 2px;
+}
+.admin-shell .admin-pagination button:disabled { opacity: .55; }
+@media (max-width: 480px) {
+  .admin-shell .page-header-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .admin-shell .page-header-actions > :is(button,a) { flex: 1 1 auto; justify-content: center; }
+  .admin-shell .admin-pagination { gap: 8px; }
+  .admin-shell .admin-pagination > span { flex: 1 1 100%; }
+}
