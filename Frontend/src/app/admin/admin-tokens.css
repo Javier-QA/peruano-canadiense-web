@@ -1,7 +1,12 @@
 /* Sistema visual compartido por todos los módulos del panel administrativo. */
 .admin-shell {
-  --adm-brand: #b91c2b;
-  --adm-brand-hover: #991827;
+  --adm-brand: var(--inst-primary, #b91c2b);
+  --adm-brand-soft: var(--inst-soft, #fce9ec);
+  --adm-brand-border: var(--inst-border, #f0d7da);
+  --adm-brand-hover: var(--inst-hover, #991827);
+  --adm-brand-contrast: var(--inst-contrast, #ffffff);
+  --adm-sidebar-top: var(--inst-sidebar-top, #292d3b);
+  --adm-sidebar-bottom: var(--inst-sidebar-bottom, #191e2b);
   --adm-ink: #292d3b;
   --adm-ink-soft: #64748b;
   --adm-surface: #ffffff;
