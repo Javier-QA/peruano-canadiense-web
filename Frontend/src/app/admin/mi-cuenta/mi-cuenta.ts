@@ -39,18 +39,24 @@ import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional }
     .visibility-button:focus-visible { outline:2px solid var(--adm-brand); }
     .form-hint { margin:5px 0 0; }
     .password-error { margin:5px 0 0; font-size:.78rem; color:var(--adm-danger); }
-    .palette-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
-    .palette-option { display:flex; flex-direction:column; align-items:flex-start; gap:9px; padding:15px; border:2px solid var(--adm-line); border-radius:12px; background:var(--adm-surface); color:var(--adm-ink); text-align:left; cursor:pointer; font:inherit; }
-    .palette-option.is-selected { border-color:var(--adm-brand); box-shadow:0 0 0 2px color-mix(in srgb,var(--adm-brand) 12%,transparent); }
+    .palette-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
+    .palette-option { display:flex; flex-direction:column; align-items:stretch; gap:10px; padding:13px; border:1px solid var(--adm-line); border-radius:12px; background:#fff; color:var(--adm-ink); text-align:left; cursor:pointer; font:inherit; transition:border-color .18s ease,box-shadow .18s ease; }
+    .palette-option:hover { border-color:#b7c3d1; box-shadow:0 3px 12px rgba(30,41,59,.06); }
+    .palette-option.is-selected { border-color:var(--adm-brand); box-shadow:0 0 0 1px var(--adm-brand); }
     .palette-option:focus-visible { outline:2px solid var(--adm-brand); outline-offset:3px; }
-    .palette-swatches { display:flex; gap:5px; }
-    .palette-swatches span { display:block; width:28px; height:28px; border:1px solid rgba(0,0,0,.08); border-radius:8px; }
-    .palette-name { font-weight:750; font-size:.9rem; }
-    .palette-desc { font-size:.78rem; color:var(--adm-muted); line-height:1.4; }
+    .palette-preview { display:flex; align-items:center; gap:7px; padding:10px; border-radius:9px; background:#f7f9fc; border:1px solid #e9edf3; }
+    .palette-preview-mark { width:32px; height:32px; flex:0 0 32px; border-radius:8px; background:var(--preview-primary); }
+    .palette-preview-lines { display:flex; flex-direction:column; gap:5px; flex:1; min-width:0; }
+    .palette-preview-lines::before { content:''; display:block; width:82%; height:6px; border-radius:5px; background:#cbd5e1; }
+    .palette-preview-lines::after { content:''; display:block; width:56%; height:5px; border-radius:5px; background:#e2e8f0; }
+    .palette-preview-action { width:18px; height:18px; border-radius:5px; background:var(--preview-primary); opacity:.8; }
+    .palette-option-bottom { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+    .palette-name { font-weight:700; font-size:.85rem; }
+    .palette-selected { color:var(--adm-brand); font-size:.9rem; }
     .palette-note { margin:12px 0 0; font-size:.8rem; color:var(--adm-muted); }
     .palette-actions { display:flex; justify-content:flex-end; margin-top:14px; }
     .save-bar { margin-top:19px; padding:15px 0 0; border-top:1px solid var(--adm-line); background:none; }
-    @media(max-width:720px) { .palette-grid { grid-template-columns:1fr; } .admin-page { gap:14px; } .page-header,.admin-card { padding:16px; } .identity-grid,.form-grid { grid-template-columns:1fr; } .form-grid .span-2 { grid-column:auto; } .save-bar .btn-save { width:100%; } }
+    @media(max-width:720px) { .palette-grid { grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); } .admin-page { gap:14px; } .page-header,.admin-card { padding:16px; } .identity-grid,.form-grid { grid-template-columns:1fr; } .form-grid .span-2 { grid-column:auto; } .save-bar .btn-save { width:100%; } }
   `,
   template: `
     <div class="admin-page">
@@ -81,17 +87,19 @@ import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional }
 
       <section class="admin-card" aria-labelledby="account-palette-title">
         <h2 id="account-palette-title" class="card-heading"><i class="fa-solid fa-palette" aria-hidden="true"></i> Paleta de colores</h2>
-        <p class="form-hint" style="margin:0 0 16px">Selecciona una combinación inspirada en los colores del instituto. Al guardar, el panel completo actualizará sus colores.</p>
+        <p class="form-hint" style="margin:0 0 16px">Elige un color para los botones, iconos y elementos activos. Los fondos y las tarjetas conservarán su aspecto original.</p>
         <div class="palette-grid" role="group" aria-label="Paleta institucional">
           @for (opcion of paletas; track opcion.id) {
-            <button type="button" class="palette-option" [class.is-selected]="seleccionada() === opcion.id" [attr.aria-pressed]="seleccionada() === opcion.id" (click)="seleccionada.set(opcion.id)">
-              <span class="palette-swatches" aria-hidden="true">
-                <span [style.background]="opcion.principal"></span>
-                <span [style.background]="opcion.secundario"></span>
-                <span [style.background]="opcion.suave"></span>
+            <button type="button" class="palette-option" [class.is-selected]="seleccionada() === opcion.id" [attr.aria-pressed]="seleccionada() === opcion.id" [style.--preview-primary]="opcion.principal" (click)="seleccionada.set(opcion.id)">
+              <span class="palette-preview" aria-hidden="true">
+                <span class="palette-preview-mark"></span>
+                <span class="palette-preview-lines"></span>
+                <span class="palette-preview-action"></span>
               </span>
-              <span class="palette-name">{{ opcion.nombre }} @if (seleccionada() === opcion.id) { <i class="fa-solid fa-circle-check" aria-hidden="true"></i> }</span>
-              <span class="palette-desc">{{ opcion.descripcion }}</span>
+              <span class="palette-option-bottom">
+                <span class="palette-name">{{ opcion.nombre }}</span>
+                @if (seleccionada() === opcion.id) { <i class="fa-solid fa-circle-check palette-selected" aria-label="Seleccionado"></i> }
+              </span>
             </button>
           }
         </div>
