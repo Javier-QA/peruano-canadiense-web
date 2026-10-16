@@ -10,17 +10,18 @@
       @if (pendientes()) {
         <span class="badge badge-borrador">{{ pendientes() }} sin atender</span>
       }
-      <button type="button" class="btn-ghost" (click)="recargar()">
+      <button type="button" class="btn-ghost" [disabled]="cargando()" (click)="recargar()">
         <i class="fa fa-rotate"></i> Actualizar
       </button>
     </div>
   </header>
 
-  <div class="admin-tabs">
+  <div class="admin-tabs" role="group" aria-label="Filtrar solicitudes por estado">
     <button
       type="button"
       class="admin-tab"
       [class.active]="filtro() === 'todos'"
+      [attr.aria-pressed]="filtro() === 'todos'"
       (click)="filtro.set('todos')"
     >
       Todos ({{ items().length }})
@@ -30,6 +31,7 @@
         type="button"
         class="admin-tab"
         [class.active]="filtro() === estado"
+        [attr.aria-pressed]="filtro() === estado"
         (click)="filtro.set(estado)"
       >
         {{ etiquetaEstado(estado) }}
@@ -37,9 +39,9 @@
     }
   </div>
 
-  <div class="admin-card">
+  <div class="admin-card tramites-scroll" role="region" [attr.aria-label]="'Listado de ' + titulo()" tabindex="0">
     @if (cargando()) {
-      <p class="form-hint">Cargando…</p>
+      <p class="form-hint" role="status" aria-live="polite">Cargando solicitudes…</p>
     } @else if (error()) {
       <div class="empty-state">
         <p>{{ error() }}</p>
@@ -50,9 +52,9 @@
         <thead>
           <tr>
             @for (columna of columnas(); track columna.campo) {
-              <th>{{ columna.label }}</th>
+              <th scope="col">{{ columna.label }}</th>
             }
-            <th></th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -74,7 +76,7 @@
                   type="button"
                   class="btn-icon"
                   (click)="abrir(tramite)"
-                  aria-label="Ver detalle"
+                  [attr.aria-label]="'Ver detalle de ' + tramite.codigo"
                 >
                   <i class="fa fa-eye"></i>
                 </button>
