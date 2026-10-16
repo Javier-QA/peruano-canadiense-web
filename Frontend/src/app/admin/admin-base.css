@@ -1621,3 +1621,33 @@
   content: none;
   display: none;
 }
+
+/* Transiciones suaves entre claro y oscuro; respeta movimiento reducido. */
+.admin-shell, .admin-shell .admin-body, .admin-shell .admin-main,
+.admin-shell .admin-topbar, .admin-shell .admin-card,
+.admin-shell .page-header, .admin-shell .form-row input,
+.admin-shell .form-row select, .admin-shell .form-row textarea,
+.admin-shell .admin-tab, .admin-shell .admin-tabs,
+.admin-shell .admin-table th, .admin-shell .admin-table td {
+  transition: background-color .32s ease, border-color .32s ease, color .32s ease, box-shadow .32s ease;
+}
+.admin-shell .btn-save, .admin-shell .btn-add { color:#fff; }
+.admin-shell[data-modo="oscuro"] .admin-tabs { background:var(--adm-bg); }
+.admin-shell[data-modo="oscuro"] .dropzone:hover,
+.admin-shell[data-modo="oscuro"] .dropzone.over { background:var(--adm-brand-soft); }
+.admin-shell[data-modo="oscuro"] .ql-editor,
+.admin-shell[data-modo="oscuro"] .ql-toolbar,
+.admin-shell[data-modo="oscuro"] .ql-container { color:var(--adm-ink); }
+.admin-shell[data-modo="oscuro"] .ql-toolbar .ql-stroke { stroke:var(--adm-ink-soft); }
+.admin-shell[data-modo="oscuro"] .ql-toolbar .ql-fill { fill:var(--adm-ink-soft); }
+.admin-shell[data-modo="oscuro"] input,
+.admin-shell[data-modo="oscuro"] textarea,
+.admin-shell[data-modo="oscuro"] select { color-scheme:dark; }
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell, .admin-shell .admin-body, .admin-shell .admin-main,
+  .admin-shell .admin-topbar, .admin-shell .admin-card,
+  .admin-shell .page-header, .admin-shell .form-row input,
+  .admin-shell .form-row select, .admin-shell .form-row textarea,
+  .admin-shell .admin-tab, .admin-shell .admin-tabs,
+  .admin-shell .admin-table th, .admin-shell .admin-table td { transition:none; }
+}
