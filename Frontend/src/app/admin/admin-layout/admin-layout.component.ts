@@ -14,6 +14,7 @@ import { PortalSync } from '../../core/api/portal-sync';
 import { AuthService } from '../../core/auth/auth.service';
 import { AdminNavStore } from '../shared/admin-nav.store';
 import { ToastHost } from '../shared/toast/toast-host';
+import { DialogComponent } from '../../shared/ui';
 import { AdminSidebarComponent } from '../sidebar/sidebar.component';
 
 const ROUTE_TITLES: Record<string, string> = {
@@ -56,7 +57,7 @@ const ROUTE_TITLES: Record<string, string> = {
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, AdminSidebarComponent, ToastHost],
+  imports: [RouterOutlet, RouterLink, AdminSidebarComponent, ToastHost, DialogComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,6 +73,7 @@ export class AdminLayoutComponent {
   readonly rutaActual = signal(this.router.url.split('?')[0]);
   readonly usuario = this.auth.usuario;
   readonly menuAbierto = signal(false);
+  readonly confirmarSalida = signal(false);
   /** Cajón de navegación en móvil. */
   readonly navAbierto = this.nav.cajonAbierto;
   /** Riel contraído en escritorio. */
@@ -136,6 +138,11 @@ export class AdminLayoutComponent {
 
   cerrarSesion(): void {
     this.menuAbierto.set(false);
+    this.confirmarSalida.set(true);
+  }
+
+  confirmarCerrarSesion(): void {
+    this.confirmarSalida.set(false);
     this.auth.logout();
   }
 
