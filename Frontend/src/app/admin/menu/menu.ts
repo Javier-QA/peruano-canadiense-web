@@ -29,6 +29,13 @@ const nuevoBorrador = (zona: MenuZona): Borrador => ({
   standalone: true,
   imports: [DialogComponent],
   templateUrl: './menu.html',
+  styles: `
+    .menu-order-heading { width: 180px; text-align: center; }
+    .menu-order-cell { width: 180px; white-space: nowrap; }
+    .menu-order-controls { display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .menu-order-number { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 36px; flex: 0 0 28px; font-weight: 700; color: #475569; font-variant-numeric: tabular-nums; }
+    .menu-order-controls .btn-icon { flex: 0 0 auto; margin: 0; }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminMenu {
