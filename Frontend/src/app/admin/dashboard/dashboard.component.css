@@ -688,3 +688,14 @@
   .dash .page-header.dash-welcome { padding:18px 15px 18px 20px; }
   .dash .dash-welcome-identity { gap:12px; }
 }
+
+/* Descripción de la bienvenida, en lugar de la fecha. */
+.dash .dash-welcome-description {
+  color:var(--adm-muted);
+  font-size:.82rem;
+  line-height:1.45;
+}
+@media(max-width:750px) {
+  .dash .dash-welcome-meta { align-items:flex-start; }
+  .dash .dash-welcome-description { flex:1 1 100%; }
+}
