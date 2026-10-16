@@ -200,36 +200,28 @@
     width: 74px;
   }
 
-  /* Al pasar el cursor (o enfocar dentro) el riel se despliega por encima. */
-  .admin-sidebar.is-collapsed:hover,
-  .admin-sidebar.is-collapsed:focus-within {
-    width: 260px;
-    box-shadow: 12px 0 44px rgba(20, 19, 30, 0.25);
+  /* Contraído: permanece en 74 px incluso al pasar el cursor o usar teclado.
+     El nombre completo se muestra mediante el tooltip nativo del enlace. */
+  .admin-sidebar.is-collapsed .brand-text,
+  .admin-sidebar.is-collapsed .sidebar-link span,
+  .admin-sidebar.is-collapsed .logout-btn span {
+    display: none;
   }
 
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .brand-text,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-link span,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .logout-btn span {
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
-  }
-
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-brand,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-link,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .logout-btn {
+  .admin-sidebar.is-collapsed .sidebar-brand,
+  .admin-sidebar.is-collapsed .sidebar-link,
+  .admin-sidebar.is-collapsed .logout-btn {
     justify-content: center;
     gap: 0;
   }
 
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-link i,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .logout-btn i {
+  .admin-sidebar.is-collapsed .sidebar-link i,
+  .admin-sidebar.is-collapsed .logout-btn i {
     font-size: 1.2rem;
     width: auto;
   }
 
-  /* La etiqueta de grupo se vuelve un separador fino. */
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .nav-group-label {
+  .admin-sidebar.is-collapsed .nav-group-label {
     margin: 10px 16px;
     height: 1px;
     padding: 0;
