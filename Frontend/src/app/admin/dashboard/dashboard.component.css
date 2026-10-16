@@ -7,9 +7,9 @@
 .dash .page-header {
   margin-bottom: 0;
   padding: 27px 30px;
-  border: 1px solid #f0d7da;
+  border: 1px solid var(--adm-brand-border);
   border-radius: 18px;
-  background: linear-gradient(115deg, #fff6f6 0%, #fff 66%);
+  background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white) 0%, #fff 66%);
   box-shadow: 0 5px 24px rgba(48, 59, 81, .035);
   align-items: center;
 }
@@ -273,7 +273,7 @@
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background: #fce9ec;
+  background: var(--adm-brand-soft);
   font-size: 1.15rem;
   color: var(--adm-brand);
 }
@@ -451,7 +451,7 @@
 .panel-heading-icon {
   display: inline-flex; width: 34px; height: 34px; flex: none;
   align-items: center; justify-content: center; border-radius: 10px;
-  color: var(--adm-brand); background: #fce9ec; font-size: .95rem;
+  color: var(--adm-brand); background: var(--adm-brand-soft); font-size: .95rem;
 }
 .panel-head .panel-title, .activity-card .panel-title {
   display: flex; align-items: center; gap: 10px;
@@ -536,7 +536,7 @@
   color: var(--adm-ink);
 }
 .stat-strip li .badge { margin: 0 22px 16px; }
-.stat-strip li:hover { background: #fff7f7; }
+.stat-strip li:hover { background: color-mix(in srgb, var(--adm-brand-soft) 35%, white); }
 .stat-strip li:hover a::after { color: var(--adm-brand-hover); }
 @media (max-width: 560px) {
   .stat-strip li { padding: 0; }
