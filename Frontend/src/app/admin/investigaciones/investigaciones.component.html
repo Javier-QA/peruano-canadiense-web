@@ -129,7 +129,7 @@
 <app-dialog
   [open]="formAbierto()"
   [title]="editandoId() ? 'Editar investigación' : 'Nueva investigación'"
-  (openChange)="formAbierto.set($event)"
+  (openChange)="alCambiarDialogo($event)"
 >
   <div class="form-grid">
     <div class="form-row span-2">
@@ -180,7 +180,7 @@
     </div>
   </div>
   <div dialog-footer>
-    <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
+    <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
     <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
   </div>
 </app-dialog>
