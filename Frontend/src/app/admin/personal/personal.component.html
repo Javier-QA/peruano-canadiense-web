@@ -46,7 +46,7 @@
           <th>Nombre</th>
           <th>Cargo</th>
           <th>Tipo</th>
-          <th></th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -193,7 +193,7 @@
   </div>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
-    <button type="button" class="btn-save" (click)="guardar()">Guardar</button>
+    <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
   </div>
 </app-dialog>
 
@@ -205,6 +205,6 @@
   <p>Dejará de verse en la web pública.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirm.set(null)">Cancelar</button>
-    <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
+    <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>
