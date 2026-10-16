@@ -63,6 +63,12 @@ const VACIO: DocForm = {
       </button>
     </div>
 
+    <div class="admin-list-toolbar" role="search">
+      <label for="buscar-documentos">Buscar documentos</label>
+      <input id="buscar-documentos" type="search" [value]="busqueda()" (input)="buscar($any($event.target).value)" placeholder="Título, descripción, año o tipo" />
+      <span class="form-hint" role="status">{{ filtrados().length }} resultados</span>
+    </div>
+
     @if (docs().length === 0) {
       <div class="empty-state">
         <i class="fa fa-file-circle-plus"></i>
@@ -81,7 +87,7 @@ const VACIO: DocForm = {
             </tr>
           </thead>
           <tbody>
-            @for (doc of docs(); track doc.id) {
+            @for (doc of paginados(); track doc.id) {
               <tr>
                 <td>
                   <strong>{{ doc.titulo }}</strong>
@@ -132,6 +138,12 @@ const VACIO: DocForm = {
         </table>
       </div>
     }
+
+    <nav class="admin-pagination" aria-label="Paginación de documentos">
+      <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+      <button type="button" class="btn-ghost" [disabled]="paginaActual() <= 1" (click)="cambiarPagina(-1)">Anterior</button>
+      <button type="button" class="btn-ghost" [disabled]="paginaActual() >= totalPaginas()" (click)="cambiarPagina(1)">Siguiente</button>
+    </nav>
 
     <app-dialog [open]="formAbierto()" title="Documento" (openChange)="onFormOpen($event)">
       <div class="form-row">
@@ -208,7 +220,7 @@ const VACIO: DocForm = {
         />
       }
       <div dialog-footer>
-        <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
+        <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
         <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardarForm()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
       </div>
     </app-dialog>
@@ -257,6 +269,26 @@ export class TablaDocumentos {
   readonly seccion = input.required<string>();
 
   readonly docs = computed(() => this.documentos.deSeccion(this.modulo(), this.seccion(), true));
+  readonly busqueda = signal('');
+  readonly pagina = signal(1);
+  readonly porPagina = 10;
+  readonly filtrados = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase('es');
+    const docs = this.docs();
+    return q ? docs.filter(doc => [doc.titulo, doc.descripcion, doc.anio, doc.tipo, doc.estado].some(v => String(v ?? '').toLocaleLowerCase('es').includes(q))) : docs;
+  });
+  readonly totalPaginas = computed(() => Math.max(1, Math.ceil(this.filtrados().length / this.porPagina)));
+  readonly paginaActual = computed(() => Math.min(this.pagina(), this.totalPaginas()));
+  readonly paginados = computed(() => this.filtrados().slice((this.paginaActual() - 1) * this.porPagina, this.paginaActual() * this.porPagina));
+  buscar(q: string): void { this.busqueda.set(q); this.pagina.set(1); }
+  cambiarPagina(delta: number): void { this.pagina.set(Math.max(1, Math.min(this.totalPaginas(), this.paginaActual() + delta))); }
+  private formularioInicial = '';
+  readonly hayCambios = computed(() => this.formAbierto() && JSON.stringify(this.form()) !== this.formularioInicial);
+  cerrarFormulario(): void {
+    if (this.guardando()) return;
+    if (this.hayCambios() && !window.confirm('Hay cambios sin guardar. ¿Desea descartarlos?')) return;
+    this.formAbierto.set(false);
+  }
 
   readonly formAbierto = signal(false);
   readonly editingId = signal<string | null>(null);
@@ -276,6 +308,7 @@ export class TablaDocumentos {
     this.editingId.set(null);
     this.form.set({ ...VACIO, orden: max + 1 });
     this.tituloVacio.set(false);
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -291,6 +324,7 @@ export class TablaDocumentos {
       orden: doc.orden,
     });
     this.tituloVacio.set(false);
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -363,13 +397,17 @@ export class TablaDocumentos {
   async quitar(modo: 0 | 1): Promise<void> {
     const doc = this.confirm();
     if (!doc) return;
-    await this.documentos.eliminar(doc.id, modo);
-    this.confirm.set(null);
-    this.toast.success(modo === 0 ? 'Pasó a borrador.' : 'Documento eliminado.');
+    try {
+      await this.documentos.eliminar(doc.id, modo);
+      this.confirm.set(null);
+      this.toast.success(modo === 0 ? 'Pasó a borrador.' : 'Documento eliminado.');
+    } catch {
+      this.toast.error('No se pudo modificar el documento.');
+    }
   }
 
   onFormOpen(open: boolean): void {
-    this.formAbierto.set(open);
+    if (!open) this.cerrarFormulario();
   }
 
   onPreviewOpen(open: boolean): void {
