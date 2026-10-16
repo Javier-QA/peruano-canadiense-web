@@ -69,12 +69,10 @@
       <router-outlet></router-outlet>
     </main>
   </div>
-</div>
-
-<app-dialog
+  <app-dialog
   [open]="confirmarSalida()"
   title="Cerrar sesión"
-  variant="danger"
+  variant="logout"
   (openChange)="confirmarSalida.set($event)"
 >
   <p>¿Deseas cerrar sesión del panel administrativo? Tendrás que iniciar sesión nuevamente para volver a acceder.</p>
@@ -83,3 +81,4 @@
     <button type="button" class="btn-danger" (click)="confirmarCerrarSesion()">Cerrar sesión</button>
   </div>
 </app-dialog>
+</div>
