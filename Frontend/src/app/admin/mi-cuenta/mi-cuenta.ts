@@ -14,8 +14,8 @@ import { ToastService } from '../shared/toast/toast';
   styles: `
     :host { display:block; min-width:0; }
     .admin-page { width:100%; max-width:1080px; margin-inline:auto; display:grid; gap:18px; }
-    .page-header { display:flex; justify-content:flex-start; align-items:center; gap:12px; padding:17px 22px; border:1px solid #f1dfd2; border-radius:16px; background:linear-gradient(115deg,#fff8f2,#fff 70%); }
-    .account-icon { display:inline-flex; align-items:center; justify-content:center; flex:none; width:40px; height:40px; border-radius:12px; background:#fff0e4; color:var(--adm-brand); font-size:1rem; }
+    .page-header { display:flex; justify-content:flex-start; align-items:center; gap:12px; padding:17px 22px; border:1px solid #f0d7da; border-radius:16px; background:linear-gradient(115deg,#fff6f6,#fff 70%); }
+    .account-icon { display:inline-flex; align-items:center; justify-content:center; flex:none; width:40px; height:40px; border-radius:12px; background:#fce9ec; color:var(--adm-brand); font-size:1rem; }
     .page-header .account-heading { display:flex; flex-direction:column; flex:1 1 auto; min-width:0; text-align:left; }
     .page-header .page-title { margin:0 0 3px; font-size:clamp(1.4rem,2vw,1.7rem); }
     .page-header .page-sub { line-height:1.45; margin:0; }
