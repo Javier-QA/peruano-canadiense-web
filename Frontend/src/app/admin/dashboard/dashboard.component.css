@@ -657,3 +657,34 @@
   .dash .dash-welcome .page-header-actions { flex-direction:row; flex-wrap:wrap; }
   .dash .dash-welcome .page-header-actions > * { width:auto; flex:1 1 130px; }
 }
+
+/* Bienvenida: superficie teñida de toda la tarjeta, como en el espacio docente.
+   Se ajusta automáticamente a las cinco paletas y a ambos modos. */
+.dash .page-header.dash-welcome {
+  min-height:138px;
+  padding:20px 24px 20px 26px;
+  gap:16px;
+  background:color-mix(in srgb,var(--adm-brand) 15%,var(--adm-surface));
+  border-color:color-mix(in srgb,var(--adm-brand) 30%,var(--adm-line));
+  box-shadow:0 2px 5px rgba(16,24,40,.06);
+}
+.dash .dash-welcome-identity { gap:16px; }
+.dash .dash-welcome-icon {
+  background:color-mix(in srgb,var(--adm-brand) 7%,var(--adm-surface));
+  border-color:color-mix(in srgb,var(--adm-brand) 38%,var(--adm-line));
+}
+.dash .dash-welcome .page-title {
+  font-size:clamp(1.2rem,1.7vw,1.48rem);
+  letter-spacing:-.018em;
+}
+.dash .dash-welcome .page-header-actions .btn-ghost {
+  background:color-mix(in srgb,var(--adm-surface) 78%,transparent);
+  border-color:color-mix(in srgb,var(--adm-brand) 16%,var(--adm-line));
+}
+.dash .dash-welcome .page-header-actions .btn-ghost:hover {
+  background:var(--adm-surface);
+}
+@media(max-width:560px) {
+  .dash .page-header.dash-welcome { padding:18px 15px 18px 20px; }
+  .dash .dash-welcome-identity { gap:12px; }
+}
