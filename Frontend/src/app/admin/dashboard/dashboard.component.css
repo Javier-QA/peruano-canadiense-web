@@ -708,3 +708,40 @@
   font-size:.82rem;
   line-height:1.45;
 }
+
+
+/* Publicaciones: sección destacada del inicio administrativo.
+   Acento institucional sin alterar cifras, enlaces ni modo oscuro. */
+.dash .panel-publicaciones {
+  position:relative;
+  overflow:hidden;
+  border-color:color-mix(in srgb,var(--adm-brand) 30%,var(--adm-line));
+  background:color-mix(in srgb,var(--adm-brand) 7%,var(--adm-surface));
+}
+.dash .panel-publicaciones::before {
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  width:5px;
+  background:var(--adm-brand);
+}
+.dash .panel-publicaciones .dash-section-heading {
+  padding:2px 0 3px;
+}
+.dash .panel-publicaciones .dash-section-kicker {
+  color:var(--adm-brand);
+}
+.dash .panel-publicaciones .stat-strip li {
+  border-color:color-mix(in srgb,var(--adm-brand) 23%,var(--adm-line));
+  background:var(--adm-surface);
+}
+.dash .panel-publicaciones .stat-strip li i {
+  border:1px solid color-mix(in srgb,var(--adm-brand) 28%,var(--adm-line));
+  background:color-mix(in srgb,var(--adm-brand) 11%,var(--adm-surface));
+}
+.dash .panel-publicaciones .stat-strip li:hover,
+.dash .panel-publicaciones .stat-strip li:focus-within {
+  background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+}
