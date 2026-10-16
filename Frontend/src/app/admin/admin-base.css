@@ -1600,3 +1600,18 @@
   .admin-shell app-dialog .confirm-dialog [dialog-footer] { flex-wrap: wrap; }
   .admin-shell app-dialog .confirm-dialog [dialog-footer] > button { flex-basis: 100%; }
 }
+
+/* Escala compacta definitiva para avisos y confirmaciones del panel. */
+.admin-shell .toast-host { width: min(345px, calc(100vw - 24px)); top: 14px; right: 14px; gap: 8px; }
+.admin-shell .toast { padding: 11px 36px 11px 11px; gap: 10px; border-top-width: 3px; border-radius: 12px; font-size: .79rem; box-shadow: 0 8px 22px rgba(23,38,60,.14); }
+.admin-shell .toast-symbol { flex-basis: 35px; width: 35px; height: 35px; border-radius: 10px; font-size: 1rem; }
+.admin-shell .toast-title { font-size: .84rem; margin-bottom: 2px; }
+.admin-shell .toast-close { top: 8px; right: 8px; width: 24px; height: 24px; border-radius: 7px; }
+.admin-shell app-dialog .confirm-dialog [dialog-footer] { gap: 10px; }
+.admin-shell app-dialog .confirm-dialog [dialog-footer] > button { min-height: 38px; border-radius: 9px; font-size: .84rem; }
+@media(max-width: 420px) {
+  .admin-shell .toast-host { top: 10px; right: 10px; width: calc(100vw - 20px); }
+  .admin-shell .toast { padding: 10px 34px 10px 10px; }
+  .admin-shell app-dialog .confirm-dialog [dialog-footer] { flex-wrap: nowrap; }
+  .admin-shell app-dialog .confirm-dialog [dialog-footer] > button { flex-basis: 0; }
+}
