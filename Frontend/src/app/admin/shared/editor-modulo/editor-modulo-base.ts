@@ -158,11 +158,13 @@ export abstract class EditorModuloBase<K extends ModuloId>
   }
 
   cancelar(): void {
+    if (this.dirty() && !window.confirm('¿Descartar los cambios sin guardar?')) return;
     this.cargar(this.contenido.de(this.moduloId).value());
     this.guardado.set(false);
   }
 
   async restaurar(): Promise<void> {
+    if (this.restaurando() || !window.confirm('¿Restaurar el contenido original de este módulo?')) return;
     this.restaurando.set(true);
     try {
       await this.contenido.restaurar(this.moduloId);
