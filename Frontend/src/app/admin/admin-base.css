@@ -1499,3 +1499,76 @@
 @media (prefers-reduced-motion: reduce) {
   .admin-shell *, .admin-shell *::before, .admin-shell *::after { scroll-behavior: auto; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Notificaciones institucionales: mismo lenguaje visual que el diálogo de cierre de sesión. */
+.admin-shell .toast-host {
+  top: 22px;
+  right: 22px;
+  gap: 12px;
+  width: min(410px, calc(100vw - 32px));
+  max-width: none;
+}
+.admin-shell .toast {
+  --toast-accent: #26834c;
+  --toast-tint: #e8f6ec;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 42px 18px 16px;
+  border: 1px solid #d7e0ea;
+  border-top: 4px solid var(--toast-accent);
+  border-radius: 17px;
+  background: linear-gradient(155deg, var(--toast-tint), #f3f6fa 40%, #f7f9fc);
+  color: #152333;
+  box-shadow: 0 14px 38px rgba(23, 38, 60, .19);
+  font-size: .87rem;
+  font-weight: 400;
+  line-height: 1.5;
+  animation: adm-toast-in .22s ease-out both;
+}
+.admin-shell .toast-ok { --toast-accent: #21874e; --toast-tint: #e4f7e9; }
+.admin-shell .toast-err { --toast-accent: #df2429; --toast-tint: #ffe8e9; }
+.admin-shell .toast-symbol {
+  flex: 0 0 49px;
+  width: 49px;
+  height: 49px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  border: 1px solid color-mix(in srgb, var(--toast-accent) 20%, transparent);
+  background: color-mix(in srgb, var(--toast-accent) 13%, white);
+  color: var(--toast-accent);
+  font-size: 1.32rem;
+}
+.admin-shell .toast-content { min-width: 0; flex: 1; padding-top: 2px; }
+.admin-shell .toast-title { display: block; margin-bottom: 4px; font-size: .96rem; font-weight: 750; color: #152333; }
+.admin-shell .toast-message { margin: 0; color: #526a83; overflow-wrap: anywhere; }
+.admin-shell .toast-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 29px;
+  height: 29px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #b5c8db;
+  border-radius: 9px;
+  background: #edf3f9;
+  color: #55718e;
+  cursor: pointer;
+}
+.admin-shell .toast-close:hover { background: #e1ebf5; color: #233d56; }
+.admin-shell .toast-close:focus-visible { outline: 2px solid var(--toast-accent); outline-offset: 2px; }
+@keyframes adm-toast-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+  .admin-shell .toast-host { top: 12px; right: 12px; width: calc(100vw - 24px); }
+  .admin-shell .toast { padding: 14px 40px 14px 12px; gap: 10px; }
+  .admin-shell .toast-symbol { flex-basis: 42px; width: 42px; height: 42px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell .toast { animation: none; }
+}
