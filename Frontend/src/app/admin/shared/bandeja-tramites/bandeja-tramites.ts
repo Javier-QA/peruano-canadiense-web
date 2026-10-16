@@ -41,6 +41,11 @@ export interface ColumnaBandeja {
     .page-header .page-sub { max-width: 70ch; line-height: 1.6; }
     .admin-tabs { margin-bottom: 0; }
     .admin-card { min-width: 0; }
+    .tramites-scroll { overflow-x: auto; scrollbar-width: thin; }
+    .tramites-scroll .admin-table { min-width: 720px; }
+    .tramites-scroll .admin-table th:last-child { width: 90px; }
+    .tramites-scroll .admin-table td:last-child { width: 90px; }
+    .tramites-scroll .admin-table td:not(:last-child) { overflow-wrap: anywhere; }
     .admin-table { font-variant-numeric: tabular-nums; }
     .admin-table td { line-height: 1.55; }
     .admin-table td:last-child { white-space: nowrap; }
@@ -84,6 +89,7 @@ export class BandejaTramites {
   readonly respuestaEditada = signal('');
   readonly notificar = signal(false);
   readonly guardando = signal(false);
+  private solicitudCarga = 0;
 
   readonly visibles = computed(() => {
     const estado = this.filtro();
@@ -110,14 +116,16 @@ export class BandejaTramites {
   }
 
   private async traer(cargar: () => Promise<TramiteAdmin[]>): Promise<void> {
+    const solicitud = ++this.solicitudCarga;
     this.cargando.set(true);
     this.error.set(null);
     try {
-      this.items.set(await cargar());
+      const datos = await cargar();
+      if (solicitud === this.solicitudCarga) this.items.set(datos);
     } catch {
-      this.error.set('No se pudo cargar la bandeja. ¿Está el servidor levantado?');
+      if (solicitud === this.solicitudCarga) this.error.set('No se pudo cargar la bandeja. ¿Está el servidor levantado?');
     } finally {
-      this.cargando.set(false);
+      if (solicitud === this.solicitudCarga) this.cargando.set(false);
     }
   }
 
@@ -200,7 +208,7 @@ export class BandejaTramites {
   async aplicar(): Promise<void> {
     const tramite = this.abierto();
     const guardar = this.guardar();
-    if (!tramite || !guardar) return;
+    if (!tramite || !guardar || this.guardando()) return;
     this.guardando.set(true);
     try {
       const avisar = this.notificar() && !!this.correoDe(tramite);
