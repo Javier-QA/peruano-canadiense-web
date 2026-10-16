@@ -745,8 +745,8 @@
    ajusta cuando el riel se contrae (estado en .admin-sidebar.is-collapsed). */
 @media (min-width: 901px) {
   .admin-shell .admin-body {
-    margin-left: 340px;
-    width: calc(100% - 340px);
+    margin-left: 260px;
+    width: calc(100% - 260px);
     transition: margin-left 0.18s ease;
   }
 
