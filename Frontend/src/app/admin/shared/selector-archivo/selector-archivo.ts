@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
 import { ArchivosStore } from '../../../core/store/archivos.store';
 import { ToastService } from '../toast/toast';
+import { MiniaturaImagen } from '../miniatura-imagen/miniatura-imagen';
 
 const IMAGENES = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
 const PDF = ['application/pdf'];
@@ -12,6 +13,7 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
 @Component({
   selector: 'app-selector-archivo',
   standalone: true,
+  imports: [MiniaturaImagen],
   template: `
     @if (variante() === 'boton') {
       <button type="button" class="selector-boton" [disabled]="subiendo()" (click)="input.click()">
@@ -46,11 +48,13 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
         <input #input type="file" hidden [accept]="accept()" (change)="onFile($event)" />
       </div>
       @if (subiendo()) {
-        <p class="form-hint" role="status" aria-live="polite">Guardando archivo…</p>
+        <p class="form-hint" role="status" aria-live="polite">Guardando archivo… Espere a que termine.</p>
+        <div class="archivo-progreso" role="progressbar" aria-label="Archivo en proceso" aria-valuetext="Guardando archivo"></div>
       }
       @if (referencia() && modo() !== 'pdf') {
         <div class="archivo-preview" role="status">
           <span class="archivo-preview-icon" aria-hidden="true">✓</span>
+          <app-miniatura-imagen [referencia]="referencia()" alt="Vista previa de la imagen vinculada" />
           <span>Imagen vinculada al contenido</span>
         </div>
       }
@@ -69,6 +73,8 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
     .dropzone[aria-disabled="true"] { opacity: .7; cursor: progress; }
     .dropzone.over { border-color: var(--adm-brand); background: #fff5ec; }
     .selector-boton { min-height: 40px; }
+    .archivo-progreso { height: 5px; margin: 8px 0; border-radius: 5px; background: repeating-linear-gradient(110deg, #ffe0c2 0 14px, #f49b52 14px 28px); }
+    .archivo-preview app-miniatura-imagen { --miniatura-size: 72px; }
     .archivo-preview { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--adm-ink); font-size: .84rem; }
     .archivo-preview-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #eaf7ed; color: #23733e; font-weight: 700; }
 
