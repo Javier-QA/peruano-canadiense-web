@@ -13,6 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PortalSync } from '../../core/api/portal-sync';
 import { AuthService } from '../../core/auth/auth.service';
 import { AdminNavStore } from '../shared/admin-nav.store';
+import { AdminPaletaService } from '../shared/admin-paleta.service';
 import { ToastHost } from '../shared/toast/toast-host';
 import { DialogComponent } from '../../shared/ui';
 import { AdminSidebarComponent } from '../sidebar/sidebar.component';
@@ -68,6 +69,7 @@ export class AdminLayoutComponent {
   private readonly auth = inject(AuthService);
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly nav = inject(AdminNavStore);
+  readonly paleta = inject(AdminPaletaService).actual;
 
   readonly pageTitle = signal('Dashboard');
   readonly rutaActual = signal(this.router.url.split('?')[0]);
