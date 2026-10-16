@@ -163,7 +163,7 @@ import { DialogComponent } from '../../../shared/ui';
       padding: 14px 22px;
       border: 1px solid var(--adm-brand-border);
       border-radius: 16px;
-      background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white), #fff 70%);
+      background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 70%);
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header { align-items: center; padding: 18px 24px; border-radius: 18px; }
@@ -185,7 +185,7 @@ import { DialogComponent } from '../../../shared/ui';
       padding: 22px 28px;
       border-bottom: 1px solid var(--adm-line);
       border-radius: 16px 16px 0 0;
-      background: linear-gradient(110deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white), #fff 75%);
+      background: linear-gradient(110deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 75%);
     }
     .seccion-titulo {
       margin: 0;
@@ -200,7 +200,7 @@ import { DialogComponent } from '../../../shared/ui';
       line-height: 1.55;
       color: var(--adm-ink-soft);
     }
-    .seccion-cuerpo { padding: 26px 28px 30px; background: #f8fafc; }
+    .seccion-cuerpo { padding: 26px 28px 30px; background: var(--adm-bg); }
     .seccion-docs { margin-top: 16px; min-width: 0; }
     .admin-tab[aria-selected="true"] { color: var(--adm-brand); }
     .seccion-card { min-width: 0; }
