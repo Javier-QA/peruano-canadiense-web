@@ -161,9 +161,9 @@ import { DialogComponent } from '../../../shared/ui';
     .admin-page { display: flex; flex-direction: column; gap: 20px; }
     .page-header {
       padding: 14px 22px;
-      border: 1px solid #f0d7da;
+      border: 1px solid var(--adm-brand-border);
       border-radius: 16px;
-      background: linear-gradient(115deg, #fff6f6, #fff 70%);
+      background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white), #fff 70%);
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header { align-items: center; padding: 18px 24px; border-radius: 18px; }
@@ -185,7 +185,7 @@ import { DialogComponent } from '../../../shared/ui';
       padding: 22px 28px;
       border-bottom: 1px solid var(--adm-line);
       border-radius: 16px 16px 0 0;
-      background: linear-gradient(110deg, #fff6f6, #fff 75%);
+      background: linear-gradient(110deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white), #fff 75%);
     }
     .seccion-titulo {
       margin: 0;
