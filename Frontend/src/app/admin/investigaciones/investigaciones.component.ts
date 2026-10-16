@@ -37,6 +37,20 @@ export class AdminInvestigacionesComponent {
   private readonly toast = inject(ToastService);
 
   readonly items = this.repositorio.all;
+  readonly busqueda = signal('');
+  readonly pagina = signal(1);
+  readonly porPagina = 10;
+  readonly filtrados = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase('es');
+    const datos = this.visibles();
+    return q ? datos.filter(item => [item.titulo, item.autores.join(' '), item.programa, item.anio].some(v => String(v ?? '').toLocaleLowerCase('es').includes(q))) : datos;
+  });
+  readonly totalPaginas = computed(() => Math.max(1, Math.ceil(this.filtrados().length / this.porPagina)));
+  readonly paginaActual = computed(() => Math.min(this.pagina(), this.totalPaginas()));
+  readonly paginados = computed(() => this.filtrados().slice((this.paginaActual() - 1) * this.porPagina, this.paginaActual() * this.porPagina));
+  buscar(valor: string): void { this.busqueda.set(valor); this.pagina.set(1); }
+  cambiarPagina(delta: number): void { this.pagina.set(Math.max(1, Math.min(this.totalPaginas(), this.paginaActual() + delta))); }
+
   readonly formAbierto = signal(false);
   readonly editandoId = signal<string | null>(null);
   readonly form = signal<TesisForm>({ ...VACIO });
