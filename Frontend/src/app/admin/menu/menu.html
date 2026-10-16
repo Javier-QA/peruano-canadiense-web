@@ -48,9 +48,10 @@
             </tr>
           </thead>
           <tbody>
-            @for (item of porZona()[zona.id]; track item.id; let primero = $first, ultimo = $last) {
+            @for (item of porZona()[zona.id]; track item.id; let primero = $first, ultimo = $last, indice = $index) {
               <tr>
                 <td class="td-actions">
+                  <span class="menu-order-number" style="display:inline-block;min-width:24px;text-align:center;font-weight:700;color:#475569">{{ indice + 1 }}</span>
                   <button
                     type="button"
                     class="btn-icon"
