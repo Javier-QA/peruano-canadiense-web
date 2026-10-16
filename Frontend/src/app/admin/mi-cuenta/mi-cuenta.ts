@@ -86,32 +86,6 @@ import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional }
         }
       </section>
 
-      <section class="admin-card" aria-labelledby="account-palette-title">
-        <h2 id="account-palette-title" class="card-heading"><i class="fa-solid fa-palette" aria-hidden="true"></i> Paleta de colores</h2>
-        <p class="form-hint" style="margin:0 0 16px">Elige un color para los botones, iconos y elementos activos. Los fondos y las tarjetas conservarán su aspecto original.</p>
-        <div class="palette-grid" role="group" aria-label="Paleta institucional">
-          @for (opcion of paletas; track opcion.id) {
-            <button type="button" class="palette-option" [class.is-selected]="seleccionada() === opcion.id" [attr.aria-pressed]="seleccionada() === opcion.id" [style.--preview-primary]="opcion.principal" (click)="seleccionada.set(opcion.id)">
-              <span class="palette-preview" aria-hidden="true">
-                <span class="palette-preview-mark"></span>
-                <span class="palette-preview-lines"></span>
-                <span class="palette-preview-action"></span>
-              </span>
-              <span class="palette-option-bottom">
-                <span class="palette-name">{{ opcion.nombre }}</span>
-                @if (seleccionada() === opcion.id) { <i class="fa-solid fa-circle-check palette-selected" aria-label="Seleccionado"></i> }
-              </span>
-            </button>
-          }
-        </div>
-        <div class="palette-actions">
-          <button type="button" class="btn-save" [disabled]="seleccionada() === paleta.actual()" (click)="guardarPaleta()">
-            <i class="fa-solid fa-check" aria-hidden="true"></i> Aplicar colores
-          </button>
-        </div>
-        <p class="palette-note">Esta preferencia se conserva en este navegador. No modifica los colores de la página pública.</p>
-      </section>
-
       <section class="admin-card" aria-labelledby="account-password-title">
         <h2 id="account-password-title" class="card-heading"><i class="fa-solid fa-lock" aria-hidden="true"></i> Cambiar contraseña</h2>
         <p class="security-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Al cambiar tu contraseña se cerrarán las sesiones abiertas y tendrás que iniciar sesión nuevamente.</span></p>
@@ -147,6 +121,32 @@ import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional }
             <button type="submit" class="btn-save" [disabled]="!puedeGuardar() || guardando()"><i class="fa-solid fa-key" aria-hidden="true"></i> {{ guardando() ? 'Actualizando…' : 'Actualizar contraseña' }}</button>
           </div>
         </form>
+      </section>
+
+      <section class="admin-card" aria-labelledby="account-palette-title">
+        <h2 id="account-palette-title" class="card-heading"><i class="fa-solid fa-palette" aria-hidden="true"></i> Paleta de colores</h2>
+        <p class="form-hint" style="margin:0 0 16px">Elige un color para los botones, iconos y elementos activos. Los fondos y las tarjetas conservarán su aspecto original.</p>
+        <div class="palette-grid" role="group" aria-label="Paleta institucional">
+          @for (opcion of paletas; track opcion.id) {
+            <button type="button" class="palette-option" [class.is-selected]="seleccionada() === opcion.id" [attr.aria-pressed]="seleccionada() === opcion.id" [style.--preview-primary]="opcion.principal" (click)="seleccionada.set(opcion.id)">
+              <span class="palette-preview" aria-hidden="true">
+                <span class="palette-preview-mark"></span>
+                <span class="palette-preview-lines"></span>
+                <span class="palette-preview-action"></span>
+              </span>
+              <span class="palette-option-bottom">
+                <span class="palette-name">{{ opcion.nombre }}</span>
+                @if (seleccionada() === opcion.id) { <i class="fa-solid fa-circle-check palette-selected" aria-label="Seleccionado"></i> }
+              </span>
+            </button>
+          }
+        </div>
+        <div class="palette-actions">
+          <button type="button" class="btn-save" [disabled]="seleccionada() === paleta.actual()" (click)="guardarPaleta()">
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Aplicar colores
+          </button>
+        </div>
+        <p class="palette-note">Esta preferencia se conserva en este navegador. No modifica los colores de la página pública.</p>
       </section>
     </div>
   `,
