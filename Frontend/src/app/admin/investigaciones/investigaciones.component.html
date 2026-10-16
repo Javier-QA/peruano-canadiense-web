@@ -16,6 +16,11 @@
     </div>
   </header>
 
+  <div class="admin-list-toolbar" role="search">
+    <label class="admin-search-label" for="buscar-investigaciones">Buscar investigaciones</label>
+    <input id="buscar-investigaciones" type="search" autocomplete="off" placeholder="Buscar por nombre, título o dato…" [value]="busqueda()" (input)="buscar($any($event.target).value)" />
+    <span class="form-hint" role="status">{{ filtrados().length }} resultados</span>
+  </div>
   <div class="admin-card">
     <div class="form-row">
       <label>Programa</label>
@@ -43,7 +48,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (tesis of visibles(); track tesis.id) {
+        @for (tesis of paginados(); track tesis.id) {
           <tr>
             <td>
               <strong>{{ tesis.titulo }}</strong>
@@ -114,6 +119,11 @@
     </table>
     </div>
   </div>
+  <nav class="admin-pagination" aria-label="Paginación de investigaciones">
+    <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() <= 1" (click)="cambiarPagina(-1)">Anterior</button>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() >= totalPaginas()" (click)="cambiarPagina(1)">Siguiente</button>
+  </nav>
 </div>
 
 <app-dialog
