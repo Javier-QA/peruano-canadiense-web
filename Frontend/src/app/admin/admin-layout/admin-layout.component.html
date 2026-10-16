@@ -29,7 +29,11 @@
 
       <div class="topbar-right">
         <button type="button" class="theme-toggle" (click)="alternarModo($event)" [attr.aria-label]="modo() === 'claro' ? 'Activar modo oscuro' : 'Activar modo claro'" [attr.title]="modo() === 'claro' ? 'Modo oscuro' : 'Modo claro'" [attr.aria-pressed]="modo() === 'oscuro'">
-          <i class="fa-solid" [class.fa-moon]="modo() === 'claro'" [class.fa-sun]="modo() === 'oscuro'" aria-hidden="true"></i>
+          @if (modo() === 'oscuro') {
+            <svg class="theme-line-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          } @else {
+            <svg class="theme-line-icon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5 8.5 8.5 0 1 0 20.5 14.1Z"/></svg>
+          }
         </button>
       <div class="usermenu">
         <button
