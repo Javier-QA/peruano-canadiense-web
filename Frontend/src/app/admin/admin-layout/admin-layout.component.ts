@@ -69,7 +69,13 @@ export class AdminLayoutComponent {
   private readonly auth = inject(AuthService);
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly nav = inject(AdminNavStore);
-  readonly paleta = inject(AdminPaletaService).actual;
+  private readonly apariencia = inject(AdminPaletaService);
+  readonly paleta = this.apariencia.actual;
+  readonly modo = this.apariencia.modo;
+
+  alternarModo(): void {
+    this.apariencia.alternarModo();
+  }
 
   readonly pageTitle = signal('Dashboard');
   readonly rutaActual = signal(this.router.url.split('?')[0]);
