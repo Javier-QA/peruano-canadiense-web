@@ -542,3 +542,12 @@
   .stat-strip li { padding: 0; }
   .stat-strip li a { min-height: 132px; padding: 18px; }
 }
+
+/* Acento institucional visible en la tarjeta de solicitudes, también en oscuro.
+   Evita que el borde genérico de las tarjetas anule el indicador lateral. */
+.dash .panel-solicitudes.admin-card {
+  border-left: 4px solid var(--adm-brand);
+}
+.dash .panel-solicitudes.admin-card.is-urgent {
+  border-left-color: var(--adm-warn);
+}
