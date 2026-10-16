@@ -1,4 +1,4 @@
-<div class="admin-shell" [class.nav-open]="navAbierto()" [attr.data-paleta]="paleta()">
+<div class="admin-shell" [class.nav-open]="navAbierto()" [attr.data-paleta]="paleta()" [attr.data-modo]="modo()">
   <app-toast-host />
   <app-admin-sidebar></app-admin-sidebar>
   <button
@@ -27,6 +27,11 @@
         </span>
       </div>
 
+      <div class="topbar-right">
+        <button type="button" class="theme-toggle" (click)="alternarModo()" [attr.aria-label]="modo() === 'claro' ? 'Activar modo oscuro' : 'Activar modo claro'" [attr.title]="modo() === 'claro' ? 'Modo oscuro' : 'Modo claro'" [attr.aria-pressed]="modo() === 'oscuro'">
+          <i class="fa-solid" [class.fa-moon]="modo() === 'claro'" [class.fa-sun]="modo() === 'oscuro'" aria-hidden="true"></i>
+          <span>{{ modo() === 'claro' ? 'Oscuro' : 'Claro' }}</span>
+        </button>
       <div class="usermenu">
         <button
           type="button"
@@ -63,6 +68,7 @@
             </button>
           </div>
         }
+      </div>
       </div>
     </header>
     <main class="admin-main" [attr.data-admin-route]="rutaActual()">
