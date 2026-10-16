@@ -745,3 +745,29 @@
 .dash .panel-publicaciones .stat-strip li:focus-within {
   background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
 }
+
+/* Icono de sección para el resumen de publicaciones. */
+.dash .dash-publicaciones-heading {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+}
+.dash .dash-publicaciones-heading > div { min-width:0; }
+.dash .dash-publicaciones-icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 52px;
+  width:52px;
+  height:52px;
+  border:1px solid color-mix(in srgb,var(--adm-brand) 38%,var(--adm-line));
+  border-radius:14px;
+  background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+  color:var(--adm-brand);
+  font-size:1.3rem;
+}
+@media(max-width:560px) {
+  .dash .dash-publicaciones-heading { gap:10px; }
+  .dash .dash-publicaciones-icon { flex-basis:44px; width:44px; height:44px; border-radius:12px; }
+}
