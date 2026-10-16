@@ -91,7 +91,7 @@ import { ToastService } from '../shared/toast/toast';
     .admin-page { display: flex; flex-direction: column; gap: 22px; }
     .page-header {
       padding: 14px 22px; border: 1px solid var(--adm-brand-border);
-      border-radius: 16px; background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white), #fff 70%);
+      border-radius: 16px; background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 70%);
     }
     .page-header { align-items: center; padding: 14px 20px; border-radius: 16px; }
     .portal-header-identity { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
@@ -116,7 +116,7 @@ import { ToastService } from '../shared/toast/toast';
     .classic-counts span { white-space: nowrap; }
     .classic-counts strong { font-weight: 750; color: var(--adm-ink, #1e293b); }
     .classic-status { display: inline-flex; padding: 4px 11px; border-radius: 999px; background: var(--adm-brand, var(--adm-brand)); color: #fff; font-size: .73rem; line-height: 1.2; font-weight: 700; white-space: nowrap; }
-    .classic-card:hover { border-color: color-mix(in srgb, var(--adm-brand) 35%, white); box-shadow: 0 9px 25px rgba(27,41,61,.07); }
+    .classic-card:hover { border-color: color-mix(in srgb, var(--adm-brand) 35%, var(--adm-line)); box-shadow: 0 9px 25px rgba(27,41,61,.07); }
     .classic-card:hover .classic-link-icon { color: var(--adm-brand, var(--adm-brand)); }
     .classic-card:focus-visible { outline: 3px solid var(--adm-brand, var(--adm-brand)); outline-offset: 3px; }
     @media (max-width: 1350px) { .classic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
