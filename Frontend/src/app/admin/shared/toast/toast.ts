@@ -25,7 +25,7 @@ export class ToastService {
 
   private push(type: Toast['type'], message: string): void {
     const id = ++this.nextId;
-    this.toasts.update((list) => [...list, { id, type, message }]);
+    this.toasts.update((list) => [...list.filter(t => t.message !== message || t.type !== type).slice(-3), { id, type, message }]);
     setTimeout(() => this.dismiss(id), 4000);
   }
 }
