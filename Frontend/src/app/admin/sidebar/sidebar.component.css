@@ -6,7 +6,7 @@
   width: 260px;
   flex: 0 0 260px;
   height: 100vh;
-  background: linear-gradient(180deg, #222b3c 0%, #172032 100%);
+  background: linear-gradient(180deg, #292d3b 0%, #191e2b 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #FF6600, #ff8533);
+  background: linear-gradient(135deg, #b91c2b, #d13c49);
   color: #fff;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
   font-weight: 800;
   font-size: 0.95rem;
   letter-spacing: 0.04em;
-  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(185, 28, 43, 0.3);
 }
 
 .brand-text {
@@ -105,7 +105,7 @@
   transform: translateY(-50%);
   width: 3px;
   height: 0;
-  background: linear-gradient(180deg, #FF6600, #ff8533);
+  background: linear-gradient(180deg, #b91c2b, #d13c49);
   border-radius: 0 2px 2px 0;
   transition: height 0.2s ease;
 }
@@ -121,15 +121,15 @@
 }
 
 .sidebar-link:focus-visible {
-  outline: 2px solid var(--inst-primary, #ff6600);
+  outline: 2px solid var(--inst-primary, #b91c2b);
   outline-offset: -2px;
 }
 
 .sidebar-link.active {
-  background: rgba(255, 102, 0, 0.17);
+  background: rgba(185, 28, 43, 0.17);
   color: #fff;
   font-weight: 600;
-  box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(185, 28, 43, 0.14);
   border: 1px solid transparent;
 }
 
@@ -176,12 +176,12 @@
 }
 
 .exit-link {
-  color: #ffb380;
+  color: #f5a7ae;
 }
 
 .exit-link:hover {
   color: #fff;
-  background: rgba(255, 102, 0, 0.14);
+  background: rgba(185, 28, 43, 0.14);
 }
 
 /* ---------------------------------------------------------------------------
