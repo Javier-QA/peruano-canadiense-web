@@ -23,7 +23,7 @@
           <th>Título</th>
           <th>Tipo</th>
           <th>Fecha</th>
-          <th></th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -62,7 +62,7 @@
                 type="button"
                 class="btn-icon"
                 (click)="abrirEditar(item)"
-                aria-label="Editar"
+                [attr.aria-label]="'Editar ' + item.title"
               >
                 <i class="fa fa-pen"></i>
               </button>
@@ -70,7 +70,7 @@
                 type="button"
                 class="btn-icon btn-delete"
                 (click)="confirm.set(item)"
-                aria-label="Quitar"
+                [attr.aria-label]="'Quitar ' + item.title"
               >
                 <i class="fa fa-trash"></i>
               </button>
@@ -165,8 +165,8 @@
   </label>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
-    <button type="button" class="btn-save" (click)="guardar()">
-      {{ form().publicada ? 'Publicar' : 'Guardar borrador' }}
+    <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">
+      {{ guardando() ? 'Guardando…' : (form().publicada ? 'Publicar' : 'Guardar borrador') }}
     </button>
   </div>
 </app-dialog>
@@ -179,6 +179,6 @@
   <p>Dejará de verse en el listado público.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirm.set(null)">Cancelar</button>
-    <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
+    <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>
