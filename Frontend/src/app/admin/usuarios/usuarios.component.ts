@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { PortalApi } from '../../core/api/portal.api';
 import { AuthService } from '../../core/auth/auth.service';
 import { DialogComponent } from '../../shared/ui';
@@ -37,6 +37,20 @@ export class AdminUsuariosComponent {
   private readonly toast = inject(ToastService);
 
   readonly items = signal<UsuarioAdmin[]>([]);
+  readonly busqueda = signal('');
+  readonly pagina = signal(1);
+  readonly porPagina = 10;
+  readonly filtrados = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase('es');
+    const datos = this.items();
+    return q ? datos.filter(item => [item.nombre, item.username, item.email, item.rol].some(v => String(v ?? '').toLocaleLowerCase('es').includes(q))) : datos;
+  });
+  readonly totalPaginas = computed(() => Math.max(1, Math.ceil(this.filtrados().length / this.porPagina)));
+  readonly paginaActual = computed(() => Math.min(this.pagina(), this.totalPaginas()));
+  readonly paginados = computed(() => this.filtrados().slice((this.paginaActual() - 1) * this.porPagina, this.paginaActual() * this.porPagina));
+  buscar(valor: string): void { this.busqueda.set(valor); this.pagina.set(1); }
+  cambiarPagina(delta: number): void { this.pagina.set(Math.max(1, Math.min(this.totalPaginas(), this.paginaActual() + delta))); }
+
   readonly cargando = signal(true);
   readonly error = signal<string | null>(null);
   readonly formAbierto = signal(false);
