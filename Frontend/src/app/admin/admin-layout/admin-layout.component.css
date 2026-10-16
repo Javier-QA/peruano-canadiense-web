@@ -198,3 +198,12 @@
     transition: none;
   }
 }
+
+/* Control de apariencia: no altera la estructura aprobada de la barra. */
+.topbar-right { display:flex; align-items:center; gap:10px; min-width:0; }
+.theme-toggle { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:39px; padding:8px 12px; border:1px solid var(--adm-line); border-radius:11px; background:var(--adm-surface); color:var(--adm-ink); font:inherit; font-size:.8rem; font-weight:650; cursor:pointer; transition:background-color .3s ease,border-color .3s ease,color .3s ease; }
+.theme-toggle:hover { background:var(--adm-bg); border-color:var(--adm-brand); }
+.theme-toggle i { color:var(--adm-brand); font-size:.95rem; }
+.theme-toggle:focus-visible { outline:2px solid var(--adm-brand); outline-offset:2px; }
+@media(max-width:640px) { .topbar-right { gap:7px; } .theme-toggle { width:38px; padding:8px; } .theme-toggle span { display:none; } }
+@media(prefers-reduced-motion:reduce) { .theme-toggle { transition:none; } }
