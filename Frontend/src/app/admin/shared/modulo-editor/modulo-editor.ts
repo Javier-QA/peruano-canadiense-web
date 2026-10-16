@@ -9,6 +9,7 @@ import {
   untracked,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MODULO_META } from '../../../core/models/documento.model';
 import { environment } from '../../../../environments/environment';
 import { PortalApi } from '../../../core/api/portal.api';
 import type { ContenidoVersion } from '../../../core/api/api.types';
@@ -221,17 +222,7 @@ export class ModuloEditor implements PuedeSalirConCambios {
   private readonly toast = inject(ToastService);
   private readonly api = inject(PortalApi);
 
-  readonly icono = computed(() => ({
-    '/inicio': 'fa-house',
-    '/nosotros': 'fa-building-columns',
-    '/admision': 'fa-user-graduate',
-    '/becas': 'fa-hand-holding-heart',
-    '/costos': 'fa-coins',
-    '/estadisticas': 'fa-chart-column',
-    '/horarios': 'fa-calendar-days',
-    '/inversiones': 'fa-chart-line',
-    '/licenciamiento': 'fa-certificate',
-  } as Record<string, string>)[this.publicPath()] ?? 'fa-file-lines');
+  readonly icono = computed(() => MODULO_META.find((modulo) => modulo.path === this.publicPath())?.icon ?? 'fa-file-lines');
   readonly modulo = input.required<ModuloId>();
   readonly titulo = input.required<string>();
   readonly publicPath = input.required<string>();
