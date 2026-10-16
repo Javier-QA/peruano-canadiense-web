@@ -29,6 +29,7 @@ import type { CampoSchema } from './schema';
               class="campo-numero"
               [id]="'campo-' + campo.key"
               type="number"
+              [attr.aria-describedby]="campo.hint ? 'ayuda-' + campo.key : null"
               [value]="texto(campo.key)"
               (input)="setNumero(campo.key, $event)"
             />
@@ -44,7 +45,8 @@ import type { CampoSchema } from './schema';
                 <div class="campo-imagen-controles">
                   <input
                     [id]="'campo-' + campo.key"
-                    type="url"
+                    type="text"
+                    [attr.aria-describedby]="campo.hint ? 'ayuda-' + campo.key : null"
                     placeholder="images/… o https://…"
                     [value]="texto(campo.key)"
                     (input)="setTexto(campo.key, $any($event.target).value)"
@@ -60,7 +62,8 @@ import type { CampoSchema } from './schema';
             } @else {
               <input
                 [id]="'campo-' + campo.key"
-                type="url"
+                type="text"
+                [attr.aria-describedby]="campo.hint ? 'ayuda-' + campo.key : null"
                 [value]="texto(campo.key)"
                 (input)="setTexto(campo.key, $any($event.target).value)"
               />
@@ -93,13 +96,14 @@ import type { CampoSchema } from './schema';
             <input
               [id]="'campo-' + campo.key"
               type="text"
+              [attr.aria-describedby]="campo.hint ? 'ayuda-' + campo.key : null"
               [value]="texto(campo.key)"
               (input)="setTexto(campo.key, $any($event.target).value)"
             />
           }
         }
         @if (campo.hint) {
-          <p class="form-hint">{{ campo.hint }}</p>
+          <p class="form-hint" [id]="'ayuda-' + campo.key">{{ campo.hint }}</p>
         }
       </div>
     }
