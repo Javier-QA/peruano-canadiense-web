@@ -1,18 +1,18 @@
 /* Sistema visual compartido por todos los módulos del panel administrativo. */
 .admin-shell {
-  --adm-brand: #f26a16;
-  --adm-brand-hover: #d9550b;
-  --adm-ink: #222b3c;
+  --adm-brand: #b91c2b;
+  --adm-brand-hover: #991827;
+  --adm-ink: #292d3b;
   --adm-ink-soft: #64748b;
   --adm-surface: #ffffff;
-  --adm-bg: #f3f6fa;
+  --adm-bg: #f7f6f8;
   --adm-line: #e2e8f0;
   --adm-ok: #16834b;
   --adm-ok-bg: #eafaf1;
-  --adm-warn: #a96200;
-  --adm-warn-bg: #fff4e5;
-  --adm-danger: #b93835;
-  --adm-danger-bg: #fdecea;
+  --adm-warn: #976c19;
+  --adm-warn-bg: #fff7e7;
+  --adm-danger: #ad202e;
+  --adm-danger-bg: #fcecee;
   --adm-muted: #526174;
   --adm-muted-bg: #edf2f7;
   --adm-radius: 14px;
