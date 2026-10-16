@@ -250,7 +250,7 @@ const VACIO: DocForm = {
       </div>
     </app-dialog>
 
-    <app-dialog [open]="!!confirm()" title="Quitar documento" (openChange)="onConfirmOpen($event)">
+    <app-dialog [open]="!!confirm()" title="Quitar documento" (openChange)="onConfirmOpen($event)" variant="danger">
       <p>
         Puede pasarlo a borrador (deja de verse en el público) o eliminarlo de forma definitiva.
       </p>
