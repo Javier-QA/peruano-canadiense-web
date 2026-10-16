@@ -56,6 +56,16 @@ export class AdminUsuariosComponent {
   readonly formAbierto = signal(false);
   readonly editandoId = signal<string | null>(null);
   readonly form = signal<UsuarioForm>({ ...VACIO });
+  private formularioInicial = '';
+  readonly hayCambios = computed(() => this.formAbierto() && JSON.stringify(this.form()) !== this.formularioInicial);
+  cerrarFormulario(): void {
+    if (this.guardando()) return;
+    if (this.hayCambios() && !window.confirm('Hay cambios sin guardar. ¿Desea descartarlos?')) return;
+    this.formAbierto.set(false);
+  }
+  alCambiarDialogo(abierto: boolean): void {
+    if (!abierto) this.cerrarFormulario();
+  }
   readonly confirmar = signal<UsuarioAdmin | null>(null);
   readonly guardando = signal(false);
   readonly eliminando = signal(false);
@@ -83,6 +93,7 @@ export class AdminUsuariosComponent {
   abrirNuevo(): void {
     this.editandoId.set(null);
     this.form.set({ ...VACIO });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -96,6 +107,7 @@ export class AdminUsuariosComponent {
       activo: usuario.activo,
       password: '',
     });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
