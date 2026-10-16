@@ -1948,13 +1948,6 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 ) {
   border-color:var(--adm-line);
 }
-/* Solo sombreado de los contenedores en modo claro, sin cambiar fondos ni bordes. */
-.admin-shell:not([data-modo="oscuro"]) .admin-main :is(
-  .marco-lienzo,.admin-card,.classic-card,.tarjeta,.seccion-card,
-  .editor-card,.editor-panel,.section-card
-) {
-  box-shadow:0 12px 32px rgba(25,38,60,.22),0 4px 12px rgba(25,38,60,.13);
-}
 .admin-shell:not([data-modo="oscuro"]) .admin-main :is(
   input:not([type="checkbox"]):not([type="radio"]),textarea,select
 ) {
