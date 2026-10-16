@@ -28,7 +28,7 @@
       </div>
 
       <div class="topbar-right">
-        <button type="button" class="theme-toggle" (click)="alternarModo()" [attr.aria-label]="modo() === 'claro' ? 'Activar modo oscuro' : 'Activar modo claro'" [attr.title]="modo() === 'claro' ? 'Modo oscuro' : 'Modo claro'" [attr.aria-pressed]="modo() === 'oscuro'">
+        <button type="button" class="theme-toggle" (click)="alternarModo($event)" [attr.aria-label]="modo() === 'claro' ? 'Activar modo oscuro' : 'Activar modo claro'" [attr.title]="modo() === 'claro' ? 'Modo oscuro' : 'Modo claro'" [attr.aria-pressed]="modo() === 'oscuro'">
           <i class="fa-solid" [class.fa-moon]="modo() === 'claro'" [class.fa-sun]="modo() === 'oscuro'" aria-hidden="true"></i>
         </button>
       <div class="usermenu">
