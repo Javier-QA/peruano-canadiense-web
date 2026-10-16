@@ -47,7 +47,7 @@
 </aside>
 
 <app-dialog [open]="confirmarSalida()" title="Cerrar sesión" variant="danger" (openChange)="confirmarSalida.set($event)">
-  <p>¿Deseas salir de la intranet? Tendrás que iniciar sesión de nuevo para volver a entrar.</p>
+  <p>¿Deseas cerrar sesión del panel administrativo? Tendrás que iniciar sesión nuevamente para volver a acceder.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirmarSalida.set(false)">Cancelar</button>
     <button type="button" class="btn-danger" (click)="salir()">Cerrar sesión</button>
