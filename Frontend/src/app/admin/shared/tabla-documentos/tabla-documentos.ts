@@ -36,7 +36,7 @@ const VACIO: DocForm = {
   imports: [AppSrc, DialogComponent, SelectorArchivo, VisorPdf, EditorQuill],
   styles: `
     :host { display: block; min-width: 0; }
-    .page-header { margin-bottom: 16px !important; padding: 18px 22px; border-radius: 13px; background: color-mix(in srgb, var(--adm-brand-soft) 45%, white); border: 1px solid var(--adm-brand-border); }
+    .page-header { margin-bottom: 16px !important; padding: 18px 22px; border-radius: 13px; background: color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)); border: 1px solid var(--adm-brand-border); }
     .page-header .page-title { letter-spacing: -.02em; }
     .page-header .page-sub { line-height: 1.6; }
     .admin-card { min-width: 0; }
@@ -46,8 +46,8 @@ const VACIO: DocForm = {
     .docs-table-scroll .admin-table { min-width: 760px; }
     .docs-table-scroll .td-actions { white-space: nowrap; }
     .docs-table-scroll th:last-child { min-width: 148px; }
-    .admin-table .btn-icon { background: #fff; }
-    .empty-state { padding: 32px 20px; border: 1px dashed var(--adm-line); border-radius: 12px; background: #fff; }
+    .admin-table .btn-icon { background: var(--adm-surface); color: var(--adm-ink); border-color: var(--adm-line); }
+    .empty-state { padding: 32px 20px; border: 1px dashed var(--adm-line); border-radius: 12px; background: var(--adm-surface); color: var(--adm-ink-soft); }
     @media (max-width: 720px) { .page-header { padding: 16px; } }
   `,
   template: `
