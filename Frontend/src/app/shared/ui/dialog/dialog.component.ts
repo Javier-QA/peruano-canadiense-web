@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 
         <!-- Dialog Box -->
         <div
-          class="relative z-50 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl transition-all duration-300 animate-in zoom-in-95 border border-[#E2E1EC]"
+          class="relative z-50 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl dialog-surface p-6 shadow-2xl transition-all duration-300 animate-in zoom-in-95 border dialog-border"
           [class.confirm-dialog]="effectiveVariant !== 'default'"
           [class.confirm-danger]="effectiveVariant === 'danger' || effectiveVariant === 'logout'"
           [class.confirm-warning]="effectiveVariant === 'warning'"
@@ -30,24 +30,24 @@ import { CommonModule } from '@angular/common';
               <i class="fa-solid" [class.fa-trash-can]="effectiveVariant === 'danger'" [class.fa-triangle-exclamation]="effectiveVariant === 'warning'" [class.fa-circle-check]="effectiveVariant === 'success'" [class.fa-right-from-bracket]="effectiveVariant === 'logout'"></i>
             </div>
           }
-          <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#E2E1EC]" [class.confirm-heading]="effectiveVariant !== 'default'">
-            <h3 class="text-lg font-bold text-dark">{{ title }}</h3>
+          <div class="flex items-center justify-between pb-4 mb-4 border-b dialog-border" [class.confirm-heading]="effectiveVariant !== 'default'">
+            <h3 class="text-lg font-bold dialog-title">{{ title }}</h3>
             <button
               type="button"
               (click)="onClose()"
-              class="rounded-lg p-1.5 text-muted hover:bg-secondary hover:text-dark transition-colors"
+              class="rounded-lg p-1.5 dialog-close transition-colors transition-colors"
               aria-label="Cerrar modal"
             >
               <i class="fa fa-times text-base"></i>
             </button>
           </div>
 
-          <div class="py-2 text-sm text-[#6C6A74] leading-relaxed">
+          <div class="py-2 text-sm dialog-content leading-relaxed">
             <ng-content></ng-content>
           </div>
 
           @if (showFooter) {
-            <div class="mt-6 flex items-center justify-end gap-3 pt-4 border-t border-[#E2E1EC]">
+            <div class="mt-6 flex items-center justify-end gap-3 pt-4 border-t dialog-border">
               <ng-content select="[dialog-footer]"></ng-content>
             </div>
           }
@@ -56,6 +56,33 @@ import { CommonModule } from '@angular/common';
     }
   `,
   styles: `
+    .dialog-surface { background:var(--adm-surface,#fff); color:var(--adm-ink,#292d3b); border-color:var(--adm-line,#e2e8f0); }
+    .dialog-border { border-color:var(--adm-line,#e2e8f0); }
+    .dialog-title { color:var(--adm-ink,#292d3b); }
+    .dialog-content { color:var(--adm-muted,#526174); }
+    .dialog-close { color:var(--adm-ink-soft,#64748b); }
+    .dialog-close:hover { color:var(--adm-ink,#292d3b); background:var(--adm-muted-bg,#edf2f7); }
+    .dialog-surface .form-row label { color:var(--adm-ink,#292d3b); }
+    .dialog-surface .form-row :is(input,textarea,select) {
+      background:var(--adm-bg,#f7f6f8);
+      color:var(--adm-ink,#292d3b);
+      border-color:var(--adm-line,#e2e8f0);
+    }
+    .dialog-surface .form-row :is(input,textarea)::placeholder { color:var(--adm-muted,#526174); }
+    .dialog-surface .ql-toolbar.ql-snow { background:var(--adm-bg,#f7f6f8); border-color:var(--adm-line,#e2e8f0); }
+    .dialog-surface .ql-container.ql-snow,.dialog-surface .ql-editor { background:var(--adm-surface,#fff); color:var(--adm-ink,#292d3b); border-color:var(--adm-line,#e2e8f0); }
+    .dialog-surface .ql-editor.ql-blank::before { color:var(--adm-muted,#526174); }
+    .dialog-surface .ql-toolbar .ql-picker-label { color:var(--adm-ink,#292d3b); }
+    .dialog-surface .ql-toolbar .ql-stroke { stroke:var(--adm-ink-soft,#64748b); }
+    .dialog-surface .ql-toolbar .ql-fill { fill:var(--adm-ink-soft,#64748b); }
+    :host-context(.admin-shell[data-modo="oscuro"]) .confirm-dialog {
+      background:linear-gradient(155deg,var(--adm-brand-soft),var(--adm-surface) 43%);
+      border-color:var(--adm-line);
+    }
+    :host-context(.admin-shell[data-modo="oscuro"]) .confirm-heading h3 { color:var(--adm-ink); }
+    :host-context(.admin-shell[data-modo="oscuro"]) .confirm-dialog > div:nth-last-child(2) { color:var(--adm-muted); }
+    :host-context(.admin-shell[data-modo="oscuro"]) .confirm-dialog > div:last-child { background:var(--adm-bg); border-color:var(--adm-line); }
+    :host-context(.admin-shell[data-modo="oscuro"]) .confirm-heading button { background:var(--adm-muted-bg); color:var(--adm-ink); border-color:var(--adm-line); }
     .confirm-dialog { --confirm-color: #e1282d; --confirm-tint: #ffe7e9; position: relative; max-width: 430px; padding: 20px 20px 0; border: 1px solid #cfdae5; border-top: 4px solid var(--confirm-color); border-radius: 16px; background: linear-gradient(155deg, var(--confirm-tint), #f2f5f9 43%); text-align: center; box-shadow: 0 14px 38px rgba(17, 29, 48, .20); }
     .confirm-warning { --confirm-color: #d68a14; --confirm-tint: #fff2d9; }
     .confirm-success { --confirm-color: #21874e; --confirm-tint: #e5f6ea; }
