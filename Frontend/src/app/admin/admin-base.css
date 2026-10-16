@@ -1615,12 +1615,3 @@
   .admin-shell app-dialog .confirm-dialog [dialog-footer] { flex-wrap: nowrap; }
   .admin-shell app-dialog .confirm-dialog [dialog-footer] > button { flex-basis: 0; }
 }
-
-/* Evitar iconos duplicados: algunas cabeceras ya incluyen su icono en el HTML
-   y el estilo general también agregaba otro mediante ::before. */
-.admin-shell .admin-main .page-header .page-title:has(> i)::before,
-.admin-shell .admin-main .page-header .page-title:has(> .portal-title-icon)::before,
-.admin-shell .admin-main .page-header .page-title:has(> .fa)::before {
-  content: none;
-  display: none;
-}
