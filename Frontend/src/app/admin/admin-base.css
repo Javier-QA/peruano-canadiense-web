@@ -1948,10 +1948,12 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 ) {
   border-color:var(--adm-line);
 }
+/* Solo sombreado de los contenedores en modo claro, sin cambiar fondos ni bordes. */
 .admin-shell:not([data-modo="oscuro"]) .admin-main :is(
-  .admin-card,.classic-card,.tarjeta,.seccion-card,.editor-card,.editor-panel,.section-card
+  .marco-lienzo,.admin-card,.classic-card,.tarjeta,.seccion-card,
+  .editor-card,.editor-panel,.section-card
 ) {
-  box-shadow:0 2px 10px rgba(29,45,68,.055);
+  box-shadow:0 8px 26px rgba(25,38,60,.12),0 2px 7px rgba(25,38,60,.065);
 }
 .admin-shell:not([data-modo="oscuro"]) .admin-main :is(
   input:not([type="checkbox"]):not([type="radio"]),textarea,select
