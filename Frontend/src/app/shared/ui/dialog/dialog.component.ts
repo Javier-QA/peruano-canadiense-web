@@ -17,20 +17,20 @@ import { CommonModule } from '@angular/common';
         <!-- Dialog Box -->
         <div
           class="relative z-50 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl transition-all duration-300 animate-in zoom-in-95 border border-[#E2E1EC]"
-          [class.confirm-dialog]="variant !== 'default'"
-          [class.confirm-danger]="variant === 'danger' || variant === 'logout'"
-          [class.confirm-warning]="variant === 'warning'"
-          [class.confirm-success]="variant === 'success'"
+          [class.confirm-dialog]="effectiveVariant !== 'default'"
+          [class.confirm-danger]="effectiveVariant === 'danger' || effectiveVariant === 'logout'"
+          [class.confirm-warning]="effectiveVariant === 'warning'"
+          [class.confirm-success]="effectiveVariant === 'success'"
           role="dialog"
           aria-modal="true"
           [attr.aria-label]="title"
         >
-          @if (variant !== 'default') {
+          @if (effectiveVariant !== 'default') {
             <div class="confirm-symbol" aria-hidden="true">
-              <i class="fa-solid" [class.fa-trash-can]="variant === 'danger'" [class.fa-triangle-exclamation]="variant === 'warning'" [class.fa-circle-check]="variant === 'success'" [class.fa-right-from-bracket]="variant === 'logout'"></i>
+              <i class="fa-solid" [class.fa-trash-can]="effectiveVariant === 'danger'" [class.fa-triangle-exclamation]="effectiveVariant === 'warning'" [class.fa-circle-check]="effectiveVariant === 'success'" [class.fa-right-from-bracket]="effectiveVariant === 'logout'"></i>
             </div>
           }
-          <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#E2E1EC]" [class.confirm-heading]="variant !== 'default'">
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#E2E1EC]" [class.confirm-heading]="effectiveVariant !== 'default'">
             <h3 class="text-lg font-bold text-dark">{{ title }}</h3>
             <button
               type="button"
@@ -78,6 +78,16 @@ export class DialogComponent {
   @Input() title = '';
   @Input() showFooter = true;
   @Input() variant: 'default' | 'danger' | 'warning' | 'success' | 'logout' = 'default';
+  /** Confirmaciones antiguas sin variante explícita conservan el estilo moderno. */
+  get effectiveVariant(): 'default' | 'danger' | 'warning' | 'success' | 'logout' {
+    if (this.variant !== 'default') return this.variant;
+    const title = this.title.trim().toLocaleLowerCase('es');
+    if (/^(eliminar|borrar|quitar|suprimir|descartar)\b/.test(title)) return 'danger';
+    if (/^(restaurar|restablecer|reponer|reiniciar)\b/.test(title)) return 'warning';
+    if (/^cerrar sesi[oó]n\b/.test(title)) return 'logout';
+    return 'default';
+  }
+
   @Output() openChange = new EventEmitter<boolean>();
 
   onClose() {
