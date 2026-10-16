@@ -24,7 +24,7 @@ export interface MarcoTab {
       <header class="page-header">
         <div class="portal-header-identity">
           <div class="portal-header-copy">
-            <h1 class="page-title"><i class="fa-solid {{ icono() }} portal-title-icon" aria-hidden="true"></i>{{ titulo() }}</h1>
+            <h1 class="page-title">{{ titulo() }}</h1>
             <p class="page-sub">{{ sub() }}</p>
           </div>
         </div>
