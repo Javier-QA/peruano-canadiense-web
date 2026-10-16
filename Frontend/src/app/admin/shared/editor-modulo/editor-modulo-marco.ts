@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MODULO_META } from '../../../core/models/documento.model';
 import { DialogComponent } from '../../../shared/ui';
 import { AvisoCambios } from '../aviso-cambios/aviso-cambios';
 import type { EditorModuloVista } from './editor-modulo-base';
@@ -203,17 +204,7 @@ export interface MarcoTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditorModuloMarco {
-  readonly icono = computed(() => ({
-    '/inicio': 'fa-house',
-    '/nosotros': 'fa-building-columns',
-    '/admision': 'fa-user-graduate',
-    '/becas': 'fa-hand-holding-heart',
-    '/costos': 'fa-coins',
-    '/estadisticas': 'fa-chart-column',
-    '/horarios': 'fa-calendar-days',
-    '/inversiones': 'fa-chart-line',
-    '/licenciamiento': 'fa-certificate',
-  } as Record<string, string>)[this.publicPath()] ?? 'fa-file-lines');
+  readonly icono = computed(() => MODULO_META.find((modulo) => modulo.path === this.publicPath())?.icon ?? 'fa-file-lines');
   readonly editor = input.required<EditorModuloVista>();
   readonly titulo = input.required<string>();
   readonly sub = input.required<string>();
