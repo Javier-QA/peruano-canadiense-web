@@ -1660,7 +1660,7 @@ html.admin-theme-reveal::view-transition-new(root) {
   mix-blend-mode:normal;
 }
 html.admin-theme-reveal::view-transition-new(root) {
-  animation:admin-theme-circle .65s cubic-bezier(.25,.7,.2,1) both;
+  animation:admin-theme-circle 1.15s cubic-bezier(.22,1,.36,1) both;
   z-index:2;
 }
 html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
