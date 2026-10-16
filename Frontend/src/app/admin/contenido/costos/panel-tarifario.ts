@@ -160,6 +160,22 @@ const MONTOS: { key: keyof InstitutionFees; label: string }[] = [
       gap: 14px;
     }
 
+    /* Contraste más definido para los montos en modo claro; modo oscuro intacto. */
+    :host-context(.admin-shell:not([data-modo="oscuro"])) .montos {
+      padding: 17px;
+      border: 1px solid var(--adm-brand-border);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--adm-brand) 9%, var(--adm-surface));
+    }
+
+    :host-context(.admin-shell:not([data-modo="oscuro"])) .montos app-campo-texto {
+      min-width: 0;
+    }
+
+    :host-context(.admin-shell:not([data-modo="oscuro"])) .montos app-campo-texto input {
+      background: var(--adm-surface);
+    }
+
     .cuentas {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
