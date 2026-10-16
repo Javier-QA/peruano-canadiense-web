@@ -45,6 +45,7 @@ export class AdminUsuariosComponent {
   readonly confirmar = signal<UsuarioAdmin | null>(null);
   readonly guardando = signal(false);
   readonly eliminando = signal(false);
+  private solicitudCarga = 0;
   readonly yo = this.auth.usuario;
 
   constructor() {
@@ -52,14 +53,16 @@ export class AdminUsuariosComponent {
   }
 
   async cargar(): Promise<void> {
+    const solicitud = ++this.solicitudCarga;
     this.cargando.set(true);
     this.error.set(null);
     try {
-      this.items.set(await this.api.usuarios());
+      const datos = await this.api.usuarios();
+      if (solicitud === this.solicitudCarga) this.items.set(datos);
     } catch {
-      this.error.set('Solo un administrador puede gestionar cuentas.');
+      if (solicitud === this.solicitudCarga) this.error.set('No se pudieron cargar las cuentas. Compruebe sus permisos y la conexión.');
     } finally {
-      this.cargando.set(false);
+      if (solicitud === this.solicitudCarga) this.cargando.set(false);
     }
   }
 
