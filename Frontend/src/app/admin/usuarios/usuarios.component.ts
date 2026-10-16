@@ -109,6 +109,14 @@ export class AdminUsuariosComponent {
       this.toast.error('Nombre y usuario son obligatorios.');
       return;
     }
+    if (!/^[a-zA-Z0-9._-]+$/.test(datos.username.trim())) {
+      this.toast.error('El usuario solo admite letras, números, punto, guion y guion bajo.');
+      return;
+    }
+    if (datos.email.trim() && (!datos.email.includes('@') || !datos.email.split('@')[1]?.includes('.'))) {
+      this.toast.error('Ingrese un correo electrónico válido.');
+      return;
+    }
     const id = this.editandoId();
     if (!id && datos.password.length < 8) {
       this.toast.error('La contraseña debe tener al menos 8 caracteres.');
