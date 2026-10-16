@@ -1425,3 +1425,28 @@
     transition: none;
   }
 }
+
+/* Herramientas uniformes para listados administrativos. */
+.admin-shell .admin-list-toolbar {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+  padding: 14px 18px; border: 1px solid var(--adm-line);
+  border-radius: 14px; background: #fff;
+}
+.admin-shell .admin-list-toolbar label { font-size: 13px; font-weight: 700; color: var(--adm-ink); }
+.admin-shell .admin-list-toolbar input[type="search"] {
+  flex: 1 1 230px; min-width: 0; max-width: 440px; height: 40px;
+  padding: 0 14px; border: 1px solid var(--adm-line);
+  border-radius: 10px; font: inherit; background: #fff; color: var(--adm-ink);
+}
+.admin-shell .admin-list-toolbar .form-hint { margin-left: auto; }
+.admin-shell .admin-pagination {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end;
+  gap: 10px; font-size: 13px; color: var(--adm-muted); padding: 4px 0 12px;
+}
+.admin-shell .admin-pagination button { min-height: 36px; }
+@media (max-width: 600px) {
+  .admin-shell .admin-list-toolbar { padding: 12px; }
+  .admin-shell .admin-list-toolbar input[type="search"] { flex-basis: 100%; max-width: none; }
+  .admin-shell .admin-list-toolbar .form-hint { margin-left: 0; }
+  .admin-shell .admin-pagination { justify-content: space-between; }
+}
