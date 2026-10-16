@@ -144,6 +144,7 @@
 <app-dialog
   [open]="!!confirmar()"
   title="Eliminar documento"
+  variant="danger"
   (openChange)="confirmar.set($event ? confirmar() : null)"
 >
   <p>
