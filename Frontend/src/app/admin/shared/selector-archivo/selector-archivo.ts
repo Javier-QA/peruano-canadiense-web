@@ -49,7 +49,13 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
         <p class="form-hint" role="status" aria-live="polite">Guardando archivo…</p>
       }
       @if (referencia() && modo() !== 'pdf') {
-        <p class="form-hint">Imagen seleccionada</p>
+        <div class="archivo-preview" role="status">
+          <span class="archivo-preview-icon" aria-hidden="true">✓</span>
+          <span>Imagen vinculada al contenido</span>
+        </div>
+      }
+      @if (referencia() && modo() === 'pdf') {
+        <p class="form-hint" role="status">PDF vinculado al contenido</p>
       }
       @if (nombre()) {
         <p class="form-hint" role="status" aria-live="polite">{{ nombre() }}</p>
@@ -63,6 +69,8 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
     .dropzone[aria-disabled="true"] { opacity: .7; cursor: progress; }
     .dropzone.over { border-color: var(--adm-brand); background: #fff5ec; }
     .selector-boton { min-height: 40px; }
+    .archivo-preview { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--adm-ink); font-size: .84rem; }
+    .archivo-preview-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #eaf7ed; color: #23733e; font-weight: 700; }
 
     .selector-boton {
       display: inline-flex;
