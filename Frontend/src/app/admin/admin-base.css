@@ -2005,3 +2005,62 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
     border-radius:12px;
   }
 }
+
+
+/* Encabezados alineados como «Mi cuenta»: icono en columna izquierda,
+   título y descripción juntos a la derecha. Sin display:contents. */
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child:has(> .page-title:not(:has(> i))) {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:54px;
+  padding-left:78px;
+  min-width:0;
+  flex:1 1 360px;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child > .page-title:not(:has(> i)) {
+  display:block;
+  margin:0 0 4px;
+  min-width:0;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child > .page-title:not(:has(> i))::before {
+  position:absolute;
+  top:50%;
+  left:0;
+  transform:translateY(-50%);
+  margin:0;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child > .page-sub {
+  margin:0;
+  min-width:0;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy:has(.portal-title-icon) {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:54px;
+  padding-left:78px;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy .page-title:has(> .portal-title-icon) {
+  display:block;
+  margin:0 0 4px;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy .page-title > .portal-title-icon {
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  margin:0;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy .page-sub {
+  margin:0;
+}
+@media(max-width:600px) {
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child:has(> .page-title:not(:has(> i))),
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy:has(.portal-title-icon) {
+    min-height:44px;
+    padding-left:54px;
+  }
+}
