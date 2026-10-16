@@ -38,6 +38,16 @@ const VACIO: DocForm = {
     :host { display: block; min-width: 0; }
     .page-header { margin-bottom: 16px !important; padding: 18px 22px; border-radius: 13px; background: color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)); border: 1px solid var(--adm-brand-border); }
     .page-header .page-title { letter-spacing: -.02em; }
+    .docs-heading { display:flex; align-items:center; gap:12px; min-width:0; flex:1 1 auto; }
+    .docs-heading-copy { min-width:0; }
+    .docs-heading-icon {
+      display:inline-flex; align-items:center; justify-content:center;
+      flex:0 0 44px; width:44px; height:44px;
+      border:1px solid color-mix(in srgb,var(--adm-brand) 38%,var(--adm-line));
+      border-radius:12px;
+      background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+      color:var(--adm-brand); font-size:1.05rem;
+    }
     .page-header .page-sub { line-height: 1.6; }
     .admin-card { min-width: 0; }
     .admin-table { font-variant-numeric: tabular-nums; }
@@ -52,11 +62,14 @@ const VACIO: DocForm = {
   `,
   template: `
     <div class="page-header" style="margin-bottom:12px">
-      <div>
-        <h3 class="page-title" style="font-size:1.05rem">Documentos de esta sección</h3>
-        <p class="page-sub">
-          PDF, enlace o imagen. Los borradores no aparecen en el sitio público.
-        </p>
+      <div class="docs-heading">
+        <span class="docs-heading-icon" aria-hidden="true"><i class="fa-solid fa-file-lines"></i></span>
+        <div class="docs-heading-copy">
+          <h3 class="page-title" style="font-size:1.05rem">Documentos de esta sección</h3>
+          <p class="page-sub">
+            PDF, enlace o imagen. Los borradores no aparecen en el sitio público.
+          </p>
+        </div>
       </div>
       <button type="button" class="btn-add" (click)="abrirNuevo()">
         <i class="fa fa-plus"></i> Subir o registrar
