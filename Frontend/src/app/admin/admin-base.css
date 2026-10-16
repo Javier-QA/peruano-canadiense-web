@@ -1930,3 +1930,47 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
     padding:17px 16px 17px 21px;
   }
 }
+
+
+/* Contraste transversal del modo claro: todos los módulos administrativos.
+   No altera modo oscuro, encabezados, estructura ni estados semánticos. */
+.admin-shell:not([data-modo="oscuro"]) .admin-main {
+  --adm-line: #cbd5e1;
+  --adm-ink-soft: #475569;
+  --adm-muted: #475569;
+  --adm-muted-bg: #e9eef5;
+  --adm-brand-border: color-mix(in srgb, var(--adm-brand) 26%, #cbd5e1);
+  --adm-brand-soft: color-mix(in srgb, var(--adm-brand) 11%, #ffffff);
+}
+.admin-shell:not([data-modo="oscuro"]) .admin-main :is(
+  .admin-card,.classic-card,.tarjeta,.seccion-card,.editor-card,.editor-panel,
+  .section-card,.identity-field,.security-note,.historial-item
+) {
+  border-color:var(--adm-line);
+}
+.admin-shell:not([data-modo="oscuro"]) .admin-main :is(
+  .admin-card,.classic-card,.tarjeta,.seccion-card,.editor-card,.editor-panel,.section-card
+) {
+  box-shadow:0 2px 10px rgba(29,45,68,.055);
+}
+.admin-shell:not([data-modo="oscuro"]) .admin-main :is(
+  input:not([type="checkbox"]):not([type="radio"]),textarea,select
+) {
+  border-color:var(--adm-line);
+  color:var(--adm-ink);
+}
+.admin-shell:not([data-modo="oscuro"]) .admin-main :is(
+  input:not([type="checkbox"]):not([type="radio"]),textarea,select
+):focus {
+  border-color:var(--adm-brand);
+}
+.admin-shell:not([data-modo="oscuro"]) .admin-main :is(
+  .form-hint,.field-hint,.ct-hint,.sb-sub,.page-sub,.panel-sub,.seccion-sub
+) {
+  color:var(--adm-muted);
+}
+.admin-shell:not([data-modo="oscuro"]) .admin-main :is(
+  .admin-table thead th,.admin-table th,table thead th
+) {
+  border-color:var(--adm-line);
+}
