@@ -1967,3 +1967,41 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
     font-size:1.05rem;
   }
 }
+
+/* Alinear icono, título y descripción de los encabezados institucionales. */
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-identity {
+  display:flex;
+  align-items:center;
+  min-width:0;
+  flex:1 1 auto;
+}
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy {
+  display:grid;
+  grid-template-columns:54px minmax(0,1fr);
+  column-gap:14px;
+  align-items:center;
+  min-width:0;
+}
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title {
+  display:contents;
+}
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title > i:first-child {
+  grid-column:1;
+  grid-row:1 / span 2;
+  margin:0;
+  align-self:center;
+}
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title::after {
+  content:none;
+}
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-sub {
+  grid-column:2;
+  grid-row:2;
+  margin:3px 0 0;
+}
+@media(max-width:600px) {
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy {
+    grid-template-columns:44px minmax(0,1fr);
+    column-gap:10px;
+  }
+}
