@@ -1383,3 +1383,45 @@
 @media (max-width: 720px) {
   .admin-shell .admin-card > .admin-table:has(.td-actions) { min-width: 760px; }
 }
+
+/* Refinamientos transversales del panel: no alteran los estilos aprobados del catálogo. */
+.admin-shell .admin-page,
+.admin-shell .admin-page > *,
+.admin-shell .form-grid > *,
+.admin-shell .page-header > * { min-width: 0; }
+.admin-shell .admin-main { overflow-x: hidden; }
+.admin-shell .admin-card { max-width: 100%; }
+.admin-shell .admin-card:has(> .admin-table) { overflow-x: auto; }
+.admin-shell .admin-table { font-variant-numeric: tabular-nums; }
+.admin-shell .admin-table th,
+.admin-shell .admin-table td { vertical-align: middle; }
+.admin-shell .admin-table td:first-child { overflow-wrap: anywhere; }
+.admin-shell .admin-table .td-actions { white-space: nowrap; }
+.admin-shell .form-row input:not([type='file']):disabled,
+.admin-shell .form-row select:disabled,
+.admin-shell .form-row textarea:disabled { opacity: .65; cursor: not-allowed; background: var(--adm-bg); }
+.admin-shell button:disabled { cursor: not-allowed; }
+.admin-shell .form-row :is(input,select,textarea)[aria-invalid="true"] {
+  border-color: var(--adm-danger);
+}
+.admin-shell .form-row :is(input,select,textarea)[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--adm-danger) 15%, transparent);
+}
+.admin-shell :is(button,a,input,select,textarea,[tabindex]):focus-visible {
+  outline: 2px solid var(--adm-brand);
+  outline-offset: 2px;
+}
+@media (max-width: 720px) {
+  .admin-shell .admin-main { padding: 16px 12px 28px; }
+  .admin-shell .page-header { gap: 12px; }
+  .admin-shell .page-header-actions { width: 100%; }
+  .admin-shell .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .admin-shell .form-grid .span-2 { grid-column: auto; }
+  .admin-shell .admin-card-body { padding: 16px; }
+  .admin-shell .save-bar { padding-bottom: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell :is(.btn-icon,.btn-save,.btn-add,.btn-cancel,.btn-ghost,.btn-danger,.dropzone) {
+    transition: none;
+  }
+}
