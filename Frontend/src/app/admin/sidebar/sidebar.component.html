@@ -46,7 +46,7 @@
   </div>
 </aside>
 
-<app-dialog [open]="confirmarSalida()" title="Cerrar sesión" variant="danger" (openChange)="confirmarSalida.set($event)">
+<app-dialog [open]="confirmarSalida()" title="Cerrar sesión" variant="logout" (openChange)="confirmarSalida.set($event)">
   <p>¿Deseas cerrar sesión del panel administrativo? Tendrás que iniciar sesión nuevamente para volver a acceder.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirmarSalida.set(false)">Cancelar</button>
