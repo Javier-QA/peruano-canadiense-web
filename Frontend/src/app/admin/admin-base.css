@@ -1816,3 +1816,36 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 .admin-shell[data-modo="oscuro"] .admin-main :is(.seccion-card,.seccion-cuerpo,.admin-view-header) :is(h1,h2,h3,label) {
   color:var(--adm-ink);
 }
+
+/* Elementos de interacción compartidos en todo el administrador. */
+.admin-shell[data-modo="oscuro"] :is(.empty-state,.empty-list,.empty-message,.sin-resultados,.no-results) {
+  background:var(--adm-surface);
+  color:var(--adm-muted);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] :is(.empty-state,.empty-list,.empty-message,.sin-resultados,.no-results) :is(p,span,strong) {
+  color:var(--adm-muted);
+}
+.admin-shell[data-modo="oscuro"] :is(.td-actions,.action-buttons,.table-actions) .btn-icon {
+  background:var(--adm-surface);
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] :is(.td-actions,.action-buttons,.table-actions) .btn-icon:hover {
+  background:var(--adm-muted-bg);
+}
+.admin-shell[data-modo="oscuro"] :is(.td-actions,.action-buttons,.table-actions) .btn-delete {
+  color:var(--adm-danger);
+}
+.admin-shell[data-modo="oscuro"] :is(.admin-pagination,.admin-list-toolbar) :is(button,input) {
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-pagination button:not(:disabled) {
+  background:var(--adm-surface);
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] .admin-pagination button:disabled {
+  background:var(--adm-muted-bg);
+  color:var(--adm-muted);
+  opacity:.65;
+}
