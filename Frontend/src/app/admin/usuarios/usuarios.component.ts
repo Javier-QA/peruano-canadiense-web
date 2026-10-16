@@ -43,6 +43,8 @@ export class AdminUsuariosComponent {
   readonly editandoId = signal<string | null>(null);
   readonly form = signal<UsuarioForm>({ ...VACIO });
   readonly confirmar = signal<UsuarioAdmin | null>(null);
+  readonly guardando = signal(false);
+  readonly eliminando = signal(false);
   readonly yo = this.auth.usuario;
 
   constructor() {
@@ -109,6 +111,8 @@ export class AdminUsuariosComponent {
     };
     if (datos.password) cuerpo.password = datos.password;
 
+    if (this.guardando()) return;
+    this.guardando.set(true);
     try {
       if (id) {
         await this.api.actualizarUsuario(id, cuerpo);
@@ -121,12 +125,15 @@ export class AdminUsuariosComponent {
       await this.cargar();
     } catch (error) {
       this.toast.error(this.mensaje(error, 'No se pudo guardar la cuenta.'));
+    } finally {
+      this.guardando.set(false);
     }
   }
 
   async eliminar(): Promise<void> {
     const usuario = this.confirmar();
-    if (!usuario) return;
+    if (!usuario || this.eliminando()) return;
+    this.eliminando.set(true);
     try {
       await this.api.eliminarUsuario(usuario.id);
       this.confirmar.set(null);
@@ -134,6 +141,8 @@ export class AdminUsuariosComponent {
       await this.cargar();
     } catch (error) {
       this.toast.error(this.mensaje(error, 'No se pudo eliminar la cuenta.'));
+    } finally {
+      this.eliminando.set(false);
     }
   }
 
