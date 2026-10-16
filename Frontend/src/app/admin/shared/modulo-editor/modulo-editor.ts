@@ -309,10 +309,12 @@ export class ModuloEditor implements PuedeSalirConCambios {
   }
 
   cancelar(): void {
+    if (this.dirty() && !window.confirm('¿Descartar los cambios sin guardar de esta sección?')) return;
     this.cargar(this.contenido.de(this.modulo()).value());
   }
 
   async restaurar(): Promise<void> {
+    if (!window.confirm('¿Restaurar el contenido y los documentos originales de este módulo?')) return;
     try {
       await this.contenido.restaurar(this.modulo());
       await this.documentos.restaurarModulo(this.modulo());
@@ -348,7 +350,7 @@ export class ModuloEditor implements PuedeSalirConCambios {
 
   async restaurarVersion(): Promise<void> {
     const ver = this.versionActiva();
-    if (!ver) return;
+    if (!ver || !window.confirm('¿Restaurar esta versión del contenido?')) return;
     this.restaurandoVersion.set(true);
     try {
       const data = await this.api.restaurarVersionContenido(this.modulo(), ver.id);
