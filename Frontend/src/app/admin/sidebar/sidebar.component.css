@@ -97,6 +97,26 @@
   position: relative;
 }
 
+/* Mantener el tamaño y ancho originales, evitando que las etiquetas invadan
+   el borde del menú o la barra de desplazamiento. */
+.sidebar-link {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.sidebar-link > i {
+  flex-shrink: 0;
+}
+.sidebar-link > span {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .sidebar-link::before {
   content: '';
   position: absolute;
