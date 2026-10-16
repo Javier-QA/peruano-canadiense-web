@@ -14,6 +14,7 @@
     </div>
   </header>
 
+  <div class="admin-list-toolbar"><label for="buscar-usuarios">Buscar</label><input id="buscar-usuarios" type="search" [value]="busqueda()" (input)="buscar($any($event.target).value)" placeholder="Buscar cuentas" /><span>{{ filtrados().length }} resultados</span></div>
   <div class="admin-card">
     @if (cargando()) {
       <p class="form-hint">Cargando cuentas…</p>
@@ -34,7 +35,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (usuario of items(); track usuario.id) {
+          @for (usuario of paginados(); track usuario.id) {
             <tr>
               <td>
                 <strong>{{ usuario.nombre }}</strong>
@@ -82,6 +83,7 @@
       </table>
     }
   </div>
+  <nav class="admin-pagination" aria-label="Páginas de usuarios"><span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span><button type="button" class="btn-ghost" [disabled]="paginaActual() === 1" (click)="cambiarPagina(-1)">Anterior</button><button type="button" class="btn-ghost" [disabled]="paginaActual() === totalPaginas()" (click)="cambiarPagina(1)">Siguiente</button></nav>
 </div>
 
 <app-dialog
