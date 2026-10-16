@@ -28,25 +28,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       gap: 18px;
     }
 
-    /* Secciones internas: fondo institucional perceptible en modo claro.
-       El modo oscuro conserva su apariencia actual. */
-    :host-context(.admin-shell:not([data-modo="oscuro"])) {
-      padding: 18px;
-      border: 1px solid color-mix(in srgb, var(--adm-brand) 30%, var(--adm-line));
-      border-radius: 15px;
-      background: color-mix(in srgb, var(--adm-brand) 12%, var(--adm-surface));
-    }
-
-    :host-context(.admin-shell:not([data-modo="oscuro"])) .sb-head {
-      border-bottom-color: color-mix(in srgb, var(--adm-brand) 23%, var(--adm-line));
-    }
-
-    @media (max-width: 600px) {
-      :host-context(.admin-shell:not([data-modo="oscuro"])) {
-        padding: 14px;
-      }
-    }
-
     .sb-head {
       display: flex;
       align-items: flex-start;
