@@ -134,9 +134,9 @@ export interface MarcoTab {
       flex-wrap: nowrap;
       align-items: center;
       padding: 18px 24px;
-      border: 1px solid #f0d7da;
+      border: 1px solid var(--adm-brand-border);
       border-radius: 18px;
-      background: linear-gradient(115deg, #fff6f6, #fff 70%);
+      background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white), #fff 70%);
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
@@ -160,7 +160,7 @@ export interface MarcoTab {
       padding: 24px;
       border: 1px solid var(--adm-line);
       border-radius: var(--adm-radius);
-      background: linear-gradient(180deg, #fff7f7 0, var(--adm-bg) 130px);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--adm-brand-soft) 35%, white) 0, var(--adm-bg) 130px);
       box-shadow: var(--adm-shadow);
     }
 
