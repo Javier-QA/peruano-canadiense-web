@@ -80,6 +80,7 @@ export class AdminDashboardComponent {
 
   readonly usuario = this.auth.usuario;
   readonly esAdmin = this.auth.esAdmin;
+  readonly fechaHoy = new Intl.DateTimeFormat('es-PE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
 
   readonly resumen = signal<PanelResumen | null>(null);
   readonly cargando = signal(true);
