@@ -1651,3 +1651,23 @@
   .admin-shell .admin-tab, .admin-shell .admin-tabs,
   .admin-shell .admin-table th, .admin-shell .admin-table td { transition:none; }
 }
+
+/* Revelado circular como en el portal de referencia: el tema nuevo crece
+   desde el botón de apariencia situado en la barra superior. */
+html.admin-theme-reveal::view-transition-old(root),
+html.admin-theme-reveal::view-transition-new(root) {
+  animation:none;
+  mix-blend-mode:normal;
+}
+html.admin-theme-reveal::view-transition-new(root) {
+  animation:admin-theme-circle .65s cubic-bezier(.25,.7,.2,1) both;
+  z-index:2;
+}
+html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
+@keyframes admin-theme-circle {
+  from { clip-path:circle(0 at var(--theme-origin-x) var(--theme-origin-y)); }
+  to { clip-path:circle(var(--theme-radius) at var(--theme-origin-x) var(--theme-origin-y)); }
+}
+@media(prefers-reduced-motion:reduce) {
+  html.admin-theme-reveal::view-transition-new(root) { animation:none; }
+}
