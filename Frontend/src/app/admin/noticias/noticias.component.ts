@@ -66,6 +66,17 @@ export class AdminNoticiasComponent {
   readonly formAbierto = signal(false);
   readonly editingId = signal<string | null>(null);
   readonly form = signal<NoticiaForm>({ ...VACIO });
+  private formularioInicial = '';
+  readonly hayCambios = computed(() => this.formAbierto() && JSON.stringify(this.form()) !== this.formularioInicial);
+  cerrarFormulario(): void {
+    if (this.guardando()) return;
+    if (this.hayCambios() && !window.confirm('Hay cambios sin guardar. ¿Desea descartarlos?')) return;
+    this.formAbierto.set(false);
+  }
+  alCambiarDialogo(abierto: boolean): void {
+    if (!abierto) this.cerrarFormulario();
+  }
+
   readonly confirm = signal<NewsItem | null>(null);
   readonly guardando = signal(false);
   readonly eliminando = signal(false);
@@ -73,6 +84,7 @@ export class AdminNoticiasComponent {
   abrirNueva(): void {
     this.editingId.set(null);
     this.form.set({ ...VACIO, createdAt: new Date().toISOString().slice(0, 10) });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -92,6 +104,7 @@ export class AdminNoticiasComponent {
       featured: Boolean(item.featured),
       publicada: item.publicada !== false,
     });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
