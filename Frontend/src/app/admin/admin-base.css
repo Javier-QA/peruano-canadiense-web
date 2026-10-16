@@ -1731,3 +1731,64 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 .admin-shell[data-modo="oscuro"] .admin-main .stat-strip li:hover {
   background:var(--adm-brand-soft);
 }
+
+/* Revisión transversal: superficies, cabeceras y editores del portal.
+   Los componentes de edición pueden usar estilos encapsulados, por lo que
+   las reglas globales especifican explícitamente el contexto oscuro. */
+.admin-shell[data-modo="oscuro"] .admin-main .admin-table th,
+.admin-shell[data-modo="oscuro"] .admin-main .admin-table thead,
+.admin-shell[data-modo="oscuro"] .admin-main table thead th {
+  background:var(--adm-muted-bg);
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main table :is(td,th) {
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(.admin-card,.admin-card-body,.tarjeta,.marco-lienzo,.section-card,.section-body,.editor-card,.editor-panel,.card-body) {
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(.admin-card,.tarjeta,.section-card,.editor-card,.editor-panel) {
+  background:var(--adm-surface);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .marco-lienzo {
+  background:linear-gradient(180deg,var(--adm-brand-soft),var(--adm-bg) 130px);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(.admin-card,.marco-lienzo,.tarjeta,.editor-card,.editor-panel) :is(
+  h1,h2,h3,h4,label,legend,strong
+) { color:var(--adm-ink); }
+.admin-shell[data-modo="oscuro"] .admin-main :is(.admin-card,.marco-lienzo,.tarjeta,.editor-card,.editor-panel) :is(
+  .form-hint,.field-hint,.help-text,.description,.panel-sub
+) { color:var(--adm-muted); }
+.admin-shell[data-modo="oscuro"] .admin-main :is(.ql-toolbar.ql-snow,.ql-container.ql-snow) {
+  background:var(--adm-surface);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .ql-toolbar.ql-snow {
+  background:var(--adm-bg);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .ql-editor {
+  background:var(--adm-surface);
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .ql-editor.ql-blank::before {
+  color:var(--adm-muted);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .ql-toolbar :is(.ql-picker-label,.ql-picker-item) {
+  color:var(--adm-ink);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .ql-toolbar :is(button,.ql-picker-label):hover {
+  background:var(--adm-muted-bg);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .ql-toolbar .ql-picker-options {
+  background:var(--adm-surface);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(.ql-snow .ql-stroke) { stroke:var(--adm-ink-soft); }
+.admin-shell[data-modo="oscuro"] .admin-main :is(.ql-snow .ql-fill) { fill:var(--adm-ink-soft); }
+.admin-shell[data-modo="oscuro"] .admin-main .admin-card :is(.btn-ghost,.btn-cancel) {
+  color:var(--adm-ink);
+  background:var(--adm-surface);
+  border-color:var(--adm-line);
+}
