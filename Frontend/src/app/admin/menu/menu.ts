@@ -155,8 +155,9 @@ export class AdminMenu {
       });
       this.items.update((l) => l.map((i) => (i.id === item.id ? actualizado : i)));
       this.propagar();
+      this.toast.success(actualizado.visible ? 'Enlace visible.' : 'Enlace oculto.');
     } catch {
-      this.toast.error('No se pudo cambiar la visibilidad.');
+      this.toast.error('No se pudo cambiar la visibilidad.
     }
   }
 
@@ -178,6 +179,7 @@ export class AdminMenu {
     try {
       this.items.set(await this.api.ordenarMenu(cambios));
       this.propagar();
+      this.toast.success('Orden de enlaces actualizado.');
     } catch {
       this.toast.error('No se pudo reordenar.');
     }
