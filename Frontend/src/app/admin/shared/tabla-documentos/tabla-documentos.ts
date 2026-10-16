@@ -42,6 +42,10 @@ const VACIO: DocForm = {
     .admin-card { min-width: 0; }
     .admin-table { font-variant-numeric: tabular-nums; }
     .admin-table td { line-height: 1.5; }
+    .docs-table-scroll { max-width: 100%; overflow-x: auto; scrollbar-width: thin; }
+    .docs-table-scroll .admin-table { min-width: 760px; }
+    .docs-table-scroll .td-actions { white-space: nowrap; }
+    .docs-table-scroll th:last-child { min-width: 148px; }
     .admin-table .btn-icon { background: #fff; }
     .empty-state { padding: 32px 20px; border: 1px dashed var(--adm-line); border-radius: 12px; background: #fff; }
     @media (max-width: 720px) { .page-header { padding: 16px; } }
@@ -65,7 +69,7 @@ const VACIO: DocForm = {
         <p>Aún no hay documentos en esta pestaña.</p>
       </div>
     } @else {
-      <div class="admin-card">
+      <div class="admin-card docs-table-scroll" role="region" aria-label="Documentos de esta sección" tabindex="0">
         <table class="admin-table">
           <thead>
             <tr>
@@ -73,7 +77,7 @@ const VACIO: DocForm = {
               <th>Tipo</th>
               <th>Estado</th>
               <th>Año</th>
-              <th></th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -101,7 +105,7 @@ const VACIO: DocForm = {
                     type="button"
                     class="btn-icon"
                     (click)="previsualizar(doc)"
-                    aria-label="Previsualizar"
+                    [attr.aria-label]="'Previsualizar ' + doc.titulo"
                   >
                     <i class="fa fa-eye"></i>
                   </button>
@@ -109,7 +113,7 @@ const VACIO: DocForm = {
                     type="button"
                     class="btn-icon"
                     (click)="abrirEditar(doc)"
-                    aria-label="Editar"
+                    [attr.aria-label]="'Editar ' + doc.titulo"
                   >
                     <i class="fa fa-pen"></i>
                   </button>
@@ -117,7 +121,7 @@ const VACIO: DocForm = {
                     type="button"
                     class="btn-icon btn-delete"
                     (click)="confirm.set(doc)"
-                    aria-label="Quitar"
+                    [attr.aria-label]="'Quitar ' + doc.titulo"
                   >
                     <i class="fa fa-trash"></i>
                   </button>
@@ -205,7 +209,7 @@ const VACIO: DocForm = {
       }
       <div dialog-footer>
         <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
-        <button type="button" class="btn-save" (click)="guardarForm()">Guardar</button>
+        <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardarForm()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
       </div>
     </app-dialog>
 
@@ -261,6 +265,7 @@ export class TablaDocumentos {
   readonly previewUrl = signal('');
   readonly confirm = signal<DocumentoInstitucional | null>(null);
   readonly tituloVacio = signal(false);
+  readonly guardando = signal(false);
 
   bajada(texto: string): string {
     return excerpt(texto, 140);
@@ -309,6 +314,8 @@ export class TablaDocumentos {
       this.toast.error('Indique una URL o suba un archivo.');
       return;
     }
+    if (this.guardando()) return;
+    this.guardando.set(true);
     const id = this.editingId();
     try {
       if (id) {
@@ -343,6 +350,8 @@ export class TablaDocumentos {
       this.formAbierto.set(false);
     } catch {
       this.toast.error('No se pudo guardar el documento.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
