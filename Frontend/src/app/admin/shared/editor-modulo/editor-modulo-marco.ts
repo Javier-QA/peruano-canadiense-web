@@ -24,7 +24,7 @@ export interface MarcoTab {
       <header class="page-header">
         <div class="portal-header-identity">
           <div class="portal-header-copy">
-            <h1 class="page-title">{{ titulo() }}</h1>
+            <h1 class="page-title"><i class="fa-solid {{ icono() }} portal-title-icon" aria-hidden="true"></i>{{ titulo() }}</h1>
             <p class="page-sub">{{ sub() }}</p>
           </div>
         </div>
@@ -134,9 +134,9 @@ export interface MarcoTab {
       flex-wrap: nowrap;
       align-items: center;
       padding: 18px 24px;
-      border: 1px solid #f1dfd2;
+      border: 1px solid #f0d7da;
       border-radius: 18px;
-      background: linear-gradient(115deg, #fff8f2, #fff 70%);
+      background: linear-gradient(115deg, #fff6f6, #fff 70%);
       box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
     .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
