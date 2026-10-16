@@ -29,11 +29,13 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
       <div
         class="dropzone"
         [class.over]="over()"
+        [attr.aria-disabled]="subiendo()"
         role="button"
         tabindex="0"
         [attr.aria-label]="etiqueta()"
-        (click)="input.click()"
-        (keydown.enter)="input.click()"
+        (click)="!subiendo() && input.click()"
+        (keydown.enter)="!subiendo() && input.click()"
+        (keydown.space)="$event.preventDefault(); input.click()"
         (dragover)="onOver($event)"
         (dragleave)="over.set(false)"
         (drop)="onDrop($event)"
@@ -44,10 +46,10 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
         <input #input type="file" hidden [accept]="accept()" (change)="onFile($event)" />
       </div>
       @if (subiendo()) {
-        <p class="form-hint">Guardando archivo…</p>
+        <p class="form-hint" role="status" aria-live="polite">Guardando archivo…</p>
       }
       @if (nombre()) {
-        <p class="form-hint">{{ nombre() }}</p>
+        <p class="form-hint" role="status" aria-live="polite">{{ nombre() }}</p>
       }
     }
   `,
@@ -55,6 +57,7 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
     :host { display: block; min-width: 0; }
     .dropzone { border-radius: 13px; }
     .dropzone:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: 3px; }
+    .dropzone[aria-disabled="true"] { opacity: .7; cursor: progress; }
     .dropzone.over { border-color: var(--adm-brand); background: #fff5ec; }
     .selector-boton { min-height: 40px; }
 
@@ -141,17 +144,19 @@ export class SelectorArchivo {
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.over.set(false);
+    if (this.subiendo()) return;
     const file = event.dataTransfer?.files[0];
     if (file) void this.subir(file);
   }
 
   onFile(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files?.[0]) void this.subir(input.files[0]);
+    if (!this.subiendo() && input.files?.[0]) void this.subir(input.files[0]);
     input.value = '';
   }
 
   private async subir(file: File): Promise<void> {
+    if (this.subiendo()) return;
     const esPdf = PDF.includes(file.type);
     const esImg = IMAGENES.includes(file.type);
     const modo = this.modo();
