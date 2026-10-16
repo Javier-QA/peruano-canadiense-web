@@ -39,7 +39,7 @@ const nuevoBorrador = (zona: MenuZona): Borrador => ({
     .menu-order-number {
       display: inline-flex; align-items: center; justify-content: center;
       width: 30px; height: 30px; flex: 0 0 30px;
-      border-radius: 9px; background: #fff2e9; color: #c6530c;
+      border-radius: 9px; background: #fce9ec; color: #b91c2b;
       font-size: .85rem; font-weight: 750; font-variant-numeric: tabular-nums;
     }
     .menu-order-controls .btn-icon {
