@@ -442,7 +442,7 @@
 .dash-welcome-copy { min-width: 0; flex: 1 1 360px; }
 .dash-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  margin-bottom: 12px; color: #aa4c10; font-size: .74rem;
+  margin-bottom: 12px; color: var(--adm-brand); font-size: .74rem;
   font-weight: 800; text-transform: uppercase; letter-spacing: .09em;
 }
 .dash .page-header-actions { justify-content: flex-end; }
