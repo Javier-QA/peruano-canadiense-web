@@ -75,6 +75,9 @@ const VACIO: DocForm = {
         <p>Aún no hay documentos en esta pestaña.</p>
       </div>
     } @else {
+      @if (filtrados().length === 0) {
+        <p class="empty-state" role="status">No se encontraron documentos con ese criterio.</p>
+      }
       <div class="admin-card docs-table-scroll" role="region" aria-label="Documentos de esta sección" tabindex="0">
         <table class="admin-table">
           <thead>
@@ -391,7 +394,12 @@ export class TablaDocumentos {
 
   async previsualizar(doc: DocumentoInstitucional): Promise<void> {
     this.preview.set(doc);
-    this.previewUrl.set(await this.archivos.resolver(doc.url));
+    try {
+      this.previewUrl.set(await this.archivos.resolver(doc.url));
+    } catch {
+      this.preview.set(null);
+      this.toast.error('No se pudo abrir la vista previa del documento.');
+    }
   }
 
   async quitar(modo: 0 | 1): Promise<void> {
