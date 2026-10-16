@@ -73,8 +73,40 @@ export class AdminLayoutComponent {
   readonly paleta = this.apariencia.actual;
   readonly modo = this.apariencia.modo;
 
-  alternarModo(): void {
-    this.apariencia.alternarModo();
+  alternarModo(evento: MouseEvent): void {
+    const cambiar = () => this.apariencia.alternarModo();
+    if (typeof document === 'undefined') { cambiar(); return; }
+    const doc = document as Document & {
+      startViewTransition?: (update: () => void) => { finished: Promise<void> };
+    };
+    if (!doc.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cambiar();
+      return;
+    }
+    const boton = evento.currentTarget as HTMLElement;
+    const rect = boton.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radio = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+    document.documentElement.style.setProperty('--theme-origin-x', x + 'px');
+    document.documentElement.style.setProperty('--theme-origin-y', y + 'px');
+    document.documentElement.style.setProperty('--theme-radius', radio + 'px');
+    document.documentElement.classList.add('admin-theme-reveal');
+    try {
+      const transicion = doc.startViewTransition(cambiar);
+      void transicion.finished.finally(() => {
+        document.documentElement.classList.remove('admin-theme-reveal');
+        document.documentElement.style.removeProperty('--theme-origin-x');
+        document.documentElement.style.removeProperty('--theme-origin-y');
+        document.documentElement.style.removeProperty('--theme-radius');
+      });
+    } catch {
+      document.documentElement.classList.remove('admin-theme-reveal');
+      cambiar();
+    }
   }
 
   readonly pageTitle = signal('Dashboard');
