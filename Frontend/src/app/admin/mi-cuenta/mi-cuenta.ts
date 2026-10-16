@@ -39,7 +39,7 @@ import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional }
     .visibility-button:focus-visible { outline:2px solid var(--adm-brand); }
     .form-hint { margin:5px 0 0; }
     .password-error { margin:5px 0 0; font-size:.78rem; color:var(--adm-danger); }
-    .palette-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .palette-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
     .palette-option { display:flex; flex-direction:column; align-items:flex-start; gap:9px; padding:15px; border:2px solid var(--adm-line); border-radius:12px; background:var(--adm-surface); color:var(--adm-ink); text-align:left; cursor:pointer; font:inherit; }
     .palette-option.is-selected { border-color:var(--adm-brand); box-shadow:0 0 0 2px color-mix(in srgb,var(--adm-brand) 12%,transparent); }
     .palette-option:focus-visible { outline:2px solid var(--adm-brand); outline-offset:3px; }
