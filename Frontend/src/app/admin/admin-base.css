@@ -1968,40 +1968,53 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
   }
 }
 
-/* Alinear icono, título y descripción de los encabezados institucionales. */
-.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-identity {
-  display:flex;
-  align-items:center;
-  min-width:0;
-  flex:1 1 auto;
-}
+/* Corrección: conservar el h1 como elemento real. display:contents
+   separaba el texto en letras y lo comprimía en la columna del icono. */
 .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy {
-  display:grid;
-  grid-template-columns:54px minmax(0,1fr);
-  column-gap:14px;
-  align-items:center;
+  display:block;
   min-width:0;
+  width:100%;
 }
 .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title {
-  display:contents;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+  width:100%;
+  margin:0;
+  white-space:normal;
+  overflow-wrap:normal;
+  word-break:normal;
 }
 .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title > i:first-child {
-  grid-column:1;
-  grid-row:1 / span 2;
+  flex:0 0 54px;
   margin:0;
-  align-self:center;
-}
-.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title::after {
-  content:none;
 }
 .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-sub {
-  grid-column:2;
-  grid-row:2;
-  margin:3px 0 0;
+  margin:5px 0 0 68px;
+  min-width:0;
+}
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-identity {
+  flex:1 1 380px;
+  min-width:0;
+}
+@media(max-width:950px) {
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) {
+    flex-wrap:wrap;
+  }
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .page-header-actions {
+    flex-wrap:wrap;
+    justify-content:flex-start;
+  }
 }
 @media(max-width:600px) {
-  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy {
-    grid-template-columns:44px minmax(0,1fr);
-    column-gap:10px;
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title {
+    gap:10px;
+  }
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-title > i:first-child {
+    flex-basis:44px;
+  }
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-header-copy .page-sub {
+    margin-left:54px;
   }
 }
