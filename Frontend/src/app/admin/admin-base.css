@@ -1615,3 +1615,9 @@
   .admin-shell app-dialog .confirm-dialog [dialog-footer] { flex-wrap: nowrap; }
   .admin-shell app-dialog .confirm-dialog [dialog-footer] > button { flex-basis: 0; }
 }
+
+/* El icono del editor se muestra desde su componente: evitar el segundo icono CSS. */
+.admin-shell .admin-main .page-header .page-title:has(> .portal-title-icon)::before {
+  content: none;
+  display: none;
+}
