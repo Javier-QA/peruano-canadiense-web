@@ -3,8 +3,8 @@
 }
 
 .admin-sidebar {
-  width: 340px;
-  flex: 0 0 340px;
+  width: 260px;
+  flex: 0 0 260px;
   height: 100vh;
   background: linear-gradient(180deg, #222b3c 0%, #172032 100%);
   color: #fff;
@@ -84,29 +84,17 @@
 
 .sidebar-link {
   display: flex;
-  min-width: 0;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
   align-items: center;
   gap: 14px;
   padding: 11px 13px;
   border-radius: 10px;
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
-  font-size: 0.98rem;
+  font-size: 0.9rem;
   font-weight: 500;
   white-space: nowrap;
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   position: relative;
-}
-
-.sidebar-link > span {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: clip;
 }
 
 .sidebar-link::before {
@@ -215,7 +203,7 @@
   /* Al pasar el cursor (o enfocar dentro) el riel se despliega por encima. */
   .admin-sidebar.is-collapsed:hover,
   .admin-sidebar.is-collapsed:focus-within {
-    width: 340px;
+    width: 260px;
     box-shadow: 12px 0 44px rgba(20, 19, 30, 0.25);
   }
 
@@ -281,7 +269,3 @@
     transition: none;
   }
 }
-
-/* El menú conserva el tamaño de letra y muestra las etiquetas completas. */
-.sidebar-link > span { overflow: visible; text-overflow: clip; }
-@media (max-width: 900px) { .admin-sidebar { width: min(340px, 92vw); } }
