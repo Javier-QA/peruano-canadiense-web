@@ -1,7 +1,8 @@
-﻿import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 import { AdminNavStore } from '../shared/admin-nav.store';
+import { DialogComponent } from '../../shared/ui';
 
 interface NavLink {
   label: string;
@@ -17,7 +18,7 @@ interface NavGroup {
 @Component({
   selector: 'app-admin-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, DialogComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,6 +29,7 @@ export class AdminSidebarComponent {
 
   /** Riel contraído en escritorio (estado compartido con la topbar). */
   readonly colapsado = this.nav.colapsado;
+  readonly confirmarSalida = signal(false);
 
   readonly dashboard: NavLink = {
     label: 'Dashboard',
@@ -91,6 +93,11 @@ export class AdminSidebarComponent {
   ];
 
   logout(): void {
+    this.confirmarSalida.set(true);
+  }
+
+  salir(): void {
+    this.confirmarSalida.set(false);
     this.auth.logout();
   }
 }
