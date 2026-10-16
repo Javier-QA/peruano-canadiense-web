@@ -1,21 +1,21 @@
 ﻿<div class="admin-page dash" [class.dash--busy]="refrescando()">
   <header class="page-header dash-welcome">
-    <div class="dash-welcome-copy">
-      <span class="dash-eyebrow"><i class="fa fa-gauge-high" aria-hidden="true"></i> Resumen general</span>
-      <h1 class="page-title">
-        @if (usuario(); as u) {
-          Hola, {{ u.nombre }}
-        } @else {
-          Panel del portal
-        }
-      </h1>
-      <p class="page-sub">
-        @if (esAdmin()) {
-          Lo que se publicó en la web y las solicitudes que llegaron por el portal.
-        } @else {
-          Las solicitudes que llegaron por el portal y la actividad reciente del equipo.
-        }
-      </p>
+    <div class="dash-welcome-identity">
+      <span class="dash-welcome-icon" aria-hidden="true"><i class="fa fa-chalkboard-user"></i></span>
+      <div class="dash-welcome-copy">
+        <span class="dash-eyebrow">TU ESPACIO ADMINISTRATIVO</span>
+        <h1 class="page-title">
+          @if (usuario(); as u) {
+            Hola, {{ u.nombre }}
+          } @else {
+            Panel del portal
+          }
+        </h1>
+        <div class="dash-welcome-meta">
+          <span class="dash-role">{{ esAdmin() ? 'Administrador' : 'Personal' }}</span>
+          <span class="dash-today"><i class="fa fa-calendar-days" aria-hidden="true"></i> {{ fechaHoy }}</span>
+        </div>
+      </div>
     </div>
     <div class="page-header-actions">
       <a class="btn-ghost" href="/inicio" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square" aria-hidden="true"></i> Ver portal público</a>
