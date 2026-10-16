@@ -1,5 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
+export type ModoApariencia = 'claro' | 'oscuro';
+
 export type PaletaInstitucional = 'rojo' | 'azul' | 'celeste' | 'naranja' | 'amarillo';
 
 export interface PaletaDetalle {
@@ -20,13 +22,17 @@ export const PALETAS_INSTITUCIONALES: readonly PaletaDetalle[] = [
 ] as const;
 
 const STORAGE_KEY = 'pc-admin-paleta-v1';
+const MODO_STORAGE_KEY = 'pc-admin-modo-v1';
 
 @Injectable({ providedIn: 'root' })
 export class AdminPaletaService {
   readonly actual = signal<PaletaInstitucional>('rojo');
+  readonly modo = signal<ModoApariencia>('claro');
 
   constructor() {
     try {
+      const modoGuardado = localStorage.getItem(MODO_STORAGE_KEY);
+      if (modoGuardado === 'oscuro') this.modo.set('oscuro');
       const guardada = localStorage.getItem(STORAGE_KEY);
       if (guardada === 'rojo' || guardada === 'azul' || guardada === 'celeste' || guardada === 'naranja' || guardada === 'amarillo') {
         this.actual.set(guardada);
@@ -34,6 +40,12 @@ export class AdminPaletaService {
     } catch {
       // En SSR o navegadores con almacenamiento bloqueado se usa rojo.
     }
+  }
+
+  alternarModo(): void {
+    const nuevo: ModoApariencia = this.modo() === 'claro' ? 'oscuro' : 'claro';
+    this.modo.set(nuevo);
+    try { localStorage.setItem(MODO_STORAGE_KEY, nuevo); } catch { /* Preferencia en sesión. */ }
   }
 
   guardar(paleta: PaletaInstitucional): void {
