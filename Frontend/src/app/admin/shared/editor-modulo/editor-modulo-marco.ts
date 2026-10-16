@@ -160,7 +160,7 @@ export interface MarcoTab {
       padding: 24px;
       border: 1px solid var(--adm-line);
       border-radius: var(--adm-radius);
-      background: linear-gradient(180deg, #fffaf6 0, var(--adm-bg) 130px);
+      background: linear-gradient(180deg, #fff7f7 0, var(--adm-bg) 130px);
       box-shadow: var(--adm-shadow);
     }
 
