@@ -1472,3 +1472,30 @@
   .admin-shell .admin-pagination { gap: 8px; }
   .admin-shell .admin-pagination > span { flex: 1 1 100%; }
 }
+
+/* Ajustes compartidos para editores, formularios y listados administrativos. */
+.admin-shell .admin-page { min-width: 0; }
+.admin-shell .admin-page :is(.admin-card, .form-grid, .form-row, .page-header) { min-width: 0; }
+.admin-shell .admin-card:has(.admin-table) { overflow-x: auto; overscroll-behavior-x: contain; }
+.admin-shell .admin-table th { text-align: left; }
+.admin-shell .admin-table tbody tr:focus-within { background: color-mix(in srgb, var(--adm-brand) 5%, white); }
+.admin-shell .admin-list-toolbar input[type="search"] { width: 100%; }
+.admin-shell .admin-pagination [disabled] { pointer-events: none; }
+.admin-shell .form-row :is(input,textarea,select) { box-sizing: border-box; min-height: 40px; }
+.admin-shell .form-row textarea { resize: vertical; }
+.admin-shell .form-row .form-hint { line-height: 1.5; }
+.admin-shell :is(.btn-save,.btn-cancel,.btn-danger,.btn-ghost,.btn-add) { min-height: 40px; }
+@media (max-width: 768px) {
+  .admin-shell .admin-tabs { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
+  .admin-shell .admin-tab { flex-shrink: 0; }
+  .admin-shell .admin-table { min-width: 640px; }
+  .admin-shell .admin-card:has(.admin-table) { -webkit-overflow-scrolling: touch; }
+}
+@media (max-width: 420px) {
+  .admin-shell .page-header { padding: 14px; }
+  .admin-shell .admin-card-body { padding: 14px; }
+  .admin-shell .admin-list-toolbar { gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell *, .admin-shell *::before, .admin-shell *::after { scroll-behavior: auto; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
