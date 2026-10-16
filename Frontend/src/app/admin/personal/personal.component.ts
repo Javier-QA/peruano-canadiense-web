@@ -51,6 +51,8 @@ export class AdminPersonalComponent {
   readonly editingId = signal<number | null>(null);
   readonly form = signal<PersonaForm>({ ...VACIO });
   readonly confirm = signal<FacultyMember | null>(null);
+  readonly guardando = signal(false);
+  readonly eliminando = signal(false);
 
   readonly visibles = computed(() => {
     const tipo = this.filtro();
@@ -114,6 +116,8 @@ export class AdminPersonalComponent {
       cvUrl: data.cvUrl.trim() || undefined,
       order: data.order,
     };
+    if (this.guardando()) return;
+    this.guardando.set(true);
     try {
       const id = this.editingId();
       if (id !== null) {
@@ -126,14 +130,23 @@ export class AdminPersonalComponent {
       this.formAbierto.set(false);
     } catch {
       this.toast.error('No se pudo guardar la ficha.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
   async eliminar(): Promise<void> {
     const member = this.confirm();
-    if (!member) return;
-    await this.store.eliminar(member.id);
-    this.confirm.set(null);
-    this.toast.success('Se quitó del directorio público.');
+    if (!member || this.eliminando()) return;
+    this.eliminando.set(true);
+    try {
+      await this.store.eliminar(member.id);
+      this.confirm.set(null);
+      this.toast.success('Se quitó del directorio público.');
+    } catch {
+      this.toast.error('No se pudo quitar la persona del directorio.');
+    } finally {
+      this.eliminando.set(false);
+    }
   }
 }
