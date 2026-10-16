@@ -173,7 +173,7 @@
   margin: 0;
   padding: 12px 14px;
   border-radius: 12px;
-  background: var(--inst-primary-light, #fce9ec);
+  background: var(--inst-primary-light, var(--adm-brand-soft));
   color: #8a3d00;
   font-size: 0.8rem;
   line-height: 1.5;
@@ -220,11 +220,11 @@
 }
 
 .field__toggle:hover {
-  color: var(--inst-primary, #b91c2b);
+  color: var(--inst-primary, var(--adm-brand));
 }
 
 .field__toggle:focus-visible {
-  outline: 2px solid var(--inst-primary, #b91c2b);
+  outline: 2px solid var(--inst-primary, var(--adm-brand));
   outline-offset: 2px;
 }
 
