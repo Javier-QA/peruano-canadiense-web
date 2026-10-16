@@ -71,15 +71,18 @@ import { DialogComponent } from '../../../shared/ui';
 
       <div class="admin-card seccion-card" role="tabpanel" [attr.aria-label]="tabActivaLabel()">
         <header class="seccion-head">
-          <h2 class="seccion-titulo">{{ tabActivaLabel() }}</h2>
-          <p class="seccion-sub">
-            @if (campos().length) {
-              {{ campos().length }} {{ campos().length === 1 ? 'campo' : 'campos' }} en esta sección
-              · los cambios se guardan al pulsar «Guardar».
-            } @else {
-              Esta sección no tiene campos de texto; use «Documentos de esta sección».
-            }
-          </p>
+          <span class="seccion-icono" aria-hidden="true"><i class="fa-solid" [class]="iconoSeccion()"></i></span>
+          <div class="seccion-head-texto">
+            <h2 class="seccion-titulo">{{ tabActivaLabel() }}</h2>
+            <p class="seccion-sub">
+              @if (campos().length) {
+                {{ campos().length }} {{ campos().length === 1 ? 'campo' : 'campos' }} en esta sección
+                · los cambios se guardan al pulsar «Guardar».
+              } @else {
+                Esta sección no tiene campos de texto; use «Documentos de esta sección».
+              }
+            </p>
+          </div>
         </header>
         @if (campos().length) {
           <div class="admin-card-body seccion-cuerpo">
@@ -188,6 +191,26 @@ import { DialogComponent } from '../../../shared/ui';
       border-radius: 16px 16px 0 0;
       background: linear-gradient(110deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 75%);
     }
+    .seccion-head {
+      display:flex;
+      align-items:center;
+      gap:13px;
+      border-bottom-color:color-mix(in srgb,var(--adm-brand) 24%,var(--adm-line));
+    }
+    .seccion-head-texto { min-width:0; }
+    .seccion-icono {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 44px;
+      width:44px;
+      height:44px;
+      border:1px solid color-mix(in srgb,var(--adm-brand) 38%,var(--adm-line));
+      border-radius:12px;
+      background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+      color:var(--adm-brand);
+      font-size:1.05rem;
+    }
     .seccion-titulo {
       margin: 0;
       font-size: 1.18rem;
@@ -250,6 +273,21 @@ export class ModuloEditor implements PuedeSalirConCambios {
   readonly tabActivaLabel = computed(
     () => this.tabs().find((t) => t.id === this.active())?.label ?? this.titulo(),
   );
+  readonly iconoSeccion = computed(() => {
+    const titulo = this.tabActivaLabel().toLocaleLowerCase('es');
+    if (/convocatoria|admisión|postul/.test(titulo)) return 'fa-bullhorn';
+    if (/imagen|foto|galería|portada|banner/.test(titulo)) return 'fa-images';
+    if (/requisito|documento|archivo/.test(titulo)) return 'fa-folder-open';
+    if (/costo|monto|pago|matrícula|pensión/.test(titulo)) return 'fa-coins';
+    if (/programa|carrera|estudio/.test(titulo)) return 'fa-graduation-cap';
+    if (/fecha|cronograma|calendario|horario/.test(titulo)) return 'fa-calendar-days';
+    if (/contacto|correo|teléfono/.test(titulo)) return 'fa-address-book';
+    if (/noticia|comunicado/.test(titulo)) return 'fa-newspaper';
+    if (/enlace|navegación|menú/.test(titulo)) return 'fa-link';
+    if (/personal|docente|equipo/.test(titulo)) return 'fa-users';
+    if (/texto|información|contenido|descripción/.test(titulo)) return 'fa-align-left';
+    return 'fa-layer-group';
+  });
   readonly modificado = computed(() => this.contenido.de(this.modulo()).modificado());
   readonly previewJson = computed(() => {
     const data = this.versionActiva()?.data;
