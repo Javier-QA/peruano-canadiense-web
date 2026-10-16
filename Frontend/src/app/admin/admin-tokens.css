@@ -70,3 +70,24 @@
   --inst-sidebar-top: #292d3b;
   --inst-sidebar-bottom: #191e2b;
 }
+
+/* Modo oscuro independiente de las cinco paletas institucionales. */
+.admin-shell[data-modo="oscuro"] {
+  color-scheme: dark;
+  --adm-ink: #edf2fa;
+  --adm-ink-soft: #a8b7cb;
+  --adm-surface: #202b3b;
+  --adm-bg: #141d2a;
+  --adm-line: #364456;
+  --adm-muted: #bac6d5;
+  --adm-muted-bg: #303e51;
+  --adm-brand-soft: color-mix(in srgb, var(--adm-brand) 17%, #202b3b);
+  --adm-brand-border: color-mix(in srgb, var(--adm-brand) 28%, #364456);
+  --adm-ok: #66d49c;
+  --adm-ok-bg: #193d31;
+  --adm-warn: #f3c46d;
+  --adm-warn-bg: #493b24;
+  --adm-danger: #ff8992;
+  --adm-danger-bg: #4b2935;
+  --adm-shadow: 0 3px 18px rgba(0,0,0,.14);
+}
