@@ -1930,3 +1930,40 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
     padding:17px 16px 17px 21px;
   }
 }
+
+/* Iconos de encabezado institucional: marco igual al de la bienvenida.
+   Se limita a los iconos de títulos, sin tocar los iconos de botones ni tarjetas. */
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .page-title > i:first-child,
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-title-icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 54px;
+  width:54px;
+  height:54px;
+  margin:0 14px 0 0;
+  padding:0;
+  border:1px solid color-mix(in srgb,var(--adm-brand) 38%,var(--adm-line));
+  border-radius:14px;
+  background:color-mix(in srgb,var(--adm-brand) 7%,var(--adm-surface));
+  color:var(--adm-brand);
+  font-size:1.22rem;
+  line-height:1;
+  vertical-align:middle;
+}
+.admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .page-title:has(> i:first-child) {
+  display:flex;
+  align-items:center;
+  gap:0;
+}
+@media(max-width:600px) {
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .page-title > i:first-child,
+  .admin-shell .admin-main .admin-page > :is(.page-header,.admin-view-header) .portal-title-icon {
+    width:44px;
+    height:44px;
+    flex-basis:44px;
+    margin-right:10px;
+    border-radius:12px;
+    font-size:1.05rem;
+  }
+}
