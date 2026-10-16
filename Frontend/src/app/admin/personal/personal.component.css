@@ -19,7 +19,7 @@
 /* Ajustes propios del módulo, sin modificar formularios ni datos. */
 :host { display: block; min-width: 0; }
 :host .admin-page { display: flex; flex-direction: column; gap: 18px; }
-:host .page-header { padding: 20px 24px; border: 1px solid var(--adm-brand-border); border-radius: 16px; background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, white), #fff 70%); }
+:host .page-header { padding: 20px 24px; border: 1px solid var(--adm-brand-border); border-radius: 16px; background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 70%); }
 :host .page-header .page-title { letter-spacing: -.025em; }
 :host .page-header .page-sub { line-height: 1.6; max-width: 75ch; }
 :host .admin-card { min-width: 0; }
