@@ -54,6 +54,16 @@ export class AdminInvestigacionesComponent {
   readonly formAbierto = signal(false);
   readonly editandoId = signal<string | null>(null);
   readonly form = signal<TesisForm>({ ...VACIO });
+  private formularioInicial = '';
+  readonly hayCambios = computed(() => this.formAbierto() && JSON.stringify(this.form()) !== this.formularioInicial);
+  cerrarFormulario(): void {
+    if (this.guardando()) return;
+    if (this.hayCambios() && !window.confirm('Hay cambios sin guardar. ¿Desea descartarlos?')) return;
+    this.formAbierto.set(false);
+  }
+  alCambiarDialogo(abierto: boolean): void {
+    if (!abierto) this.cerrarFormulario();
+  }
   readonly confirmar = signal<TesisItem | null>(null);
   readonly subiendo = signal<string | null>(null);
   readonly guardando = signal(false);
@@ -81,6 +91,7 @@ export class AdminInvestigacionesComponent {
   abrirNueva(): void {
     this.editandoId.set(null);
     this.form.set({ ...VACIO });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -94,6 +105,7 @@ export class AdminInvestigacionesComponent {
       nivel: tesis.nivel,
       resumen: tesis.resumen,
     });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
