@@ -1880,3 +1880,53 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 .admin-shell[data-modo="oscuro"] app-dialog .confirm-dialog [dialog-footer] .btn-cancel:hover {
   background:var(--adm-brand-soft);
 }
+
+/* Encabezados de todos los módulos: tarjeta institucional teñida y franja
+   lateral. Se aplica solo al encabezado principal, nunca a tarjetas internas. */
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome),
+.admin-shell .admin-main .admin-page > .admin-view-header {
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  min-height:100px;
+  padding:19px 23px 19px 27px;
+  border:1px solid color-mix(in srgb,var(--adm-brand) 30%,var(--adm-line));
+  border-radius:17px;
+  background:color-mix(in srgb,var(--adm-brand) 15%,var(--adm-surface));
+  box-shadow:0 2px 5px rgba(16,24,40,.06);
+  color:var(--adm-ink);
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome)::before,
+.admin-shell .admin-main .admin-page > .admin-view-header::before {
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:6px;
+  background:var(--adm-brand);
+  border-radius:17px 0 0 17px;
+  pointer-events:none;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) :is(.page-title,h1,h2),
+.admin-shell .admin-main .admin-page > .admin-view-header :is(.page-title,h1,h2) {
+  color:var(--adm-ink);
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) :is(.page-sub,p),
+.admin-shell .admin-main .admin-page > .admin-view-header :is(.page-sub,p) {
+  color:var(--adm-muted);
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .btn-ghost,
+.admin-shell .admin-main .admin-page > .admin-view-header .btn-ghost {
+  background:color-mix(in srgb,var(--adm-surface) 78%,transparent);
+  border-color:color-mix(in srgb,var(--adm-brand) 16%,var(--adm-line));
+  color:var(--adm-ink);
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .btn-ghost:hover,
+.admin-shell .admin-main .admin-page > .admin-view-header .btn-ghost:hover {
+  background:var(--adm-surface);
+}
+@media(max-width:600px) {
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome),
+  .admin-shell .admin-main .admin-page > .admin-view-header {
+    padding:17px 16px 17px 21px;
+  }
+}
