@@ -16,8 +16,8 @@
   margin-top: 12px;
   margin-bottom: 14px;
   padding: 14px 16px;
-  background: #fff8e1;
-  border: 1px solid #f0c36d;
+  background: #fff1f2;
+  border: 1px solid #dfa6ad;
   border-radius: 6px;
   color: #5f4b18;
   font-size: 13px;
@@ -55,7 +55,7 @@
 /* Ajustes propios del módulo, sin modificar formularios ni datos. */
 :host { display: block; min-width: 0; }
 :host .admin-page { display: flex; flex-direction: column; gap: 18px; }
-:host .page-header { padding: 20px 24px; border: 1px solid #f1dfd2; border-radius: 16px; background: linear-gradient(115deg, #fff8f2, #fff 70%); }
+:host .page-header { padding: 20px 24px; border: 1px solid #f0d7da; border-radius: 16px; background: linear-gradient(115deg, #fff6f6, #fff 70%); }
 :host .page-header .page-title { letter-spacing: -.025em; }
 :host .page-header .page-sub { line-height: 1.6; max-width: 75ch; }
 :host .admin-card { min-width: 0; }
@@ -70,4 +70,4 @@
   :host .admin-card > .form-row, :host .admin-card > .form-grid { padding: 16px; }
 }
 :host .admin-thumb { width: 76px; height: 54px; border: 1px solid var(--adm-line); border-radius: 11px; background: #f2f5f9; }
-:host .image-recommendations { border-radius: 12px; background: #fff8eb; border-color: #f5d6a4; padding: 16px 18px; }
+:host .image-recommendations { border-radius: 12px; background: #fff4f5; border-color: #e8b5bb; padding: 16px 18px; }
