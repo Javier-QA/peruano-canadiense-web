@@ -34,9 +34,9 @@ export interface ColumnaBandeja {
     .admin-page { display: flex; flex-direction: column; gap: 20px; }
     .page-header {
       padding: 24px 28px;
-      border: 1px solid #f1dfd2;
+      border: 1px solid #f0d7da;
       border-radius: 16px;
-      background: linear-gradient(115deg, #fff8f2, #fff 70%);
+      background: linear-gradient(115deg, #fff6f6, #fff 70%);
     }
     .page-header .page-sub { max-width: 70ch; line-height: 1.6; }
     .admin-tabs { margin-bottom: 0; }
@@ -49,7 +49,7 @@ export interface ColumnaBandeja {
     .admin-table { font-variant-numeric: tabular-nums; }
     .admin-table td { line-height: 1.55; }
     .admin-table td:last-child { white-space: nowrap; }
-    .admin-table tbody tr:hover { background: #fffaf6; }
+    .admin-table tbody tr:hover { background: #fff7f7; }
 
     .admin-table .btn-icon { border: 1px solid var(--adm-line); background: #fff; }
     .admin-table .btn-icon:hover { border-color: var(--adm-brand); color: var(--adm-brand); }
