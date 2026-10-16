@@ -71,9 +71,9 @@ export type SelectorModo = 'imagen' | 'pdf' | 'ambos';
     .dropzone { border-radius: 13px; }
     .dropzone:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: 3px; }
     .dropzone[aria-disabled="true"] { opacity: .7; cursor: progress; }
-    .dropzone.over { border-color: var(--adm-brand); background: #fff5ec; }
+    .dropzone.over { border-color: var(--adm-brand); background: var(--adm-brand-soft); }
     .selector-boton { min-height: 40px; }
-    .archivo-progreso { height: 5px; margin: 8px 0; border-radius: 5px; background: repeating-linear-gradient(110deg, #ffe0c2 0 14px, #f49b52 14px 28px); }
+    .archivo-progreso { height: 5px; margin: 8px 0; border-radius: 5px; background: repeating-linear-gradient(110deg, var(--adm-brand-border) 0 14px, var(--adm-brand) 14px 28px); }
     .archivo-preview app-miniatura-imagen { --miniatura-size: 72px; }
     .archivo-preview { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--adm-ink); font-size: .84rem; }
     .archivo-preview-icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #eaf7ed; color: #23733e; font-weight: 700; }
