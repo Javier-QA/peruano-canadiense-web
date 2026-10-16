@@ -16,7 +16,7 @@ import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional }
     :host { display:block; min-width:0; }
     .admin-page { width:100%; max-width:1080px; margin-inline:auto; display:grid; gap:18px; }
     .page-header { display:flex; justify-content:flex-start; align-items:center; gap:12px; padding:17px 22px; border:1px solid var(--adm-brand-border); border-radius:16px; background:var(--adm-surface); }
-    .account-icon { display:inline-flex; align-items:center; justify-content:center; flex:none; width:40px; height:40px; border-radius:12px; background:var(--adm-brand-soft); color:var(--adm-brand); font-size:1rem; }
+    .account-icon { display:inline-flex; align-items:center; justify-content:center; flex:0 0 54px; width:54px; height:54px; border:1px solid color-mix(in srgb,var(--adm-brand) 43%,var(--adm-line)); border-radius:14px; background:color-mix(in srgb,var(--adm-brand) 5%,var(--adm-surface)); color:var(--adm-brand); font-size:1.12rem; box-sizing:border-box; }
     .page-header .account-heading { display:flex; flex-direction:column; flex:1 1 auto; min-width:0; text-align:left; }
     .page-header .page-title { margin:0 0 3px; font-size:clamp(1.4rem,2vw,1.7rem); }
     .page-header .page-sub { line-height:1.45; margin:0; }
@@ -56,6 +56,7 @@ import { AdminPaletaService, PALETAS_INSTITUCIONALES, type PaletaInstitucional }
     .palette-note { margin:12px 0 0; font-size:.8rem; color:var(--adm-muted); }
     .palette-actions { display:flex; justify-content:flex-end; margin-top:14px; }
     .save-bar { margin-top:19px; padding:15px 0 0; border-top:1px solid var(--adm-line); background:none; }
+    @media(max-width:600px) { .account-icon { flex-basis:44px; width:44px; height:44px; border-radius:12px; } }
     @media(max-width:720px) { .palette-grid { grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); } .admin-page { gap:14px; } .page-header,.admin-card { padding:16px; } .identity-grid,.form-grid { grid-template-columns:1fr; } .form-grid .span-2 { grid-column:auto; } .save-bar .btn-save { width:100%; } }
   `,
   template: `
