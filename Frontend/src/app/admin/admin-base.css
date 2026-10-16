@@ -2006,26 +2006,32 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
   }
 }
 
-
-/* Encabezados alineados como «Mi cuenta»: icono en columna izquierda,
-   título y descripción juntos a la derecha. Sin display:contents. */
-.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child:has(> .page-title:not(:has(> i))) {
+/* Encabezados uniformes: mismo orden visual que «Mi cuenta».
+   Icono anclado a su propio bloque; título y descripción nunca se superponen. */
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child:has(> .page-title)::before {
+  content:none;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child:has(> .page-title) {
   position:relative;
+  box-sizing:border-box;
   display:flex;
   flex-direction:column;
   justify-content:center;
-  min-height:54px;
-  padding-left:78px;
-  min-width:0;
   flex:1 1 360px;
+  min-width:0;
+  min-height:54px;
+  padding-left:72px;
 }
-.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child > .page-title:not(:has(> i)) {
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child > .page-title {
+  position:static !important;
   display:block;
   margin:0 0 4px;
   min-width:0;
+  overflow-wrap:normal;
+  word-break:normal;
 }
-.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child > .page-title:not(:has(> i))::before {
-  position:absolute;
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child > .page-title::before {
+  position:absolute !important;
   top:50%;
   left:0;
   transform:translateY(-50%);
@@ -2035,32 +2041,60 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
   margin:0;
   min-width:0;
 }
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-identity {
+  flex:1 1 360px;
+  min-width:0;
+}
 .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy:has(.portal-title-icon) {
   position:relative;
+  box-sizing:border-box;
   display:flex;
   flex-direction:column;
   justify-content:center;
   min-height:54px;
-  padding-left:78px;
+  min-width:0;
+  padding-left:72px;
 }
 .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy .page-title:has(> .portal-title-icon) {
+  position:static !important;
   display:block;
   margin:0 0 4px;
+  min-width:0;
 }
 .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy .page-title > .portal-title-icon {
-  position:absolute;
-  left:0;
+  position:absolute !important;
   top:50%;
+  left:0;
   transform:translateY(-50%);
   margin:0;
 }
 .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy .page-sub {
   margin:0;
 }
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) {
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > .page-header-actions {
+  flex:0 1 auto;
+  min-width:0;
+  width:auto;
+  margin-left:auto;
+}
+@media(max-width:900px) {
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) {
+    flex-wrap:wrap;
+  }
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > .page-header-actions {
+    margin-left:0;
+    flex-wrap:wrap;
+  }
+}
 @media(max-width:600px) {
-  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child:has(> .page-title:not(:has(> i))),
+  .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) > div:first-child:has(> .page-title),
   .admin-shell .admin-main .admin-page > .page-header:not(.dash-welcome) .portal-header-copy:has(.portal-title-icon) {
     min-height:44px;
-    padding-left:54px;
+    padding-left:56px;
   }
 }
