@@ -1719,3 +1719,15 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
   .badge-publicado,.badge-borrador,.badge-modificado,.classic-status,
   .btn-save,.btn-add,.btn-danger
 ) { /* Conservar colores semánticos y de las paletas. */ }
+
+/* Neutralizar degradados claros incrustados en cabeceras de cada módulo. */
+.admin-shell[data-modo="oscuro"] .admin-main .page-header {
+  background:linear-gradient(115deg,var(--adm-brand-soft),var(--adm-surface) 70%);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .panel-solicitudes .bandeja,
+.admin-shell[data-modo="oscuro"] .admin-main .stat-strip li {
+  background:var(--adm-surface);
+}
+.admin-shell[data-modo="oscuro"] .admin-main .stat-strip li:hover {
+  background:var(--adm-brand-soft);
+}
