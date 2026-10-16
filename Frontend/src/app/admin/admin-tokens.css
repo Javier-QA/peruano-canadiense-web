@@ -23,3 +23,32 @@
   --adm-radius: 14px;
   --adm-shadow: 0 3px 18px rgba(28, 44, 68, 0.055);
 }
+
+/* Temas elegidos desde Mi cuenta. Sólo afectan al panel administrativo. */
+.admin-shell[data-paleta="rojo"] {
+  --inst-primary: #b91c2b;
+  --inst-hover: #991827;
+  --inst-soft: #fce9ec;
+  --inst-border: #f0d7da;
+  --inst-contrast: #ffffff;
+  --inst-sidebar-top: #292d3b;
+  --inst-sidebar-bottom: #191e2b;
+}
+.admin-shell[data-paleta="azul"] {
+  --inst-primary: #24476b;
+  --inst-hover: #183550;
+  --inst-soft: #eaf1f8;
+  --inst-border: #cadce9;
+  --inst-contrast: #ffffff;
+  --inst-sidebar-top: #233f5a;
+  --inst-sidebar-bottom: #14293e;
+}
+.admin-shell[data-paleta="dorado"] {
+  --inst-primary: #91630d;
+  --inst-hover: #714b09;
+  --inst-soft: #fff4dc;
+  --inst-border: #e9d5a7;
+  --inst-contrast: #ffffff;
+  --inst-sidebar-top: #292d3b;
+  --inst-sidebar-bottom: #191e2b;
+}
