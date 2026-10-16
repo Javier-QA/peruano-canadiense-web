@@ -30,13 +30,25 @@ const nuevoBorrador = (zona: MenuZona): Borrador => ({
   imports: [DialogComponent],
   templateUrl: './menu.html',
   styles: `
-    .menu-order-heading { width: 180px; text-align: center; }
-    .menu-order-cell { width: 180px; white-space: nowrap; }
-    .menu-order-controls { display: flex; align-items: center; justify-content: center; gap: 6px; }
-    .menu-order-number { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 36px; flex: 0 0 28px; font-weight: 700; color: #475569; font-variant-numeric: tabular-nums; }
-    .menu-order-controls .btn-icon { flex: 0 0 auto; margin: 0; }
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    /* Columna Orden compacta: número destacado y controles discretos. */
+    .menu-order-heading,
+    .menu-order-cell { width: 148px; min-width: 148px; max-width: 148px; }
+    .menu-order-heading { text-align: center; }
+    .menu-order-cell { padding-inline: 10px !important; white-space: nowrap; }
+    .menu-order-controls { display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%; }
+    .menu-order-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; flex: 0 0 30px;
+      border-radius: 9px; background: #fff2e9; color: #c6530c;
+      font-size: .85rem; font-weight: 750; font-variant-numeric: tabular-nums;
+    }
+    .menu-order-controls .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; min-width: 34px; padding: 0;
+      flex: 0 0 34px; margin: 0;
+    }
+    .menu-order-controls .btn-icon:disabled { opacity: .35; cursor: not-allowed; }
+  `,  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminMenu {
   private readonly api = inject(PortalApi);
