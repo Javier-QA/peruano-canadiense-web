@@ -182,3 +182,22 @@
  .gestion-grid { grid-template-columns:1fr; }
 }
 @media(prefers-reduced-motion:reduce) { .gestion-card { transition:none; } .gestion-card:hover { transform:none; } }
+
+
+/* Inicio: bloque institucional más compacto y fácil de recorrer */
+.gestion-section { padding: clamp(26px,3.2vw,42px); margin-bottom: 32px; border:1px solid #dce5f0; border-radius:18px; box-shadow:0 8px 28px rgba(16,54,94,.045); }
+.section-title { font-size:clamp(1.55rem,2.2vw,2rem); margin-bottom:25px; color:#153d68; }
+.gestion-heading { margin: 24px 0 13px; font-size:1.02rem; font-weight:700; color:#153d68; }
+.gestion-grid--featured { grid-template-columns:repeat(4,minmax(0,1fr)); gap:15px; margin-bottom:24px; }
+.gestion-card { display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; min-height:168px; padding:22px 14px; border:1px solid #e1e8f1; border-radius:14px; background:#fdfefe; box-shadow:none; }
+.gestion-card i { font-size:29px; margin-bottom:12px; color:#ff6600; }
+.gestion-card-title { margin-bottom:6px; font-size:1rem; font-weight:700; color:#153d68; }
+.gestion-card p { font-size:.83rem; line-height:1.45; color:#66758a; }
+.gestion-card:hover { transform:translateY(-3px); border-color:#ff9a55; box-shadow:0 8px 20px rgba(16,54,94,.09); }
+.gestion-list { grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-bottom:18px; }
+.gestion-link { min-width:0; min-height:48px; padding:11px 13px; border:1px solid #dfe7f1; border-radius:9px; font-size:.86rem; line-height:1.4; background:#fff; }
+.gestion-link i { flex-shrink:0; color:#153d68; }
+.gestion-link:hover { border-color:#ff9a55; background:#fff8f3; }
+@media(max-width:1000px) { .gestion-grid--featured,.gestion-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .gestion-section { padding:24px 17px; } .section-title { margin-bottom:18px; } .gestion-grid--featured { gap:10px; } .gestion-card { min-height:150px; padding:16px 10px; } .gestion-card p { display:block; } .gestion-list { grid-template-columns:1fr; } .gestion-heading { margin-top:22px; } }
+@media(max-width:360px) { .gestion-grid--featured { grid-template-columns:1fr; } }
