@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 
         <!-- Dialog Box -->
         <div
-          class="relative z-50 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl dialog-surface p-6 shadow-2xl transition-all duration-300 animate-in zoom-in-95 border dialog-border"
+          class="relative z-50 w-full max-w-2xl max-h-[90vh] rounded-2xl dialog-surface p-6 shadow-2xl transition-all duration-300 animate-in zoom-in-95 border dialog-border"
           [class.confirm-dialog]="effectiveVariant !== 'default'"
           [class.confirm-danger]="effectiveVariant === 'danger' || effectiveVariant === 'logout'"
           [class.confirm-warning]="effectiveVariant === 'warning'"
@@ -57,6 +57,28 @@ import { CommonModule } from '@angular/common';
   `,
   styles: `
     .dialog-surface { background:var(--adm-surface,#fff); color:var(--adm-ink,#292d3b); border-color:var(--adm-line,#e2e8f0); }
+    .dialog-surface {
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      min-height:0;
+      box-shadow:0 20px 60px rgba(17,29,48,.18);
+    }
+    .dialog-surface > .dialog-content {
+      flex:1 1 auto;
+      min-height:0;
+      overflow-y:auto;
+      overflow-x:hidden;
+      scrollbar-width:thin;
+      padding-right:3px;
+    }
+    .dialog-surface > .dialog-content :is(p,a,span) { overflow-wrap:anywhere; }
+    .dialog-surface > .dialog-content .save-bar { position:static; }
+    .dialog-surface > .dialog-content .form-grid { min-width:0; }
+    @media(max-width:600px) {
+      .dialog-surface { padding:16px; max-height:94vh; }
+    }
+
     .dialog-border { border-color:var(--adm-line,#e2e8f0); }
     .dialog-title { color:var(--adm-ink,#292d3b); }
     .dialog-content { color:var(--adm-muted,#526174); }
