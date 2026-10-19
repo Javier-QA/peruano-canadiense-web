@@ -185,12 +185,22 @@ const MONTOS: { key: keyof InstitutionFees; label: string }[] = [
     }
 
     .cuenta-head strong {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
       font-size: 0.92rem;
     }
 
     .btn-quitar {
       all: unset;
       box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      gap: 6px;
+      white-space: nowrap;
+      padding: 7px 4px;
       cursor: pointer;
       color: var(--adm-danger, #b42318);
       font-size: 0.8rem;
