@@ -118,6 +118,41 @@ export interface ColumnaBandeja {
       .tramite-resumen-icono { flex-basis:42px; width:42px; height:42px; }
       .save-bar > button { flex:1 1 auto; }
     }
+    /* Detalles más compactos y barra de acciones accesible al desplazarse. */
+    .tramite-resumen { padding:14px 17px; margin-bottom:16px; }
+    .tramite-seccion-titulo {
+      margin:16px 0 10px; padding-bottom:9px;
+      border-bottom:1px solid var(--adm-line);
+    }
+    .tramite-detalle-grid { gap:10px; }
+    .tramite-detalle-grid > .tramite-dato {
+      padding:12px 14px; gap:6px;
+      background:color-mix(in srgb,var(--adm-brand) 2%,var(--adm-surface));
+    }
+    .tramite-detalle-grid > .tramite-dato label { font-size:.81rem; gap:8px; }
+    .tramite-dato-icono {
+      display:inline-grid; place-items:center;
+      flex:0 0 27px; width:27px; height:27px;
+      border-radius:8px;
+      background:color-mix(in srgb,var(--adm-brand) 10%,var(--adm-surface));
+      color:var(--adm-brand);
+    }
+    .tramite-detalle-grid > .tramite-dato p { padding-left:35px; font-size:.9rem; color:var(--adm-ink); }
+    .tramite-detalle-grid > .tramite-dato :is(a,button) { margin-left:35px; }
+    .tramite-gestion-grid > .form-row { margin:0; }
+    .save-bar {
+      position:sticky !important;
+      bottom:-8px;
+      z-index:3;
+      margin:18px -3px -8px;
+      padding:12px 3px 8px;
+      background:var(--adm-surface);
+      box-shadow:0 -8px 18px -15px rgba(0,0,0,.24);
+    }
+    @media(max-width:600px) {
+      .tramite-detalle-grid > .tramite-dato p { padding-left:0; }
+      .tramite-detalle-grid > .tramite-dato :is(a,button) { margin-left:0; }
+    }
     @media (max-width: 720px) {
       .page-header { padding: 18px; }
       .admin-tabs { max-width: 100%; }
