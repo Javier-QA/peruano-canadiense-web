@@ -86,3 +86,12 @@
 .carousel-item img { max-width:82%; max-height:70%; object-fit:contain; }
 .carousel-item:hover { transform:translateY(-2px); border-color:#a7c1dd; box-shadow:0 8px 22px rgba(16,54,94,.09); }
 @media(max-width:480px) { .carousel-item { min-width:170px; height:92px; } }
+
+
+/* Carrusel de aliados con mayor presencia visual */
+.carousel { margin:4px auto 24px; }
+.carousel-track { gap:18px; padding:15px 4px 24px; }
+.carousel-item { min-width:245px; height:126px; border:1px solid #e0e8f2; border-radius:16px; background:#fff; box-shadow:0 10px 26px rgba(17,52,92,.07); }
+.carousel-item img { max-width:84%; max-height:75%; }
+.carousel-item:hover { border-color:#a6c2df; box-shadow:0 14px 28px rgba(17,52,92,.12); }
+@media(max-width:480px) { .carousel-item { min-width:180px; height:105px; } }
