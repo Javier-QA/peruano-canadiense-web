@@ -51,8 +51,8 @@ export interface ColumnaBandeja {
     .admin-table td:last-child { white-space: nowrap; }
     .admin-table tbody tr:hover { background: color-mix(in srgb, var(--adm-brand-soft) 35%, white); }
 
-    .admin-table .btn-icon { border: 1px solid var(--adm-line); background: #fff; }
-    .admin-table .btn-icon:hover { border-color: var(--adm-brand); color: var(--adm-brand); }
+    .admin-table .btn-icon { border: 1px solid var(--adm-line); background: var(--adm-surface); color: var(--adm-ink); }
+    .admin-table .btn-icon:hover { border-color: var(--adm-brand); background:var(--adm-muted-bg); color: var(--adm-brand); }
     .empty-state { padding: 36px 24px; }
     /* Detalle de trámite: bloques legibles, iconos y acciones sin solaparse. */
     .tramite-resumen {
