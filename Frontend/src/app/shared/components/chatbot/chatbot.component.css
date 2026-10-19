@@ -387,3 +387,22 @@
     font-size: 1.2rem;
   }
 }
+
+
+/* Acceso al asistente con el mismo lenguaje visual del botón WhatsApp */
+.chat-fab {
+  bottom: 106px;
+  right: 26px;
+  width: 64px;
+  height: 64px;
+  background: #164e83;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(22,78,131,.15), 0 0 0 12px rgba(22,78,131,.075), 0 0 22px 13px rgba(22,78,131,.1);
+  font-size: 1.55rem;
+}
+.chat-fab:hover { transform: translateY(-3px); background:#164e83; box-shadow:0 0 0 1px rgba(22,78,131,.2),0 0 0 12px rgba(22,78,131,.09),0 0 22px 13px rgba(22,78,131,.12); }
+.chat-fab--open { background:#164e83; }
+.chat-fab__badge { width:19px; height:19px; top:-3px; right:-3px; font-size:.72rem; color:#164e83; }
+@media(max-width:600px) { .chat-fab { right:20px; bottom:92px; width:56px; height:56px; } }
+@media(prefers-reduced-motion:reduce) { .chat-fab { transition:none; } .chat-fab:hover { transform:none; } }
