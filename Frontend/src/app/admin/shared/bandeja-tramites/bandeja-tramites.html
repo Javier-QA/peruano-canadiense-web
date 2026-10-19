@@ -102,23 +102,30 @@
   (openChange)="abierto.set($event ? abierto() : null)"
 >
   @if (abierto(); as tramite) {
-    <p class="page-title">{{ tramite.codigo }}</p>
-    <p class="form-hint">Recibido el {{ fecha(tramite.submittedAt) }}</p>
+    <div class="tramite-resumen">
+      <span class="tramite-resumen-icono" aria-hidden="true"><i class="fa-solid fa-file-circle-check"></i></span>
+      <div class="tramite-resumen-texto">
+        <span class="tramite-resumen-etiqueta">Código de solicitud</span>
+        <strong class="tramite-codigo">{{ tramite.codigo }}</strong>
+        <span class="tramite-fecha"><i class="fa-regular fa-calendar" aria-hidden="true"></i> Recibido el {{ fecha(tramite.submittedAt) }}</span>
+      </div>
+    </div>
 
-    <div class="form-grid">
+    <div class="tramite-seccion-titulo"><i class="fa-solid fa-address-card" aria-hidden="true"></i> Información de la solicitud</div>
+    <div class="form-grid tramite-detalle-grid">
       @for (campo of detalle(); track campo.campo) {
         <div
-          class="form-row"
+          class="form-row tramite-dato"
           [class.span-2]="campo.campo === 'mensaje' || campo.campo === 'detalleReclamo'"
         >
-          <label>{{ campo.label }}</label>
+          <label><i class="fa-solid" [class]="iconoDetalle(campo.campo, campo.label)" aria-hidden="true"></i> {{ campo.label }}</label>
           @if (esArchivoDelApi(valor(tramite, campo.campo))) {
             <button
               type="button"
               class="btn-ghost"
               (click)="abrirAdjunto(valor(tramite, campo.campo))"
             >
-              Abrir adjunto
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Abrir adjunto
             </button>
           } @else if (esEnlace(valor(tramite, campo.campo))) {
             <a
@@ -127,7 +134,7 @@
               target="_blank"
               rel="noopener"
             >
-              Abrir
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Abrir enlace
             </a>
           } @else {
             <p>{{ valor(tramite, campo.campo) }}</p>
@@ -137,7 +144,8 @@
     </div>
 
     @if (!soloLectura() && guardar()) {
-      <div class="form-grid">
+      <div class="tramite-seccion-titulo"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Gestión de la solicitud</div>
+      <div class="form-grid tramite-gestion-grid">
         <div class="form-row">
           <label>Estado</label>
           <select [value]="estadoEditado()" (change)="estadoEditado.set($any($event.target).value)">
