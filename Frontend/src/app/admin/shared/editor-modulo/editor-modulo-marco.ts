@@ -104,16 +104,23 @@ export interface MarcoTab {
 
     <app-dialog
       [open]="!!editor().confirmacion()"
-      [title]="editor().confirmacion()?.titulo ?? ''"
+      [title]="''"
       (openChange)="$event || editor().cancelarConfirmacion()"
     >
-      <p>{{ editor().confirmacion()?.detalle }}</p>
-      <div dialog-footer>
+      <div class="confirmacion-contenido">
+        <span class="confirmacion-icono" aria-hidden="true"><i class="fa fa-trash-can"></i></span>
+        <h3 class="confirmacion-titulo">¿{{ editor().confirmacion()?.titulo }}?</h3>
+        <p class="confirmacion-detalle">{{ editor().confirmacion()?.detalle }}</p>
+        @if (editor().confirmacion()?.titulo === 'Quitar cuenta institucional') {
+          <p class="confirmacion-nota">Esta acción no elimina la cuenta bancaria.</p>
+        }
+      </div>
+      <div dialog-footer class="confirmacion-acciones">
         <button type="button" class="btn-cancel" (click)="editor().cancelarConfirmacion()">
           Cancelar
         </button>
         <button type="button" class="btn-danger" (click)="editor().ejecutarConfirmacion()">
-          Sí, eliminar
+          {{ editor().confirmacion()?.titulo === 'Quitar cuenta institucional' ? 'Sí, quitar' : 'Sí, eliminar' }}
         </button>
       </div>
     </app-dialog>
@@ -158,6 +165,13 @@ export interface MarcoTab {
       font-size: 0.8rem;
     }
 
+    .confirmacion-contenido { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 0 8px 6px; }
+    .confirmacion-icono { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #fef2f2; color: #dc2626; font-size: 24px; }
+    .confirmacion-titulo { margin: 0; font-size: 1.25rem; line-height: 1.4; font-weight: 750; color: #172334; }
+    .confirmacion-detalle { margin: 0; font-size: 0.95rem; line-height: 1.65; color: #60718a; }
+    .confirmacion-nota { margin: 0; font-size: 0.8rem; color: #8490a0; }
+    .confirmacion-acciones { display: flex; width: 100%; gap: 12px; }
+    .confirmacion-acciones button { flex: 1 1 0; min-width: 0; min-height: 44px; border-radius: 10px; }
     @media (max-width: 620px) {
       .marco-lienzo {
         padding: 16px;
