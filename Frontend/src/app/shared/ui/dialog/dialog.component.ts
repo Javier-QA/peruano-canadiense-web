@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, A11yModule],
   template: `
     @if (open) {
       <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -23,6 +24,9 @@ import { CommonModule } from '@angular/common';
           [class.confirm-warning]="effectiveVariant === 'warning'"
           [class.confirm-success]="effectiveVariant === 'success'"
           role="dialog"
+          cdkTrapFocus
+          [cdkTrapFocusAutoCapture]="true"
+          (keydown.escape)="onEscape($event)"
           aria-modal="true"
           [attr.aria-label]="title"
         >
@@ -41,6 +45,7 @@ import { CommonModule } from '@angular/common';
             <button
               type="button"
               (click)="onClose()"
+              [disabled]="disableClose"
               class="rounded-lg p-1.5 dialog-close transition-colors"
               aria-label="Cerrar modal"
             >
@@ -156,6 +161,7 @@ export class DialogComponent {
   @Input() title = '';
   @Input() showFooter = true;
   @Input() wide = false;
+  @Input() disableClose = false;
   get headingIcon(): string {
     const t=this.title.toLocaleLowerCase('es');
     if (/solicitud|trámite|expediente/.test(t)) return 'fa-file-circle-check';
@@ -179,7 +185,13 @@ export class DialogComponent {
 
   @Output() openChange = new EventEmitter<boolean>();
 
+  onEscape(event: Event): void {
+    event.stopPropagation();
+    if (!this.disableClose) this.onClose();
+  }
+
   onClose() {
+    if (this.disableClose) return;
     this.open = false;
     this.openChange.emit(false);
   }
