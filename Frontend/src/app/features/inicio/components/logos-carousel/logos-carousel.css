@@ -77,3 +77,12 @@
 .carousel-item img { max-width:82%; max-height:72%; object-fit:contain; }
 @media(max-width:480px) { .carousel-item { min-width:170px; height:98px; } }
 @media(prefers-reduced-motion:reduce) { .carousel-item { transition:none; } .carousel-item:hover { transform:none; } }
+
+
+/* Instituciones aliadas: franja de logotipos limpia */
+.carousel { max-width:100%; margin-bottom:12px; }
+.carousel-track { gap:16px; padding:12px 3px 18px; }
+.carousel-item { min-width:225px; height:110px; border:1px solid #dfe7f1; border-radius:13px; background:#fff; box-shadow:0 5px 17px rgba(16,54,94,.045); }
+.carousel-item img { max-width:82%; max-height:70%; object-fit:contain; }
+.carousel-item:hover { transform:translateY(-2px); border-color:#a7c1dd; box-shadow:0 8px 22px rgba(16,54,94,.09); }
+@media(max-width:480px) { .carousel-item { min-width:170px; height:92px; } }
