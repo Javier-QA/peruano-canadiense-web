@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
         <div
           class="relative z-50 w-full max-w-2xl max-h-[90vh] rounded-2xl dialog-surface p-6 shadow-2xl transition-all duration-300 animate-in zoom-in-95 border dialog-border"
           [class.confirm-dialog]="effectiveVariant !== 'default'"
+          [class.dialog-wide]="wide && effectiveVariant === 'default'"
           [class.confirm-danger]="effectiveVariant === 'danger' || effectiveVariant === 'logout'"
           [class.confirm-warning]="effectiveVariant === 'warning'"
           [class.confirm-success]="effectiveVariant === 'success'"
@@ -31,7 +32,12 @@ import { CommonModule } from '@angular/common';
             </div>
           }
           <div class="flex items-center justify-between pb-4 mb-4 border-b dialog-border" [class.confirm-heading]="effectiveVariant !== 'default'">
-            <h3 class="text-lg font-bold dialog-title">{{ title }}</h3>
+            <h3 class="text-lg font-bold dialog-title">
+              @if (effectiveVariant === 'default') {
+                <span class="dialog-heading-icon" aria-hidden="true"><i class="fa-solid" [class]="headingIcon"></i></span>
+              }
+              <span>{{ title }}</span>
+            </h3>
             <button
               type="button"
               (click)="onClose()"
@@ -79,6 +85,24 @@ import { CommonModule } from '@angular/common';
       .dialog-surface { padding:16px; max-height:94vh; }
     }
 
+    /* Cabecera y contenido coherentes en los diálogos administrativos. */
+    .dialog-wide { max-width:min(960px,calc(100vw - 32px)); }
+    .dialog-title { display:flex; align-items:center; gap:12px; min-width:0; }
+    .dialog-heading-icon {
+      display:inline-flex; align-items:center; justify-content:center;
+      flex:0 0 42px; width:42px; height:42px;
+      border:1px solid color-mix(in srgb,var(--adm-brand,#218fca) 35%,var(--adm-line,#e2e8f0));
+      border-radius:12px;
+      background:color-mix(in srgb,var(--adm-brand,#218fca) 9%,var(--adm-surface,#fff));
+      color:var(--adm-brand,#218fca); font-size:1rem;
+    }
+    .dialog-surface > .dialog-content { scrollbar-color:var(--adm-line,#cbd5e1) transparent; }
+    .dialog-surface > .dialog-content :is(a,button) { overflow-wrap:normal; }
+    .dialog-close { flex:0 0 auto; width:34px; height:34px; display:grid; place-items:center; }
+    @media(max-width:600px) {
+      .dialog-heading-icon { flex-basis:38px; width:38px; height:38px; }
+      .dialog-title { gap:9px; }
+    }
     .dialog-border { border-color:var(--adm-line,#e2e8f0); }
     .dialog-title { color:var(--adm-ink,#292d3b); }
     .dialog-content { color:var(--adm-muted,#526174); }
@@ -131,6 +155,17 @@ export class DialogComponent {
   @Input() open = false;
   @Input() title = '';
   @Input() showFooter = true;
+  @Input() wide = false;
+  get headingIcon(): string {
+    const t=this.title.toLocaleLowerCase('es');
+    if (/solicitud|trámite|expediente/.test(t)) return 'fa-file-circle-check';
+    if (/usuario|cuenta|perfil/.test(t)) return 'fa-user-gear';
+    if (/documento|archivo/.test(t)) return 'fa-file-lines';
+    if (/noticia|comunicado/.test(t)) return 'fa-newspaper';
+    if (/imagen|galería|foto/.test(t)) return 'fa-images';
+    if (/programa|estudio/.test(t)) return 'fa-graduation-cap';
+    return 'fa-pen-to-square';
+  }
   @Input() variant: 'default' | 'danger' | 'warning' | 'success' | 'logout' = 'default';
   /** Confirmaciones antiguas sin variante explícita conservan el estilo moderno. */
   get effectiveVariant(): 'default' | 'danger' | 'warning' | 'success' | 'logout' {
