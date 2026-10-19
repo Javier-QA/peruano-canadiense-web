@@ -203,3 +203,19 @@
 .stat-label { font-size:.79rem; }
 @media(max-width:900px) { .stats-grid { grid-template-columns:repeat(3,minmax(0,1fr)); row-gap:18px; } .stat-item:nth-child(3) { border-right:0; } }
 @media(max-width:600px) { .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .stat-item { min-height:115px; padding:12px 9px; } .stat-item:nth-child(3) { border-right:1px solid rgba(255,255,255,.22); } .stat-item:nth-child(even) { border-right:0; } .stat-item:last-child { grid-column:1/-1; border-right:0; } }
+
+
+/* Estadísticas claras: elimina el bloque azul visible bajo la portada */
+.stat-bar { background:#fff; color:#153d68; padding:38px 24px 44px; box-shadow:none; border-bottom:1px solid #e5ebf3; }
+.stat-period { margin-bottom:26px; }
+.period-badge { color:#d85c00; background:transparent; border:0; }
+.stat-heading { color:#153d68; }
+.stats-grid { gap:0; }
+.stat-item { background:transparent; border:0; border-right:1px solid #dce5ef; border-radius:0; }
+.stat-item:last-child { border-right:0; }
+.stat-item:hover { background:#f4f7fb; border-color:#dce5ef; }
+.stat-icon { color:#e96500; }
+.stat-number { color:#153d68; }
+.stat-label { color:#52657b; }
+@media(max-width:900px) { .stat-item:nth-child(3) { border-right:0; } }
+@media(max-width:600px) { .stat-bar { padding:28px 16px 32px; } .stat-item:nth-child(3) { border-right:1px solid #dce5ef; } .stat-item:nth-child(even) { border-right:0; } .stat-item:last-child { border-right:0; } }
