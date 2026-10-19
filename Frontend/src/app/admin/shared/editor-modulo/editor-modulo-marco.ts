@@ -119,7 +119,7 @@ export interface MarcoTab {
         <h3 class="confirmacion-titulo">¿{{ editor().confirmacion()?.titulo }}?</h3>
         <p class="confirmacion-detalle">{{ editor().confirmacion()?.detalle }}</p>
         @if (editor().confirmacion()?.titulo === 'Quitar cuenta institucional') {
-          <p class="confirmacion-nota">Esta acción no elimina la cuenta bancaria.</p>
+          <p class="confirmacion-nota">La cuenta dejará de mostrarse en el portal institucional al guardar los cambios.</p>
         }
       </div>
       <div dialog-footer class="confirmacion-acciones">
