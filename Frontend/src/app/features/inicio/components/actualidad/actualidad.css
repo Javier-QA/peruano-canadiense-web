@@ -388,3 +388,30 @@
 .panel__cta { padding-top:20px; }
 @media(max-width:900px) { .top-grid { grid-template-columns:1fr; } }
 @media(max-width:600px) { .panel { padding:18px; } .panel__head { gap:8px; } .feat__media { max-height:210px; } }
+
+
+/* Noticias y comunicados: presentación editorial moderna */
+.top-grid { grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:26px; margin-bottom:46px; }
+.panel { padding:30px; border:1px solid #dfe8f2; border-radius:20px; box-shadow:0 14px 36px rgba(17,52,92,.065); background:#fff; }
+.panel__head { position:relative; padding-bottom:18px; margin-bottom:22px; border-bottom:1px solid #e8edf4; }
+.panel__head h2 { position:relative; padding-left:17px; font-size:clamp(1.35rem,2vw,1.75rem); letter-spacing:-.035em; }
+.panel__head h2::before { content:""; position:absolute; left:0; top:3px; bottom:3px; width:5px; border-radius:4px; background:#ff6600; }
+.panel__link { font-size:.88rem; font-weight:700; }
+.feat { gap:10px; }
+.feat__media { aspect-ratio:16/9; max-height:320px; border-radius:13px; margin-bottom:7px; }
+.feat__tag { top:13px; left:13px; padding:7px 12px; background:#153d68; font-size:.72rem; }
+.feat__title { font-size:clamp(1.05rem,1.45vw,1.22rem); font-weight:750; line-height:1.4; }
+.feat__excerpt { font-size:.91rem; line-height:1.65; }
+.feat__date { font-size:.78rem; }
+.feat--com { padding:21px; border:1px solid #f4c7a9; border-left:4px solid #ff6600; border-radius:13px; background:#fffaf6; }
+.feat__badge { padding:6px 11px; font-size:.73rem; }
+.rows { margin-top:22px; padding-top:10px; }
+.row { padding:14px 8px; border-bottom:1px solid #edf1f6; }
+.row:last-child { border-bottom:0; }
+.row__thumb { width:48px; height:48px; }
+.row:not(:has(.row__dot)) { grid-template-columns:48px 1fr auto; }
+.row__text strong { font-size:.9rem; }
+.panel__cta { align-self:center; padding:12px 20px; margin-top:auto; border-radius:999px; background:#eef5fc; color:#153d68; font-weight:750; text-decoration:none; }
+.panel__cta:hover { background:#153d68; color:#fff; text-decoration:none; }
+@media(max-width:900px) { .top-grid { grid-template-columns:1fr; gap:20px; } }
+@media(max-width:600px) { .panel { padding:21px 17px; } .panel__head h2 { font-size:1.3rem; } .feat__media { max-height:240px; } }
