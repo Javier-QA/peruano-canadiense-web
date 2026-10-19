@@ -138,3 +138,14 @@
 .servicio-card__label i { display:grid; place-items:center; width:35px; height:35px; border-radius:50%; background:#fff0e6; color:#ff6600; }
 .servicio-card:hover { border-color:#ffb27f; box-shadow:0 18px 40px rgba(17,52,92,.14); }
 @media(max-width:620px) { .servicios-grid { grid-template-columns:1fr; gap:18px; } .servicio-card__label { min-height:65px; padding:17px 19px; } }
+
+/* Presentación académica de programas y actividades */
+.servicios-section { padding:28px 0 10px; }
+.servicios-intro { margin-bottom:27px; }
+.servicios-intro .section-eyebrow { display:inline-flex; align-items:center; gap:9px; margin-bottom:13px; font-size:.74rem; letter-spacing:.12em; font-weight:800; color:#e75e00; }
+.servicios-intro h2 { padding-left:0; margin-bottom:10px; font-size:clamp(1.8rem,2.8vw,2.3rem); line-height:1.2; }
+.servicios-intro h2::before { display:none; }
+.servicios-intro p { max-width:720px; font-size:.98rem; line-height:1.7; color:#596b80; }
+.servicio-card { border-radius:18px; }
+.servicio-card__media { aspect-ratio:16/10; }
+.servicio-card__label { font-size:1.12rem; }
