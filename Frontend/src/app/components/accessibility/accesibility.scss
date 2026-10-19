@@ -534,3 +534,14 @@ body.ae-highlight-links .accessibility-panel button {
   background-color: initial;
 }
 
+
+/* Botón de accesibilidad con símbolo universal, como la referencia */
+.accessibility-toggle {
+  background: #06466f;
+  color: #fff;
+  border: 3px double #fff;
+  box-shadow: 0 0 0 2px #06466f, 0 4px 12px rgba(0, 36, 70, .18);
+}
+.accessibility-toggle svg { width: 29px; height: 29px; }
+.accessibility-toggle:hover { background: #0b5b8d; color: #fff; }
+.accessibility-toggle.active { background: #ff6600; color: #fff; border-color: #fff; }
