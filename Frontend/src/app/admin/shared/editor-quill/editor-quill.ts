@@ -46,6 +46,44 @@ const BARRA = [
     :host ::ng-deep .ql-toolbar .ql-fill { fill: var(--adm-ink-soft); }
     :host ::ng-deep .ql-editor.ql-blank::before { color: var(--adm-muted); }
     :host ::ng-deep .ql-editor:focus-visible { outline: 2px solid var(--adm-brand); outline-offset: -2px; }
+    /* Editor enriquecido: barra compacta, botones claros y área legible. */
+    :host ::ng-deep .ql-toolbar.ql-snow {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:4px;
+      padding:10px 12px;
+      background:color-mix(in srgb,var(--adm-brand) 3%,var(--adm-bg));
+      border-radius:12px 12px 0 0;
+    }
+    :host ::ng-deep .ql-toolbar.ql-snow .ql-formats {
+      display:inline-flex;
+      align-items:center;
+      gap:3px;
+      margin-right:10px;
+    }
+    :host ::ng-deep .ql-toolbar.ql-snow button,
+    :host ::ng-deep .ql-toolbar.ql-snow .ql-picker-label {
+      border-radius:7px;
+    }
+    :host ::ng-deep .ql-toolbar.ql-snow button:hover,
+    :host ::ng-deep .ql-toolbar.ql-snow button.ql-active {
+      background:color-mix(in srgb,var(--adm-brand) 12%,var(--adm-surface));
+    }
+    :host ::ng-deep .ql-container.ql-snow {
+      border-radius:0 0 12px 12px;
+      background:var(--adm-surface);
+    }
+    :host ::ng-deep .ql-editor {
+      min-height:130px;
+      padding:18px 20px;
+      font-size:.95rem;
+    }
+    @media(max-width:600px) {
+      :host ::ng-deep .ql-toolbar.ql-snow { padding:8px; }
+      :host ::ng-deep .ql-editor { padding:14px; }
+    }
+
 
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
