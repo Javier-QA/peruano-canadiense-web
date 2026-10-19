@@ -1,4 +1,3 @@
-import { AppSrc } from '../../../../core/directives/app-src';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import { ContenidoStore } from '../../../../core/store/contenido.store';
 @Component({
   selector: 'app-inicio-logos-carousel',
   standalone: true,
-  imports: [AppSrc],
+  imports: [],
   templateUrl: './logos-carousel.html',
   styleUrl: './logos-carousel.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,6 +27,44 @@ export class LogosCarousel {
   private readonly track = viewChild<ElementRef<HTMLElement>>('track');
 
   readonly items = computed(() => this.contenido.inicio.value().logos);
+
+  // Los logotipos institucionales se sirven desde assets locales del portal.
+  // Evita referencias obsoletas del contenido almacenado sin alterar los enlaces.
+  logoSrc(image: string, alt: string): string {
+    const known: Record<string, string> = {
+      'Ministerio de Educación': 'logo_minedu.png',
+      'DIFOID — Educación Superior Pedagógica': 'logo_difoid.png',
+      'Sistema de Información Académica': 'logo_sia.png',
+      'Biblioteca Nacional del Perú': 'logo_bnp.png',
+      'PerúEduca': 'logo perueduca.jpg',
+      'Microsoft 365': 'logo_M365.png',
+    };
+    const filename = known[alt];
+    return filename ? '/assets/' + encodeURIComponent(filename) : image;
+  }
+
+  onLogoError(event: Event, alt: string): void {
+    const img = event.target as HTMLImageElement;
+    if (img.dataset['fallbackTried'] === 'true') {
+      img.style.display = 'none';
+      return;
+    }
+    img.dataset['fallbackTried'] = 'true';
+    const known: Record<string, string> = {
+      'Ministerio de Educación': 'logo_minedu.png',
+      'DIFOID — Educación Superior Pedagógica': 'logo_difoid.png',
+      'Sistema de Información Académica': 'logo_sia.png',
+      'Biblioteca Nacional del Perú': 'logo_bnp.png',
+      'PerúEduca': 'logo perueduca.jpg',
+      'Microsoft 365': 'logo_M365.png',
+    };
+    const filename = known[alt];
+    if (filename) {
+      img.src = '/images/pcanadiense/' + encodeURIComponent(filename);
+    } else {
+      img.style.display = 'none';
+    }
+  }
 
   private animationId: number | null = null;
   private isPaused = false;
