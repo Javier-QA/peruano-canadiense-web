@@ -299,6 +299,20 @@ export class BandejaTramites {
     }
   }
 
+  /** Evita cerrar el expediente mientras se está guardando. */
+  cerrarDetalle(open: boolean): void {
+    if (!open && !this.guardando()) this.abierto.set(null);
+  }
+
+  /** No envía solicitudes al servidor cuando no hay cambios. */
+  hayCambios(): boolean {
+    const tramite = this.abierto();
+    if (!tramite) return false;
+    return this.estadoEditado() !== tramite.estado
+      || this.respuestaEditada().trim() !== (tramite.respuesta ?? '').trim()
+      || (this.notificar() && !!this.correoDe(tramite));
+  }
+
   abrir(tramite: TramiteAdmin): void {
     this.abierto.set(tramite);
     this.estadoEditado.set(tramite.estado);
@@ -393,7 +407,11 @@ export class BandejaTramites {
   async aplicar(): Promise<void> {
     const tramite = this.abierto();
     const guardar = this.guardar();
-    if (!tramite || !guardar || this.guardando()) return;
+    if (!tramite || !guardar || this.guardando() || !this.hayCambios()) return;
+    if (!this.estados().includes(this.estadoEditado())) {
+      this.toast.error('Selecciona un estado válido para la solicitud.');
+      return;
+    }
     this.guardando.set(true);
     try {
       const avisar = this.notificar() && !!this.correoDe(tramite);
@@ -402,8 +420,11 @@ export class BandejaTramites {
         respuesta: this.respuestaEditada().trim() || undefined,
         notificar: avisar,
       });
-      this.items.update((lista) => lista.map((t) => (t.id === actualizado.id ? actualizado : t)));
-      this.abierto.set(null);
+      // Una respuesta tardía no debe cerrar el detalle de otra solicitud.
+      if (this.abierto()?.id === tramite.id) {
+        this.items.update((lista) => lista.map((t) => (t.id === actualizado.id ? actualizado : t)));
+        this.abierto.set(null);
+      }
       // Si se pidió avisar y el correo no salió (SMTP caído), decirlo: el
       // expediente quedó guardado igual, pero nadie avisó al ciudadano.
       if (avisar && !actualizado.notificado) {
