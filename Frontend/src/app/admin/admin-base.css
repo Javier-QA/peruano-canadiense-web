@@ -2098,3 +2098,24 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
     padding-left:56px;
   }
 }
+
+
+/* Formularios administrativos: lenguaje visual coherente sin alterar estructura
+   ni convertir controles de acciones, tablas o filtros en tarjetas. */
+.admin-shell .admin-main .admin-page .form-row:not(:has(.campo-cabecera)) > label {
+  font-weight:750;
+  letter-spacing:-.008em;
+}
+.admin-shell .admin-main .admin-page .form-row :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),select,textarea) {
+  border-radius:11px;
+  border-color:var(--adm-line);
+  background:var(--adm-surface);
+}
+.admin-shell .admin-main .admin-page .form-row :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),select,textarea):focus-visible {
+  border-color:var(--adm-brand);
+  outline:2px solid color-mix(in srgb,var(--adm-brand) 17%,transparent);
+  outline-offset:1px;
+}
+.admin-shell .admin-main .admin-page .form-row:not(:has(.campo-cabecera)) > .form-hint {
+  line-height:1.5;
+}
