@@ -201,3 +201,23 @@
 @media(max-width:1000px) { .gestion-grid--featured,.gestion-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:600px) { .gestion-section { padding:24px 17px; } .section-title { margin-bottom:18px; } .gestion-grid--featured { gap:10px; } .gestion-card { min-height:150px; padding:16px 10px; } .gestion-card p { display:block; } .gestion-list { grid-template-columns:1fr; } .gestion-heading { margin-top:22px; } }
 @media(max-width:360px) { .gestion-grid--featured { grid-template-columns:1fr; } }
+
+
+/* Rediseño editorial: portada de trámites con tarjetas destacadas */
+.gestion-section { position:relative; padding:42px clamp(24px,4vw,56px) 38px; background:#fff; border:1px solid #e0e8f2; border-radius:22px; box-shadow:0 18px 50px rgba(17,52,92,.07); }
+.gestion-section::before { content:""; position:absolute; top:0; left:48px; right:48px; height:4px; border-radius:0 0 6px 6px; background:linear-gradient(90deg,#153d68 0%,#153d68 75%,#ff6600 75%); }
+.section-title { font-size:clamp(1.7rem,2.7vw,2.35rem); letter-spacing:-.045em; margin-bottom:29px; }
+.gestion-heading { display:flex; align-items:center; gap:12px; margin:30px 0 17px; font-size:1.05rem; }
+.gestion-heading::before { content:""; width:5px; height:22px; border-radius:5px; background:#ff6600; flex-shrink:0; }
+.gestion-grid--featured { gap:17px; margin-bottom:30px; }
+.gestion-card { align-items:flex-start; text-align:left; min-height:190px; padding:26px 23px; border:1px solid #e3eaf3; border-radius:16px; background:linear-gradient(180deg,#f9fbfe 0%,#fff 100%); }
+.gestion-card i { display:grid; place-items:center; width:52px; height:52px; margin-bottom:20px; border-radius:14px; background:#fff1e7; color:#ff6600; font-size:1.45rem; }
+.gestion-card-title { font-size:1.06rem; font-weight:750; margin-bottom:8px; }
+.gestion-card p { color:#63748a; font-size:.88rem; line-height:1.5; }
+.gestion-card:hover { border-color:#ffb27f; background:#fff; transform:translateY(-4px); box-shadow:0 14px 28px rgba(16,54,94,.1); }
+.gestion-list { gap:11px; }
+.gestion-link { min-height:54px; padding:12px 16px; border-radius:11px; background:#f8fafc; border-color:#e5ebf3; font-size:.9rem; }
+.gestion-link i { width:24px; color:#1c568b; font-size:1rem; }
+.gestion-link:hover { color:#153d68; border-color:#a9c5df; background:#edf5fd; }
+@media(max-width:1000px) { .gestion-grid--featured,.gestion-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .gestion-section { padding:32px 19px; } .gestion-section::before { left:20px; right:20px; } .gestion-grid--featured { grid-template-columns:1fr; } .gestion-card { min-height:0; padding:22px; } .gestion-card i { margin-bottom:14px; } .gestion-list { grid-template-columns:1fr; } }
