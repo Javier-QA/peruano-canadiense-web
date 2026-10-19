@@ -101,12 +101,12 @@ interface GrupoRender {
     .tarjeta {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      padding: clamp(16px, 2vw, 24px);
+      gap: 14px;
+      padding: clamp(12px, 1.5vw, 18px);
       border: 1px solid var(--adm-line);
-      border-radius: 14px;
-      background: var(--adm-surface);
-      box-shadow: 0 3px 14px rgba(27, 41, 61, .035);
+      border-radius: 15px;
+      background: color-mix(in srgb, var(--adm-brand) 3%, var(--adm-bg));
+      box-shadow: none;
       min-width: 0;
     }
 
