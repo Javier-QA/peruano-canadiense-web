@@ -18,3 +18,8 @@
 .container { max-width:1280px; }
 @media(max-width:768px) { .main-content { padding:34px 18px 48px; } }
 @media(max-width:480px) { .main-content { padding:25px 14px 42px; } }
+
+/* Fondo editorial y anchura coherente del portal educativo */
+.main-content { background:#f4f7fb; padding-top:62px; }
+.container { max-width:1280px; }
+@media(max-width:768px) { .main-content { padding-top:34px; } }
