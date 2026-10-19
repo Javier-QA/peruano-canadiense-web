@@ -535,13 +535,18 @@ body.ae-highlight-links .accessibility-panel button {
 }
 
 
-/* Botón de accesibilidad con símbolo universal, como la referencia */
+/* Botón de accesibilidad: doble aro fino y figura blanca de referencia */
 .accessibility-toggle {
-  background: #06466f;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  background: #003e66;
   color: #fff;
-  border: 3px double #fff;
-  box-shadow: 0 0 0 2px #06466f, 0 4px 12px rgba(0, 36, 70, .18);
+  border: 3px solid #003e66;
+  outline: 2px solid #fff;
+  outline-offset: -7px;
+  box-shadow: none;
 }
-.accessibility-toggle svg { width: 29px; height: 29px; }
-.accessibility-toggle:hover { background: #0b5b8d; color: #fff; }
-.accessibility-toggle.active { background: #ff6600; color: #fff; border-color: #fff; }
+.accessibility-toggle svg { width: 30px; height: 30px; stroke-width: 2.2; }
+.accessibility-toggle:hover { background: #003e66; color: #fff; box-shadow: none; }
+.accessibility-toggle.active { background: #003e66; color: #fff; border-color: #003e66; box-shadow: none; }
