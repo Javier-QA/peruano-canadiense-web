@@ -396,3 +396,14 @@
 @media(max-width:768px) {
   .hero { min-height:470px; }
 }
+
+
+/* Portada más corta: el contenido blanco comienza por encima del botón de accesibilidad */
+@media(min-width:769px) {
+  .hero { height:clamp(410px,31vw,520px); min-height:0; }
+  .hero-stage { min-height:0; height:100%; padding-top:35px; padding-bottom:24px; }
+}
+@media(max-width:768px) {
+  .hero { min-height:0; height:auto; }
+  .hero-stage { min-height:390px; }
+}
