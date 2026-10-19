@@ -344,88 +344,28 @@
   }
 }
 
-
-/* Refinamiento de portada: fotografías intactas y proporciones moderadas */
+/* Portada restaurada según la referencia aprobada */
+.hero { min-height:610px; height:auto; overflow:visible; }
 @media(min-width:769px) {
- .hero { min-height:clamp(470px,36vw,590px); }
- .hero-stage { padding:clamp(80px,7vw,115px) clamp(28px,4vw,64px) 38px; row-gap:22px; }
- .hero-content h1 { font-size:clamp(2rem,3.1vw,2.9rem); line-height:1.15; }
- .hero-content p { font-size:clamp(1rem,1.5vw,1.25rem); }
- .btn-card { width:158px; height:138px; }
- .icon i { font-size:35px; }
- .side-btn { width:50px; height:50px; }
+  .hero { min-height:610px; }
+  .hero-stage { padding:95px 48px 52px 70px; grid-template-columns:1fr auto; grid-template-areas:"content side" "ctas side"; align-items:start; align-content:center; gap:32px; }
+  .hero-content { max-width:740px; }
+  .hero-content h1 { font-size:clamp(2.4rem,3.1vw,3.4rem); line-height:1.16; font-weight:800; }
+  .hero-content p { font-size:clamp(1.15rem,1.6vw,1.5rem); }
+  .buttons-container { gap:24px; }
+  .btn-card { width:165px; height:200px; min-width:0; flex-direction:column; border-radius:14px; }
+  .btn-card .front,.btn-card .licencia-inner { flex-direction:column; }
+  .btn-card .icon { margin-bottom:12px; }
+  .btn-card .icon i { font-size:44px; }
+  .btn-card span { font-size:15px; font-weight:700; }
+  .side-buttons { gap:15px; }
+  .side-btn { width:55px; height:55px; }
+  .licencia-popup { top:0; left:100%; width:140px; height:160px; transform:translateX(-20px) scale(.95); }
+  .licencia:hover .licencia-popup { transform:translateX(10px) scale(1); }
 }
 @media(max-width:768px) {
- .hero-stage { padding:74px 18px 24px; }
- .hero-content h1 { font-size:clamp(1.45rem,5vw,2rem); }
- .hero-content p { font-size:1rem; }
- .buttons-container { gap:10px; }
- .btn-card { min-height:100px; }
+  .hero { min-height:0; }
+  .hero-stage { padding:74px 18px 24px; }
+  .licencia-popup { display:none; }
 }
 @media(prefers-reduced-motion:reduce) { .hero-bg,.btn-card,.side-text { transition:none; } }
-
-
-/* Portada institucional: imagen original sin filtros ni capas adicionales */
-@media(min-width:769px) {
-.hero { min-height:clamp(480px,39vw,620px); }
-.hero-stage { grid-template-columns:minmax(0,1fr) 60px; grid-template-areas:"content side" "ctas side"; align-content:center; align-items:center; gap:30px; padding:60px clamp(28px,5vw,84px); }
-.hero-content { max-width:700px; }
-.hero-content h1 { font-size:clamp(2.1rem,3.5vw,3.35rem); font-weight:800; line-height:1.14; letter-spacing:-.04em; }
-.hero-content p { font-size:clamp(1.05rem,1.6vw,1.32rem); line-height:1.5; }
-.buttons-container { gap:12px; }
-.btn-card { width:auto; min-width:186px; height:56px; flex-direction:row; padding:0 22px; border-radius:8px; box-shadow:none; }
-.btn-card .front,.btn-card .licencia-inner,.btn-card .licencia-inner .front { flex-direction:row; gap:12px; }
-.btn-card .icon { margin:0; }
-.btn-card .icon i { font-size:1.3rem; }
-.btn-card span { font-size:.92rem; font-weight:700; }
-.btn-card:hover { transform:translateY(-2px); }
-.side-buttons { gap:13px; }
-.side-btn { width:51px; height:51px; border:1px solid rgba(255,255,255,.45); }
-.licencia-popup { top:60px; left:0; }
-}
-@media(max-width:768px) { .hero-stage { padding:78px 20px 28px; } .hero-content h1 { font-weight:800; letter-spacing:-.025em; } .btn-card { border-radius:9px; } }
-
-
-/* Ajuste solicitado: eliminar la banda azul vacía debajo de la fotografía */
-.hero { overflow:hidden; }
-.hero-stage { min-height:inherit; }
-@media(min-width:769px) {
-  .hero { min-height:clamp(480px,39vw,620px); }
-  .hero-stage { padding-bottom:30px; }
-}
-@media(max-width:768px) {
-  .hero { min-height:470px; }
-}
-
-
-/* Portada más corta: el contenido blanco comienza por encima del botón de accesibilidad */
-@media(min-width:769px) {
-  .hero { height:clamp(410px,31vw,520px); min-height:0; }
-  .hero-stage { min-height:0; height:100%; padding-top:35px; padding-bottom:24px; }
-}
-@media(max-width:768px) {
-  .hero { min-height:0; height:auto; }
-  .hero-stage { min-height:390px; }
-}
-
-
-/* Licenciamiento: vista previa junto al botón, sin recortarse por el borde inferior */
-@media(min-width:769px) {
-  .btn-card.licencia { overflow:visible; }
-  .btn-card.licencia .licencia-popup {
-    top:50%;
-    left:calc(100% + 12px);
-    width:154px;
-    height:125px;
-    transform:translate(-8px,-50%) scale(.96);
-    border:2px solid rgba(255,255,255,.8);
-    border-radius:10px;
-    background:#fff;
-    z-index:10;
-  }
-  .btn-card.licencia:hover .licencia-popup,
-  .btn-card.licencia:focus-visible .licencia-popup {
-    opacity:1;
-    transform:translate(0,-50%) scale(1);
-  }
-}
