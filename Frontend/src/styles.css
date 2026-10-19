@@ -87,12 +87,12 @@
   --inst-primary-rgb: 255, 102, 0;
 
   /* Estructura y Superficies */
-  --inst-dark: #44425a;
-  --inst-dark-surface: #302e42;
-  --inst-dark-deep: #302e42;
+  --inst-dark: #153d68;
+  --inst-dark-surface: #12365e;
+  --inst-dark-deep: #0d2d50;
   --inst-secondary: #f2f1f8;
   --inst-surface: #ffffff;
-  --inst-text-heading: #2b293d;
+  --inst-text-heading: #153d68;
   --inst-text: #6c6a74;
   --inst-text-light: #9a98a6;
   --inst-border: #e2e1ec;
@@ -104,11 +104,11 @@
   --inst-whatsapp: #2e6329;
 
   /* Gradientes */
-  --inst-gradient: linear-gradient(135deg, #44425a 0%, #2e2c40 50%, #ff6600 120%);
+  --inst-gradient: linear-gradient(135deg, #153d68 0%, #12365e 50%, #ff6600 120%);
   --inst-gradient-orange: linear-gradient(135deg, #ff6600 0%, #ff8533 100%);
 
   /* Compatibilidad con clases existentes */
-  --inst-blue-dark: #44425a;
+  --inst-blue-dark: #153d68;
   --inst-blue: #ff6600;
 }
 
