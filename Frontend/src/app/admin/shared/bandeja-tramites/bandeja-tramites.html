@@ -99,7 +99,8 @@
   [open]="!!abierto()"
   title="Detalle de la solicitud"
   [showFooter]="false"
-  (openChange)="abierto.set($event ? abierto() : null)"
+  [disableClose]="guardando()"
+  (openChange)="cerrarDetalle($event)"
 >
   @if (abierto(); as tramite) {
     <div class="tramite-resumen">
@@ -147,8 +148,8 @@
       <div class="tramite-seccion-titulo"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Gestión de la solicitud</div>
       <div class="form-grid tramite-gestion-grid">
         <div class="form-row">
-          <label>Estado</label>
-          <select [value]="estadoEditado()" (change)="estadoEditado.set($any($event.target).value)">
+          <label for="tramite-estado">Estado de la solicitud</label>
+          <select id="tramite-estado" [disabled]="guardando()" [value]="estadoEditado()" (change)="estadoEditado.set($any($event.target).value)">
             @for (estado of estados(); track estado) {
               <option [value]="estado">{{ etiquetaEstado(estado) }}</option>
             }
@@ -161,6 +162,7 @@
             class="tramite-observacion-texto"
             rows="6"
             [value]="respuestaEditada()"
+            [disabled]="guardando()"
             (input)="respuestaEditada.set($any($event.target).value)"
             placeholder="Escribe aquí la observación o respuesta del expediente…"
             aria-describedby="tramite-observacion-ayuda"
@@ -175,7 +177,7 @@
             <input
               type="checkbox"
               [checked]="notificar()"
-              [disabled]="!correoDe(tramite)"
+              [disabled]="guardando() || !correoDe(tramite)"
               (change)="notificar.set($any($event.target).checked)"
             />
             @if (correoDe(tramite); as correo) {
@@ -187,8 +189,8 @@
         </div>
       </div>
       <div class="save-bar">
-        <button type="button" class="btn-cancel" (click)="abierto.set(null)">Cerrar</button>
-        <button type="button" class="btn-save" [disabled]="guardando()" (click)="aplicar()">
+        <button type="button" class="btn-cancel" [disabled]="guardando()" (click)="cerrarDetalle(false)">Cerrar</button>
+        <button type="button" class="btn-save" [disabled]="guardando() || !hayCambios()" (click)="aplicar()">
           {{ guardando() ? 'Guardando…' : 'Guardar cambios' }}
         </button>
       </div>
