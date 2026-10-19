@@ -241,3 +241,21 @@
 .gestion-link i { font-size:1.1rem; }
 @media(max-width:1000px) { .gestion-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:600px) { .gestion-intro { margin-bottom:23px; } .section-description { font-size:.93rem; } .gestion-grid--featured,.gestion-list { grid-template-columns:1fr; } .gestion-card { min-height:0; } }
+
+
+/* Directorio académico: superficie abierta y bloques diferenciados */
+.gestion-section { margin:0; padding:68px 0 40px; background:transparent; border:0; border-radius:0; box-shadow:none; }
+.gestion-section::before { display:none; }
+.gestion-intro { max-width:780px; padding:0; margin:0 0 37px; border:0; }
+.gestion-intro .section-title { font-size:clamp(2rem,3vw,2.65rem); }
+.section-description { font-size:1.02rem; }
+.gestion-heading { margin:32px 0 18px; font-size:1.08rem; }
+.gestion-grid--featured { grid-template-columns:repeat(4,minmax(0,1fr)); gap:15px; margin-bottom:38px; }
+.gestion-card { min-height:195px; padding:25px 22px; background:#f4f7fb; border:1px solid #e3eaf2; border-radius:12px; box-shadow:none; }
+.gestion-card i { background:#fff; color:#e96500; }
+.gestion-card:hover { border-color:#abc2dc; box-shadow:0 12px 25px rgba(17,52,92,.07); }
+.gestion-list { grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+.gestion-link { min-height:56px; border:1px solid #dfe7f1; background:#fff; border-radius:8px; }
+.gestion-link:hover { border-color:#1b5c91; background:#f2f7fc; }
+@media(max-width:1000px) { .gestion-grid--featured,.gestion-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .gestion-section { padding:43px 0 20px; } .gestion-grid--featured,.gestion-list { grid-template-columns:1fr; } .gestion-card { min-height:0; } }
