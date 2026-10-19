@@ -54,6 +54,70 @@ export interface ColumnaBandeja {
     .admin-table .btn-icon { border: 1px solid var(--adm-line); background: #fff; }
     .admin-table .btn-icon:hover { border-color: var(--adm-brand); color: var(--adm-brand); }
     .empty-state { padding: 36px 24px; }
+    /* Detalle de trámite: bloques legibles, iconos y acciones sin solaparse. */
+    .tramite-resumen {
+      display:flex; align-items:center; gap:14px; min-width:0;
+      padding:17px; margin:0 0 20px;
+      border:1px solid color-mix(in srgb,var(--adm-brand) 30%,var(--adm-line));
+      border-left:4px solid var(--adm-brand);
+      border-radius:14px;
+      background:color-mix(in srgb,var(--adm-brand) 7%,var(--adm-surface));
+    }
+    .tramite-resumen-icono {
+      display:grid; place-items:center; flex:0 0 48px;
+      width:48px; height:48px; border-radius:12px;
+      color:var(--adm-brand);
+      border:1px solid color-mix(in srgb,var(--adm-brand) 34%,var(--adm-line));
+      background:var(--adm-surface); font-size:1.15rem;
+    }
+    .tramite-resumen-texto { display:flex; flex-direction:column; gap:4px; min-width:0; }
+    .tramite-resumen-etiqueta { font-size:.75rem; font-weight:750; color:var(--adm-brand); }
+    .tramite-codigo { font-size:clamp(1.1rem,2.5vw,1.55rem); line-height:1.3; overflow-wrap:anywhere; color:var(--adm-ink); }
+    .tramite-fecha { font-size:.8rem; color:var(--adm-muted); }
+    .tramite-fecha i { margin-right:4px; color:var(--adm-brand); }
+    .tramite-seccion-titulo {
+      display:flex; align-items:center; gap:9px; margin:18px 0 12px;
+      font-weight:800; font-size:.92rem; color:var(--adm-ink);
+    }
+    .tramite-seccion-titulo i { color:var(--adm-brand); }
+    .tramite-detalle-grid, .tramite-gestion-grid {
+      display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px; margin:0;
+    }
+    .tramite-detalle-grid > .tramite-dato {
+      display:flex; flex-direction:column; gap:8px; min-width:0;
+      padding:14px; margin:0;
+      border:1px solid var(--adm-line);
+      border-radius:12px; background:var(--adm-surface);
+    }
+    .tramite-detalle-grid > .tramite-dato label {
+      display:flex; align-items:center; gap:8px;
+      margin:0; font-weight:750; font-size:.8rem; color:var(--adm-ink);
+    }
+    .tramite-detalle-grid > .tramite-dato label i { color:var(--adm-brand); }
+    .tramite-detalle-grid > .tramite-dato p {
+      margin:0; color:var(--adm-muted); line-height:1.5;
+      overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;
+    }
+    .tramite-detalle-grid > .tramite-dato :is(a,button) { max-width:100%; width:max-content; }
+    .tramite-gestion-grid > .form-row { min-width:0; }
+    .tramite-gestion-grid > .form-row.span-2, .tramite-detalle-grid > .span-2 { grid-column:1 / -1; }
+    .tramite-gestion-grid .check-inline { display:flex; gap:9px; align-items:flex-start; }
+    .tramite-gestion-grid .check-inline input { flex:0 0 auto; }
+    .save-bar {
+      position:static !important;
+      display:flex; flex-wrap:wrap; justify-content:flex-end; gap:10px;
+      margin-top:20px; padding:16px 0 0;
+      border-top:1px solid var(--adm-line);
+      background:transparent;
+    }
+    @media(max-width:600px) {
+      .tramite-detalle-grid, .tramite-gestion-grid { grid-template-columns:minmax(0,1fr); }
+      .tramite-detalle-grid > .span-2, .tramite-gestion-grid > .span-2 { grid-column:auto; }
+      .tramite-resumen { padding:13px; gap:10px; }
+      .tramite-resumen-icono { flex-basis:42px; width:42px; height:42px; }
+      .save-bar > button { flex:1 1 auto; }
+    }
     @media (max-width: 720px) {
       .page-header { padding: 18px; }
       .admin-tabs { max-width: 100%; }
@@ -189,6 +253,21 @@ export class BandejaTramites {
     } catch {
       this.toast.error('No se pudo abrir el adjunto.');
     }
+  }
+
+  iconoDetalle(campo: string, label: string): string {
+    const texto=(campo+' '+label).toLocaleLowerCase('es');
+    if (/dni|documento de identidad/.test(texto)) return 'fa-id-card';
+    if (/correo|email/.test(texto)) return 'fa-envelope';
+    if (/teléfono|celular/.test(texto)) return 'fa-phone';
+    if (/archivo|adjunto|descargar/.test(texto)) return 'fa-paperclip';
+    if (/enlace|url/.test(texto)) return 'fa-link';
+    if (/fecha|recibido/.test(texto)) return 'fa-calendar-days';
+    if (/folio/.test(texto)) return 'fa-file-lines';
+    if (/mensaje|detalle|motivo|solicitud/.test(texto)) return 'fa-align-left';
+    if (/nombre|remitente|solicitante/.test(texto)) return 'fa-user';
+    if (/condición|tipo|estado/.test(texto)) return 'fa-tag';
+    return 'fa-circle-info';
   }
 
   etiquetaEstado(estado: string): string {
