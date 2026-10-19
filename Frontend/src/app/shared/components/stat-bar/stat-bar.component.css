@@ -155,17 +155,3 @@
     transition: none;
   }
 }
-
-/* Restaurar franja azul de estadísticas de la referencia */
-.stat-bar { padding:30px 20px 38px; color:#fff; background:linear-gradient(110deg,#2274d0 0%,#185aa4 58%,#123f79 100%); box-shadow:none; }
-.stat-bar::before { display:block; }
-.stat-period { margin-bottom:20px; }
-.period-badge { color:#fff; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.28); padding:5px 13px; }
-.stat-heading { color:#fff; font-size:clamp(1.35rem,2vw,1.8rem); }
-.stats-grid { grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
-.stat-item { background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16); border-radius:12px; min-height:130px; }
-.stat-icon { color:#ffb27d; }
-.stat-number { color:#fff; }
-.stat-label { color:rgba(255,255,255,.88); }
-@media(max-width:900px) { .stats-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
-@media(max-width:600px) { .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .stat-item:last-child { grid-column:1/-1; } }
