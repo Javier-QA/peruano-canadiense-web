@@ -3,7 +3,7 @@
     @for (item of items(); track item.alt) {
       <a class="carousel-item" [href]="item.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="item.alt">
         <span class="carousel-item__logo">
-          <img [appSrc]="item.image" [alt]="item.alt" loading="lazy" decoding="async" />
+          <img [src]="logoSrc(item.image, item.alt)" [alt]="item.alt" loading="eager" decoding="async" (error)="onLogoError($event, item.alt)" />
         </span>
         <span class="carousel-item__name">{{ item.alt }}</span>
       </a>
