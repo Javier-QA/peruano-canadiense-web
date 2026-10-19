@@ -14,12 +14,13 @@
     </div>
   </header>
 
+  <div class="admin-list-toolbar"><label for="buscar-usuarios">Buscar</label><input id="buscar-usuarios" type="search" [value]="busqueda()" (input)="buscar($any($event.target).value)" placeholder="Buscar cuentas" /><span>{{ filtrados().length }} resultados</span></div>
   <div class="admin-card">
     @if (cargando()) {
-      <p class="form-hint">Cargando cuentas…</p>
+      <p class="form-hint" role="status" aria-live="polite">Cargando cuentas…</p>
     } @else if (error()) {
       <div class="empty-state">
-        <p>{{ error() }}</p>
+        <p role="alert">{{ error() }}</p><button type="button" class="btn-ghost" (click)="cargar()">Reintentar</button>
       </div>
     } @else {
       <table class="admin-table">
@@ -30,11 +31,11 @@
             <th>Rol</th>
             <th>Estado</th>
             <th>Último acceso</th>
-            <th></th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          @for (usuario of items(); track usuario.id) {
+          @for (usuario of paginados(); track usuario.id) {
             <tr>
               <td>
                 <strong>{{ usuario.nombre }}</strong>
@@ -57,7 +58,7 @@
                   type="button"
                   class="btn-icon"
                   (click)="abrirEditar(usuario)"
-                  aria-label="Editar"
+                  [attr.aria-label]="'Editar cuenta de ' + usuario.nombre"
                 >
                   <i class="fa fa-pen"></i>
                 </button>
@@ -66,7 +67,7 @@
                     type="button"
                     class="btn-icon btn-delete"
                     (click)="confirmar.set(usuario)"
-                    aria-label="Eliminar"
+                    [attr.aria-label]="'Eliminar cuenta de ' + usuario.nombre"
                   >
                     <i class="fa fa-trash"></i>
                   </button>
@@ -82,34 +83,42 @@
       </table>
     }
   </div>
+  <nav class="admin-pagination" aria-label="Páginas de usuarios"><span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span><button type="button" class="btn-ghost" [disabled]="paginaActual() === 1" (click)="cambiarPagina(-1)">Anterior</button><button type="button" class="btn-ghost" [disabled]="paginaActual() === totalPaginas()" (click)="cambiarPagina(1)">Siguiente</button></nav>
 </div>
 
 <app-dialog
   [open]="formAbierto()"
   [title]="editandoId() ? 'Editar cuenta' : 'Nueva cuenta'"
-  (openChange)="formAbierto.set($event)"
+  (openChange)="alCambiarDialogo($event)"
 >
   <div class="form-grid">
     <div class="form-row">
-      <label>Nombre completo</label>
+      <label for="usuario-nombre">Nombre completo *</label>
       <input
+        id="usuario-nombre"
         type="text"
+        required
+        [attr.aria-invalid]="!form().nombre.trim()"
         [value]="form().nombre"
         (input)="patch('nombre', $any($event.target).value)"
       />
     </div>
     <div class="form-row">
-      <label>Usuario</label>
+      <label for="usuario-username">Usuario *</label>
       <input
+        id="usuario-username"
         type="text"
+        required
+        [attr.aria-invalid]="!form().username.trim()"
         [value]="form().username"
         (input)="patch('username', $any($event.target).value)"
       />
       <p class="form-hint">Letras, números, punto, guion y guion bajo.</p>
     </div>
     <div class="form-row">
-      <label>Correo institucional</label>
+      <label for="usuario-email">Correo institucional</label>
       <input
+        id="usuario-email"
         type="email"
         [value]="form().email"
         (input)="patch('email', $any($event.target).value)"
@@ -123,9 +132,12 @@
       </select>
     </div>
     <div class="form-row">
-      <label>Contraseña</label>
+      <label for="usuario-password">Contraseña {{ editandoId() ? '(opcional)' : '*' }}</label>
       <input
+        id="usuario-password"
         type="password"
+        [required]="!editandoId()"
+        minlength="8"
         autocomplete="new-password"
         [value]="form().password"
         (input)="patch('password', $any($event.target).value)"
@@ -150,8 +162,8 @@
     </div>
   </div>
   <div dialog-footer>
-    <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
-    <button type="button" class="btn-save" (click)="guardar()">Guardar</button>
+    <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
+    <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
   </div>
 </app-dialog>
 
@@ -159,10 +171,10 @@
   [open]="!!confirmar()"
   title="Eliminar cuenta"
   (openChange)="confirmar.set($event ? confirmar() : null)"
->
+ variant="danger">
   <p>La persona dejará de poder entrar al panel. Sus cambios anteriores se conservan.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirmar.set(null)">Cancelar</button>
-    <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
+    <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>

@@ -15,6 +15,11 @@
     </div>
   </header>
 
+  <div class="admin-list-toolbar" role="search">
+    <label class="admin-search-label" for="buscar-noticias">Buscar noticias</label>
+    <input id="buscar-noticias" type="search" autocomplete="off" placeholder="Buscar por nombre, título o dato…" [value]="busqueda()" (input)="buscar($any($event.target).value)" />
+    <span class="form-hint" role="status">{{ filtrados().length }} resultados</span>
+  </div>
   <div class="admin-card">
     <table class="admin-table">
       <thead>
@@ -23,11 +28,11 @@
           <th>Título</th>
           <th>Tipo</th>
           <th>Fecha</th>
-          <th></th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        @for (item of items(); track item.id) {
+        @for (item of paginados(); track item.id) {
           <tr>
             <td>
               <div class="admin-thumb">
@@ -62,7 +67,7 @@
                 type="button"
                 class="btn-icon"
                 (click)="abrirEditar(item)"
-                aria-label="Editar"
+                [attr.aria-label]="'Editar ' + item.title"
               >
                 <i class="fa fa-pen"></i>
               </button>
@@ -70,7 +75,7 @@
                 type="button"
                 class="btn-icon btn-delete"
                 (click)="confirm.set(item)"
-                aria-label="Quitar"
+                [attr.aria-label]="'Quitar ' + item.title"
               >
                 <i class="fa fa-trash"></i>
               </button>
@@ -84,9 +89,14 @@
       </tbody>
     </table>
   </div>
+  <nav class="admin-pagination" aria-label="Paginación de noticias">
+    <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() <= 1" (click)="cambiarPagina(-1)">Anterior</button>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() >= totalPaginas()" (click)="cambiarPagina(1)">Siguiente</button>
+  </nav>
 </div>
 
-<app-dialog [open]="formAbierto()" title="Noticia" (openChange)="formAbierto.set($event)">
+<app-dialog [open]="formAbierto()" title="Noticia" (openChange)="alCambiarDialogo($event)">
   <div class="form-row">
     <label>Título</label>
     <input type="text" [value]="form().title" (input)="patch('title', $any($event.target).value)" />
@@ -164,9 +174,9 @@
     Publicar en /noticias (si no, queda como borrador)
   </label>
   <div dialog-footer>
-    <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
-    <button type="button" class="btn-save" (click)="guardar()">
-      {{ form().publicada ? 'Publicar' : 'Guardar borrador' }}
+    <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
+    <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">
+      {{ guardando() ? 'Guardando…' : (form().publicada ? 'Publicar' : 'Guardar borrador') }}
     </button>
   </div>
 </app-dialog>
@@ -179,6 +189,6 @@
   <p>Dejará de verse en el listado público.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirm.set(null)">Cancelar</button>
-    <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
+    <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>

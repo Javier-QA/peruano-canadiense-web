@@ -12,6 +12,7 @@ import { ADMISION_SCHEMA, ADMISION_TABS } from './admision.schema';
       #editor
       modulo="admision"
       titulo="Admisión"
+      descripcion="Organiza los requisitos, textos y documentos del proceso de admisión."
       publicPath="/admision"
       [schema]="schema"
       [tabs]="tabs"

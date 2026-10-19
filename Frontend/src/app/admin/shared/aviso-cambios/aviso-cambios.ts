@@ -6,7 +6,7 @@ import { DialogComponent } from '../../../shared/ui';
   standalone: true,
   imports: [DialogComponent],
   template: `
-    <app-dialog [open]="abierto()" title="Hay cambios sin guardar" (openChange)="onOpen($event)">
+    <app-dialog [open]="abierto()" title="Hay cambios sin guardar" variant="warning" (openChange)="onOpen($event)">
       <p>Si sale ahora, se perderán los cambios de esta pantalla.</p>
       <div dialog-footer>
         <button type="button" class="btn-cancel" (click)="seguir.emit()">Seguir aquí</button>

@@ -13,7 +13,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PortalSync } from '../../core/api/portal-sync';
 import { AuthService } from '../../core/auth/auth.service';
 import { AdminNavStore } from '../shared/admin-nav.store';
+import { AdminPaletaService } from '../shared/admin-paleta.service';
 import { ToastHost } from '../shared/toast/toast-host';
+import { DialogComponent } from '../../shared/ui';
 import { AdminSidebarComponent } from '../sidebar/sidebar.component';
 
 const ROUTE_TITLES: Record<string, string> = {
@@ -56,7 +58,7 @@ const ROUTE_TITLES: Record<string, string> = {
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, AdminSidebarComponent, ToastHost],
+  imports: [RouterOutlet, RouterLink, AdminSidebarComponent, ToastHost, DialogComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -67,10 +69,51 @@ export class AdminLayoutComponent {
   private readonly auth = inject(AuthService);
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly nav = inject(AdminNavStore);
+  private readonly apariencia = inject(AdminPaletaService);
+  readonly paleta = this.apariencia.actual;
+  readonly modo = this.apariencia.modo;
+
+  alternarModo(evento: MouseEvent): void {
+    const cambiar = () => this.apariencia.alternarModo();
+    if (typeof document === 'undefined') { cambiar(); return; }
+    const doc = document as Document & {
+      startViewTransition?: (update: () => void) => { finished: Promise<void> };
+    };
+    if (!doc.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cambiar();
+      return;
+    }
+    const boton = evento.currentTarget as HTMLElement;
+    const rect = boton.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radio = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+    document.documentElement.style.setProperty('--theme-origin-x', x + 'px');
+    document.documentElement.style.setProperty('--theme-origin-y', y + 'px');
+    document.documentElement.style.setProperty('--theme-radius', radio + 'px');
+    document.documentElement.classList.add('admin-theme-reveal');
+    try {
+      const transicion = doc.startViewTransition(cambiar);
+      void transicion.finished.finally(() => {
+        document.documentElement.classList.remove('admin-theme-reveal');
+        document.documentElement.style.removeProperty('--theme-origin-x');
+        document.documentElement.style.removeProperty('--theme-origin-y');
+        document.documentElement.style.removeProperty('--theme-radius');
+      });
+    } catch {
+      document.documentElement.classList.remove('admin-theme-reveal');
+      cambiar();
+    }
+  }
 
   readonly pageTitle = signal('Dashboard');
+  readonly rutaActual = signal(this.router.url.split('?')[0]);
   readonly usuario = this.auth.usuario;
   readonly menuAbierto = signal(false);
+  readonly confirmarSalida = signal(false);
   /** Cajón de navegación en móvil. */
   readonly navAbierto = this.nav.cajonAbierto;
   /** Riel contraído en escritorio. */
@@ -105,6 +148,7 @@ export class AdminLayoutComponent {
         takeUntilDestroyed(),
       )
       .subscribe((e) => {
+        this.rutaActual.set(e.urlAfterRedirects.split('?')[0].split('#')[0]);
         this.pageTitle.set(ROUTE_TITLES[e.urlAfterRedirects] ?? 'Admin');
         this.menuAbierto.set(false);
         this.nav.cerrarCajon();
@@ -134,6 +178,11 @@ export class AdminLayoutComponent {
 
   cerrarSesion(): void {
     this.menuAbierto.set(false);
+    this.confirmarSalida.set(true);
+  }
+
+  confirmarCerrarSesion(): void {
+    this.confirmarSalida.set(false);
     this.auth.logout();
   }
 

@@ -38,7 +38,16 @@ import { SelectorArchivo } from '../selector-archivo/selector-archivo';
         </div>
       </div>
     } @else {
-      <app-selector-archivo modo="imagen" (referenciaChange)="referenciaChange.emit($event)" />
+      <div class="ci-vacia">
+        <app-selector-archivo modo="imagen" (referenciaChange)="referenciaChange.emit($event)" />
+        <p class="ci-ayuda">Añade una descripción de la imagen para mejorar la accesibilidad del portal.</p>
+        <app-campo-texto
+          [label]="etiquetaAlt()"
+          [hint]="hintAlt()"
+          [valor]="alt()"
+          (valorChange)="altChange.emit($event)"
+        />
+      </div>
     }
   `,
   styles: `
@@ -56,6 +65,8 @@ import { SelectorArchivo } from '../selector-archivo/selector-archivo';
       background: var(--adm-surface);
     }
 
+    .ci-vacia { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .ci-ayuda { margin: 0; font-size: .82rem; line-height: 1.5; color: var(--adm-ink-soft); }
     .ci-preview {
       --miniatura-size: 100%;
       --miniatura-ratio: 4 / 3;

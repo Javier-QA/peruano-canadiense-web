@@ -1,7 +1,8 @@
-﻿import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 import { AdminNavStore } from '../shared/admin-nav.store';
+import { DialogComponent } from '../../shared/ui';
 
 interface NavLink {
   label: string;
@@ -17,7 +18,7 @@ interface NavGroup {
 @Component({
   selector: 'app-admin-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, DialogComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,6 +29,7 @@ export class AdminSidebarComponent {
 
   /** Riel contraído en escritorio (estado compartido con la topbar). */
   readonly colapsado = this.nav.colapsado;
+  readonly confirmarSalida = signal(false);
 
   readonly dashboard: NavLink = {
     label: 'Dashboard',
@@ -55,19 +57,19 @@ export class AdminSidebarComponent {
       label: 'Páginas de servicio',
       items: [
         { label: 'Servicios', route: '/admin/servicios', icon: 'fa-hand-holding-heart' },
-        { label: 'Transparencia', route: '/admin/transparencia', icon: 'fa-file-shield' },
-        { label: 'Reglamentos', route: '/admin/reglamentos', icon: 'fa-gavel' },
-        { label: 'Procedimientos', route: '/admin/procedimientos', icon: 'fa-list-check' },
+        { label: 'Transparencia', route: '/admin/transparencia', icon: 'fa-eye' },
+        { label: 'Reglamentos', route: '/admin/reglamentos', icon: 'fa-scale-balanced' },
+        { label: 'Procedimientos', route: '/admin/procedimientos', icon: 'fa-list-ol' },
         { label: 'Psicopedagógico', route: '/admin/psicopedagogico', icon: 'fa-brain' },
-        { label: 'Servicio social', route: '/admin/servicio-social', icon: 'fa-handshake-angle' },
-        { label: 'Soporte médico', route: '/admin/soporte-medico', icon: 'fa-kit-medical' },
+        { label: 'Servicio social', route: '/admin/servicio-social', icon: 'fa-people-group' },
+        { label: 'Soporte médico', route: '/admin/soporte-medico', icon: 'fa-briefcase-medical' },
         {
           label: 'Libro de reclamaciones',
           route: '/admin/pagina-reclamaciones',
-          icon: 'fa-book',
+          icon: 'fa-book-open',
         },
-        { label: 'Privacidad', route: '/admin/privacidad', icon: 'fa-user-shield' },
-        { label: 'Repositorio (beta)', route: '/admin/repositorio-copy', icon: 'fa-file-pen' },
+        { label: 'Privacidad', route: '/admin/privacidad', icon: 'fa-lock' },
+        { label: 'Repositorio (beta)', route: '/admin/repositorio-copy', icon: 'fa-box-archive' },
         { label: 'Programas de estudio', route: '/admin/programas', icon: 'fa-graduation-cap' },
         { label: 'Menú de navegación', route: '/admin/menu', icon: 'fa-sitemap' },
       ],
@@ -91,6 +93,11 @@ export class AdminSidebarComponent {
   ];
 
   logout(): void {
+    this.confirmarSalida.set(true);
+  }
+
+  salir(): void {
+    this.confirmarSalida.set(false);
     this.auth.logout();
   }
 }

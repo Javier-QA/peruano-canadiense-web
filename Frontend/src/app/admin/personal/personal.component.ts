@@ -45,12 +45,38 @@ export class AdminPersonalComponent {
   private readonly toast = inject(ToastService);
 
   readonly lista = this.store.lista;
+  readonly busqueda = signal('');
+  readonly pagina = signal(1);
+  readonly porPagina = 10;
+  readonly filtrados = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase('es');
+    const datos = this.visibles();
+    return q ? datos.filter(item => [item.names, item.lastNames, item.position, item.area, item.email].some(v => String(v ?? '').toLocaleLowerCase('es').includes(q))) : datos;
+  });
+  readonly totalPaginas = computed(() => Math.max(1, Math.ceil(this.filtrados().length / this.porPagina)));
+  readonly paginaActual = computed(() => Math.min(this.pagina(), this.totalPaginas()));
+  readonly paginados = computed(() => this.filtrados().slice((this.paginaActual() - 1) * this.porPagina, this.paginaActual() * this.porPagina));
+  buscar(valor: string): void { this.busqueda.set(valor); this.pagina.set(1); }
+  cambiarPagina(delta: number): void { this.pagina.set(Math.max(1, Math.min(this.totalPaginas(), this.paginaActual() + delta))); }
+
   readonly tipos: FacultyMember['type'][] = ['Autoridad', 'Administrativo', 'Docente'];
   readonly filtro = signal<'Todos' | FacultyMember['type']>('Todos');
   readonly formAbierto = signal(false);
   readonly editingId = signal<number | null>(null);
   readonly form = signal<PersonaForm>({ ...VACIO });
+  private formularioInicial = '';
+  readonly hayCambios = computed(() => this.formAbierto() && JSON.stringify(this.form()) !== this.formularioInicial);
+  cerrarFormulario(): void {
+    if (this.guardando()) return;
+    if (this.hayCambios() && !window.confirm('Hay cambios sin guardar. ¿Desea descartarlos?')) return;
+    this.formAbierto.set(false);
+  }
+  alCambiarDialogo(abierto: boolean): void {
+    if (!abierto) this.cerrarFormulario();
+  }
   readonly confirm = signal<FacultyMember | null>(null);
+  readonly guardando = signal(false);
+  readonly eliminando = signal(false);
 
   readonly visibles = computed(() => {
     const tipo = this.filtro();
@@ -62,6 +88,7 @@ export class AdminPersonalComponent {
     const max = this.lista().reduce((n, item) => Math.max(n, item.order), 0);
     this.editingId.set(null);
     this.form.set({ ...VACIO, order: max + 1 });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -79,6 +106,7 @@ export class AdminPersonalComponent {
       cvUrl: member.cvUrl ?? '',
       order: member.order,
     });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -114,6 +142,8 @@ export class AdminPersonalComponent {
       cvUrl: data.cvUrl.trim() || undefined,
       order: data.order,
     };
+    if (this.guardando()) return;
+    this.guardando.set(true);
     try {
       const id = this.editingId();
       if (id !== null) {
@@ -126,14 +156,23 @@ export class AdminPersonalComponent {
       this.formAbierto.set(false);
     } catch {
       this.toast.error('No se pudo guardar la ficha.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
   async eliminar(): Promise<void> {
     const member = this.confirm();
-    if (!member) return;
-    await this.store.eliminar(member.id);
-    this.confirm.set(null);
-    this.toast.success('Se quitó del directorio público.');
+    if (!member || this.eliminando()) return;
+    this.eliminando.set(true);
+    try {
+      await this.store.eliminar(member.id);
+      this.confirm.set(null);
+      this.toast.success('Se quitó del directorio público.');
+    } catch {
+      this.toast.error('No se pudo quitar la persona del directorio.');
+    } finally {
+      this.eliminando.set(false);
+    }
   }
 }

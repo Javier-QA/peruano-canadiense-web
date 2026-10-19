@@ -94,18 +94,24 @@ interface GrupoRender {
     :host {
       display: flex;
       flex-direction: column;
-      gap: 26px;
+      gap: 22px;
+      min-width: 0;
     }
 
     .tarjeta {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      padding: 18px;
+      gap: 14px;
+      padding: clamp(12px, 1.5vw, 18px);
       border: 1px solid var(--adm-line);
-      border-radius: 14px;
-      background: var(--adm-surface);
+      border-radius: 15px;
+      background: color-mix(in srgb, var(--adm-brand) 3%, var(--adm-bg));
+      box-shadow: none;
+      min-width: 0;
     }
+
+    .tarjeta:focus-within { border-color: color-mix(in srgb, var(--adm-brand) 35%, var(--adm-line)); }
+    @media (max-width: 600px) { :host { gap: 16px; } .tarjeta { gap: 16px; } }
 
     .nota {
       margin: 0;

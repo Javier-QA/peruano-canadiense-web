@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MODULO_META } from '../../../core/models/documento.model';
 import { DialogComponent } from '../../../shared/ui';
 import { AvisoCambios } from '../aviso-cambios/aviso-cambios';
 import type { EditorModuloVista } from './editor-modulo-base';
@@ -22,9 +23,11 @@ export interface MarcoTab {
   template: `
     <div class="admin-page">
       <header class="page-header">
-        <div>
-          <h1 class="page-title">{{ titulo() }}</h1>
-          <p class="page-sub">{{ sub() }}</p>
+        <div class="portal-header-identity">
+          <div class="portal-header-copy">
+            <h1 class="page-title"><i class="fa-solid {{ icono() }} portal-title-icon" aria-hidden="true"></i>{{ titulo() }}</h1>
+            <p class="page-sub">{{ sub() }}</p>
+          </div>
         </div>
         <div class="page-header-actions">
           @if (editor().modificado()) {
@@ -44,11 +47,15 @@ export interface MarcoTab {
         </div>
       </header>
 
-      <nav class="admin-tabs" [attr.aria-label]="'Secciones de ' + titulo()">
+      <nav class="admin-tabs" role="tablist" [attr.aria-label]="'Secciones de ' + titulo()">
         @for (tab of tabs(); track tab.id) {
           <button
             type="button"
+            role="tab"
             class="admin-tab"
+            [attr.id]="'portal-tab-' + tab.id"
+            [attr.aria-controls]="'portal-panel-' + tab.id"
+            [attr.aria-selected]="activa() === tab.id"
             [class.active]="activa() === tab.id"
             [attr.aria-current]="activa() === tab.id ? 'true' : null"
             (click)="activa.set(tab.id)"
@@ -58,7 +65,7 @@ export interface MarcoTab {
         }
       </nav>
 
-      <div class="marco-lienzo">
+      <div class="marco-lienzo" role="tabpanel" [attr.id]="'portal-panel-' + activa()" [attr.aria-labelledby]="'portal-tab-' + activa()">
         <ng-content />
       </div>
 
@@ -105,14 +112,14 @@ export interface MarcoTab {
     <app-dialog
       [open]="!!editor().confirmacion()"
       [title]="''"
+      variant="danger"
       (openChange)="$event || editor().cancelarConfirmacion()"
     >
       <div class="confirmacion-contenido">
-        <span class="confirmacion-icono" aria-hidden="true"><i class="fa fa-trash-can"></i></span>
         <h3 class="confirmacion-titulo">¿{{ editor().confirmacion()?.titulo }}?</h3>
         <p class="confirmacion-detalle">{{ editor().confirmacion()?.detalle }}</p>
         @if (editor().confirmacion()?.titulo === 'Quitar cuenta institucional') {
-          <p class="confirmacion-nota">Esta acción no elimina la cuenta bancaria.</p>
+          <p class="confirmacion-nota">La cuenta dejará de mostrarse en el portal institucional al guardar los cambios.</p>
         }
       </div>
       <div dialog-footer class="confirmacion-acciones">
@@ -130,11 +137,37 @@ export interface MarcoTab {
       display: block;
     }
 
+    .page-header {
+      flex-wrap: nowrap;
+      align-items: center;
+      padding: 18px 24px;
+      border: 1px solid var(--adm-brand-border);
+      border-radius: 18px;
+      background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 70%);
+      box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
+    }
+    .page-header > div:first-child { flex: 1 1 auto; min-width: 0; }
+    .portal-header-identity { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
+    .portal-header-copy { min-width: 0; }
+    .portal-title-icon { display: inline-block; margin-right: 10px; color: var(--adm-brand); font-size: .72em; vertical-align: .08em; }
+    .portal-header-copy .page-title { display: flex; align-items: center; gap: 0; margin: 0 0 3px; line-height: 1.22; }
+    .portal-header-copy .page-sub { margin: 0; }
+    @media (max-width: 600px) { .portal-title-icon { margin-right: 8px; } }
+    .page-header .page-title { font-size: clamp(1.35rem, 1.8vw, 1.65rem); letter-spacing: -.025em; }
+    .page-header .page-sub { max-width: 75ch; font-size: .83rem; line-height: 1.45; }
+    .page-header-actions { align-self: center; flex: 0 0 auto; min-width: 0; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
+    .page-header-actions .btn-ghost { white-space: nowrap; padding-inline: 12px; font-size: .78rem; }
+    .page-header-actions .badge { white-space: nowrap; }
+    @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: auto; } }
+    @media (max-width: 900px) { .page-header { gap: 12px; } .page-header-actions { flex-wrap: nowrap; } }
+    @media (max-width: 760px) { .page-header { flex-wrap: wrap; } .page-header-actions { width: 100%; flex-wrap: wrap; justify-content: flex-start; } }
+
     .marco-lienzo {
-      padding: 22px;
+      min-width: 0;
+      padding: 24px;
       border: 1px solid var(--adm-line);
       border-radius: var(--adm-radius);
-      background: var(--adm-bg);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--adm-brand-soft) 35%, var(--adm-surface)) 0, var(--adm-bg) 130px);
       box-shadow: var(--adm-shadow);
     }
 
@@ -142,6 +175,9 @@ export interface MarcoTab {
       margin-top: 22px;
     }
 
+    .admin-tabs { scroll-padding-inline: 12px; }
+    .admin-tab[aria-selected="true"] { color: var(--adm-brand); }
+    .marco-lienzo :focus-visible { outline-color: var(--adm-brand); }
     .page-header-actions .fa {
       font-size: 0.72rem;
     }
@@ -165,11 +201,10 @@ export interface MarcoTab {
       font-size: 0.8rem;
     }
 
-    .confirmacion-contenido { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 0 8px 6px; }
-    .confirmacion-icono { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #fef2f2; color: #dc2626; font-size: 24px; }
-    .confirmacion-titulo { margin: 0; font-size: 1.25rem; line-height: 1.4; font-weight: 750; color: #172334; }
-    .confirmacion-detalle { margin: 0; font-size: 0.95rem; line-height: 1.65; color: #60718a; }
-    .confirmacion-nota { margin: 0; font-size: 0.8rem; color: #8490a0; }
+    .confirmacion-contenido { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 4px 8px 6px; }
+    .confirmacion-titulo { margin: 0; font-size: 1.2rem; line-height: 1.4; font-weight: 750; color: var(--adm-ink); }
+    .confirmacion-detalle { margin: 0; font-size: .95rem; line-height: 1.65; color: var(--adm-ink-soft); }
+    .confirmacion-nota { margin: 0; font-size: .8rem; color: var(--adm-ink-soft); }
     .confirmacion-acciones { display: flex; width: 100%; gap: 12px; }
     .confirmacion-acciones button { flex: 1 1 0; min-width: 0; min-height: 44px; border-radius: 10px; }
     @media (max-width: 620px) {
@@ -181,6 +216,7 @@ export interface MarcoTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditorModuloMarco {
+  readonly icono = computed(() => MODULO_META.find((modulo) => modulo.path === this.publicPath())?.icon ?? 'fa-file-lines');
   readonly editor = input.required<EditorModuloVista>();
   readonly titulo = input.required<string>();
   readonly sub = input.required<string>();

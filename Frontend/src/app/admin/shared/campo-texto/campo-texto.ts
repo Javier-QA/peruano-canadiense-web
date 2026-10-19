@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   standalone: true,
   template: `
     <label class="ct">
-      <span class="ct-label">{{ label() }}</span>
+      <span class="ct-cabecera"><span class="ct-icono" aria-hidden="true"><i class="fa-solid" [class]="iconoCampo()"></i></span><span class="ct-label">{{ label() }}</span></span>
       @if (multilinea()) {
         <textarea
           rows="4"
@@ -39,9 +39,23 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
     }
 
     .ct {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:16px;
+      border:1px solid var(--adm-line);
+      border-radius:14px;
+      background:var(--adm-surface);
+      min-width:0;
+    }
+    .ct-cabecera { display:flex; align-items:center; gap:10px; }
+    .ct-icono {
+      display:inline-flex; align-items:center; justify-content:center;
+      flex:0 0 38px; width:38px; height:38px;
+      border:1px solid color-mix(in srgb,var(--adm-brand) 32%,var(--adm-line));
+      border-radius:11px;
+      background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+      color:var(--adm-brand);
     }
 
     .ct-label {
@@ -109,4 +123,15 @@ export class CampoTexto {
   readonly multilinea = input(false);
 
   readonly valorChange = output<string>();
+  iconoCampo(): string {
+    const l=this.label().toLocaleLowerCase('es');
+    if (/título|nombre|portada/.test(l)) return 'fa-heading';
+    if (/correo|email/.test(l)) return 'fa-envelope';
+    if (/teléfono|celular/.test(l)) return 'fa-phone';
+    if (/fecha|horario/.test(l)) return 'fa-calendar-days';
+    if (/costo|monto|precio/.test(l)) return 'fa-coins';
+    if (/url|enlace|web/.test(l) || this.tipo()==='url') return 'fa-link';
+    if (/descrip|mensaje|texto|introduc/.test(l) || this.multilinea()) return 'fa-align-left';
+    return 'fa-pen-to-square';
+  }
 }

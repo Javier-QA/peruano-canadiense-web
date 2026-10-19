@@ -16,6 +16,11 @@
     </div>
   </header>
 
+  <div class="admin-list-toolbar" role="search">
+    <label class="admin-search-label" for="buscar-investigaciones">Buscar investigaciones</label>
+    <input id="buscar-investigaciones" type="search" autocomplete="off" placeholder="Buscar por nombre, título o dato…" [value]="busqueda()" (input)="buscar($any($event.target).value)" />
+    <span class="form-hint" role="status">{{ filtrados().length }} resultados</span>
+  </div>
   <div class="admin-card">
     <div class="form-row">
       <label>Programa</label>
@@ -29,20 +34,21 @@
     </div>
   </div>
 
-  <div class="admin-card">
-    <table class="admin-table">
+  <div class="admin-card investigaciones-listado">
+    <div class="investigaciones-scroll" role="region" aria-label="Listado de investigaciones" tabindex="0">
+    <table class="admin-table investigaciones-tabla">
       <thead>
         <tr>
           <th>Título</th>
           <th>Autores</th>
           <th>Programa</th>
-          <th>Año</th>
-          <th>PDF</th>
-          <th></th>
+          <th class="col-anio">Año</th>
+          <th class="col-pdf">PDF</th>
+          <th class="col-acciones">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        @for (tesis of visibles(); track tesis.id) {
+        @for (tesis of paginados(); track tesis.id) {
           <tr>
             <td>
               <strong>{{ tesis.titulo }}</strong>
@@ -52,8 +58,8 @@
             </td>
             <td>{{ tesis.autores.join(', ') }}</td>
             <td>{{ tesis.programa }}</td>
-            <td>{{ tesis.anio }}</td>
-            <td>
+            <td class="col-anio">{{ tesis.anio }}</td>
+            <td class="col-pdf">
               @if (tesis.pdfUrl) {
                 <a
                   class="badge badge-publicado"
@@ -65,7 +71,7 @@
               } @else if (subiendo() === tesis.id) {
                 <span class="form-hint">Subiendo…</span>
               } @else {
-                <label class="btn-ghost">
+                <label class="btn-ghost btn-subir-pdf">
                   Subir PDF
                   <input
                     type="file"
@@ -76,7 +82,7 @@
                 </label>
               }
             </td>
-            <td class="td-actions">
+            <td class="td-actions col-acciones">
               <a
                 class="btn-icon"
                 [href]="'/repositorio/' + tesis.id"
@@ -111,13 +117,19 @@
         }
       </tbody>
     </table>
+    </div>
   </div>
+  <nav class="admin-pagination" aria-label="Paginación de investigaciones">
+    <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() <= 1" (click)="cambiarPagina(-1)">Anterior</button>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() >= totalPaginas()" (click)="cambiarPagina(1)">Siguiente</button>
+  </nav>
 </div>
 
 <app-dialog
   [open]="formAbierto()"
   [title]="editandoId() ? 'Editar investigación' : 'Nueva investigación'"
-  (openChange)="formAbierto.set($event)"
+  (openChange)="alCambiarDialogo($event)"
 >
   <div class="form-grid">
     <div class="form-row span-2">
@@ -168,8 +180,8 @@
     </div>
   </div>
   <div dialog-footer>
-    <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
-    <button type="button" class="btn-save" (click)="guardar()">Guardar</button>
+    <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
+    <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
   </div>
 </app-dialog>
 
@@ -181,6 +193,6 @@
   <p>Dejará de verse en <code>/repositorio</code>.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirmar.set(null)">Cancelar</button>
-    <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
+    <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>

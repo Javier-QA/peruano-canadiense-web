@@ -38,6 +38,11 @@
     }
   </div>
 
+  <div class="admin-list-toolbar" role="search">
+    <label class="admin-search-label" for="buscar-personal">Buscar personal</label>
+    <input id="buscar-personal" type="search" autocomplete="off" placeholder="Buscar por nombre, título o dato…" [value]="busqueda()" (input)="buscar($any($event.target).value)" />
+    <span class="form-hint" role="status">{{ filtrados().length }} resultados</span>
+  </div>
   <div class="admin-card">
     <table class="admin-table">
       <thead>
@@ -46,11 +51,11 @@
           <th>Nombre</th>
           <th>Cargo</th>
           <th>Tipo</th>
-          <th></th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        @for (persona of visibles(); track persona.id) {
+        @for (persona of paginados(); track persona.id) {
           <tr>
             <td>
               <div class="admin-avatar">
@@ -99,9 +104,14 @@
       </tbody>
     </table>
   </div>
+  <nav class="admin-pagination" aria-label="Paginación de personal">
+    <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() <= 1" (click)="cambiarPagina(-1)">Anterior</button>
+    <button type="button" class="btn-ghost" [disabled]="paginaActual() >= totalPaginas()" (click)="cambiarPagina(1)">Siguiente</button>
+  </nav>
 </div>
 
-<app-dialog [open]="formAbierto()" title="Ficha de personal" (openChange)="formAbierto.set($event)">
+<app-dialog [open]="formAbierto()" title="Ficha de personal" (openChange)="alCambiarDialogo($event)">
   <div class="form-grid">
     <div class="form-row">
       <label>Nombres</label>
@@ -192,8 +202,8 @@
     </div>
   </div>
   <div dialog-footer>
-    <button type="button" class="btn-cancel" (click)="formAbierto.set(false)">Cancelar</button>
-    <button type="button" class="btn-save" (click)="guardar()">Guardar</button>
+    <button type="button" class="btn-cancel" (click)="cerrarFormulario()">Cancelar</button>
+    <button type="button" class="btn-save" [disabled]="guardando()" (click)="guardar()">{{ guardando() ? 'Guardando…' : 'Guardar' }}</button>
   </div>
 </app-dialog>
 
@@ -205,6 +215,6 @@
   <p>Dejará de verse en la web pública.</p>
   <div dialog-footer>
     <button type="button" class="btn-cancel" (click)="confirm.set(null)">Cancelar</button>
-    <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
+    <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>

@@ -153,7 +153,7 @@ import { esColumnaImagen, type ColumnaFila } from '../editor-contenido/schema';
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
       counter-reset: fila;
     }
 
@@ -162,7 +162,7 @@ import { esColumnaImagen, type ColumnaFila } from '../editor-contenido/schema';
       grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 12px;
-      padding: 10px 12px;
+      padding: 14px 16px;
       border: 1px solid var(--adm-line);
       border-radius: 11px;
       background: var(--adm-surface);

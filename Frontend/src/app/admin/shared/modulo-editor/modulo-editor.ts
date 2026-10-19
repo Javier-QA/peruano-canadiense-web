@@ -9,6 +9,7 @@ import {
   untracked,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MODULO_META } from '../../../core/models/documento.model';
 import { environment } from '../../../../environments/environment';
 import { PortalApi } from '../../../core/api/portal.api';
 import type { ContenidoVersion } from '../../../core/api/api.types';
@@ -30,12 +31,13 @@ import { DialogComponent } from '../../../shared/ui';
   template: `
     <div class="admin-page">
       <header class="page-header">
-        <div>
-          <h1 class="page-title">{{ titulo() }}</h1>
-          <p class="page-sub">
-            Los cambios se publican en el portal. Con el API remoto se envían al módulo de
-            contenido.
+        <div class="portal-header-identity">
+          <div class="portal-header-copy">
+            <h1 class="page-title"><i class="fa-solid {{ icono() }} portal-title-icon" aria-hidden="true"></i>{{ titulo() }}</h1>
+            <p class="page-sub">
+            {{ descripcion() }}
           </p>
+          </div>
         </div>
         <div class="page-header-actions">
           @if (modificado()) {
@@ -51,11 +53,13 @@ import { DialogComponent } from '../../../shared/ui';
         </div>
       </header>
 
-      <nav class="admin-tabs" [attr.aria-label]="'Secciones de ' + titulo()">
+      <nav class="admin-tabs" role="tablist" [attr.aria-label]="'Secciones de ' + titulo()">
         @for (tab of tabs(); track tab.id) {
           <button
             type="button"
+            role="tab"
             class="admin-tab"
+            [attr.aria-selected]="active() === tab.id"
             [class.active]="active() === tab.id"
             [attr.aria-current]="active() === tab.id ? 'true' : null"
             (click)="active.set(tab.id)"
@@ -65,17 +69,20 @@ import { DialogComponent } from '../../../shared/ui';
         }
       </nav>
 
-      <div class="admin-card seccion-card">
+      <div class="admin-card seccion-card" role="tabpanel" [attr.aria-label]="tabActivaLabel()">
         <header class="seccion-head">
-          <h2 class="seccion-titulo">{{ tabActivaLabel() }}</h2>
-          <p class="seccion-sub">
-            @if (campos().length) {
-              {{ campos().length }} {{ campos().length === 1 ? 'campo' : 'campos' }} en esta sección
-              · los cambios se guardan al pulsar «Guardar».
-            } @else {
-              Esta sección no tiene campos de texto; use «Documentos de esta sección».
-            }
-          </p>
+          <span class="seccion-icono" aria-hidden="true"><i class="fa-solid" [class]="iconoSeccion()"></i></span>
+          <div class="seccion-head-texto">
+            <h2 class="seccion-titulo">{{ tabActivaLabel() }}</h2>
+            <p class="seccion-sub">
+              @if (campos().length) {
+                {{ campos().length }} {{ campos().length === 1 ? 'campo' : 'campos' }} en esta sección
+                · los cambios se guardan al pulsar «Guardar».
+              } @else {
+                Esta sección no tiene campos de texto; use «Documentos de esta sección».
+              }
+            </p>
+          </div>
         </header>
         @if (campos().length) {
           <div class="admin-card-body seccion-cuerpo">
@@ -98,8 +105,8 @@ import { DialogComponent } from '../../../shared/ui';
         <button type="button" class="btn-cancel" (click)="cancelar()" [disabled]="!dirty()">
           Cancelar
         </button>
-        <button type="button" class="btn-save" (click)="guardar()" [disabled]="!dirty()">
-          Guardar
+        <button type="button" class="btn-save" (click)="guardar()" [disabled]="!dirty() || guardando()">
+          {{ guardando() ? 'Guardando…' : 'Guardar cambios' }}
         </button>
       </div>
     </div>
@@ -154,41 +161,80 @@ import { DialogComponent } from '../../../shared/ui';
     </app-dialog>
   `,
   styles: `
-    :host {
-      display: block;
+    :host { display: block; min-width: 0; }
+    .admin-page { display: flex; flex-direction: column; gap: 20px; }
+    .page-header {
+      padding: 14px 22px;
+      border: 1px solid var(--adm-brand-border);
+      border-radius: 16px;
+      background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 70%);
+      box-shadow: 0 4px 20px rgba(42, 52, 72, .03);
     }
-
-    .seccion-card {
-      overflow: visible;
-    }
-
+    .page-header { align-items: center; padding: 18px 24px; border-radius: 18px; }
+    .portal-header-identity { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
+    .portal-header-copy { min-width: 0; }
+    .portal-title-icon { display: inline-block; margin-right: 10px; color: var(--adm-brand); font-size: .72em; vertical-align: .08em; }
+    .portal-header-copy .page-title { display: flex; align-items: center; gap: 0; margin: 0 0 3px; line-height: 1.22; }
+    .portal-header-copy .page-sub { margin: 0; }
+    @media (max-width: 600px) { .portal-title-icon { margin-right: 8px; } }
+    .page-header .page-title { font-size: clamp(1.4rem, 2vw, 1.75rem); }
+    .page-header .page-sub { font-size: .85rem; }
+    @media (max-width: 720px) { .page-header { padding: 20px; } .page-header-actions { width: 100%; } }
+    .page-header .page-title { letter-spacing: -.025em; }
+    .page-header .page-sub { line-height: 1.6; max-width: 70ch; }
+    .page-header-actions { gap: 10px; }
+    .admin-tabs { margin-bottom: 0; }
+    .seccion-card { overflow: visible; border-radius: 16px; }
     .seccion-head {
-      padding: 16px 22px;
+      padding: 22px 28px;
       border-bottom: 1px solid var(--adm-line);
-      background: linear-gradient(180deg, var(--adm-bg), var(--adm-surface));
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(110deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 75%);
     }
-
+    .seccion-head {
+      display:flex;
+      align-items:center;
+      gap:13px;
+      border-bottom-color:color-mix(in srgb,var(--adm-brand) 24%,var(--adm-line));
+    }
+    .seccion-head-texto { min-width:0; }
+    .seccion-icono {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 44px;
+      width:44px;
+      height:44px;
+      border:1px solid color-mix(in srgb,var(--adm-brand) 38%,var(--adm-line));
+      border-radius:12px;
+      background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+      color:var(--adm-brand);
+      font-size:1.05rem;
+    }
     .seccion-titulo {
       margin: 0;
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.18rem;
+      font-weight: 750;
       color: var(--adm-ink);
-      letter-spacing: -0.01em;
+      letter-spacing: -.018em;
     }
-
     .seccion-sub {
-      margin: 3px 0 0;
-      font-size: 0.78rem;
+      margin: 8px 0 0;
+      font-size: .84rem;
+      line-height: 1.55;
       color: var(--adm-ink-soft);
     }
-
-    .seccion-cuerpo {
-      padding: 20px 22px 24px;
-      background: var(--adm-bg);
-    }
-
-    .seccion-docs {
-      margin-top: 22px;
+    .seccion-cuerpo { padding: 26px 28px 30px; background: var(--adm-bg); }
+    .seccion-docs { margin-top: 16px; min-width: 0; }
+    .admin-tab[aria-selected="true"] { color: var(--adm-brand); }
+    .seccion-card { min-width: 0; }
+    .seccion-cuerpo { min-width: 0; }
+    .save-bar { align-items: center; }
+    @media (max-width: 600px) { .save-bar > button { flex: 1 1 auto; } }
+    @media (max-width: 720px) {
+      .page-header { padding: 18px; }
+      .seccion-head { padding: 18px; }
+      .seccion-cuerpo { padding: 18px; }
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -199,12 +245,14 @@ export class ModuloEditor implements PuedeSalirConCambios {
   private readonly toast = inject(ToastService);
   private readonly api = inject(PortalApi);
 
+  readonly icono = computed(() => MODULO_META.find((modulo) => modulo.path === this.publicPath())?.icon ?? 'fa-file-lines');
   readonly modulo = input.required<ModuloId>();
   readonly titulo = input.required<string>();
   readonly publicPath = input.required<string>();
   readonly schema = input.required<CampoSchema[]>();
   readonly tabs = input.required<readonly { id: string; label: string }[]>();
   readonly mostrarDocumentos = input(true);
+  readonly descripcion = input('Edita la información y los documentos de esta página pública.');
 
   readonly remoto = environment.useRemoteApi;
   readonly draft = signal<unknown>({});
@@ -215,6 +263,7 @@ export class ModuloEditor implements PuedeSalirConCambios {
   readonly versiones = signal<ContenidoVersion[]>([]);
   readonly versionActiva = signal<ContenidoVersion | null>(null);
   readonly restaurandoVersion = signal(false);
+  readonly guardando = signal(false);
 
   private snapshot = '';
   private loadedFor: ModuloId | null = null;
@@ -224,6 +273,21 @@ export class ModuloEditor implements PuedeSalirConCambios {
   readonly tabActivaLabel = computed(
     () => this.tabs().find((t) => t.id === this.active())?.label ?? this.titulo(),
   );
+  readonly iconoSeccion = computed(() => {
+    const titulo = this.tabActivaLabel().toLocaleLowerCase('es');
+    if (/convocatoria|admisión|postul/.test(titulo)) return 'fa-bullhorn';
+    if (/imagen|foto|galería|portada|banner/.test(titulo)) return 'fa-images';
+    if (/requisito|documento|archivo/.test(titulo)) return 'fa-folder-open';
+    if (/costo|monto|pago|matrícula|pensión/.test(titulo)) return 'fa-coins';
+    if (/programa|carrera|estudio/.test(titulo)) return 'fa-graduation-cap';
+    if (/fecha|cronograma|calendario|horario/.test(titulo)) return 'fa-calendar-days';
+    if (/contacto|correo|teléfono/.test(titulo)) return 'fa-address-book';
+    if (/noticia|comunicado/.test(titulo)) return 'fa-newspaper';
+    if (/enlace|navegación|menú/.test(titulo)) return 'fa-link';
+    if (/personal|docente|equipo/.test(titulo)) return 'fa-users';
+    if (/texto|información|contenido|descripción/.test(titulo)) return 'fa-align-left';
+    return 'fa-layer-group';
+  });
   readonly modificado = computed(() => this.contenido.de(this.modulo()).modificado());
   readonly previewJson = computed(() => {
     const data = this.versionActiva()?.data;
@@ -259,20 +323,27 @@ export class ModuloEditor implements PuedeSalirConCambios {
   }
 
   async guardar(): Promise<void> {
+    if (!this.dirty() || this.guardando()) return;
+    this.guardando.set(true);
     try {
-      await this.contenido.publicar(this.modulo(), this.draft() as never);
-      this.snapshot = JSON.stringify(this.draft());
-      this.toast.success('Contenido guardado.');
+      const enviado = structuredClone(this.draft());
+      await this.contenido.publicar(this.modulo(), enviado as never);
+      this.snapshot = JSON.stringify(enviado);
+      this.toast.success(this.dirty() ? 'Cambios anteriores publicados. Quedan ediciones pendientes.' : 'Contenido guardado.');
     } catch {
       this.toast.error('No se pudo guardar. Revise la conexión; el borrador sigue aquí.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
   cancelar(): void {
+    if (this.dirty() && !window.confirm('¿Descartar los cambios sin guardar de esta sección?')) return;
     this.cargar(this.contenido.de(this.modulo()).value());
   }
 
   async restaurar(): Promise<void> {
+    if (!window.confirm('¿Restaurar el contenido y los documentos originales de este módulo?')) return;
     try {
       await this.contenido.restaurar(this.modulo());
       await this.documentos.restaurarModulo(this.modulo());
@@ -308,7 +379,7 @@ export class ModuloEditor implements PuedeSalirConCambios {
 
   async restaurarVersion(): Promise<void> {
     const ver = this.versionActiva();
-    if (!ver) return;
+    if (!ver || !window.confirm('¿Restaurar esta versión del contenido?')) return;
     this.restaurandoVersion.set(true);
     try {
       const data = await this.api.restaurarVersionContenido(this.modulo(), ver.id);

@@ -29,7 +29,26 @@ const nuevoBorrador = (zona: MenuZona): Borrador => ({
   standalone: true,
   imports: [DialogComponent],
   templateUrl: './menu.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
+    /* Columna Orden compacta: número destacado y controles discretos. */
+    .menu-order-heading,
+    .menu-order-cell { width: 148px; min-width: 148px; max-width: 148px; }
+    .menu-order-heading { text-align: center; }
+    .menu-order-cell { padding-inline: 10px !important; white-space: nowrap; }
+    .menu-order-controls { display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%; }
+    .menu-order-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; flex: 0 0 30px;
+      border-radius: 9px; background: var(--adm-brand-soft); color: var(--adm-brand);
+      font-size: .85rem; font-weight: 750; font-variant-numeric: tabular-nums;
+    }
+    .menu-order-controls .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; min-width: 34px; padding: 0;
+      flex: 0 0 34px; margin: 0;
+    }
+    .menu-order-controls .btn-icon:disabled { opacity: .35; cursor: not-allowed; }
+  `,  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminMenu {
   private readonly api = inject(PortalApi);
@@ -42,6 +61,7 @@ export class AdminMenu {
   readonly cargando = signal(true);
   readonly error = signal<string | null>(null);
   readonly guardando = signal(false);
+  readonly pendienteEliminar = signal<MenuItem | null>(null);
 
   readonly formAbierto = signal(false);
   readonly editandoId = signal<string | null>(null);
@@ -131,10 +151,13 @@ export class AdminMenu {
     }
   }
 
-  async eliminar(item: MenuItem): Promise<void> {
+  async confirmarEliminacion(): Promise<void> {
+    const item = this.pendienteEliminar();
+    if (!item) return;
     try {
       await this.api.borrarMenuItem(item.id);
       this.items.update((l) => l.filter((i) => i.id !== item.id));
+      this.pendienteEliminar.set(null);
       this.propagar();
       this.toast.success(`"${item.etiqueta}" se quitó del menú.`);
     } catch {
@@ -151,6 +174,7 @@ export class AdminMenu {
       });
       this.items.update((l) => l.map((i) => (i.id === item.id ? actualizado : i)));
       this.propagar();
+      this.toast.success(actualizado.visible ? 'Enlace visible.' : 'Enlace oculto.');
     } catch {
       this.toast.error('No se pudo cambiar la visibilidad.');
     }
@@ -174,6 +198,7 @@ export class AdminMenu {
     try {
       this.items.set(await this.api.ordenarMenu(cambios));
       this.propagar();
+      this.toast.success('Orden de enlaces actualizado.');
     } catch {
       this.toast.error('No se pudo reordenar.');
     }

@@ -40,7 +40,7 @@
         <table class="admin-table">
           <thead>
             <tr>
-              <th>Orden</th>
+              <th class="menu-order-heading">Orden</th>
               <th>Texto</th>
               <th>Va a</th>
               <th>Estado</th>
@@ -48,9 +48,11 @@
             </tr>
           </thead>
           <tbody>
-            @for (item of porZona()[zona.id]; track item.id; let primero = $first, ultimo = $last) {
+            @for (item of porZona()[zona.id]; track item.id; let primero = $first, ultimo = $last, indice = $index) {
               <tr>
-                <td class="td-actions">
+                <td class="menu-order-cell">
+                  <div class="menu-order-controls">
+                    <span class="menu-order-number">{{ indice + 1 }}</span>
                   <button
                     type="button"
                     class="btn-icon"
@@ -69,6 +71,7 @@
                   >
                     <i class="fa fa-arrow-down"></i>
                   </button>
+                  </div>
                 </td>
                 <td>{{ item.etiqueta }}</td>
                 <td>
@@ -101,8 +104,8 @@
                   </button>
                   <button
                     type="button"
-                    class="btn-icon"
-                    (click)="eliminar(item)"
+                    class="btn-icon btn-delete"
+                    (click)="pendienteEliminar.set(item)"
                     aria-label="Eliminar"
                   >
                     <i class="fa fa-trash"></i>
@@ -186,5 +189,13 @@
     >
       {{ guardando() ? 'Guardando…' : 'Guardar' }}
     </button>
+  </div>
+</app-dialog>
+
+<app-dialog [open]="!!pendienteEliminar()" title="Eliminar enlace" variant="danger" (openChange)="!$event && pendienteEliminar.set(null)">
+  <p>¿Deseas eliminar «{{ pendienteEliminar()?.etiqueta }}» del menú?</p>
+  <div dialog-footer>
+    <button type="button" class="btn-cancel" (click)="pendienteEliminar.set(null)">Cancelar</button>
+    <button type="button" class="btn-danger" (click)="confirmarEliminacion()">Eliminar</button>
   </div>
 </app-dialog>

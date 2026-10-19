@@ -60,7 +60,7 @@ function aMonto(texto: string): number {
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Costos"
-      sub="Los montos y las cuentas se publican en /costos y en Admisión → Costos y pagos."
+      sub="Actualiza montos, cuentas, matrícula y documentos oficiales."
       publicPath="/costos"
       [tabs]="tabs"
       [(activa)]="activa"

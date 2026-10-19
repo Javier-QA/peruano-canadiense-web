@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { NewsService, NEWS_CATEGORY_LABEL } from '../../core/services/news.service';
 import { NewsCategory, NewsItem } from '../../core/models/news.model';
 import { AppSrc } from '../../core/directives/app-src';
@@ -47,16 +47,44 @@ export class AdminNoticiasComponent {
   private readonly toast = inject(ToastService);
 
   readonly items = this.news.all;
+  readonly busqueda = signal('');
+  readonly pagina = signal(1);
+  readonly porPagina = 10;
+  readonly filtrados = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase('es');
+    const datos = this.items();
+    return q ? datos.filter(item => [item.title, item.categoryLabel, item.excerpt].some(v => String(v ?? '').toLocaleLowerCase('es').includes(q))) : datos;
+  });
+  readonly totalPaginas = computed(() => Math.max(1, Math.ceil(this.filtrados().length / this.porPagina)));
+  readonly paginaActual = computed(() => Math.min(this.pagina(), this.totalPaginas()));
+  readonly paginados = computed(() => this.filtrados().slice((this.paginaActual() - 1) * this.porPagina, this.paginaActual() * this.porPagina));
+  buscar(valor: string): void { this.busqueda.set(valor); this.pagina.set(1); }
+  cambiarPagina(delta: number): void { this.pagina.set(Math.max(1, Math.min(this.totalPaginas(), this.paginaActual() + delta))); }
+
   readonly categorias: NewsCategory[] = ['noticia', 'comunicado', 'evento'];
   readonly labels = NEWS_CATEGORY_LABEL;
   readonly formAbierto = signal(false);
   readonly editingId = signal<string | null>(null);
   readonly form = signal<NoticiaForm>({ ...VACIO });
+  private formularioInicial = '';
+  readonly hayCambios = computed(() => this.formAbierto() && JSON.stringify(this.form()) !== this.formularioInicial);
+  cerrarFormulario(): void {
+    if (this.guardando()) return;
+    if (this.hayCambios() && !window.confirm('Hay cambios sin guardar. ¿Desea descartarlos?')) return;
+    this.formAbierto.set(false);
+  }
+  alCambiarDialogo(abierto: boolean): void {
+    if (!abierto) this.cerrarFormulario();
+  }
+
   readonly confirm = signal<NewsItem | null>(null);
+  readonly guardando = signal(false);
+  readonly eliminando = signal(false);
 
   abrirNueva(): void {
     this.editingId.set(null);
     this.form.set({ ...VACIO, createdAt: new Date().toISOString().slice(0, 10) });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -76,6 +104,7 @@ export class AdminNoticiasComponent {
       featured: Boolean(item.featured),
       publicada: item.publicada !== false,
     });
+    this.formularioInicial = JSON.stringify(this.form());
     this.formAbierto.set(true);
   }
 
@@ -124,6 +153,8 @@ export class AdminNoticiasComponent {
       this.toast.error('Título, bajada y al menos un párrafo son obligatorios.');
       return;
     }
+    if (this.guardando()) return;
+    this.guardando.set(true);
     try {
       const id = this.editingId();
       if (id) {
@@ -142,14 +173,23 @@ export class AdminNoticiasComponent {
       this.formAbierto.set(false);
     } catch {
       this.toast.error('No se pudo guardar la noticia.');
+    } finally {
+      this.guardando.set(false);
     }
   }
 
   async eliminar(): Promise<void> {
     const item = this.confirm();
-    if (!item) return;
-    await this.news.eliminar(item.id);
-    this.confirm.set(null);
-    this.toast.success('Se quitó del listado público.');
+    if (!item || this.eliminando()) return;
+    this.eliminando.set(true);
+    try {
+      await this.news.eliminar(item.id);
+      this.confirm.set(null);
+      this.toast.success('Se quitó del listado público.');
+    } catch {
+      this.toast.error('No se pudo eliminar la noticia.');
+    } finally {
+      this.eliminando.set(false);
+    }
   }
 }

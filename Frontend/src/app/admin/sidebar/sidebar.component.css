@@ -3,22 +3,23 @@
 }
 
 .admin-sidebar {
-  width: 280px;
+  width: 260px;
+  flex: 0 0 260px;
   height: 100vh;
-  background: linear-gradient(180deg, #2a2a3e 0%, #1e1e2e 100%);
+  background: linear-gradient(180deg, var(--adm-sidebar-top) 0%, var(--adm-sidebar-bottom) 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
   position: sticky;
   top: 0;
-  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 4px 0 24px rgba(17, 24, 39, 0.10);
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 24px 20px;
+  padding: 22px 18px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
 }
@@ -28,7 +29,7 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #FF6600, #ff8533);
+  background: linear-gradient(135deg, var(--adm-brand), color-mix(in srgb, var(--adm-brand) 75%, white));
   color: #fff;
   display: flex;
   align-items: center;
@@ -36,7 +37,7 @@
   font-weight: 800;
   font-size: 0.95rem;
   letter-spacing: 0.04em;
-  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--adm-brand) 30%, transparent);
 }
 
 .brand-text {
@@ -62,7 +63,7 @@
 
 .sidebar-nav {
   flex: 1;
-  padding: 14px 12px;
+  padding: 16px 10px;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -85,14 +86,14 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 11px 14px;
+  padding: 11px 13px;
   border-radius: 10px;
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   white-space: nowrap;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   position: relative;
 }
 
@@ -104,7 +105,7 @@
   transform: translateY(-50%);
   width: 3px;
   height: 0;
-  background: linear-gradient(180deg, #FF6600, #ff8533);
+  background: linear-gradient(180deg, var(--adm-brand), color-mix(in srgb, var(--adm-brand) 75%, white));
   border-radius: 0 2px 2px 0;
   transition: height 0.2s ease;
 }
@@ -112,24 +113,24 @@
 .sidebar-link:hover {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  transform: translateX(2px);
 }
+
 
 .sidebar-link:hover::before {
   height: 60%;
 }
 
 .sidebar-link:focus-visible {
-  outline: 2px solid var(--inst-primary, #ff6600);
+  outline: 2px solid var(--adm-brand);
   outline-offset: -2px;
 }
 
 .sidebar-link.active {
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15), rgba(255, 133, 51, 0.1));
+  background: color-mix(in srgb, var(--adm-brand) 17%, transparent);
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(255, 102, 0, 0.25);
-  border: 1px solid rgba(255, 102, 0, 0.2);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--adm-brand) 14%, transparent);
+  border: 1px solid transparent;
 }
 
 .sidebar-link.active::before {
@@ -175,12 +176,12 @@
 }
 
 .exit-link {
-  color: #ffb380;
+  color: color-mix(in srgb, var(--adm-brand) 45%, white);
 }
 
 .exit-link:hover {
   color: #fff;
-  background: rgba(255, 102, 0, 0.14);
+  background: color-mix(in srgb, var(--adm-brand) 14%, transparent);
 }
 
 /* ---------------------------------------------------------------------------
@@ -199,36 +200,28 @@
     width: 74px;
   }
 
-  /* Al pasar el cursor (o enfocar dentro) el riel se despliega por encima. */
-  .admin-sidebar.is-collapsed:hover,
-  .admin-sidebar.is-collapsed:focus-within {
-    width: 260px;
-    box-shadow: 12px 0 44px rgba(20, 19, 30, 0.45);
+  /* Contraído: permanece en 74 px incluso al pasar el cursor o usar teclado.
+     El nombre completo se muestra mediante el tooltip nativo del enlace. */
+  .admin-sidebar.is-collapsed .brand-text,
+  .admin-sidebar.is-collapsed .sidebar-link span,
+  .admin-sidebar.is-collapsed .logout-btn span {
+    display: none;
   }
 
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .brand-text,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-link span,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .logout-btn span {
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
-  }
-
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-brand,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-link,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .logout-btn {
+  .admin-sidebar.is-collapsed .sidebar-brand,
+  .admin-sidebar.is-collapsed .sidebar-link,
+  .admin-sidebar.is-collapsed .logout-btn {
     justify-content: center;
     gap: 0;
   }
 
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .sidebar-link i,
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .logout-btn i {
+  .admin-sidebar.is-collapsed .sidebar-link i,
+  .admin-sidebar.is-collapsed .logout-btn i {
     font-size: 1.2rem;
     width: auto;
   }
 
-  /* La etiqueta de grupo se vuelve un separador fino. */
-  .admin-sidebar.is-collapsed:not(:hover):not(:focus-within) .nav-group-label {
+  .admin-sidebar.is-collapsed .nav-group-label {
     margin: 10px 16px;
     height: 1px;
     padding: 0;

@@ -37,22 +37,22 @@
   align-items: center;
   gap: 12px;
   padding: 8px 14px 8px 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--adm-line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--adm-surface);
   cursor: pointer;
   font: inherit;
   color: var(--adm-ink);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 4px rgba(28, 44, 68, .04);
 }
 
 .usermenu-trigger:hover,
 .usermenu-trigger.is-open {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.08);
+  background: var(--adm-bg);
+  border-color: var(--adm-line);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
+
 }
 
 .usermenu-trigger:focus-visible {
@@ -106,12 +106,12 @@
   z-index: 50;
   min-width: 240px;
   padding: 8px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--adm-surface);
+  border: 1px solid var(--adm-line);
   border-radius: 16px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   animation: usermenu-in 0.2s cubic-bezier(0.4, 0, 0.2, 1) both;
-  backdrop-filter: blur(20px);
+
 }
 
 @keyframes usermenu-in {
@@ -156,8 +156,7 @@
 }
 
 .usermenu-item:hover {
-  background: rgba(0, 0, 0, 0.04);
-  transform: translateX(2px);
+  background: var(--adm-bg);
 }
 
 .usermenu-item:hover i {
@@ -198,4 +197,28 @@
     animation: none;
     transition: none;
   }
+}
+
+/* Control de apariencia: no altera la estructura aprobada de la barra. */
+.topbar-right { display:flex; align-items:center; gap:10px; min-width:0; }
+.theme-toggle { display:inline-flex; align-items:center; justify-content:center; width:39px; height:39px; padding:0; border:1px solid var(--adm-line); border-radius:11px; background:var(--adm-surface); color:var(--adm-ink); font:inherit; font-size:.8rem; font-weight:650; cursor:pointer; transition:background-color .3s ease,border-color .3s ease,color .3s ease; }
+.theme-toggle:hover { background:var(--adm-bg); border-color:var(--adm-line); }
+.theme-toggle i { color:var(--adm-ink-soft); font-size:1.05rem; }
+.theme-toggle:focus-visible { outline:2px solid var(--adm-brand); outline-offset:2px; }
+@media(max-width:640px) { .topbar-right { gap:7px; } .theme-toggle { width:38px; height:38px; } }
+@media(prefers-reduced-motion:reduce) { .theme-toggle { transition:none; } }
+
+.theme-line-icon { display:block; color:var(--adm-ink-soft); flex:none; }
+.admin-shell[data-modo="oscuro"] .topbar-avatar {
+  background:#eaf0f8;
+  color:#24354c;
+}
+.admin-shell[data-modo="oscuro"] .usermenu-trigger,
+.admin-shell[data-modo="oscuro"] .usermenu-pop {
+  background:var(--adm-surface);
+  color:var(--adm-ink);
+  border-color:var(--adm-line);
+}
+.admin-shell[data-modo="oscuro"] .usermenu-item:hover {
+  background:var(--adm-muted-bg);
 }

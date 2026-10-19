@@ -12,7 +12,7 @@ import { LICENCIAMIENTO_SCHEMA, LICENCIAMIENTO_TABS } from './licenciamiento.sch
       [editor]="this"
       modulo="licenciamiento"
       titulo="Licenciamiento"
-      sub="Los cambios guardados se actualizarán directamente en la sección Licenciamiento de la web."
+      sub="Gestiona la información y los documentos del licenciamiento institucional."
       publicPath="/licenciamiento"
       [tabs]="tabs"
       [schema]="schema"

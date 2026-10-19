@@ -1,4 +1,7 @@
-.admin-view-header { margin-bottom: 24px; }
-.admin-view-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--inst-dark, #44425A); margin-bottom: 4px; }
-.admin-view-header p { color: var(--inst-text, #6C6A74); font-size: 0.9rem; }
-.admin-card { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border: 1px solid #e7e6f0; }
+:host { display: block; min-width: 0; }
+.admin-view-header { margin-bottom: 22px; padding: 24px 28px; border: 1px solid var(--adm-brand-border); border-radius: 16px; background: linear-gradient(115deg, color-mix(in srgb, var(--adm-brand-soft) 45%, var(--adm-surface)), var(--adm-surface) 70%); }
+.admin-view-header h2 { margin: 0 0 8px; font-size: clamp(1.4rem, 2vw, 1.8rem); font-weight: 750; letter-spacing: -.025em; color: var(--adm-ink); }
+.admin-view-header p { margin: 0; color: var(--adm-muted); font-size: .88rem; line-height: 1.6; }
+:host .admin-card { padding: 28px; background: var(--adm-surface); border: 1px solid var(--adm-line); border-radius: var(--adm-radius); box-shadow: var(--adm-shadow); color: var(--adm-muted); }
+:host .admin-card p { margin: 0; line-height: 1.6; }
+@media(max-width:720px){.admin-view-header,:host .admin-card{padding:18px;}}
