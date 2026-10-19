@@ -358,3 +358,14 @@
     max-height: 148px;
   }
 }
+
+
+/* Noticias y comunicados: paneles más claros */
+.top-grid { gap:22px; }
+.panel { border-radius:16px; padding:23px; box-shadow:0 7px 22px rgba(15,41,76,.045); }
+.panel__head { align-items:center; margin-bottom:18px; }
+.panel__head h2 { font-size:clamp(1.15rem,1.6vw,1.4rem); }
+.feat__media { max-height:205px; aspect-ratio:16/9; }
+.row { padding:11px 7px; }
+@media(max-width:620px) { .panel { padding:16px; } .panel__head { flex-wrap:wrap; } }
+@media(prefers-reduced-motion:reduce) { .feat__media img { transition:none; } .feat:hover .feat__media img { transform:none; } }
