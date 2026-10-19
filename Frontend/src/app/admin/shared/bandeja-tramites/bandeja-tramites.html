@@ -154,15 +154,20 @@
             }
           </select>
         </div>
-        <div class="form-row span-2">
-          <label>{{ etiquetaRespuesta() }}</label>
+        <div class="form-row span-2 tramite-observacion">
+          <label for="tramite-observacion"><span class="tramite-observacion-icono" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></span>{{ etiquetaRespuesta() }}</label>
           <textarea
-            rows="4"
+            id="tramite-observacion"
+            class="tramite-observacion-texto"
+            rows="6"
             [value]="respuestaEditada()"
             (input)="respuestaEditada.set($any($event.target).value)"
+            placeholder="Escribe aquí la observación o respuesta del expediente…"
+            aria-describedby="tramite-observacion-ayuda"
           ></textarea>
-          <p class="form-hint">
-            Queda registrado en el expediente. El solicitante solo lo recibe si marca la casilla.
+          <p id="tramite-observacion-ayuda" class="tramite-observacion-ayuda">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <span>La observación se guarda en el expediente. Solo se enviará al solicitante si seleccionas la opción de notificación.</span>
           </p>
         </div>
         <div class="form-row span-2">
