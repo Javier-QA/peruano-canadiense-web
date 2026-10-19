@@ -384,3 +384,15 @@
 .licencia-popup { top:60px; left:0; }
 }
 @media(max-width:768px) { .hero-stage { padding:78px 20px 28px; } .hero-content h1 { font-weight:800; letter-spacing:-.025em; } .btn-card { border-radius:9px; } }
+
+
+/* Ajuste solicitado: eliminar la banda azul vacía debajo de la fotografía */
+.hero { overflow:hidden; }
+.hero-stage { min-height:inherit; }
+@media(min-width:769px) {
+  .hero { min-height:clamp(480px,39vw,620px); }
+  .hero-stage { padding-bottom:30px; }
+}
+@media(max-width:768px) {
+  .hero { min-height:470px; }
+}
