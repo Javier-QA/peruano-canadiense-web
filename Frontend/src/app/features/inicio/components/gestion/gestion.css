@@ -221,3 +221,23 @@
 .gestion-link:hover { color:#153d68; border-color:#a9c5df; background:#edf5fd; }
 @media(max-width:1000px) { .gestion-grid--featured,.gestion-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:600px) { .gestion-section { padding:32px 19px; } .gestion-section::before { left:20px; right:20px; } .gestion-grid--featured { grid-template-columns:1fr; } .gestion-card { min-height:0; padding:22px; } .gestion-card i { margin-bottom:14px; } .gestion-list { grid-template-columns:1fr; } }
+
+/* Identidad académica: cabecera editorial y navegación por servicios */
+.gestion-section { padding:clamp(28px,4vw,54px); }
+.gestion-intro { position:relative; margin-bottom:36px; padding-bottom:27px; border-bottom:1px solid #e4eaf2; }
+.section-eyebrow { display:inline-flex; align-items:center; gap:9px; margin-bottom:14px; color:#e75e00; font-size:.74rem; font-weight:800; letter-spacing:.12em; }
+.section-eyebrow i { font-size:1rem; }
+.gestion-intro .section-title { margin:0 0 13px; font-size:clamp(1.9rem,3.2vw,2.7rem); line-height:1.18; letter-spacing:-.045em; }
+.section-description { max-width:670px; font-size:1rem; line-height:1.75; color:#596b80; }
+.gestion-heading { margin:29px 0 19px; font-size:1.15rem; }
+.gestion-grid--featured { gap:18px; }
+.gestion-card { position:relative; overflow:hidden; min-height:210px; border-radius:17px; }
+.gestion-card::after { content:"\f061"; font-family:"Font Awesome 6 Free"; font-weight:900; position:absolute; top:23px; right:21px; color:#b7c8d9; font-size:.85rem; }
+.gestion-card:hover::after { color:#ff6600; }
+.gestion-card i { width:55px; height:55px; }
+.gestion-card-title { font-size:1.1rem; }
+.gestion-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.gestion-link { min-height:58px; padding:14px 17px; background:#f7faff; }
+.gestion-link i { font-size:1.1rem; }
+@media(max-width:1000px) { .gestion-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .gestion-intro { margin-bottom:23px; } .section-description { font-size:.93rem; } .gestion-grid--featured,.gestion-list { grid-template-columns:1fr; } .gestion-card { min-height:0; } }
