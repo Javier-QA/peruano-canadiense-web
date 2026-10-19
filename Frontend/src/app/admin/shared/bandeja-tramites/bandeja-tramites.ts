@@ -153,6 +153,77 @@ export interface ColumnaBandeja {
       .tramite-detalle-grid > .tramite-dato p { padding-left:0; }
       .tramite-detalle-grid > .tramite-dato :is(a,button) { margin-left:0; }
     }
+    /* Observaciones: campo legible y ayuda diferenciada, sin agrandar el modal. */
+    .tramite-gestion-grid > .tramite-observacion {
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-width:0;
+      padding:15px;
+      border:1px solid var(--adm-line);
+      border-radius:13px;
+      background:color-mix(in srgb,var(--adm-brand) 3%,var(--adm-surface));
+    }
+    .tramite-observacion > label {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:750;
+      color:var(--adm-ink);
+      margin:0;
+    }
+    .tramite-observacion-icono {
+      display:inline-grid;
+      place-items:center;
+      width:34px;
+      height:34px;
+      flex:0 0 34px;
+      border-radius:10px;
+      color:var(--adm-brand);
+      background:color-mix(in srgb,var(--adm-brand) 10%,var(--adm-surface));
+      border:1px solid color-mix(in srgb,var(--adm-brand) 26%,var(--adm-line));
+    }
+    .tramite-gestion-grid .tramite-observacion-texto {
+      display:block;
+      width:100%;
+      min-width:0;
+      min-height:172px;
+      max-height:320px;
+      box-sizing:border-box;
+      padding:14px 16px;
+      border:1px solid var(--adm-line);
+      border-radius:11px;
+      background:var(--adm-surface);
+      color:var(--adm-ink);
+      line-height:1.65;
+      font:inherit;
+      font-size:.92rem;
+      resize:vertical;
+      overflow-y:auto;
+      scrollbar-width:thin;
+    }
+    .tramite-gestion-grid .tramite-observacion-texto:focus {
+      outline:2px solid color-mix(in srgb,var(--adm-brand) 20%,transparent);
+      outline-offset:1px;
+      border-color:var(--adm-brand);
+    }
+    .tramite-observacion-ayuda {
+      display:flex;
+      align-items:flex-start;
+      gap:9px;
+      margin:0;
+      padding:10px 12px;
+      border-radius:9px;
+      background:color-mix(in srgb,var(--adm-brand) 7%,var(--adm-surface));
+      color:var(--adm-muted);
+      font-size:.79rem;
+      line-height:1.55;
+    }
+    .tramite-observacion-ayuda i { color:var(--adm-brand); margin-top:2px; flex:0 0 auto; }
+    @media(max-width:600px) {
+      .tramite-gestion-grid > .tramite-observacion { padding:12px; }
+      .tramite-gestion-grid .tramite-observacion-texto { min-height:150px; padding:12px; }
+    }
     @media (max-width: 720px) {
       .page-header { padding: 18px; }
       .admin-tabs { max-width: 100%; }
