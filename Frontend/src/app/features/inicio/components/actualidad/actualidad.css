@@ -415,3 +415,15 @@
 .panel__cta:hover { background:#153d68; color:#fff; text-decoration:none; }
 @media(max-width:900px) { .top-grid { grid-template-columns:1fr; gap:20px; } }
 @media(max-width:600px) { .panel { padding:21px 17px; } .panel__head h2 { font-size:1.3rem; } .feat__media { max-height:240px; } }
+
+/* Publicaciones institucionales: contraste, ritmo y lectura */
+.top-grid { gap:25px; margin-top:8px; }
+.panel { padding:clamp(20px,2.6vw,34px); border-radius:20px; }
+.panel__head { padding-bottom:19px; margin-bottom:23px; }
+.panel__head h2 { font-size:clamp(1.3rem,2vw,1.65rem); }
+.feat__media { max-height:300px; }
+.feat__title { font-size:clamp(1.08rem,1.55vw,1.3rem); }
+.feat__excerpt { color:#5e6f83; }
+.feat--com { padding:22px; background:#fff9f4; }
+.row { min-height:70px; }
+.panel__cta { margin-top:auto; }
