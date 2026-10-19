@@ -102,3 +102,12 @@
   .whatsapp-btn { width: 56px; height: 56px; font-size: 30px; }
 }
 @media(prefers-reduced-motion:reduce) { .whatsapp-float { transition:none; } }
+
+
+/* Pulso suave y visible del botón de WhatsApp */
+.whatsapp-btn { animation: whatsapp-soft-pulse 1.8s ease-in-out infinite; }
+@keyframes whatsapp-soft-pulse {
+  0%,100% { box-shadow: 0 0 0 1px rgba(0,175,77,.15),0 0 0 8px rgba(0,200,83,.06),0 0 15px 5px rgba(0,200,83,.12); }
+  50% { box-shadow: 0 0 0 1px rgba(0,175,77,.2),0 0 0 17px rgba(0,200,83,.15),0 0 27px 13px rgba(0,200,83,.22); }
+}
+@media(prefers-reduced-motion:reduce) { .whatsapp-btn { animation:none; } }
