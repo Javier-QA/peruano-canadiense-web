@@ -4,3 +4,10 @@
 .container { width:100%; max-width:1200px; margin:0 auto; }
 @media(max-width:768px) { .main-content { padding:36px 18px 50px; } }
 @media(max-width:480px) { .main-content { padding:28px 14px 42px; } }
+
+
+/* Anchura uniforme entre las secciones de la portada */
+.main-content { background:#f5f7fb; padding:44px 24px 62px; }
+.container { max-width:1260px; }
+@media(max-width:768px) { .main-content { padding:30px 18px 44px; } }
+@media(max-width:480px) { .main-content { padding:24px 14px 38px; } }
