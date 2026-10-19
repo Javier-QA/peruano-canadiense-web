@@ -1,5 +1,5 @@
 <div class="servicios-section">
-  <div class="servicios-intro"><span class="section-eyebrow"><i class="fa-solid fa-book-open" aria-hidden="true"></i> VIDA ACADÉMICA</span><h2>Formación y actividades institucionales</h2><p>Conoce los espacios de aprendizaje y las actividades que forman parte de nuestra comunidad educativa.</p></div>
+  <h2>Otros servicios</h2>
   <div class="servicios-grid">
     @for (service of services(); track service.src; let i = $index) {
       <a routerLink="/programas" class="servicio-card" appReveal [appRevealDelay]="i * 80">
