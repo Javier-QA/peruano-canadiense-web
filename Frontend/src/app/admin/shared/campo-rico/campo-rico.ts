@@ -10,7 +10,7 @@ import { EditorQuill } from '../editor-quill/editor-quill';
   standalone: true,
   imports: [EditorQuill],
   template: `
-    <span class="cr-label">{{ label() }}</span>
+    <span class="cr-cabecera"><span class="cr-icono" aria-hidden="true"><i class="fa-solid fa-align-left"></i></span><span class="cr-label">{{ label() }}</span></span>
     @if (hint()) {
       <span class="cr-hint">
         @if (info()) {
@@ -28,9 +28,23 @@ import { EditorQuill } from '../editor-quill/editor-quill';
   `,
   styles: `
     :host {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:16px;
+      border:1px solid var(--adm-line);
+      border-radius:14px;
+      background:var(--adm-surface);
+      min-width:0;
+    }
+    .cr-cabecera { display:flex; align-items:center; gap:10px; }
+    .cr-icono {
+      display:inline-flex; align-items:center; justify-content:center;
+      flex:0 0 38px; width:38px; height:38px;
+      border:1px solid color-mix(in srgb,var(--adm-brand) 32%,var(--adm-line));
+      border-radius:11px;
+      background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+      color:var(--adm-brand);
     }
 
     .cr-label {
