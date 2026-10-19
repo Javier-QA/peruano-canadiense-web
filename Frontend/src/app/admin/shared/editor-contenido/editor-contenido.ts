@@ -16,7 +16,15 @@ import type { CampoSchema } from './schema';
         class="form-row"
         [class.form-row--lista]="campo.tipo === 'filas' || campo.tipo === 'lista'"
       >
-        <label [attr.for]="'campo-' + campo.key">{{ campo.label }}</label>
+        <div class="campo-cabecera">
+          <span class="campo-icono" aria-hidden="true"><i class="fa-solid" [class]="iconoCampo(campo.label, campo.tipo)"></i></span>
+          <div class="campo-cabecera-texto">
+            <label [attr.for]="'campo-' + campo.key">{{ campo.label }}</label>
+            @if (campo.hint) {
+              <p class="campo-ayuda" [id]="'ayuda-' + campo.key">{{ campo.hint }}</p>
+            }
+          </div>
+        </div>
         @switch (campo.tipo) {
           @case ('area') {
             <app-editor-quill
@@ -102,9 +110,6 @@ import type { CampoSchema } from './schema';
             />
           }
         }
-        @if (campo.hint) {
-          <p class="form-hint" [id]="'ayuda-' + campo.key">{{ campo.hint }}</p>
-        }
       </div>
     }
   `,
@@ -117,6 +122,60 @@ import type { CampoSchema } from './schema';
       margin-top: 24px;
       padding-top: 24px;
       border-top: 1px solid var(--adm-line);
+    }
+
+
+    /* Tarjetas de campos con iconos y ayudas claras, según la paleta activa. */
+    :host > .form-row {
+      padding:18px;
+      margin-bottom:14px;
+      border:1px solid var(--adm-line);
+      border-radius:15px;
+      background:var(--adm-surface);
+      gap:12px;
+      min-width:0;
+    }
+    :host > .form-row + .form-row {
+      margin-top:14px;
+      padding-top:18px;
+      border-top:1px solid var(--adm-line);
+    }
+    .campo-cabecera {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .campo-cabecera-texto { min-width:0; }
+    .campo-cabecera label {
+      display:block;
+      font-size:.88rem;
+      font-weight:750;
+      line-height:1.35;
+      color:var(--adm-ink);
+    }
+    .campo-icono {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 42px;
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      border:1px solid color-mix(in srgb,var(--adm-brand) 29%,var(--adm-line));
+      background:color-mix(in srgb,var(--adm-brand) 9%,var(--adm-surface));
+      color:var(--adm-brand);
+      font-size:1rem;
+    }
+    .campo-ayuda {
+      margin:4px 0 0;
+      font-size:.79rem;
+      line-height:1.5;
+      color:var(--adm-muted);
+    }
+    @media(max-width:620px) {
+      :host > .form-row { padding:14px; }
+      .campo-icono { flex-basis:38px; width:38px; height:38px; }
     }
 
     .form-row--lista > label {
@@ -174,6 +233,25 @@ export class EditorContenido {
   readonly schema = input<CampoSchema[]>([]);
   readonly valor = input<unknown>({});
   readonly valorChange = output<unknown>();
+
+
+  iconoCampo(label: string, tipo: string): string {
+    const texto = label.toLocaleLowerCase('es');
+    if (/título|nombre|encabezado|portada/.test(texto)) return 'fa-heading';
+    if (/introduc|mensaje|descrip|texto|reseña|contenido|bajada/.test(texto)) return 'fa-align-left';
+    if (/correo|email/.test(texto)) return 'fa-envelope';
+    if (/teléfono|celular|whatsapp/.test(texto)) return 'fa-phone';
+    if (/dirección|ubicación|mapa/.test(texto)) return 'fa-location-dot';
+    if (/fecha|cronograma|calendario/.test(texto)) return 'fa-calendar-days';
+    if (/enlace|url|web|sitio/.test(texto)) return 'fa-link';
+    if (/imagen|foto|banner|logo/.test(texto) || (tipo === 'url')) return 'fa-image';
+    if (/costo|monto|precio|pago/.test(texto)) return 'fa-coins';
+    if (/programa|estudio|carrera/.test(texto)) return 'fa-graduation-cap';
+    if (tipo === 'lista' || tipo === 'filas') return 'fa-list';
+    if (tipo === 'numero') return 'fa-hashtag';
+    if (tipo === 'area') return 'fa-align-left';
+    return 'fa-pen-to-square';
+  }
 
   get(key: string): unknown {
     return getPath(this.valor(), key);
