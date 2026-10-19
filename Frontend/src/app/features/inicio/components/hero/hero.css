@@ -407,3 +407,25 @@
   .hero { min-height:0; height:auto; }
   .hero-stage { min-height:390px; }
 }
+
+
+/* Licenciamiento: vista previa junto al botón, sin recortarse por el borde inferior */
+@media(min-width:769px) {
+  .btn-card.licencia { overflow:visible; }
+  .btn-card.licencia .licencia-popup {
+    top:50%;
+    left:calc(100% + 12px);
+    width:154px;
+    height:125px;
+    transform:translate(-8px,-50%) scale(.96);
+    border:2px solid rgba(255,255,255,.8);
+    border-radius:10px;
+    background:#fff;
+    z-index:10;
+  }
+  .btn-card.licencia:hover .licencia-popup,
+  .btn-card.licencia:focus-visible .licencia-popup {
+    opacity:1;
+    transform:translate(0,-50%) scale(1);
+  }
+}
