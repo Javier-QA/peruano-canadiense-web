@@ -369,3 +369,22 @@
 .row { padding:11px 7px; }
 @media(max-width:620px) { .panel { padding:16px; } .panel__head { flex-wrap:wrap; } }
 @media(prefers-reduced-motion:reduce) { .feat__media img { transition:none; } .feat:hover .feat__media img { transform:none; } }
+
+
+/* Actualidad: dos paneles equilibrados y contenido más legible */
+.top-grid { grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); align-items:stretch; gap:22px; margin-bottom:36px; }
+.panel { padding:26px; border:1px solid #dfe7f1; border-radius:16px; box-shadow:0 8px 26px rgba(16,54,94,.045); }
+.panel__head { margin-bottom:19px; align-items:center; }
+.panel__head h2 { font-size:clamp(1.2rem,1.8vw,1.55rem); color:#153d68; }
+.panel__link,.panel__cta { font-size:.85rem; }
+.feat__media { aspect-ratio:16/8; max-height:255px; border-radius:11px; }
+.feat__title { font-size:1.04rem; line-height:1.4; color:#153d68; }
+.feat__excerpt { font-size:.88rem; line-height:1.55; }
+.feat--com { padding:18px; border-radius:12px; }
+.rows { margin-top:18px; }
+.row { padding:12px 8px; gap:12px; }
+.row__text strong { font-size:.87rem; }
+.row__meta { font-size:.75rem; }
+.panel__cta { padding-top:20px; }
+@media(max-width:900px) { .top-grid { grid-template-columns:1fr; } }
+@media(max-width:600px) { .panel { padding:18px; } .panel__head { gap:8px; } .feat__media { max-height:210px; } }
