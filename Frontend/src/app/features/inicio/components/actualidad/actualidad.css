@@ -427,3 +427,15 @@
 .feat--com { padding:22px; background:#fff9f4; }
 .row { min-height:70px; }
 .panel__cta { margin-top:auto; }
+
+
+/* Actualidad: paneles sobrios y contenidos jerarquizados */
+.top-grid { grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:24px; }
+.panel { background:#fff; padding:26px; border:1px solid #e0e8f2; border-radius:13px; box-shadow:none; }
+.panel__head { margin-bottom:22px; }
+.panel__head h2 { padding:0; font-size:1.28rem; }
+.panel__head h2::before { display:none; }
+.feat__media { aspect-ratio:16/9; max-height:300px; }
+.feat--com { background:#f8fafc; border:1px solid #e0e8f2; border-left:3px solid #ff6600; }
+.panel__cta { background:#eaf2fa; color:#153d68; }
+@media(max-width:900px) { .top-grid { grid-template-columns:1fr; } }
