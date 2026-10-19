@@ -406,3 +406,18 @@
 .chat-fab__badge { width:19px; height:19px; top:-3px; right:-3px; font-size:.72rem; color:#164e83; }
 @media(max-width:600px) { .chat-fab { right:20px; bottom:92px; width:56px; height:56px; } }
 @media(prefers-reduced-motion:reduce) { .chat-fab { transition:none; } .chat-fab:hover { transform:none; } }
+
+
+/* Botón flotante del asistente en naranja institucional */
+.chat-fab,
+.chat-fab--open {
+  background: #ff6600;
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(255,102,0,.16),0 0 0 12px rgba(255,102,0,.08),0 0 22px 13px rgba(255,102,0,.1);
+}
+.chat-fab:hover,
+.chat-fab--open:hover {
+  background: #f15d00;
+  box-shadow: 0 0 0 1px rgba(255,102,0,.2),0 0 0 12px rgba(255,102,0,.1),0 0 22px 13px rgba(255,102,0,.15);
+}
+.chat-fab__badge { color:#ff6600; }
