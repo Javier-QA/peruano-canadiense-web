@@ -1,8 +1,11 @@
-<div class="carousel" #carousel>
+<div class="carousel" #carousel aria-label="Plataformas y vínculos institucionales">
   <div class="carousel-track" #track>
     @for (item of items(); track item.alt) {
-      <a class="carousel-item" [href]="item.url" target="_blank" rel="noopener noreferrer">
-        <img [appSrc]="item.image" [alt]="item.alt" />
+      <a class="carousel-item" [href]="item.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="item.alt">
+        <span class="carousel-item__logo">
+          <img [appSrc]="item.image" [alt]="item.alt" loading="lazy" decoding="async" />
+        </span>
+        <span class="carousel-item__name">{{ item.alt }}</span>
       </a>
     }
   </div>
