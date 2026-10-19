@@ -98,6 +98,7 @@
 <app-dialog
   [open]="!!abierto()"
   title="Detalle de la solicitud"
+  [wide]="true"
   [showFooter]="false"
   (openChange)="abierto.set($event ? abierto() : null)"
 >
@@ -118,7 +119,7 @@
           class="form-row tramite-dato"
           [class.span-2]="campo.campo === 'mensaje' || campo.campo === 'detalleReclamo'"
         >
-          <label><i class="fa-solid" [class]="iconoDetalle(campo.campo, campo.label)" aria-hidden="true"></i> {{ campo.label }}</label>
+          <label><span class="tramite-dato-icono"><i class="fa-solid" [class]="iconoDetalle(campo.campo, campo.label)" aria-hidden="true"></i></span> {{ campo.label }}</label>
           @if (esArchivoDelApi(valor(tramite, campo.campo))) {
             <button
               type="button"
