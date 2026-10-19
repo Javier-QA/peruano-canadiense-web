@@ -369,3 +369,35 @@
   .licencia-popup { display:none; }
 }
 @media(prefers-reduced-motion:reduce) { .hero-bg,.btn-card,.side-text { transition:none; } }
+
+
+/* Igualar proporciones de la captura de referencia (portada ~610 px a 1780 px de ancho).
+   La altura fija evita que el contenido estire la portada más allá de lo previsto. */
+@media(min-width:1100px) {
+  .hero { height:610px; min-height:610px; max-height:610px; overflow:hidden; }
+  .hero-stage {
+    box-sizing:border-box;
+    height:610px;
+    min-height:0;
+    flex:0 0 610px;
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-rows:auto auto;
+    grid-template-areas:"content side" "ctas side";
+    align-content:center;
+    align-items:start;
+    column-gap:24px;
+    row-gap:43px;
+    padding:55px 60px 50px 70px;
+  }
+  .hero-content { max-width:780px; }
+  .hero-content h1 { font-size:clamp(2.25rem,2.9vw,3.05rem); line-height:1.18; margin-bottom:13px; }
+  .hero-content p { font-size:clamp(1.12rem,1.52vw,1.48rem); margin-top:9px; }
+  .btn-card { width:165px; height:200px; }
+  .side-buttons { align-self:center; }
+}
+@media(min-width:769px) and (max-width:1099px) {
+  .hero { min-height:550px; height:550px; overflow:hidden; }
+  .hero-stage { box-sizing:border-box; min-height:0; height:550px; padding:50px 32px 42px; row-gap:25px; align-content:center; }
+  .hero-content h1 { font-size:clamp(2rem,3.5vw,2.7rem); }
+  .btn-card { width:145px; height:165px; }
+}
