@@ -2119,3 +2119,39 @@ html.admin-theme-reveal::view-transition-old(root) { z-index:1; }
 .admin-shell .admin-main .admin-page .form-row:not(:has(.campo-cabecera)) > .form-hint {
   line-height:1.5;
 }
+
+
+/* Modo oscuro: acciones de tablas y listados.
+   Corrige estilos locales que imponían botones blancos con iconos ilegibles. */
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .admin-table,.td-actions,.action-buttons,.table-actions
+) :is(button.btn-icon,a.btn-icon) {
+  background:var(--adm-surface) !important;
+  color:var(--adm-ink) !important;
+  border:1px solid var(--adm-line) !important;
+  opacity:1;
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .admin-table,.td-actions,.action-buttons,.table-actions
+) :is(button.btn-icon,a.btn-icon) :is(i,svg) {
+  color:inherit !important;
+  opacity:1;
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .admin-table,.td-actions,.action-buttons,.table-actions
+) :is(button.btn-icon,a.btn-icon):is(:hover,:focus-visible) {
+  background:var(--adm-muted-bg) !important;
+  color:var(--adm-brand) !important;
+  border-color:var(--adm-brand) !important;
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .admin-table,.td-actions,.action-buttons,.table-actions
+) :is(button.btn-icon,a.btn-icon).btn-delete {
+  color:var(--adm-danger) !important;
+}
+.admin-shell[data-modo="oscuro"] .admin-main :is(
+  .admin-table,.td-actions,.action-buttons,.table-actions
+) :is(button.btn-icon,a.btn-icon):disabled {
+  opacity:.5;
+  cursor:not-allowed;
+}
