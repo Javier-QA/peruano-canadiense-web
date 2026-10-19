@@ -149,3 +149,15 @@
 .servicio-card { border-radius:18px; }
 .servicio-card__media { aspect-ratio:16/10; }
 .servicio-card__label { font-size:1.12rem; }
+
+
+/* Experiencias y actividades: formato editorial con imágenes amplias */
+.servicios-section { padding:32px 0 4px; }
+.servicios-intro { max-width:800px; margin-bottom:27px; }
+.servicios-intro h2 { font-size:clamp(1.9rem,2.8vw,2.5rem); }
+.servicios-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+.servicio-card { border:0; border-radius:12px; box-shadow:none; background:#f5f7fa; }
+.servicio-card__media { aspect-ratio:16/9; }
+.servicio-card__label { min-height:76px; padding:20px 23px; font-size:1.12rem; }
+.servicio-card:hover { transform:translateY(-3px); box-shadow:0 14px 30px rgba(16,54,94,.09); }
+@media(max-width:620px) { .servicios-grid { grid-template-columns:1fr; } }
