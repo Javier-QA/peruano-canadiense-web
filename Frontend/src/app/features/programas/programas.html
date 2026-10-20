@@ -1,4 +1,11 @@
-<app-page-hero title="Programas de estudio" [subtitle]="info().name" />
+<header class="programas-banner" aria-labelledby="programas-banner-title">
+  <div class="programas-banner__inner">
+    <span class="programas-banner__eyebrow">Nuestras carreras</span>
+    <h1 id="programas-banner-title">Programas de estudio</h1>
+    <p>{{ info().name }}</p>
+    <span class="programas-banner__rule" aria-hidden="true"></span>
+  </div>
+</header>
 
 <section class="oferta" aria-label="Oferta académica">
   <div class="oferta-inner">
@@ -44,10 +51,14 @@
               </span>
             }
             <span class="pick-copy">
-              <span class="pick-title">{{ program.title }}</span>
-              @if (program.featured) {
-                <span class="pick-marca">Destacada</span>
-              }
+              <span class="pick-symbol" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+              <span class="pick-details">
+                <span class="pick-title">{{ program.title }}</span>
+                @if (program.featured) {
+                  <span class="pick-marca">Destacada</span>
+                }
+              </span>
+              <span class="pick-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
             </span>
           </button>
         }
