@@ -445,3 +445,23 @@
     width: 100%;
   }
 }
+
+/* Oferta académica: selección y ficha de nivel editorial */
+.oferta{padding:40px 24px 90px;background:linear-gradient(180deg,#f2f7fd,#fff 58%,#f3f7fc)}
+.oferta-inner{max-width:1220px;margin:0 auto}
+.niveles{padding:8px;gap:10px;margin-bottom:28px;border-radius:15px;box-shadow:0 10px 26px rgba(15,49,91,.055)}
+.nivel{padding:13px 19px;font-weight:750}
+.nivel.is-active{background:#164a81}
+.carrusel{gap:17px;margin-bottom:30px;padding:5px 3px 17px;grid-auto-columns:minmax(220px,1fr)}
+.pick{border-radius:17px;grid-template-rows:142px auto;box-shadow:0 9px 25px rgba(15,49,91,.065)}
+.pick.is-active{border-color:#1b70c2;box-shadow:0 0 0 2px rgba(27,112,194,.15),0 13px 30px rgba(15,49,91,.11)}
+.pick-copy{padding:16px}
+.pick-title{font-size:.94rem}
+.ficha{border-radius:20px;box-shadow:0 18px 45px rgba(16,54,95,.09)}
+.ficha-hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:390px}
+.ficha-id{padding:45px;gap:21px}
+.ficha-id h2{font-size:clamp(1.8rem,2.5vw,2.7rem)}
+.dato{padding:23px}
+.columna{padding:33px 36px 40px}
+@media(max-width:850px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{max-height:330px}.ficha-id{padding:29px}.oferta{padding:28px 16px 64px}}
+@media(max-width:550px){.carrusel{grid-auto-columns:minmax(180px,75%)}.columnas{grid-template-columns:1fr}.columna+.columna{border-left:0;border-top:1px solid var(--inst-border)}.columna{padding:24px}}
