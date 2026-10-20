@@ -115,3 +115,7 @@
 /* Misma alineación horizontal que el chatbot */
 .whatsapp-float{right:30px}
 @media(max-width:600px){.whatsapp-float{right:20px}}
+
+/* Color oficial consistente con los enlaces de WhatsApp */
+.whatsapp-btn{background:#25d366;box-shadow:0 0 0 1px rgba(37,211,102,.15),0 0 0 12px rgba(37,211,102,.08),0 0 22px 12px rgba(37,211,102,.14)}
+.whatsapp-btn::before,.whatsapp-btn::after{background:#25d366}
