@@ -48,3 +48,31 @@
 .historia-cronologia .det-content__html li{margin-bottom:12px}
 .historia-cronologia .det-content__html br{display:block;content:"";margin:0 0 4px}
 @media(max-width:600px){.historia-cronologia{padding:23px 20px 27px;margin-top:25px}.historia-cronologia h3{margin-bottom:19px}.historia-cronologia .det-content__html{font-size:.91rem;line-height:1.7}.historia-cronologia .det-content__html strong{font-size:1rem}}
+
+/* Hitos: cada registro del HTML administrable se presenta como tarjeta independiente.
+   ::ng-deep es necesario porque historyTimeline se inserta mediante innerHTML. */
+:host ::ng-deep .historia-cronologia .det-content__html > ul{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;
+  list-style:none;margin:0;padding:0;border:0;
+}
+:host ::ng-deep .historia-cronologia .det-content__html > ul > li{
+  display:block;position:relative;margin:0;padding:22px 24px 22px 27px;
+  background:#f8fbff;border:1px solid #e1eaf4;border-radius:12px;
+  color:#475c74;font-size:.94rem;line-height:1.7;
+  box-shadow:0 3px 12px rgba(21,60,105,.035);
+  break-inside:avoid;overflow-wrap:anywhere;
+}
+:host ::ng-deep .historia-cronologia .det-content__html > ul > li::before{
+  content:"";position:absolute;top:23px;bottom:23px;left:0;width:4px;
+  border-radius:0 4px 4px 0;background:#2274c6;
+}
+:host ::ng-deep .historia-cronologia .det-content__html > ul > li > strong{
+  display:block;margin:0 0 10px;padding:0;
+  color:#153e70;font-size:1.04rem;font-weight:800;line-height:1.45;
+}
+@media(max-width:780px){
+  :host ::ng-deep .historia-cronologia .det-content__html > ul{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  :host ::ng-deep .historia-cronologia .det-content__html > ul > li{padding:18px 18px 18px 22px;font-size:.9rem}
+}
