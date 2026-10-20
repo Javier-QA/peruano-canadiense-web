@@ -29,6 +29,21 @@ export class LogosCarousel {
 
   readonly items = computed(() => this.contenido.inicio.value().logos);
 
+  // Los logotipos institucionales tienen copias locales en public/assets.
+  // Usarlas evita depender de identificadores de archivos antiguos o enlaces rotos.
+  readonly localLogoByAlt: Record<string, string> = {
+    'Ministerio de Educación': '/assets/logo_minedu.png',
+    'DIFOID — Educación Superior Pedagógica': '/assets/logo_difoid.png',
+    'Sistema de Información Académica': '/assets/logo_sia.png',
+    'Biblioteca Nacional del Perú': '/assets/logo_bnp.png',
+    'PerúEduca': '/assets/logo%20perueduca.jpg',
+    'Microsoft 365': '/assets/logo_M365.png',
+  };
+
+  localLogo(alt: string): string | null {
+    return this.localLogoByAlt[alt] ?? null;
+  }
+
   private animationId: number | null = null;
   private isPaused = false;
   private isDragging = false;
