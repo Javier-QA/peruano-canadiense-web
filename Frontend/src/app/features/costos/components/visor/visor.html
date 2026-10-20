@@ -9,7 +9,7 @@
           [attr.aria-current]="activeId() === doc.id ? 'true' : null"
           (click)="selectDoc(doc.id, $event)"
         >
-          <span class="doc-label">{{ doc.label }}</span>
+          <span class="doc-icon" aria-hidden="true"><i class="fa-solid" [class.fa-file-invoice-dollar]="doc.id === 'tarifario'" [class.fa-graduation-cap]="doc.id === 'matricula'" [class.fa-headset]="doc.id === 'consultas'"></i></span><span class="doc-label">{{ doc.label }}</span><i class="fa-solid fa-chevron-right nav-chevron" aria-hidden="true"></i>
         </button>
       }
     </nav>
