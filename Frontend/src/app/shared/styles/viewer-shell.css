@@ -483,3 +483,9 @@ a.score-label:hover {
 .ficha .score-list li{border-color:#e1eaf5;padding:15px 0}
 @media(max-width:991px){.viewer-shell{grid-template-columns:1fr;gap:14px}.sidebar{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;padding:10px;max-height:none}.nav-item{flex:0 0 auto;width:auto;white-space:nowrap;min-height:44px}.panel{height:auto;min-height:400px;overflow:visible}}
 @media(max-width:600px){.contenedor{padding:22px 12px 40px}.viewer-shell{gap:12px}.sidebar{border-radius:14px}.panel{height:auto;min-height:0;border-radius:14px}.ficha{padding:24px 18px}.ficha h2{font-size:1.6rem}.cover img{max-height:320px}.cta-row{flex-direction:column}.cta-row [appButton]{width:100%}}
+
+/* Iconografía de navegación de procedimientos */
+.nav-item .doc-icon{width:22px;flex:0 0 22px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;color:#1463b1}
+.nav-item.active .doc-icon{color:#fff}
+.nav-item .nav-chevron{margin-left:auto;font-size:11px;opacity:.55}
+.nav-item.active .nav-chevron{opacity:1}
