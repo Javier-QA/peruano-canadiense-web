@@ -796,3 +796,33 @@
 @media(max-width:950px){.carrusel{grid-template-columns:repeat(2,minmax(0,1fr))}.pick{min-height:255px}.pick-foto{height:160px}}
 @media(max-width:560px){.carrusel{grid-template-columns:1fr;gap:15px;padding:2px 0 16px}.pick{min-height:0;border-radius:15px}.pick-foto{height:190px}.pick-copy{padding:15px 17px 18px}.pick-title{font-size:1rem}}
 @media(prefers-reduced-motion:reduce){.pick{transition:none}}
+
+/* Portada y catálogo de programas: referencia institucional aprobada */
+.programas-banner{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:285px;padding:44px 22px 38px;color:#fff;text-align:center;background:linear-gradient(112deg,#0d4677 0%,#1266a8 65%,#087bce 100%)}
+.programas-banner::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.6;background:radial-gradient(circle at 0 90%,rgba(3,24,57,.45),transparent 48%),radial-gradient(circle at 92% 3%,rgba(61,153,248,.38),transparent 42%);pointer-events:none}
+.programas-banner::after{content:"";position:absolute;right:-75px;top:-120px;width:300px;height:300px;border:48px solid rgba(87,170,255,.22);border-radius:50%;pointer-events:none}
+.programas-banner__inner{position:relative;z-index:1;width:100%;max-width:1100px;margin:auto}
+.programas-banner__inner::before,.programas-banner__inner::after{content:"";position:absolute;width:100px;height:100px;opacity:.36;background-image:radial-gradient(#fff 2px,transparent 2.5px);background-size:17px 17px;pointer-events:none}
+.programas-banner__inner::before{left:-8%;top:0}.programas-banner__inner::after{right:-8%;bottom:0}
+.programas-banner__eyebrow{display:inline-block;padding:10px 22px;border-radius:999px;background:#f1f7ff;color:#1364ae;font-size:.84rem;font-weight:850;letter-spacing:.05em;text-transform:uppercase}
+.programas-banner h1{margin:17px 0 12px;color:#fff;font-size:clamp(2.3rem,4.1vw,4rem);font-weight:850;line-height:1.12;letter-spacing:-.035em}
+.programas-banner p{margin:0 auto;color:#edf7ff;max-width:920px;font-size:clamp(.95rem,1.4vw,1.18rem);line-height:1.65}
+.programas-banner__rule{display:block;width:82px;height:6px;border-radius:999px;margin:20px auto 0;background:#40a4ff}
+.oferta{padding:30px 24px 85px;background:#f4f8fd}
+.oferta-inner{max-width:1440px;margin:0 auto}
+.carrusel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin:0 0 35px;padding:0;overflow:visible}
+.pick{all:unset;box-sizing:border-box;display:flex;flex-direction:column;min-width:0;min-height:285px;cursor:pointer;overflow:hidden;border:1px solid #e1eaf4;border-radius:17px;background:#fff;color:#123e6c;box-shadow:0 10px 25px rgba(17,58,100,.09);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.pick:hover{transform:translateY(-4px);border-color:#a9cdec;box-shadow:0 17px 32px rgba(17,58,100,.15)}
+.pick.is-active{border-color:#2786d9;box-shadow:0 0 0 2px rgba(39,134,217,.13),0 14px 30px rgba(17,58,100,.12)}
+.pick:focus-visible{outline:3px solid #1475d1;outline-offset:3px}
+.pick-foto{display:block;flex:none;width:100%;height:180px;background:#e7f1fa;overflow:hidden}
+.pick-foto img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+.pick-copy{display:grid;grid-template-columns:52px minmax(0,1fr) 40px;align-items:center;gap:11px;flex:1;min-height:108px;padding:14px 14px 16px}
+.pick-symbol{display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:#e4f2ff;color:#1475c9;font-size:1.25rem}
+.pick-details{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.pick-title{display:block;color:#103e70;font-size:clamp(.91rem,1.1vw,1.05rem);font-weight:800;line-height:1.36;overflow:visible}
+.pick-marca{display:block;color:#ed6b0a;font-size:.77rem;font-weight:800;letter-spacing:.035em;text-transform:uppercase}
+.pick-arrow{display:flex;align-items:center;justify-content:center;width:38px;height:38px;justify-self:end;align-self:end;border-radius:50%;background:#e1f0ff;color:#1474ca;font-size:1rem}
+@media(max-width:1050px){.carrusel{grid-template-columns:repeat(2,minmax(0,1fr))}.pick-foto{height:195px}.pick-title{font-size:1.03rem}.programas-banner__inner::before{left:0}.programas-banner__inner::after{right:0}}
+@media(max-width:600px){.programas-banner{min-height:225px;padding:35px 17px}.programas-banner h1{font-size:clamp(2rem,7vw,2.65rem)}.programas-banner__eyebrow{font-size:.74rem}.programas-banner__inner::before,.programas-banner__inner::after{display:none}.oferta{padding:20px 15px 60px}.carrusel{grid-template-columns:1fr;gap:15px}.pick{min-height:0}.pick-foto{height:200px}.pick-copy{min-height:98px}}
+@media(prefers-reduced-motion:reduce){.pick,.pick-foto img{transition:none}}
