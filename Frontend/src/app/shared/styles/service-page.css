@@ -360,3 +360,23 @@ a.svc-card:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* Portada de Servicios: estilos aislados de la cuadrícula principal */
+.svc-wrap{max-width:1220px;padding:52px 24px 90px;gap:42px}
+.svc-intro{margin-bottom:-15px}
+.svc-eyebrow{display:block;margin-bottom:12px;color:#1768bd;font-size:.74rem;font-weight:800;letter-spacing:.12em}
+.svc-intro h2{margin:0 0 12px;font-size:clamp(1.85rem,2.8vw,2.55rem);line-height:1.15;letter-spacing:-.03em;color:var(--inst-text-heading,#163c6a)}
+.svc-intro p{margin:0;color:var(--inst-text,#60758b);font-size:1rem;line-height:1.6}
+.svc-wrap>.svc-grid{grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:20px}
+.svc-wrap>.svc-grid .svc-card{display:flex;flex-direction:column;min-height:195px;padding:27px;border-radius:18px;box-shadow:0 12px 30px rgba(15,52,95,.07);border:1px solid var(--inst-border);position:relative}
+.svc-wrap>.svc-grid .svc-card::after{content:"↗";position:absolute;top:28px;right:25px;color:#1768bd;font-size:1.15rem}
+.svc-wrap>.svc-grid .svc-icon{width:54px;height:54px;border-radius:14px;background:#eaf3fe;color:#1768bd;font-size:1.35rem;margin-bottom:20px}
+.svc-wrap>.svc-grid .svc-card h3{font-size:1.13rem;margin-bottom:10px;font-weight:800}
+.svc-wrap>.svc-grid .svc-card p{line-height:1.65}
+.svc-wrap>.svc-grid .svc-card:hover{border-color:#8ebce8;box-shadow:0 18px 38px rgba(15,52,95,.12)}
+.svc-wrap>.svc-panel{padding:30px;border-radius:19px;box-shadow:0 12px 32px rgba(15,52,95,.06)}
+.svc-wrap>.svc-panel h2{font-size:1.6rem;margin-bottom:20px}
+.svc-wrap>.svc-panel .svc-contact{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.svc-wrap>.svc-panel .svc-contact>div{min-width:0}
+.svc-wrap>.svc-panel .svc-contact p{overflow-wrap:anywhere}
+@media(max-width:820px){.svc-wrap>.svc-panel .svc-contact{grid-template-columns:1fr}.svc-wrap{padding:34px 16px 65px;gap:28px}.svc-intro{margin-bottom:0}}
