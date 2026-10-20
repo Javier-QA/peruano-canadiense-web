@@ -32,7 +32,7 @@ function etiquetas(lista: unknown, respaldo: readonly string[]): string[] {
     InputDirective,
   ],
   templateUrl: './reclamaciones.component.html',
-  styleUrls: ['../../shared/styles/service-page.css'],
+  styleUrls: ['../../shared/styles/service-page.css', './reclamaciones.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReclamacionesComponent {
