@@ -69,3 +69,9 @@
 @media(min-width:769px){
   .licencia-popup{top:calc(50% + 45px)}
 }
+
+/* Alinear el borde superior de la imagen con el borde superior del botón */
+@media(min-width:769px){
+  .licencia-popup{top:0;bottom:auto;transform:translateX(-8px)}
+  .licencia:hover .licencia-popup,.licencia:focus-within .licencia-popup{transform:translateX(0)}
+}
