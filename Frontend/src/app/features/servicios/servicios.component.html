@@ -1,6 +1,7 @@
 <app-page-hero [title]="copy().heroTitle" [subtitle]="copy().heroSubtitle" />
 
 <section class="svc-wrap">
+  <div class="svc-intro"><span class="svc-eyebrow">SERVICIOS PARA NUESTRA COMUNIDAD</span><h2>¿En qué podemos ayudarte?</h2><p>Encuentra los canales de atención y servicios disponibles en el instituto.</p></div>
   <div class="svc-grid">
     @for (item of copy().hub; track item.ruta) {
       <a class="svc-card" [routerLink]="item.ruta">
