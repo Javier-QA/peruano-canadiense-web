@@ -334,3 +334,15 @@
     margin: 16px auto 0;
   }
 }
+
+/* Franja institucional superior: por encima del menú principal */
+.side-buttons{display:flex;align-items:center;justify-content:center;gap:0;width:100%;min-height:45px;box-sizing:border-box;padding:0 20px;background:#f46a0b}
+.side-item{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:45px;box-sizing:border-box;padding:8px 26px;text-decoration:none;color:#fff;transition:background-color .2s}
+.side-item+.side-item{border-left:1px solid rgba(255,255,255,.34)}
+.side-item:hover{background:rgba(0,0,0,.13)}
+.side-item:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+.side-btn{display:flex;align-items:center;justify-content:center;width:25px;height:25px;flex-shrink:0}
+.side-btn img{display:block;width:23px;height:23px;object-fit:contain;filter:brightness(0) invert(1)}
+.side-text{font-size:12px;font-weight:750;color:#fff;white-space:nowrap}
+@media(max-width:650px){.side-buttons{flex-wrap:wrap;padding:0 6px}.side-item{flex:1 1 auto;padding:7px 9px;min-height:39px}.side-text{font-size:10px}.side-btn{width:20px;height:20px}.side-btn img{width:19px;height:19px}}
+@media(max-width:380px){.side-item{flex:1 1 100%}.side-item+.side-item{border-left:0;border-top:1px solid rgba(255,255,255,.25)}}
