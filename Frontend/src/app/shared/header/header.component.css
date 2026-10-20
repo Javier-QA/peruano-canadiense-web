@@ -346,3 +346,12 @@
 .side-text{font-size:12px;font-weight:750;color:#fff;white-space:nowrap}
 @media(max-width:650px){.side-buttons{flex-wrap:wrap;padding:0 6px}.side-item{flex:1 1 auto;padding:7px 9px;min-height:39px}.side-text{font-size:10px}.side-btn{width:20px;height:20px}.side-btn img{width:19px;height:19px}}
 @media(max-width:380px){.side-item{flex:1 1 100%}.side-item+.side-item{border-left:0;border-top:1px solid rgba(255,255,255,.25)}}
+
+/* Franja superior compacta, accesos alineados a la derecha */
+.side-buttons{justify-content:flex-end;min-height:32px;padding:0 48px;gap:0}
+.side-item{min-height:32px;padding:4px 15px;gap:7px}
+.side-btn{width:18px;height:18px}
+.side-btn img{width:18px;height:18px}
+.side-text{font-size:11px;font-weight:700}
+@media(max-width:650px){.side-buttons{justify-content:flex-end;min-height:32px;padding:0 12px}.side-item{flex:0 1 auto;min-height:32px;padding:5px 9px;gap:5px}.side-btn{width:16px;height:16px}.side-btn img{width:16px;height:16px}.side-text{font-size:10px}}
+@media(max-width:380px){.side-buttons{justify-content:center}.side-item{flex:0 1 auto}.side-item+.side-item{border-top:0;border-left:1px solid rgba(255,255,255,.25)}.side-text{font-size:9px}}
