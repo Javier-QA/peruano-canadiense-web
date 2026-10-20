@@ -1,36 +1,3 @@
-<nav class="side-buttons" aria-label="Plataformas institucionales">
-  <a
-    class="side-item"
-    [href]="info().ecosystemEVA.office365"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <div class="side-btn">
-      <img appSrc="icons/icon_eva.png" alt="" />
-    </div>
-    <span class="side-text">Plataforma EVA</span>
-  </a>
-
-  <a
-    class="side-item"
-    [href]="info().ecosystemEVA.teams"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <div class="side-btn">
-      <img appSrc="icons/icon_aula.png" alt="" />
-    </div>
-    <span class="side-text">Aula virtual</span>
-  </a>
-
-  <a routerLink="/repositorio" class="side-item">
-    <div class="side-btn">
-      <img appSrc="icons/icon_biblioteca.png" alt="" />
-    </div>
-    <span class="side-text">Biblioteca virtual</span>
-  </a>
-</nav>
-
 <section class="hero">
   <div class="hero-slides">
     @for (img of heroImages(); track img.src; let i = $index) {
