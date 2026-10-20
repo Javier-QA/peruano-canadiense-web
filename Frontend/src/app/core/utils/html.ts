@@ -64,7 +64,7 @@ export function cuerpoHtml(paragraphs: string[]): string {
     return '';
   }
   if (paragraphs.some(esHtml)) {
-    return paragraphs.join('');
+    return paragraphs.join('').replace(/&nbsp;|&#0*160;|&#x0*a0;|\u00a0/gi, ' ');
   }
   return paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('');
 }
