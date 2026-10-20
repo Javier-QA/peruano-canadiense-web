@@ -29,7 +29,7 @@
 @media(max-width:600px){.pillar-panel .org-btn{padding:8px}.pillar-panel .org-btn span{font-size:.82rem}}
 
 /* Nosotros: navegación editorial institucional */
-.pilares{max-width:1240px;padding:54px 26px 64px}
+.pilares{max-width:1240px;padding:38px 26px 22px}
 .pilares-grid{gap:16px}
 .pillar-btn{position:relative;min-height:104px;padding:22px 24px;border:1px solid #dbe8f7;border-radius:16px;background:#fff;box-shadow:0 7px 25px rgba(12,59,110,.05);font-size:1.04rem;transition:transform .2s,box-shadow .2s,border-color .2s,background .2s}
 .pillar-btn i{width:50px;height:50px;flex-basis:50px;border-radius:14px;background:#e7f2ff;color:#0966bb;font-size:1.3rem}
@@ -44,4 +44,4 @@
 .pillar-panel .det-content__html,.pillar-panel .det-content__html *{font-size:1.025rem;line-height:1.9;color:#496682}
 .pillar-panel .det-content__html{max-width:1050px}
 @media(max-width:950px){.pillar-btn{min-height:88px}}
-@media(max-width:600px){.pilares{padding:30px 15px 42px}.pilares-grid{gap:10px}.pillar-btn{min-height:78px;padding:12px 13px;font-size:.9rem}.pillar-btn i{width:38px;height:38px;flex-basis:38px;font-size:1.05rem}.pillar-panel{padding:28px 22px}.pillar-panel .det-content__html,.pillar-panel .det-content__html *{font-size:.96rem}}
+@media(max-width:600px){.pilares{padding:26px 15px 14px}.pilares-grid{gap:10px}.pillar-btn{min-height:78px;padding:12px 13px;font-size:.9rem}.pillar-btn i{width:38px;height:38px;flex-basis:38px;font-size:1.05rem}.pillar-panel{padding:28px 22px}.pillar-panel .det-content__html,.pillar-panel .det-content__html *{font-size:.96rem}}
