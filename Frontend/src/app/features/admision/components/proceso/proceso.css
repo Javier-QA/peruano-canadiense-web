@@ -507,28 +507,28 @@
 }
 
 
-/* Admisión: afiche protagonista y ficha editorial compacta */
+
+/* Convocatoria 2027: ficha informativa y afiche en tamaño legible */
 .proceso{padding:30px 20px 72px;background:#f3f7fd}
-.proceso-inner{max-width:1220px}
-.pasos{background:#fff;border:1px solid #dbe6f3;margin-bottom:20px}
+.proceso-inner{max-width:1440px}
+.pasos{background:#fff;border:1px solid #dbe6f3;margin-bottom:22px}
 .paso.is-active{background:#145a9d}
-.escenario{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);align-items:stretch;background:#fff;color:#173e69;border:1px solid #dce7f4;border-radius:18px;box-shadow:0 12px 30px rgba(13,55,105,.07)}
-.escenario-copy{padding:36px 34px;gap:16px;justify-content:center;min-width:0}
-.escenario-copy h1,.escenario-copy h2{color:#103d70;font-size:clamp(2rem,3vw,2.85rem);line-height:1.12}
-.lema{color:#ef6817;font-size:1rem}
-.lead,.lead-plain{color:#486482;max-width:none;font-size:.96rem;line-height:1.65;overflow-wrap:anywhere}
-.hechos{max-width:none;gap:8px}
-.hechos div{padding-top:12px;border-top:1px solid #dce7f4}
+.escenario{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);align-items:center;background:#fff;color:#173e69;border:1px solid #dce7f4;border-radius:22px;box-shadow:0 14px 36px rgba(13,55,105,.07)}
+.escenario-copy{padding:40px 34px;gap:18px;justify-content:center;min-width:0}
+.escenario-copy h1,.escenario-copy h2{color:#103d70;font-size:clamp(2.2rem,3.2vw,3.35rem);line-height:1.12}
+.lema{color:#ef6817;font-size:1.1rem}
+.lead,.lead-plain{color:#486482;max-width:none;font-size:1rem;line-height:1.65;overflow-wrap:anywhere}
+.hechos{max-width:none;gap:10px}
+.hechos div{padding:14px 8px;border:1px solid #dce7f4;border-radius:10px;background:#f8fbff}
 .hechos dt{color:#6c809a}
 .hechos dd{color:#103d70}
-.cta-row{gap:9px}
-.cta-row [appButton]{font-size:.86rem}
-.aviso{background:#f1f7ff;color:#315476;border:1px solid #d6e5f6;border-left:3px solid #1767b5;border-radius:10px;font-size:.88rem;line-height:1.55;overflow-wrap:anywhere}
-.escenario-afiche{display:flex;align-items:center;justify-content:center;min-width:0;padding:24px;background:#eaf3ff;color:#1262ae}
+.cta-row{gap:10px}
+.cta-row [appButton]{font-size:.9rem}
+.aviso{background:#f1f7ff;color:#315476;border:1px solid #d6e5f6;border-left:3px solid #1767b5;border-radius:10px;font-size:.9rem;line-height:1.55;overflow-wrap:anywhere}
+.escenario-afiche{display:block;min-width:0;padding:28px;background:#eef6ff;color:#125a9f;align-self:stretch;align-content:center}
 .escenario-afiche app-lista-docs{display:block;width:100%;min-width:0}
-.escenario-afiche app-lista-docs .poster,.escenario-afiche .poster{width:100%}
-.escenario-afiche app-lista-docs .poster img,.escenario-afiche .poster img{display:block;width:100%;max-height:580px;height:auto;object-fit:contain;border-radius:10px;background:#fff;box-shadow:0 8px 24px rgba(16,60,106,.1)}
-.escenario-afiche app-lista-docs .poster span,.escenario-afiche .poster span{color:#125a9f}
-.escenario-afiche app-lista-docs .cta-row{margin-bottom:14px}
-@media(max-width:900px){.escenario{grid-template-columns:1fr}.escenario-copy{padding:28px 24px}.escenario-afiche{padding:22px}}
-@media(max-width:520px){.proceso{padding:18px 12px 50px}.escenario{border-radius:14px}.escenario-copy{padding:24px 18px}.escenario-afiche{padding:16px}.hechos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.escenario-afiche .poster{width:100%}
+.escenario-afiche .poster img{width:100%;max-height:none;height:auto;object-fit:contain;background:#fff;border-radius:12px}
+.escenario-afiche .poster span{display:flex;justify-content:center;align-items:center;min-height:46px;background:#125da8;color:#fff;border-radius:10px}
+@media(max-width:1000px){.escenario{grid-template-columns:1fr}.escenario-copy{padding:30px 26px}.escenario-afiche{padding:24px}.hechos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){.proceso{padding:18px 12px 50px}.escenario{border-radius:16px}.escenario-copy{padding:26px 18px}.escenario-afiche{padding:16px}.hechos{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.hechos div{padding:10px 6px}.hechos dt{font-size:.58rem}.hechos dd{font-size:.87rem}}
