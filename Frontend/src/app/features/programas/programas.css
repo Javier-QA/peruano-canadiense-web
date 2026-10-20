@@ -501,3 +501,15 @@
 @media(max-width:1100px){.carrusel{grid-template-columns:repeat(2,minmax(0,1fr))}.datos{grid-template-columns:repeat(3,minmax(0,1fr))}.ficha-id{padding:30px}}
 @media(max-width:800px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{min-height:260px;max-height:360px}.columnas{grid-template-columns:1fr}.columna+.columna{border-left:0;border-top:1px solid #e2eaf3}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){.oferta{padding:28px 14px 60px}.niveles{display:flex;width:100%;box-sizing:border-box;flex-wrap:wrap}.nivel{flex:1;justify-content:center;padding:10px 9px;font-size:.83rem}.carrusel{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;overflow:visible;padding:0}.pick{grid-template-rows:110px 1fr;min-height:190px;border-radius:11px}.pick-copy{padding:11px}.pick-title{font-size:.85rem}.pick-marca{font-size:.65rem}.ficha{border-radius:14px}.ficha-id{padding:24px 20px}.ficha-id h2{font-size:1.85rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}.dato{padding:15px 12px}.grado{padding:16px 20px}.columna{padding:23px 20px}.cta-row{flex-direction:column}.cta-row [appButton]{width:100%;box-sizing:border-box}}
+
+/* Ficha técnica: indicadores claros, sin apariencia de tabla comprimida */
+.datos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:22px;background:#f3f7fc;border-top:1px solid #e2eaf3}
+.dato{display:flex;flex-direction:column;justify-content:flex-start;gap:11px;min-width:0;min-height:104px;margin:0;padding:19px 18px;background:#fff;border:1px solid #dfe9f3;border-radius:12px;box-shadow:0 3px 12px rgba(20,58,99,.035)}
+.dato dt{font-size:.72rem;line-height:1.35;letter-spacing:.075em;color:#667e99;font-weight:800}
+.dato dd{font-size:.98rem;line-height:1.5;font-weight:750;color:#143d6d;overflow-wrap:break-word}
+.dato-chips{display:flex;flex-wrap:wrap;align-content:start;gap:7px}
+.dato-chips span{display:inline-flex;align-items:center;max-width:100%;padding:5px 9px;border-radius:7px;background:#eaf3fc;color:#185a98;font-size:.78rem;line-height:1.4;font-weight:700;white-space:normal}
+.grado{display:flex;align-items:center;min-height:54px;margin:0;padding:17px 28px;background:#173f6c;color:#fff;font-size:1rem;line-height:1.55;font-weight:750}
+@media(max-width:1100px){.datos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px}.dato{padding:16px 14px;min-height:90px}.grado{padding:16px 19px}}
+@media(max-width:420px){.datos{grid-template-columns:1fr}.dato{min-height:0;gap:6px}}
