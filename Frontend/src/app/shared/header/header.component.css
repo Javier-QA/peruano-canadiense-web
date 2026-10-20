@@ -383,3 +383,16 @@
  .menu li a{min-height:43px;text-align:left;border-bottom:0;border-radius:8px;margin:0 12px}
  .menu li a.nav-active{border-left:3px solid #f46a0b;background:var(--inst-primary-light)}
 }
+
+/* Menú principal: pestañas sobrias con indicador azul institucional */
+@media(min-width:992px){
+ .menu{align-items:center;gap:8px}
+ .menu li a{min-height:44px;padding:10px 17px;border-radius:10px;background:transparent;color:#123f70;transition:background .2s,color .2s,box-shadow .2s}
+ .menu li a:hover{background:#edf5ff;color:#075da8}
+ .menu li a.nav-active{background:#e9f3ff;color:#075da8;box-shadow:inset 0 0 0 1px #d8e9fc}
+ .menu li a.nav-active::after{left:17px;right:17px;bottom:4px;height:3px;background:#1173ca;border-radius:3px}
+ .menu li a:focus-visible{outline:2px solid #1173ca;outline-offset:3px}
+}
+@media(max-width:991px){
+ .menu li a.nav-active{border-left-color:#1173ca;background:#e9f3ff;color:#075da8}
+}
