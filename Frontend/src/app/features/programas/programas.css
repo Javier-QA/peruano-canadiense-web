@@ -762,3 +762,37 @@
 @media(max-width:1100px){.datos{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.dato,.dato:not(:last-child){border:1px solid transparent!important;min-height:140px}}
 @media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px;gap:10px}.dato,.dato:not(:last-child){padding:16px 13px;min-height:135px;border:1px solid transparent!important}}
 @media(max-width:450px){.datos{grid-template-columns:1fr}.dato,.dato:not(:last-child){min-height:0;flex-direction:row;gap:14px;align-items:flex-start;border:1px solid transparent!important}.dato-body{gap:6px}}
+
+
+/* Opción 2 aprobada: catálogo institucional con tarjetas consistentes */
+.carrusel{
+  display:grid;
+  grid-auto-flow:unset;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:20px;
+  overflow:visible;
+  padding:4px 2px 12px;
+  margin-bottom:30px;
+}
+.pick{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:275px;
+  border:1px solid #dce6f2;
+  border-radius:17px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 9px 23px rgba(16,51,94,.08);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.pick:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(16,51,94,.14)}
+.pick.is-active{border-color:#2379cc;box-shadow:0 0 0 1px #2379cc,0 12px 28px rgba(16,51,94,.12)}
+.pick-foto{display:block;flex:none;width:100%;height:165px;overflow:hidden;background:#eaf1f8}
+.pick-foto img{display:block;width:100%;height:100%;object-fit:cover}
+.pick-copy{display:flex;flex-direction:column;align-items:flex-start;gap:9px;flex:1;padding:17px 17px 20px}
+.pick-title{font-size:1.02rem;line-height:1.38;font-weight:800;color:#123d71;display:block;overflow:visible}
+.pick-marca{font-size:.73rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#f2650b}
+@media(max-width:950px){.carrusel{grid-template-columns:repeat(2,minmax(0,1fr))}.pick{min-height:255px}.pick-foto{height:160px}}
+@media(max-width:560px){.carrusel{grid-template-columns:1fr;gap:15px;padding:2px 0 16px}.pick{min-height:0;border-radius:15px}.pick-foto{height:190px}.pick-copy{padding:15px 17px 18px}.pick-title{font-size:1rem}}
+@media(prefers-reduced-motion:reduce){.pick{transition:none}}
