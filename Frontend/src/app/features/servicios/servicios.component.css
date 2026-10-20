@@ -64,3 +64,14 @@
 .svc-wrap>.svc-grid .svc-card::after{opacity:.5}
 .svc-wrap>.svc-grid .svc-card{border-color:#dce7f4}
 .svc-wrap>.svc-grid .svc-card h3{color:#0b376c}
+
+/* Distribución uniforme de canales de Atención */
+.svc-contact{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:16px}
+.svc-contact>div{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:start;gap:14px;min-height:128px;padding:22px 18px}
+.svc-contact>div>div{min-width:0}
+.svc-contact strong{display:block;margin:0 0 8px;line-height:1.35}
+.svc-contact p{line-height:1.6;overflow-wrap:anywhere}
+.svc-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.svc-actions>a{width:100%;min-height:52px;box-sizing:border-box}
+@media(max-width:1050px){.svc-contact{grid-template-columns:repeat(2,minmax(0,1fr))}.svc-contact>div:last-child{grid-column:1/-1;min-height:0}}
+@media(max-width:700px){.svc-contact{grid-template-columns:1fr}.svc-contact>div,.svc-contact>div:last-child{grid-column:auto;min-height:0}.svc-actions{grid-template-columns:1fr}}
