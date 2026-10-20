@@ -75,7 +75,7 @@
               <div class="det-content__html ficha-lead" [innerHTML]="program.description"></div>
             }
             <div class="cta-row">
-              <a appButton routerLink="/admision">Postular a admisión</a>
+              <a appButton routerLink="/admision"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Postular a admisión</a>
               <a
                 appButton
                 variant="whatsapp"
@@ -93,18 +93,26 @@
         <dl class="datos">
           @if (program.vacancies) {
             <div class="dato">
+              <span class="dato-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></span>
+              <div class="dato-body">
               <dt>Vacantes</dt>
               <dd>{{ program.vacancies }}</dd>
+            </div>
             </div>
           }
           @if (program.duration) {
             <div class="dato">
+              <span class="dato-icon" aria-hidden="true"><i class="fa-solid fa-calendar-days"></i></span>
+              <div class="dato-body">
               <dt>Duración</dt>
               <dd>{{ program.duration }}</dd>
+            </div>
             </div>
           }
           @if (program.shifts.length) {
             <div class="dato">
+              <span class="dato-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
+              <div class="dato-body">
               <dt>Turnos</dt>
               <dd class="dato-chips">
                 @for (turno of program.shifts; track turno) {
@@ -112,17 +120,24 @@
                 }
               </dd>
             </div>
+            </div>
           }
           @if (program.normative) {
             <div class="dato">
+              <span class="dato-icon" aria-hidden="true"><i class="fa-solid fa-file-lines"></i></span>
+              <div class="dato-body">
               <dt>Resolución</dt>
               <dd>{{ program.normative }}</dd>
+            </div>
             </div>
           }
           @if (program.ageRange) {
             <div class="dato">
+              <span class="dato-icon" aria-hidden="true"><i class="fa-solid fa-children"></i></span>
+              <div class="dato-body">
               <dt>Atención</dt>
               <dd>{{ program.ageRange }}</dd>
+            </div>
             </div>
           }
         </dl>
