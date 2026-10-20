@@ -46,7 +46,7 @@ module.exports = {
         },
         minedu: "#0052A3",
         stats: "#2173D1",
-        whatsapp: "#2E6329",
+        whatsapp: "#25D366",
       },
       borderRadius: {
         lg: "var(--radius, 12px)",
