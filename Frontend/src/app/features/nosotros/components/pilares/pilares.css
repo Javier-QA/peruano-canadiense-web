@@ -45,3 +45,14 @@
 .pillar-panel .det-content__html{max-width:1050px}
 @media(max-width:950px){.pillar-btn{min-height:88px}}
 @media(max-width:600px){.pilares{padding:26px 15px 14px}.pilares-grid{gap:10px}.pillar-btn{min-height:78px;padding:12px 13px;font-size:.9rem}.pillar-btn i{width:38px;height:38px;flex-basis:38px;font-size:1.05rem}.pillar-panel{padding:28px 22px}.pillar-panel .det-content__html,.pillar-panel .det-content__html *{font-size:.96rem}}
+
+/* Valores institucionales: tarjetas legibles sin alterar el contenido administrable */
+.pillar-panel .values-list{max-width:none}
+:host ::ng-deep .pillar-panel .values-list ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none}
+:host ::ng-deep .pillar-panel .values-list li{position:relative;min-width:0;margin:0;padding:20px 22px 20px 26px;border:1px solid #dce8f7;border-radius:13px;background:#f7fbff;line-height:1.65;box-shadow:0 3px 12px rgba(12,59,110,.035)}
+:host ::ng-deep .pillar-panel .values-list li::before{content:'';position:absolute;top:18px;bottom:18px;left:0;width:4px;border-radius:0 4px 4px 0;background:#1672c5}
+:host ::ng-deep .pillar-panel .values-list li strong{display:block;margin-bottom:5px;color:#0b559e;font-size:1.02rem;line-height:1.4}
+:host ::ng-deep .pillar-panel .values-list li p{margin:0}
+:host ::ng-deep .pillar-panel .values-list>p{margin:0 0 12px;padding:14px 18px;border:1px solid #dce8f7;border-radius:11px;background:#f7fbff;line-height:1.7}
+:host ::ng-deep .pillar-panel .values-list>p strong{color:#0b559e}
+@media(max-width:760px){:host ::ng-deep .pillar-panel .values-list ul{grid-template-columns:1fr;gap:10px}:host ::ng-deep .pillar-panel .values-list li{padding:17px 17px 17px 21px}}
