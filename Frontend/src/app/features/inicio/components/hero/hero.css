@@ -48,3 +48,9 @@
   .licencia-popup{top:50%;bottom:auto;left:calc(100% + 14px);width:185px;height:135px;transform:translate(-8px,-50%);opacity:0;visibility:hidden}
   .licencia:hover .licencia-popup,.licencia:focus-within .licencia-popup{transform:translate(0,-50%);opacity:1;visibility:visible}
 }
+
+/* Vista previa pequeña: no invade el texto de la portada */
+@media(min-width:769px){
+  .licencia-popup{top:50%;left:calc(100% + 10px);width:116px;height:84px;border-radius:9px;box-shadow:0 7px 17px rgba(0,0,0,.2)}
+  .licencia-popup img{width:100%;height:100%;object-fit:cover}
+}
