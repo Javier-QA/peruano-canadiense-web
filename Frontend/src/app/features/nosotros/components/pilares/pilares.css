@@ -132,3 +132,7 @@
 .pillar-panel{margin-top:23px;padding:33px 37px;border-radius:17px;box-shadow:0 12px 32px rgba(15,52,95,.055)}
 .pillar-panel h2{font-size:1.75rem;letter-spacing:-.02em}
 @media(max-width:520px){.pilares{padding:0 16px 35px}.pilares-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pillar-btn{padding:16px 8px;min-height:105px;font-size:.85rem}.pillar-panel{padding:23px}}
+
+/* Las tarjetas comienzan debajo del encabezado, sin superponer el texto */
+.pilares{margin:0 auto;padding-top:38px}
+@media(max-width:520px){.pilares{margin:0 auto;padding-top:24px}}
