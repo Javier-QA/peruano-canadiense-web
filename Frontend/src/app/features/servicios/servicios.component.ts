@@ -11,7 +11,7 @@ import { ButtonDirective } from '../../shared/ui';
   standalone: true,
   imports: [RouterLink, PageHero, EvaHubComponent, ButtonDirective],
   templateUrl: './servicios.component.html',
-  styleUrls: ['../../shared/styles/service-page.css'],
+  styleUrls: ['../../shared/styles/service-page.css', './servicios.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServiciosComponent {
