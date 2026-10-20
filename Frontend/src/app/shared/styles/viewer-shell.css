@@ -489,3 +489,9 @@ a.score-label:hover {
 .nav-item.active .doc-icon{color:#fff}
 .nav-item .nav-chevron{margin-left:auto;font-size:11px;opacity:.55}
 .nav-item.active .nav-chevron{opacity:1}
+
+/* Tarifarios y documentos: paleta azul institucional consistente */
+.ficha .score-list app-badge{display:inline-flex;align-items:center;justify-content:center;min-width:94px;border-radius:999px;background:#e8f2ff;color:#0954a0;border:1px solid #cfe2f8;font-weight:750;padding:5px 12px;box-shadow:none}
+.ficha .accounts{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.ficha .accounts app-card{border:1px solid #dbe8f8;border-radius:12px;background:#f8fbff}
+.ficha .cta-row [appButton]{max-width:100%;white-space:normal;text-align:center}
