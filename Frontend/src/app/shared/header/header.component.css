@@ -355,3 +355,6 @@
 .side-text{font-size:11px;font-weight:700}
 @media(max-width:650px){.side-buttons{justify-content:flex-end;min-height:32px;padding:0 12px}.side-item{flex:0 1 auto;min-height:32px;padding:5px 9px;gap:5px}.side-btn{width:16px;height:16px}.side-btn img{width:16px;height:16px}.side-text{font-size:10px}}
 @media(max-width:380px){.side-buttons{justify-content:center}.side-item{flex:0 1 auto}.side-item+.side-item{border-top:0;border-left:1px solid rgba(255,255,255,.25)}.side-text{font-size:9px}}
+
+/* Separación óptica en la franja superior sin aumentar su altura */
+@media(min-width:651px){.side-item{padding-left:19px;padding-right:19px}}
