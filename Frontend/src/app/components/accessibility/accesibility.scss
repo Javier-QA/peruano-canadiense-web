@@ -1,7 +1,7 @@
 ﻿/* ===== BOTÓN FLOTANTE DE ACCESIBILIDAD (Estilo AudioEye) ===== */
 .accessibility-toggle {
   position: fixed;
-  bottom: 24px;
+  bottom: 8px;
   left: 24px;
   width: 52px;
   height: 52px;
@@ -534,3 +534,21 @@ body.ae-highlight-links .accessibility-panel button {
   background-color: initial;
 }
 
+
+/* Símbolo universal de accesibilidad: dos aros concéntricos como referencia */
+.accessibility-toggle,
+.accessibility-toggle:hover,
+.accessibility-toggle.active,
+.accessibility-toggle.active:hover {
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  background: #003e66;
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  outline: none;
+  box-shadow: inset 0 0 0 4px #003e66, inset 0 0 0 6px #fff;
+}
+.accessibility-toggle svg { width: 32px; height: 32px; flex-shrink: 0; }
+.accessibility-toggle:focus-visible { outline: 3px solid #ff6600; outline-offset: 3px; }
