@@ -76,3 +76,12 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Historia: bloque narrativo espacioso */
+.historia{max-width:1200px;padding:0 24px 64px}
+.historia-card{border-radius:20px;padding:36px;box-shadow:0 13px 35px rgba(15,52,95,.06)}
+.historia-card h2{font-size:clamp(1.6rem,2.5vw,2.2rem);letter-spacing:-.03em}
+.historia-layout{gap:36px;align-items:center}
+.historia-layout img{border-radius:16px;min-height:270px;max-height:450px}
+.historia-copy p,.historia-copy li{line-height:1.8}
+@media(max-width:700px){.historia{padding:0 16px 40px}.historia-card{padding:22px}.historia-layout{gap:20px}}
