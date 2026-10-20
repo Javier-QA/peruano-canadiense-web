@@ -2,7 +2,11 @@
   <div class="carousel-track" #track>
     @for (item of items(); track item.alt) {
       <a class="carousel-item" [href]="item.url" target="_blank" rel="noopener noreferrer">
-        <img [appSrc]="item.image" [alt]="item.alt" />
+        @if (localLogo(item.alt); as localImage) {
+          <img [src]="localImage" [alt]="item.alt" loading="eager" />
+        } @else {
+          <img [appSrc]="item.image" [alt]="item.alt" />
+        }
       </a>
     }
   </div>
