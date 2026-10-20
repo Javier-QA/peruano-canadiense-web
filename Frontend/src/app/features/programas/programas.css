@@ -699,3 +699,28 @@
 @media(max-width:1000px){.ficha-hero{grid-template-columns:42% 58%;min-height:410px}.ficha-foto{height:410px;min-height:410px}.ficha-id{padding:30px 25px 55px 10px}.ficha-id h2{font-size:clamp(2rem,3.6vw,2.8rem)}.datos{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.dato,.dato:not(:last-child){border:1px solid #e0e9f3;border-radius:12px;padding:15px}}
 @media(max-width:700px){.ficha-hero{grid-template-columns:1fr;min-height:0}.ficha-foto{height:275px;min-height:0;clip-path:none}.ficha-id{padding:30px 24px 58px}.ficha-id h2{font-size:2.25rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:-22px;padding:20px 12px;gap:10px}.dato{min-height:110px}}
 @media(max-width:460px){.ficha-foto{height:225px}.ficha-id{padding:26px 20px 54px}.ficha-id h2{font-size:2rem}.cta-row{flex-direction:column;width:100%}.cta-row a[appButton]{width:100%}.datos{grid-template-columns:1fr}.dato{min-height:0}}
+
+/* Diseño final de referencia: fotografía enmarcada y panel editorial claro */
+.ficha{background:#fff;border:1px solid #e1eaf5;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(24,55,91,.07)}
+.ficha-hero{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.08fr);align-items:center;gap:clamp(24px,3vw,45px);min-height:0;padding:clamp(20px,2.4vw,32px);background:radial-gradient(circle at 102% 1%,#e5f2ff 0 12%,transparent 12.2%),linear-gradient(120deg,#f2f8ff 0%,#fff 65%);overflow:hidden}
+.ficha-foto{width:100%;height:clamp(265px,27vw,355px);min-height:0;max-height:none;margin:0;clip-path:none;border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(17,52,87,.12)}
+.ficha-foto img{display:block;width:100%;height:100%;min-height:0;max-height:none;object-fit:cover;object-position:center}
+.ficha-id{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;padding:8px 0;background:transparent}
+.ficha-id::after{content:"";position:absolute;right:2px;bottom:0;top:auto;width:76px;height:76px;border:0;border-radius:0;transform:none;opacity:.7;z-index:-1;background-image:radial-gradient(#64adf2 1.7px,transparent 2px);background-size:13px 13px;pointer-events:none}
+.ficha-etiqueta{display:inline-flex;align-items:center;margin:0 0 17px;padding:7px 14px;background:#dcecff;color:#1264b4;border-radius:999px;font-size:.75rem;font-weight:800;letter-spacing:.045em}
+.ficha-id h2{color:#0b3769;font-size:clamp(2.05rem,2.9vw,3rem);line-height:1.14;letter-spacing:-.035em;margin:0 0 17px;max-width:none}
+.ficha-lead,.ficha-lead p,.ficha-lead *{color:#536982!important;font-size:clamp(.96rem,1.18vw,1.07rem);line-height:1.7}
+.ficha-lead{max-width:54ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.cta-row a[appButton]{min-height:47px;padding:11px 17px;border-radius:9px;font-size:.88rem;font-weight:800}
+.cta-row a[appButton] i{font-size:1.08rem}
+.cta-row a[variant="whatsapp"],.cta-row a[variant="whatsapp"] span,.cta-row a[variant="whatsapp"] i{color:#fff!important}
+.datos{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:0;padding:20px;background:#fff;border-radius:0;box-shadow:none;border-top:1px solid #e4ebf4}
+.dato,.dato:not(:last-child){display:flex;flex-direction:row;gap:10px;align-items:flex-start;min-width:0;min-height:115px;padding:14px 11px;border:1px solid #e2eaf4;border-radius:11px;background:#fff}
+.dato-icon{flex:0 0 35px;width:35px;height:35px;border-radius:9px;font-size:1rem}
+.dato-body{gap:10px}
+.dato dt{font-size:.73rem}
+.dato dd{font-size:.9rem}
+@media(max-width:1050px){.ficha-hero{grid-template-columns:1fr 1fr;gap:20px}.ficha-id h2{font-size:clamp(1.9rem,3vw,2.5rem)}.datos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:750px){.ficha-hero{grid-template-columns:1fr;gap:22px;padding:22px}.ficha-foto{height:clamp(230px,45vw,350px)}.ficha-id{padding:0 2px 8px}.ficha-id h2{font-size:2.1rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px}}
+@media(max-width:470px){.ficha-hero{padding:15px}.ficha-foto{height:225px}.ficha-id h2{font-size:1.85rem}.cta-row{flex-direction:column;width:100%}.cta-row a[appButton]{width:100%}.datos{grid-template-columns:1fr}}
