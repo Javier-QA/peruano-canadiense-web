@@ -495,3 +495,18 @@ a.score-label:hover {
 .ficha .accounts{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .ficha .accounts app-card{border:1px solid #dbe8f8;border-radius:12px;background:#f8fbff}
 .ficha .cta-row [appButton]{max-width:100%;white-space:normal;text-align:center}
+
+/* Ajustes globales de los visores: Costos, Estadísticas, Becas y demás secciones */
+.viewer-shell .sidebar .nav-item{justify-content:flex-start;gap:12px}
+.viewer-shell .doc-icon{width:34px;height:34px;flex:0 0 34px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:#eaf3ff;color:#0964b8;font-size:14px}
+.viewer-shell .nav-item.active .doc-icon{background:rgba(255,255,255,.17);color:#fff}
+.viewer-shell .nav-chevron{margin-left:auto;font-size:11px;opacity:.5}
+.viewer-shell .nav-item.active .nav-chevron{opacity:1}
+.viewer-shell .ficha .score-list{width:100%;max-width:none}
+.viewer-shell .ficha .score-list li{min-height:66px;padding:15px 4px;border-bottom:1px solid #e0eaf6;gap:18px}
+.viewer-shell .ficha .score-list .score-label{font-weight:650;color:#123f70}
+.viewer-shell .ficha .score-list app-badge{background:#e8f2ff;color:#0954a0;border:1px solid #cfe2f8;border-radius:999px;min-width:92px;text-align:center;font-weight:750}
+.viewer-shell .ficha app-alert{max-width:none}
+.viewer-shell .ficha .cta-row{gap:12px;align-items:center}
+@media(max-width:991px){.viewer-shell .sidebar .nav-item{gap:8px}.viewer-shell .nav-chevron{display:none}}
+@media(max-width:560px){.viewer-shell .doc-icon{width:28px;height:28px;flex-basis:28px}.viewer-shell .ficha .score-list li{gap:10px}.viewer-shell .ficha .score-list app-badge{min-width:66px}}
