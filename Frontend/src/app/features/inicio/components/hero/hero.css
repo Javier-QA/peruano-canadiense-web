@@ -1,29 +1,36 @@
-:host{display:block}.hero{position:relative;min-height:520px;display:flex;isolation:isolate;overflow:hidden;background:#153a67}.hero-slides,.overlay{position:absolute;inset:0}.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:0;transition:opacity 1s ease}.hero-bg.active{opacity:1}.overlay{z-index:1;background:linear-gradient(90deg,rgba(7,30,62,.85) 0%,rgba(8,35,69,.65) 30%,rgba(8,35,69,.22) 59%,rgba(8,35,69,.04) 100%);pointer-events:none}.hero-stage{position:relative;z-index:2;box-sizing:border-box;width:100%;max-width:1320px;margin:auto;padding:74px 48px 62px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"content side" "ctas side";align-content:center;align-items:center;gap:30px 40px}.hero-content{grid-area:content;max-width:600px;color:#fff}.hero-content::before{content:"FORMACIÓN DOCENTE · EDUCACIÓN SUPERIOR";display:inline-block;margin-bottom:18px;padding:7px 12px;border:1px solid rgba(255,255,255,.4);border-radius:30px;background:rgba(10,43,83,.32);font-size:10px;font-weight:700;letter-spacing:.08em}.hero-content h1{font-size:clamp(2rem,2.75vw,3rem);line-height:1.17;letter-spacing:-.025em;font-weight:800;margin:0 0 16px;max-width:590px;text-wrap:balance;text-shadow:0 2px 12px rgba(0,0,0,.25)}.hero-content p{font-size:clamp(1rem,1.25vw,1.25rem);font-weight:500;line-height:1.5;max-width:510px;margin:0;color:#f2f6ff;text-shadow:0 2px 8px rgba(0,0,0,.3)}.buttons-section{grid-area:ctas}.buttons-container{display:flex;flex-wrap:wrap;gap:12px}.btn-card{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:50px;box-sizing:border-box;padding:12px 19px;border-radius:9px;text-decoration:none;color:white;border:1px solid rgba(255,255,255,.3);transition:transform .2s,background .2s,box-shadow .2s}.btn-card.carreras{background:#176ec6;box-shadow:0 7px 20px rgba(0,0,0,.12)}.btn-card.licencia{background:rgba(15,43,79,.65);backdrop-filter:blur(5px)}.btn-card .front,.btn-card .licencia-inner{display:flex;align-items:center;gap:10px}.btn-card .icon{display:flex;align-items:center}.btn-card .icon i{font-size:18px}.btn-card span{font-size:14px;font-weight:700}.btn-card:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(0,0,0,.2)}.btn-card:focus-visible,.side-item:focus-visible{outline:3px solid #fff;outline-offset:3px}.licencia-popup{position:absolute;top:calc(100% + 8px);left:0;width:150px;height:125px;overflow:hidden;border-radius:10px;opacity:0;transform:translateY(-7px);pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 10px 25px rgba(0,0,0,.22)}.licencia-popup img{width:100%;height:100%;object-fit:cover}.licencia:hover .licencia-popup{opacity:1;transform:translateY(0)}.side-buttons{grid-area:side;display:flex;flex-direction:column;gap:10px;align-self:center}.side-item{display:flex;align-items:center;gap:9px;text-decoration:none;background:rgba(11,38,75,.68);border:1px solid rgba(255,255,255,.28);border-radius:10px;padding:8px 13px 8px 8px;transition:background .2s,transform .2s}.side-item:hover{background:rgba(18,87,158,.88);transform:translateX(-3px)}.side-btn{width:35px;height:35px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(255,255,255,.16)}.side-btn img{width:23px;height:23px;object-fit:contain}.side-text{font-size:12px;font-weight:650;color:#fff;white-space:nowrap}@media(max-width:1050px){.hero-stage{padding:65px 32px 50px;gap:24px}.hero-content{max-width:520px}.hero-content h1{font-size:clamp(2rem,3.3vw,2.7rem)}.side-text{font-size:11px}}@media(max-width:768px){.hero{min-height:0}.hero-stage{grid-template-columns:1fr;grid-template-areas:"content" "ctas" "side";padding:72px 20px 32px;gap:23px}.overlay{background:linear-gradient(90deg,rgba(7,30,62,.86),rgba(7,30,62,.47))}.hero-content h1{font-size:clamp(1.9rem,6vw,2.6rem)}.hero-content p{font-size:1rem}.side-buttons{flex-direction:row;flex-wrap:wrap;gap:8px}.side-item{flex:1 1 140px;justify-content:center}.licencia-popup{display:none}}@media(max-width:420px){.hero-stage{padding:56px 16px 26px}.hero-content::before{font-size:9px}.side-item{flex:1 1 100%;justify-content:flex-start}.btn-card{flex:1 1 auto}}@media(prefers-reduced-motion:reduce){.hero-bg,.btn-card,.side-item,.licencia-popup{transition:none}}
-/* Accesos académicos: franja independiente debajo de la fotografía */
-.hero{overflow:visible;display:block;min-height:0}
-.hero-slides,.overlay{bottom:90px}
-.hero-stage{min-height:520px;padding-bottom:152px;grid-template-columns:minmax(0,1fr);grid-template-areas:"content" "ctas";gap:28px;position:relative}
-.side-buttons{position:absolute;left:48px;right:48px;bottom:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-self:auto;z-index:3}
-.side-item{justify-content:flex-start;min-width:0;background:#fff;border:1px solid #dce7f3;border-radius:12px;padding:14px 17px;box-shadow:0 9px 26px rgba(14,49,92,.12);backdrop-filter:none}
-.side-item:hover{background:#f1f7fe;transform:translateY(-2px)}
-.side-btn{background:#eaf3fd;width:40px;height:40px;flex-shrink:0}
-.side-text{color:#173e6e;font-size:13px;font-weight:750;white-space:normal}
-.side-item:focus-visible{outline:3px solid #1873cc}
-@media(max-width:768px){.hero-slides,.overlay{bottom:0}.hero-stage{min-height:0;padding:72px 20px 30px;display:flex;flex-direction:column;align-items:stretch}.side-buttons{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;margin-top:14px}.side-item{flex:none;justify-content:flex-start;padding:10px}.side-text{font-size:11px}}
-@media(max-width:550px){.side-buttons{grid-template-columns:1fr}.side-item{min-height:54px}.side-text{font-size:13px}}
-@media(min-width:769px){.hero-stage{box-sizing:border-box;padding-top:65px}.hero-content{max-width:590px}}
-
-/* Accesos institucionales discretos, integrados en una barra compacta */
-.hero{background:#123965}
-.hero-slides,.overlay{bottom:65px}
-.hero-stage{min-height:500px;padding-bottom:117px}
-.side-buttons{bottom:12px;left:50%;right:auto;transform:translateX(-50%);width:min(860px,calc(100% - 60px));display:flex;justify-content:center;gap:0;border:1px solid rgba(255,255,255,.22);border-radius:12px;overflow:hidden;background:rgba(9,41,83,.9);box-shadow:0 8px 22px rgba(4,28,63,.15)}
-.side-item{flex:1;justify-content:center;gap:11px;min-height:57px;box-shadow:none;border:0;border-radius:0;padding:10px 16px;background:transparent;backdrop-filter:none}
-.side-item+.side-item{border-left:1px solid rgba(255,255,255,.2)}
-.side-item:hover{background:rgba(255,255,255,.12);transform:none}
-.side-btn{width:32px;height:32px;background:rgba(255,255,255,.15);border-radius:7px}
-.side-btn img{width:24px;height:24px;filter:brightness(0) invert(1);opacity:.95}
-.side-text{color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
-.side-item:focus-visible{outline:2px solid white;outline-offset:-3px}
-@media(max-width:768px){.hero-slides,.overlay{bottom:0}.hero-stage{min-height:0;padding:72px 20px 30px}.side-buttons{position:static;transform:none;width:100%;display:flex;flex-wrap:wrap;margin-top:8px;border-radius:11px}.side-item{flex:1 1 140px;min-height:55px;padding:10px}.side-item+.side-item{border-left:1px solid rgba(255,255,255,.2)}.side-text{font-size:11px}}
-@media(max-width:480px){.side-buttons{flex-direction:column}.side-item{flex:auto;justify-content:flex-start;min-height:47px}.side-item+.side-item{border-left:0;border-top:1px solid rgba(255,255,255,.2)}.side-text{font-size:12px}}
+:host{display:block}
+.side-buttons{display:flex;align-items:center;justify-content:center;gap:0;width:100%;min-height:48px;box-sizing:border-box;padding:0 24px;background:#f46a0b}
+.side-item{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;box-sizing:border-box;padding:9px 25px;text-decoration:none;color:#fff;transition:background-color .2s}
+.side-item+.side-item{border-left:1px solid rgba(255,255,255,.35)}
+.side-item:hover{background:rgba(0,0,0,.13)}
+.side-item:focus-visible{outline:2px solid #fff;outline-offset:-4px}
+.side-btn{display:flex;align-items:center;justify-content:center;width:26px;height:26px;flex-shrink:0}
+.side-btn img{display:block;width:24px;height:24px;object-fit:contain;filter:brightness(0) invert(1)}
+.side-text{color:#fff;font-size:13px;font-weight:750;white-space:nowrap}
+.hero{position:relative;min-height:520px;display:flex;isolation:isolate;overflow:hidden;background:#153a67}
+.hero-slides,.overlay{position:absolute;inset:0}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:0;transition:opacity 1s ease}
+.hero-bg.active{opacity:1}
+.overlay{z-index:1;background:linear-gradient(90deg,rgba(7,30,62,.84) 0%,rgba(8,35,69,.65) 30%,rgba(8,35,69,.2) 59%,rgba(8,35,69,.03) 100%);pointer-events:none}
+.hero-stage{position:relative;z-index:2;box-sizing:border-box;width:100%;max-width:1320px;margin:auto;padding:75px 48px 65px;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"content" "ctas";align-content:center;gap:30px}
+.hero-content{grid-area:content;max-width:600px;color:#fff}
+.hero-content::before{content:"FORMACIÓN DOCENTE · EDUCACIÓN SUPERIOR";display:inline-block;margin-bottom:18px;padding:7px 12px;border:1px solid rgba(255,255,255,.4);border-radius:30px;background:rgba(10,43,83,.32);font-size:10px;font-weight:700;letter-spacing:.08em}
+.hero-content h1{font-size:clamp(2rem,2.75vw,3rem);line-height:1.17;letter-spacing:-.025em;font-weight:800;margin:0 0 16px;max-width:590px;text-wrap:balance;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.hero-content p{font-size:clamp(1rem,1.25vw,1.25rem);font-weight:500;line-height:1.5;max-width:510px;margin:0;color:#f2f6ff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.buttons-section{grid-area:ctas}
+.buttons-container{display:flex;flex-wrap:wrap;gap:12px}
+.btn-card{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:50px;box-sizing:border-box;padding:12px 19px;border-radius:9px;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.3);transition:transform .2s,background .2s,box-shadow .2s}
+.btn-card.carreras{background:#176ec6;box-shadow:0 7px 20px rgba(0,0,0,.12)}
+.btn-card.licencia{background:rgba(15,43,79,.65);backdrop-filter:blur(5px)}
+.btn-card .front,.btn-card .licencia-inner{display:flex;align-items:center;gap:10px}
+.btn-card .icon{display:flex;align-items:center}
+.btn-card .icon i{font-size:18px}
+.btn-card span{font-size:14px;font-weight:700}
+.btn-card:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(0,0,0,.2)}
+.btn-card:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.licencia-popup{position:absolute;top:calc(100% + 8px);left:0;width:150px;height:125px;overflow:hidden;border-radius:10px;opacity:0;transform:translateY(-7px);pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 10px 25px rgba(0,0,0,.22)}
+.licencia-popup img{width:100%;height:100%;object-fit:cover}
+.licencia:hover .licencia-popup{opacity:1;transform:translateY(0)}
+@media(max-width:768px){.side-buttons{padding:0 10px;flex-wrap:wrap}.side-item{flex:1 1 auto;padding:10px 12px}.side-text{font-size:11px}.hero{min-height:0}.hero-stage{padding:72px 20px 45px;gap:23px}.overlay{background:linear-gradient(90deg,rgba(7,30,62,.86),rgba(7,30,62,.47))}.hero-content h1{font-size:clamp(1.9rem,6vw,2.6rem)}.hero-content p{font-size:1rem}.licencia-popup{display:none}}
+@media(max-width:480px){.side-buttons{gap:0}.side-item{flex:1 1 100%;min-height:38px;padding:7px 12px}.side-item+.side-item{border-left:0;border-top:1px solid rgba(255,255,255,.24)}.side-btn{width:22px;height:22px}.side-btn img{width:20px;height:20px}.side-text{font-size:12px}.hero-stage{padding:56px 16px 38px}.hero-content::before{font-size:9px}.btn-card{flex:1 1 auto}}
+@media(prefers-reduced-motion:reduce){.hero-bg,.btn-card,.side-item,.licencia-popup{transition:none}}
