@@ -1,7 +1,9 @@
+<section class="actualidad-section" aria-label="Actualidad institucional">
+  <div class="actualidad-intro"><div><span class="actualidad-eyebrow">MANTENTE INFORMADO</span><h2>Actualidad institucional</h2><p>Noticias, actividades y comunicados de nuestra comunidad educativa.</p></div><a routerLink="/noticias" class="actualidad-all">Todas las publicaciones <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
 <div class="top-grid">
   <section class="panel" appReveal>
     <header class="panel__head">
-      <h2>Últimas noticias</h2>
+      <h3>Últimas noticias</h3>
       <a routerLink="/noticias" class="panel__link">Ver todas</a>
     </header>
 
@@ -13,7 +15,7 @@
         <button type="button" class="panel__retry" (click)="reintentar()">Reintentar</button>
       </p>
     } @else if (noticiaDestacada(); as item) {
-      <a [routerLink]="['/noticias', item.id]" class="feat">
+      <div class="news-layout"><a [routerLink]="['/noticias', item.id]" class="feat">
         <span class="feat__media">
           <img [appSrc]="item.image" [alt]="item.imageAlt" loading="lazy" decoding="async" />
           <span class="feat__tag">{{ item.categoryLabel }}</span>
@@ -27,7 +29,7 @@
       </a>
 
       @if (noticiasLista().length) {
-        <ul class="rows">
+        <ul class="rows news-list">
           @for (nota of noticiasLista(); track nota.id) {
             <li>
               <a [routerLink]="['/noticias', nota.id]" class="row">
@@ -44,6 +46,7 @@
           }
         </ul>
       }
+      </div>
     } @else {
       <div class="soon">
         <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
@@ -56,7 +59,7 @@
 
   <section class="panel" appReveal [appRevealDelay]="90">
     <header class="panel__head">
-      <h2>Comunicados</h2>
+      <h3>Comunicados</h3>
     </header>
 
     @if (loading() && sinComunicados()) {
@@ -106,3 +109,4 @@
     <a routerLink="/noticias" class="panel__cta">Ver comunicados</a>
   </section>
 </div>
+</section>
