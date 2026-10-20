@@ -1,120 +1,27 @@
-.eva-hub-section {
-  background: var(--inst-secondary, #F2F1F8);
-  padding: 80px 20px;
-}
-
-.eva-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.eva-header {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 50px;
-}
-
-.eva-badge {
-  display: inline-block;
-  background: rgba(255, 102, 0, 0.12);
-  color: #FF6600;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.eva-title {
-  font-size: 2.3rem;
-  font-weight: 700;
-  color: var(--inst-dark, #44425A);
-  margin-bottom: 16px;
-}
-
-.eva-subtitle {
-  font-size: 1.05rem;
-  color: var(--inst-text, #6C6A74);
-  line-height: 1.6;
-}
-
-.eva-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-}
-
-.eva-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 35px 28px;
-  box-shadow: 0 4px 20px rgba(68, 66, 90, 0.06);
-  border: 1px solid #e7e6f0;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.eva-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(255, 102, 0, 0.12);
-  border-color: #FF6600;
-}
-
-.eva-icon-box {
-  width: 65px;
-  height: 65px;
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 102, 0, 0.03) 100%);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 22px;
-  color: #FF6600;
-  font-size: 1.8rem;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.eva-card:hover .eva-icon-box {
-  background: #FF6600;
-  color: #ffffff;
-}
-
-.eva-card-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--inst-dark, #44425A);
-  margin-bottom: 12px;
-}
-
-.eva-card-desc {
-  font-size: 0.95rem;
-  color: var(--inst-text, #6C6A74);
-  line-height: 1.5;
-  margin-bottom: 24px;
-  flex-grow: 1;
-}
-
-.eva-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  color: #FF6600;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: gap 0.2s ease;
-}
-
-.eva-card-link:hover {
-  gap: 12px;
-  color: #e65c00;
-}
-
-@media (max-width: 600px) {
-  .eva-grid {
-    grid-template-columns: 1fr;
-  }
-}
+:host{display:block}
+.eva-hub-section{position:relative;isolation:isolate;overflow:hidden;padding:58px 38px 46px;border:1px solid #dbe8f7;border-radius:24px;background:linear-gradient(117deg,#fff 0%,#f0f7ff 66%,#e0efff 100%);box-shadow:0 12px 38px rgba(12,57,112,.055)}
+.eva-hub-section::before{content:"";position:absolute;top:-180px;right:-120px;width:510px;height:510px;border-radius:50%;background:radial-gradient(circle,#c3dfff 0%,rgba(195,223,255,0) 70%);z-index:-1}
+.eva-container{max-width:1200px;margin:auto}
+.eva-header{text-align:left;max-width:850px;margin:0 0 38px}
+.eva-badge{display:inline-block;padding:8px 15px;border-radius:50px;background:#e0efff;color:#0759b3;font-size:.76rem;font-weight:800;letter-spacing:.085em;text-transform:uppercase}
+.eva-title{margin:16px 0 14px;color:#0a376f;font-size:clamp(2rem,3vw,2.85rem);line-height:1.13;letter-spacing:-.035em;font-weight:800}
+.eva-title::after{content:"";display:block;width:72px;height:4px;margin-top:17px;background:#ff6b00;border-radius:4px}
+.eva-subtitle{margin:0;color:#506b8e;font-size:1.06rem;line-height:1.65;max-width:740px}
+.eva-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.eva-card{--eva-color:#146ad1;--eva-tint:#e8f2ff;position:relative;display:flex;flex-direction:column;min-height:255px;padding:27px 26px 25px;background:#fff;border:1px solid #e0eaf6;border-bottom:4px solid var(--eva-color);border-radius:17px;box-shadow:0 9px 24px rgba(15,59,109,.075);transition:transform .2s ease,box-shadow .2s ease}
+.eva-card:nth-child(2){--eva-color:#ff6b00;--eva-tint:#fff0e6}
+.eva-card:nth-child(3){--eva-color:#1267c4;--eva-tint:#e7f1ff}
+.eva-card:nth-child(4){--eva-color:#2154a0;--eva-tint:#e9f1ff}
+.eva-card:nth-child(5){--eva-color:#0c75b8;--eva-tint:#e6f6ff}
+.eva-card:nth-child(6){--eva-color:#ff6b00;--eva-tint:#fff0e6}
+.eva-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(12,57,112,.13)}
+.eva-icon-box{display:grid;place-items:center;width:62px;height:62px;margin-bottom:19px;border-radius:15px;background:var(--eva-tint);color:var(--eva-color);font-size:1.65rem}
+.eva-card-title{margin:0 0 11px;color:#0b376c;font-size:1.18rem;line-height:1.3;font-weight:800}
+.eva-card-desc{margin:0 0 23px;color:#58708d;font-size:.96rem;line-height:1.6;flex:1}
+.eva-card-link{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;color:var(--eva-color);font-size:.95rem;font-weight:800;text-decoration:none}
+.eva-link-icon{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;background:var(--eva-tint);transition:transform .2s ease}
+.eva-card-link:hover .eva-link-icon{transform:translateX(4px)}
+.eva-card-link:focus-visible{outline:3px solid #146ad1;outline-offset:5px;border-radius:4px}
+@media(max-width:1000px){.eva-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eva-hub-section{padding:40px 25px}}
+@media(max-width:620px){.eva-hub-section{padding:32px 17px;border-radius:18px}.eva-grid{grid-template-columns:1fr;gap:14px}.eva-card{min-height:215px;padding:23px}.eva-header{margin-bottom:28px}.eva-title{font-size:1.85rem}}
+@media(prefers-reduced-motion:reduce){.eva-card,.eva-link-icon{transition:none}}
