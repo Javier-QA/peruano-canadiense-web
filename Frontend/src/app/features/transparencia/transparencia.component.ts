@@ -20,7 +20,7 @@ import { ButtonDirective, InputDirective } from '../../shared/ui';
     InputDirective,
   ],
   templateUrl: './transparencia.component.html',
-  styleUrls: ['../../shared/styles/service-page.css'],
+  styleUrls: ['../../shared/styles/service-page.css', './transparencia.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TransparenciaComponent {
