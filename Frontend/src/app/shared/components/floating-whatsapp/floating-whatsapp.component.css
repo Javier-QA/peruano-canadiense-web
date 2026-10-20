@@ -111,3 +111,7 @@
   50% { box-shadow: 0 0 0 1px rgba(0,175,77,.2),0 0 0 17px rgba(0,200,83,.15),0 0 27px 13px rgba(0,200,83,.22); }
 }
 @media(prefers-reduced-motion:reduce) { .whatsapp-btn { animation:none; } }
+
+/* Misma alineación horizontal que el chatbot */
+.whatsapp-float{right:30px}
+@media(max-width:600px){.whatsapp-float{right:20px}}
