@@ -69,8 +69,3 @@
 @media(min-width:769px){
   .licencia-popup{top:calc(50% + 45px)}
 }
-
-/* Centrar verticalmente la imagen emergente con el botón Licenciamiento */
-@media(min-width:769px){
-  .licencia-popup{top:50%}
-}
