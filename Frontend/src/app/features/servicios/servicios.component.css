@@ -38,3 +38,27 @@
 .svc-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 @media(max-width:850px){.svc-contact{grid-template-columns:1fr;gap:20px}}
 @media(max-width:620px){.svc-panel{padding:24px 18px}.svc-actions>*{width:100%;text-align:center}}
+
+/* Rediseño de Atención: cabecera, información y acciones claras */
+.svc-panel{position:relative;overflow:hidden;padding:34px 36px 32px;border-radius:22px;background:linear-gradient(115deg,#fff 0%,#f7fbff 62%,#eaf4ff 100%)}
+.svc-panel::before{content:"";position:absolute;top:-95px;right:-95px;width:260px;height:260px;border-radius:50%;border:32px solid rgba(24,112,207,.045);pointer-events:none}
+.svc-panel-heading{position:relative;display:flex;align-items:center;gap:18px;margin-bottom:26px}
+.svc-panel-heading-icon{display:grid;place-items:center;flex:none;width:66px;height:66px;border-radius:18px;background:#e3efff;color:#1267c4;font-size:1.7rem}
+.svc-panel-eyebrow{display:block;margin-bottom:5px;color:#f36a08;font-size:.72rem;letter-spacing:.1em;font-weight:800}
+.svc-panel .svc-panel-heading h2{margin:0 0 5px;color:#0b376c;font-size:clamp(1.65rem,2.2vw,2.15rem);font-weight:800}
+.svc-panel-heading p{margin:0;color:#536d8e;line-height:1.55}
+.svc-contact{position:relative;gap:16px}
+.svc-contact>div{padding:21px 19px;gap:14px;border:1px solid #e0eaf5;border-radius:15px;background:#fff;box-shadow:0 6px 18px rgba(12,57,112,.035)}
+.svc-contact>div>i{width:48px;height:48px;font-size:1.18rem}
+.svc-contact>div:nth-child(2)>i{background:#fff0e6;color:#f36a08}
+.svc-contact strong{font-size:.97rem;line-height:1.4}
+.svc-contact p{font-size:.94rem}
+.svc-actions{position:relative;gap:14px;margin-top:24px}
+.svc-actions>a{display:inline-flex;align-items:center;justify-content:center;gap:13px;min-height:49px;padding:12px 20px;border-radius:11px;font-weight:750;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.svc-actions>a:first-child{background:#ff6b00;border-color:#ff6b00;color:#fff}
+.svc-actions>a:last-child{border:1.5px solid #1765b4;color:#0b4c91;background:#fff}
+.svc-actions>a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(12,57,112,.1)}
+.svc-actions>a:focus-visible{outline:3px solid #1267c4;outline-offset:3px}
+@media(max-width:900px){.svc-contact{grid-template-columns:1fr}.svc-panel{padding:27px 24px}}
+@media(max-width:620px){.svc-panel{padding:24px 17px}.svc-panel-heading{align-items:flex-start;gap:12px}.svc-panel-heading-icon{width:48px;height:48px;border-radius:12px;font-size:1.3rem}.svc-contact>div{padding:17px}.svc-actions>a{width:100%}}
+@media(prefers-reduced-motion:reduce){.svc-actions>a{transition:none}}
