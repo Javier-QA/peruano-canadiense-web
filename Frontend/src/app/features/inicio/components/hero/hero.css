@@ -64,3 +64,8 @@
   .licencia-popup{top:50%;bottom:auto;left:calc(100% + 12px);width:165px;height:125px;transform:translate(-8px,-50%)}
   .licencia:hover .licencia-popup,.licencia:focus-within .licencia-popup{transform:translate(0,-50%)}
 }
+
+/* Desplazar la vista previa de Licenciamiento hacia abajo */
+@media(min-width:769px){
+  .licencia-popup{top:calc(50% + 45px)}
+}
