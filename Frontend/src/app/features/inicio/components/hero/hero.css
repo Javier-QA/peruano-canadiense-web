@@ -20,7 +20,7 @@
 .buttons-section{grid-area:ctas}
 .buttons-container{display:flex;flex-wrap:wrap;gap:12px}
 .btn-card{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:50px;box-sizing:border-box;padding:12px 19px;border-radius:9px;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.3);transition:transform .2s,background .2s,box-shadow .2s}
-.btn-card.carreras{background:#176ec6;box-shadow:0 7px 20px rgba(0,0,0,.12)}
+.btn-card.carreras{background:#ff6900;box-shadow:0 7px 20px rgba(0,0,0,.12)}
 .btn-card.licencia{background:rgba(15,43,79,.65);backdrop-filter:blur(5px)}
 .btn-card .front,.btn-card .licencia-inner{display:flex;align-items:center;gap:10px}
 .btn-card .icon{display:flex;align-items:center}
