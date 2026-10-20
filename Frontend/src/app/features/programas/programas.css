@@ -530,3 +530,19 @@
 
 /* WhatsApp: texto e icono blancos para mejor contraste */
 .cta-row a[variant="whatsapp"],.cta-row a[variant="whatsapp"] i,.cta-row a[variant="whatsapp"] span{color:#fff}
+
+/* Cabecera académica refinada: imagen protagonista y contenido compacto */
+.ficha-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);min-height:370px;align-items:stretch;background:#fff}
+.ficha-foto{position:relative;min-height:370px;max-height:none;overflow:hidden;background:#e9f1f9}
+.ficha-foto img{display:block;width:100%;height:100%;min-height:370px;object-fit:cover;object-position:center}
+.ficha-id{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:38px clamp(30px,4vw,54px);background:linear-gradient(135deg,#fff 70%,#f8fbff 100%)}
+.ficha-id h2{max-width:none;margin:0 0 15px;font-size:clamp(2rem,2.7vw,2.65rem);line-height:1.16;letter-spacing:-.035em;color:#143e6c}
+.ficha-lead{max-width:50ch;font-size:.98rem;line-height:1.75;color:#526982}
+.cta-row{display:flex;align-items:stretch;gap:10px;margin-top:24px}
+.cta-row a[appButton]{min-height:46px;padding:11px 15px;font-size:.84rem;line-height:1.3;border-radius:9px;box-shadow:none;transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.cta-row a[appButton]:hover{transform:translateY(-2px)}
+.cta-row a[variant="whatsapp"]{color:#fff;background:#25d366;border-color:#25d366}
+.cta-row a[variant="whatsapp"]:hover{background:#1fb957;border-color:#1fb957}
+@media(max-width:1000px) and (min-width:801px){.ficha-hero{grid-template-columns:1fr 1fr}.ficha-id{padding:26px}.cta-row{flex-wrap:wrap}.ficha-id h2{font-size:2rem}}
+@media(max-width:800px){.ficha-hero{grid-template-columns:1fr;min-height:0}.ficha-foto{min-height:260px;max-height:350px}.ficha-foto img{min-height:260px;max-height:350px}.ficha-id{padding:29px 26px}.ficha-id h2{font-size:clamp(1.8rem,5vw,2.4rem)}}
+@media(max-width:550px){.ficha-foto,.ficha-foto img{min-height:220px;max-height:280px}.ficha-id{padding:25px 20px}.ficha-id h2{font-size:1.9rem}.ficha-lead{font-size:.94rem}.cta-row{flex-direction:column;width:100%;gap:10px}.cta-row a[appButton]{width:100%}}
