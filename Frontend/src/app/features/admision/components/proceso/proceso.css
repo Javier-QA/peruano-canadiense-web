@@ -505,3 +505,25 @@
     width: 100%;
   }
 }
+
+/* Convocatoria institucional: composición equilibrada */
+.proceso{background:#f3f7fd;padding:40px 20px 76px}
+.proceso-inner{max-width:1240px}
+.pasos{background:#fff;border-color:#dce7f4;margin-bottom:22px}
+.paso.is-active{background:#1465ad}
+.escenario{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);background:#fff;color:#143c69;border:1px solid #dce7f4;border-radius:20px;box-shadow:0 16px 36px rgba(15,54,99,.09)}
+.escenario-copy{padding:42px 36px;justify-content:center;min-width:0;gap:18px}
+.escenario-copy h1,.escenario-copy h2{color:#113b6b;font-size:clamp(2.1rem,3.3vw,3.3rem)}
+.lema{color:#ef6817}
+.lead,.lead-plain{color:#456283;max-width:60ch;overflow-wrap:anywhere}
+.hechos{max-width:none}
+.hechos div{border-top-color:#d5e3f3}
+.hechos dt{color:#637c99}
+.hechos dd{color:#123e70}
+.aviso{background:#f0f6ff;color:#294c72;border:1px solid #d7e6f7;border-left:4px solid #1769b7;overflow-wrap:anywhere}
+.escenario-afiche{display:flex;align-items:center;justify-content:center;padding:30px;background:#eef5fe;color:#12549a;min-width:0}
+.poster{width:100%}
+.poster img{max-height:690px;object-fit:contain;background:#fff;border-radius:12px}
+.poster span{color:#12549a}
+@media(max-width:900px){.escenario{grid-template-columns:1fr}.escenario-copy{padding:30px 24px}.escenario-afiche{padding:22px}}
+@media(max-width:520px){.proceso{padding:20px 12px 50px}.escenario{border-radius:16px}.escenario-copy{padding:25px 18px}.escenario-afiche{padding:15px}}
