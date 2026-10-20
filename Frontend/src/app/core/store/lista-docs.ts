@@ -77,17 +77,24 @@ import { ArchivosStore } from './archivos.store';
     .poster img {
       display: block;
       width: 100%;
-      max-height: min(85vh, 980px);
       height: auto;
+      max-height: none;
       object-fit: contain;
-      background: #1c1b28;
-      border-radius: 4px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(14, 55, 103, 0.13);
     }
     .poster span {
-      justify-self: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: stretch;
+      min-height: 46px;
+      border-radius: 10px;
+      background: #125da8;
       color: #fff;
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-size: 0.95rem;
+      font-weight: 750;
     }
     .poster:focus-visible {
       outline: 3px solid var(--inst-primary);
