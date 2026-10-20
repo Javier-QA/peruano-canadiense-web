@@ -55,13 +55,12 @@
   .licencia-popup img{width:100%;height:100%;object-fit:cover}
 }
 
-/* Licenciamiento: tarjeta vertical con vista previa de tamaño equivalente */
+/* Mantener botón horizontal y mostrar imagen mediana a su derecha */
 @media(min-width:769px){
-  .btn-card.licencia{width:174px;height:190px;padding:18px 12px;align-items:center;justify-content:center}
-  .btn-card.licencia .licencia-inner,.btn-card.licencia .front{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;width:100%}
-  .btn-card.licencia .icon i{font-size:39px}
+  .btn-card.licencia{width:auto;height:auto;min-height:50px;padding:12px 19px;flex-direction:row}
+  .btn-card.licencia .licencia-inner,.btn-card.licencia .front{display:flex;flex-direction:row;align-items:center;gap:10px}
+  .btn-card.licencia .icon i{font-size:18px}
   .btn-card.licencia span{font-size:14px}
-  .licencia-popup{top:0;bottom:auto;left:calc(100% + 12px);width:174px;height:190px;border-radius:13px;transform:translateX(-6px);box-shadow:0 10px 25px rgba(0,0,0,.18)}
-  .licencia:hover .licencia-popup,.licencia:focus-within .licencia-popup{transform:translateX(0)}
-  .hero{min-height:590px}
+  .licencia-popup{top:50%;bottom:auto;left:calc(100% + 12px);width:165px;height:125px;transform:translate(-8px,-50%)}
+  .licencia:hover .licencia-popup,.licencia:focus-within .licencia-popup{transform:translate(0,-50%)}
 }
