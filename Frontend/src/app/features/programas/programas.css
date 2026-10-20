@@ -827,12 +827,10 @@
 @media(max-width:600px){.programas-banner{min-height:225px;padding:35px 17px}.programas-banner h1{font-size:clamp(2rem,7vw,2.65rem)}.programas-banner__eyebrow{font-size:.74rem}.programas-banner__inner::before,.programas-banner__inner::after{display:none}.oferta{padding:20px 15px 60px}.carrusel{grid-template-columns:1fr;gap:15px}.pick{min-height:0}.pick-foto{height:200px}.pick-copy{min-height:98px}}
 @media(prefers-reduced-motion:reduce){.pick,.pick-foto img{transition:none}}
 
-/* Indicadores de programas: paleta institucional azul, sin colores multicolor */
-.datos .dato{background:linear-gradient(145deg,#f0f7ff,#e8f2fd)!important;border-color:#d7e6f7!important;box-shadow:none}
-.datos .dato:nth-child(even){background:linear-gradient(145deg,#f8fbff,#eaf3ff)!important}
-.datos .dato::before,.datos .dato::after{border-color:rgba(17,100,186,.07)!important}
-.datos .dato-icon{background:#d9eaff!important;color:#0967bc!important}
+/* Solo colores institucionales: mantener dimensiones, fondos y diseño original */
+.datos .dato-icon,
+.datos .dato:nth-child(n) .dato-icon{color:#0967bc!important}
 .datos .dato-icon i{color:#0967bc!important}
-.datos .dato dt{color:#547394!important}
-.datos .dato dd{color:#103e71!important}
-.datos .dato-chips span{background:#fff!important;color:#125b9e!important}
+.datos .dato:nth-child(n) dt{color:#547394!important}
+.datos .dato:nth-child(n) dd{color:#103e71!important}
+.datos .dato-chips span{color:#125b9e!important}
