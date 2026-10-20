@@ -465,3 +465,39 @@
 .columna{padding:33px 36px 40px}
 @media(max-width:850px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{max-height:330px}.ficha-id{padding:29px}.oferta{padding:28px 16px 64px}}
 @media(max-width:550px){.carrusel{grid-auto-columns:minmax(180px,75%)}.columnas{grid-template-columns:1fr}.columna+.columna{border-left:0;border-top:1px solid var(--inst-border)}.columna{padding:24px}}
+
+/* Oferta académica: jerarquía visual, legibilidad y selección clara */
+.oferta{padding:46px 24px 96px;background:#f4f7fb}
+.oferta-inner{max-width:1240px;margin:0 auto}
+.niveles{display:inline-flex;max-width:100%;gap:6px;padding:6px;margin-bottom:27px;border:1px solid #dce6f0;border-radius:12px;background:#fff;box-shadow:none}
+.nivel{min-height:45px;padding:11px 20px;border-radius:8px;color:#25496e;font-size:.91rem;font-weight:750}
+.nivel.is-active{background:#174a80;color:#fff}
+.nivel-cuenta{padding:2px 8px}
+.carrusel{display:grid;grid-auto-flow:unset;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;overflow:visible;margin-bottom:32px;padding:0}
+.pick{grid-template-rows:165px 1fr;min-height:252px;border-radius:15px;border:1px solid #e0e8f2;box-shadow:0 7px 22px rgba(18,53,96,.055)}
+.pick-foto{background:#eaf1f9}
+.pick-copy{align-content:start;gap:8px;padding:16px 17px 18px}
+.pick-title{font-size:1rem;line-height:1.4;font-weight:800;color:#153c69}
+.pick-marca{font-size:.72rem;letter-spacing:.065em;color:#d45a0a}
+.pick.is-active{border-color:#2377c7;box-shadow:0 0 0 2px rgba(35,119,199,.12),0 12px 27px rgba(18,53,96,.095)}
+.ficha{border:1px solid #dce6f1;border-radius:19px;box-shadow:0 12px 36px rgba(18,53,96,.065)}
+.ficha-hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:380px}
+.ficha-foto{min-height:340px}
+.ficha-id{padding:38px 43px;gap:17px}
+.ficha-id h2{font-size:clamp(2rem,2.9vw,2.8rem);line-height:1.13;color:#143b68}
+.ficha-lead{font-size:1rem;line-height:1.75;color:#52667c;max-width:55ch}
+.cta-row{gap:12px;margin-top:9px}
+.cta-row [appButton]{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:10px 17px;border-radius:9px;font-size:.89rem;font-weight:750}
+.datos{grid-template-columns:repeat(5,minmax(0,1fr));background:#e2eaf3}
+.dato{padding:21px 18px;gap:10px;min-width:0}
+.dato dt{color:#718299;font-size:.71rem;letter-spacing:.07em}
+.dato dd{font-size:.94rem;color:#173f6c;overflow-wrap:anywhere}
+.dato-chips span{background:#edf4fb;color:#225787;font-size:.76rem}
+.grado{padding:17px 30px;background:#173f6c;font-size:.98rem;font-weight:750}
+.columnas{grid-template-columns:1fr 1fr}
+.columna{padding:32px 35px 38px}
+.columna h3{font-size:1.18rem;margin-bottom:15px;color:#153c69;font-weight:800}
+.columna .det-content__html,.columna li{font-size:.96rem;line-height:1.8;color:#4b6077}
+@media(max-width:1100px){.carrusel{grid-template-columns:repeat(2,minmax(0,1fr))}.datos{grid-template-columns:repeat(3,minmax(0,1fr))}.ficha-id{padding:30px}}
+@media(max-width:800px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{min-height:260px;max-height:360px}.columnas{grid-template-columns:1fr}.columna+.columna{border-left:0;border-top:1px solid #e2eaf3}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.oferta{padding:28px 14px 60px}.niveles{display:flex;width:100%;box-sizing:border-box;flex-wrap:wrap}.nivel{flex:1;justify-content:center;padding:10px 9px;font-size:.83rem}.carrusel{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;overflow:visible;padding:0}.pick{grid-template-rows:110px 1fr;min-height:190px;border-radius:11px}.pick-copy{padding:11px}.pick-title{font-size:.85rem}.pick-marca{font-size:.65rem}.ficha{border-radius:14px}.ficha-id{padding:24px 20px}.ficha-id h2{font-size:1.85rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}.dato{padding:15px 12px}.grado{padding:16px 20px}.columna{padding:23px 20px}.cta-row{flex-direction:column}.cta-row [appButton]{width:100%;box-sizing:border-box}}
