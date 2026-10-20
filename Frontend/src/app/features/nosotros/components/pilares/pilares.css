@@ -27,3 +27,21 @@
 .pillar-panel .org-btn:hover{border-color:#9bc3e9}
 .pillar-panel .org-btn:focus-visible{outline:3px solid #1768b6;outline-offset:3px}
 @media(max-width:600px){.pillar-panel .org-btn{padding:8px}.pillar-panel .org-btn span{font-size:.82rem}}
+
+/* Nosotros: navegación editorial institucional */
+.pilares{max-width:1240px;padding:54px 26px 64px}
+.pilares-grid{gap:16px}
+.pillar-btn{position:relative;min-height:104px;padding:22px 24px;border:1px solid #dbe8f7;border-radius:16px;background:#fff;box-shadow:0 7px 25px rgba(12,59,110,.05);font-size:1.04rem;transition:transform .2s,box-shadow .2s,border-color .2s,background .2s}
+.pillar-btn i{width:50px;height:50px;flex-basis:50px;border-radius:14px;background:#e7f2ff;color:#0966bb;font-size:1.3rem}
+.pillar-btn::after{content:'\f054';font-family:'Font Awesome 6 Free';font-weight:900;margin-left:auto;color:#9bb5d0;font-size:12px}
+.pillar-btn:hover{transform:translateY(-3px);border-color:#80b5e8;box-shadow:0 13px 29px rgba(12,59,110,.1)}
+.pillar-btn.is-active{background:linear-gradient(110deg,#0c477e,#1268b7);border-color:#1268b7;color:#fff;box-shadow:0 12px 27px rgba(16,92,167,.17)}
+.pillar-btn.is-active i{background:rgba(255,255,255,.18);color:#fff}
+.pillar-btn.is-active::after{color:#fff}
+.pillar-panel{margin-top:22px;padding:40px 46px;border:1px solid #dbe8f7;border-radius:17px;border-left:0;box-shadow:0 10px 32px rgba(12,59,110,.055);position:relative}
+.pillar-panel::before{content:'';position:absolute;left:0;top:28px;bottom:28px;width:4px;background:#1672c5;border-radius:0 5px 5px 0}
+.pillar-panel h2{font-size:clamp(1.55rem,2.4vw,2rem);margin-bottom:20px;color:#103f73}
+.pillar-panel .det-content__html,.pillar-panel .det-content__html *{font-size:1.025rem;line-height:1.9;color:#496682}
+.pillar-panel .det-content__html{max-width:1050px}
+@media(max-width:950px){.pillar-btn{min-height:88px}}
+@media(max-width:600px){.pilares{padding:30px 15px 42px}.pilares-grid{gap:10px}.pillar-btn{min-height:78px;padding:12px 13px;font-size:.9rem}.pillar-btn i{width:38px;height:38px;flex-basis:38px;font-size:1.05rem}.pillar-panel{padding:28px 22px}.pillar-panel .det-content__html,.pillar-panel .det-content__html *{font-size:.96rem}}
