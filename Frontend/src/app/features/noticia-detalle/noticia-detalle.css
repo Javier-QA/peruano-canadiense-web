@@ -4,3 +4,10 @@
 .hero-main-image{width:100%;height:350px}
 @media(max-width:1000px){.news-hero__grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px}.hero-main-image{height:290px}}
 @media(max-width:760px){.news-hero__grid{grid-template-columns:1fr}.hero-main-image{height:230px}}
+
+/* Lectura editorial: respetar palabras y saltos naturales del contenido CMS */
+.det-content__html{overflow-wrap:normal;word-break:normal;hyphens:none;white-space:normal;line-height:1.75;font-size:clamp(15px,1.05vw,17px)}
+.det-content__html :is(p,div,span,li){overflow-wrap:normal;word-break:normal;hyphens:none;white-space:normal;max-width:100%}
+.det-content__html p{margin:0 0 1.15em;text-align:left}
+.det-content__html :is(a,code){overflow-wrap:break-word}
+@media(max-width:760px){.det-content__html{font-size:15px;line-height:1.7}}
