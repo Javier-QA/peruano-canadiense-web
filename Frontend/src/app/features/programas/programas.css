@@ -724,3 +724,17 @@
 @media(max-width:1050px){.ficha-hero{grid-template-columns:1fr 1fr;gap:20px}.ficha-id h2{font-size:clamp(1.9rem,3vw,2.5rem)}.datos{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:750px){.ficha-hero{grid-template-columns:1fr;gap:22px;padding:22px}.ficha-foto{height:clamp(230px,45vw,350px)}.ficha-id{padding:0 2px 8px}.ficha-id h2{font-size:2.1rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px}}
 @media(max-width:470px){.ficha-hero{padding:15px}.ficha-foto{height:225px}.ficha-id h2{font-size:1.85rem}.cta-row{flex-direction:column;width:100%}.cta-row a[appButton]{width:100%}.datos{grid-template-columns:1fr}}
+
+/* Datos académicos: banda compacta, sin tarjetas altas ni espacios vacíos */
+.datos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;padding:20px 22px;background:#fff;border-top:1px solid #e5ecf4;border-radius:0;box-shadow:none}
+.dato,.dato:not(:last-child){display:grid;grid-template-columns:36px minmax(0,1fr);align-items:start;column-gap:11px;row-gap:0;min-height:0;margin:0;padding:11px 14px;border:0;border-radius:0;background:transparent;box-shadow:none}
+.dato:not(:last-child){border-right:1px solid #e0e9f2}
+.dato-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 36px;border-radius:10px;background:#edf5ff;color:#1473cf;font-size:1rem}
+.dato-body{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:0}
+.dato dt{margin:2px 0 0;color:#617995;font-size:.7rem;font-weight:800;line-height:1.4;letter-spacing:.075em;text-transform:uppercase}
+.dato dd{margin:0;color:#103d6e;font-size:.91rem;font-weight:750;line-height:1.5;overflow-wrap:break-word}
+.dato-chips{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.dato-chips span{display:inline-flex;align-items:center;min-height:24px;padding:3px 8px;border-radius:6px;background:#eef5fc;color:#245d91;font-size:.74rem;font-weight:700;line-height:1.35}
+@media(max-width:1100px){.datos{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px;padding:18px}.dato,.dato:not(:last-child){border:0;border-right:0;padding:12px}.dato:nth-child(3n+2){border-left:1px solid #e0e9f2;border-right:1px solid #e0e9f2}}
+@media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:13px;row-gap:8px}.dato,.dato:not(:last-child){padding:10px 7px;border:0!important}.dato:nth-child(even){border-left:1px solid #e0e9f2!important}}
+@media(max-width:450px){.datos{grid-template-columns:1fr;gap:0}.dato,.dato:not(:last-child){padding:13px 6px;border:0!important;border-bottom:1px solid #e8eef5!important}.dato:last-child{border-bottom:0!important}}
