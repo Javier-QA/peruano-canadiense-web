@@ -527,3 +527,6 @@
 .cta-row a[appButton]:focus-visible{outline:3px solid #175d9f;outline-offset:3px}
 @media(max-width:800px){.ficha-id{padding:30px 26px}.ficha-id h2{max-width:none}}
 @media(max-width:550px){.ficha-id{padding:26px 20px}.ficha-id h2{font-size:1.9rem}.cta-row{align-items:stretch;gap:10px}.cta-row a[appButton]{width:100%;min-height:47px}}
+
+/* WhatsApp: texto e icono blancos para mejor contraste */
+.cta-row a[variant="whatsapp"],.cta-row a[variant="whatsapp"] i,.cta-row a[variant="whatsapp"] span{color:#fff}
