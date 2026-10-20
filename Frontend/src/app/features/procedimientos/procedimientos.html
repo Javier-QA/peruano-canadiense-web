@@ -10,7 +10,7 @@
           [class.active]="activeId() === doc.id"
           (click)="activeId.set(doc.id)"
         >
-          <span class="doc-label">{{ doc.label }}</span>
+          <span class="doc-icon" aria-hidden="true"><i class="fa-solid" [class.fa-file-lines]="doc.id === 'tupa' || doc.id === 'reglamento'" [class.fa-money-bill-wave]="doc.id === 'tasas'" [class.fa-id-card]="doc.id === 'matricula'" [class.fa-rotate]="doc.id === 'reincorporacion'" [class.fa-graduation-cap]="doc.id === 'titulacion'"></i></span><span class="doc-label">{{ doc.label }}</span><i class="fa-solid fa-chevron-right nav-chevron" aria-hidden="true"></i>
         </button>
       }
     </nav>
