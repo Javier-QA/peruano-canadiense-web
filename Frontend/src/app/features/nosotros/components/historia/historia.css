@@ -15,3 +15,23 @@
 .historia-copy button:hover{background:#1768b6;color:#fff}
 @media(max-width:800px){.historia-layout{grid-template-columns:1fr;gap:22px}.historia-layout img{height:auto;max-height:370px}}
 @media(max-width:600px){.historia{padding:0 16px 43px}.historia-card{padding:24px 20px}.historia-card h2{margin-bottom:20px}.historia-layout img{max-height:280px}}
+
+/* Composición histórica: introducción equilibrada y cronología independiente */
+.historia-card{padding:40px 44px}
+.historia-heading{max-width:740px;margin-bottom:27px}
+.historia-eyebrow{display:block;margin-bottom:10px;color:#1768b6;font-size:.74rem;font-weight:800;letter-spacing:.13em}
+.historia-heading h2{margin-bottom:10px}
+.historia-heading>p{margin:0;color:#65768b;font-size:.94rem;line-height:1.6}
+.historia-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:34px}
+.historia-photo{align-self:stretch;display:flex;align-items:center}
+.historia-photo img{height:auto;max-height:340px;min-height:250px;aspect-ratio:4/3;object-fit:cover}
+.historia-copy{align-self:center}
+.historia-copy button{margin-top:12px;gap:11px;min-height:45px;padding:10px 17px}
+.historia-cronologia{margin-top:35px;padding:28px 30px 22px;background:#f4f8fd;border:1px solid #dce8f4;border-radius:15px}
+.historia-cronologia h3{margin:0 0 18px;font-size:1.25rem;font-weight:800;color:#153c69}
+.historia-cronologia .det-content__html{columns:2;column-gap:38px;column-rule:1px solid #dce8f4;color:#435a73;line-height:1.8;font-size:.92rem}
+.historia-cronologia .det-content__html>*{break-inside:avoid}
+.historia-cronologia .det-content__html strong{color:#16568f}
+.historia-cronologia .det-content__html p{margin:0 0 12px}
+@media(max-width:800px){.historia-layout{grid-template-columns:1fr;gap:22px}.historia-photo img{width:100%;max-height:340px;min-height:0}.historia-cronologia .det-content__html{columns:1}}
+@media(max-width:600px){.historia-card{padding:24px 20px}.historia-heading{margin-bottom:21px}.historia-cronologia{padding:20px 17px;margin-top:25px}}
