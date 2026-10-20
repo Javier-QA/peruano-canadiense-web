@@ -421,3 +421,8 @@
   box-shadow: 0 0 0 1px rgba(255,102,0,.2),0 0 0 12px rgba(255,102,0,.1),0 0 22px 13px rgba(255,102,0,.15);
 }
 .chat-fab__badge { color:#ff6600; }
+
+/* Distancia uniforme al borde para los accesos flotantes */
+.chat-fab{right:30px}
+.chat-window{right:30px}
+@media(max-width:600px){.chat-fab{right:20px}.chat-window{right:20px}}
