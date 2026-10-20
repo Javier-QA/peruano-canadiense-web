@@ -513,3 +513,17 @@
 @media(max-width:1100px){.datos{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px}.dato{padding:16px 14px;min-height:90px}.grado{padding:16px 19px}}
 @media(max-width:420px){.datos{grid-template-columns:1fr}.dato{min-height:0;gap:6px}}
+
+/* Presentación equilibrada de la información y acciones del programa */
+.ficha-hero{align-items:stretch;min-height:390px}
+.ficha-id{justify-content:center;align-items:flex-start;gap:0;padding:42px clamp(28px,4vw,58px);background:#fff}
+.ficha-id h2{margin:0 0 18px;font-size:clamp(2rem,2.7vw,2.75rem);line-height:1.14;letter-spacing:-.035em;font-weight:800;max-width:15ch}
+.ficha-lead{max-width:53ch;margin:0;color:#52677f;font-size:1rem;line-height:1.8}
+.cta-row{display:flex;align-items:center;gap:12px;margin-top:26px;flex-wrap:wrap}
+.cta-row a[appButton]{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px 19px;border-radius:10px;font-size:.88rem;font-weight:750;line-height:1.35;text-align:center;white-space:normal;text-decoration:none}
+.cta-row a[variant="whatsapp"]{background:#25d366;color:#073e20;border:1px solid #1ebd58;box-shadow:0 5px 14px rgba(37,211,102,.14)}
+.cta-row a[variant="whatsapp"]:hover{background:#1ebe5a;border-color:#1ebe5a;box-shadow:0 8px 18px rgba(37,211,102,.22)}
+.cta-row a[variant="whatsapp"] i{font-size:1.25rem;line-height:1}
+.cta-row a[appButton]:focus-visible{outline:3px solid #175d9f;outline-offset:3px}
+@media(max-width:800px){.ficha-id{padding:30px 26px}.ficha-id h2{max-width:none}}
+@media(max-width:550px){.ficha-id{padding:26px 20px}.ficha-id h2{font-size:1.9rem}.cta-row{align-items:stretch;gap:10px}.cta-row a[appButton]{width:100%;min-height:47px}}
