@@ -646,3 +646,27 @@
   .cta-row{flex-direction:column;width:100%;gap:10px}
   .cta-row a[appButton]{width:100%;box-sizing:border-box}
 }
+
+/* Opción 2: portada académica azul con fotografía y ficha informativa blanca */
+.ficha{overflow:hidden;border-radius:20px;background:#fff;box-shadow:0 12px 36px rgba(12,48,87,.10)}
+.ficha-hero{display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.22fr);gap:0;padding:0;min-height:410px;background:linear-gradient(115deg,#07528d 0%,#0b477f 48%,#126ec4 100%);overflow:hidden}
+.ficha-foto{height:auto;min-height:410px;max-height:none;margin:0;border:0;border-radius:0;box-shadow:none;clip-path:polygon(0 0,100% 0,91% 100%,0 100%)}
+.ficha-foto img{height:100%;min-height:410px;max-height:none;width:100%;object-fit:cover;object-position:center}
+.ficha-id{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;padding:46px clamp(30px,4vw,70px) 46px clamp(20px,2.2vw,38px);background:transparent;isolation:isolate}
+.ficha-id::after{content:"";position:absolute;right:35px;top:28px;width:135px;height:135px;opacity:.09;border:11px solid #fff;border-radius:18px;transform:rotate(-16deg);z-index:-1;pointer-events:none}
+.ficha-etiqueta{margin:0 0 24px;background:#e7f3ff;color:#145b99;border-radius:999px;padding:8px 16px;font-size:.77rem;font-weight:800;letter-spacing:.07em}
+.ficha-id h2{color:#fff;max-width:18ch;font-size:clamp(2.15rem,3.3vw,3.3rem);line-height:1.12;margin:0 0 22px;letter-spacing:-.035em}
+.ficha-lead,.ficha-lead p,.ficha-lead *{color:#fff}
+.ficha-lead{font-size:1.05rem;line-height:1.78;max-width:57ch}
+.cta-row{margin-top:27px;display:flex;flex-wrap:wrap;gap:12px}
+.cta-row a[appButton]{min-height:49px;padding:12px 20px;border-radius:10px;font-size:.88rem;font-weight:800}
+.cta-row a[variant="whatsapp"],.cta-row a[variant="whatsapp"] span,.cta-row a[variant="whatsapp"] i{color:#fff}
+.datos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:20px 18px;background:#fff;border-top:0;border-bottom:1px solid #e4ebf4}
+.dato{position:relative;min-width:0;min-height:130px;display:flex;flex-direction:column;gap:13px;padding:20px 18px;margin:0;background:#fff;border:0;border-radius:0;box-shadow:none}
+.dato:not(:last-child){border-right:1px solid #dce6f1}
+.dato dt{font-size:.76rem;letter-spacing:.07em;color:#69809b;font-weight:800}
+.dato dd{font-size:1rem;color:#123f71;font-weight:800;line-height:1.55}
+.dato-chips{gap:6px}
+@media(max-width:1100px){.datos{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.dato{border:1px solid #e2eaf3!important;border-radius:10px;min-height:110px}.ficha-hero{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}.ficha-id{padding:34px 28px}}
+@media(max-width:800px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{height:300px;min-height:0;clip-path:none}.ficha-foto img{height:100%;min-height:0}.ficha-id{padding:32px 26px 38px}.ficha-id h2{font-size:clamp(2rem,5vw,2.7rem)}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.ficha{border-radius:14px}.ficha-foto{height:235px}.ficha-id{padding:27px 20px 30px}.ficha-etiqueta{margin-bottom:16px}.ficha-id h2{font-size:2rem;margin-bottom:16px}.ficha-lead{font-size:.95rem}.cta-row{width:100%;flex-direction:column}.cta-row a[appButton]{width:100%}.datos{grid-template-columns:1fr;padding:13px}.dato{min-height:0;padding:16px}.dato dd{font-size:.95rem}}
