@@ -69,6 +69,7 @@
             </figure>
           }
           <div class="ficha-id">
+            <span class="ficha-etiqueta">Programa de estudio</span>
             <h2 [id]="'programa-' + program.id">{{ program.title }}</h2>
             @if (hayTexto(program.description)) {
               <div class="det-content__html ficha-lead" [innerHTML]="program.description"></div>
