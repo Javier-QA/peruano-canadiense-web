@@ -738,3 +738,27 @@
 @media(max-width:1100px){.datos{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px;padding:18px}.dato,.dato:not(:last-child){border:0;border-right:0;padding:12px}.dato:nth-child(3n+2){border-left:1px solid #e0e9f2;border-right:1px solid #e0e9f2}}
 @media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:13px;row-gap:8px}.dato,.dato:not(:last-child){padding:10px 7px;border:0!important}.dato:nth-child(even){border-left:1px solid #e0e9f2!important}}
 @media(max-width:450px){.datos{grid-template-columns:1fr;gap:0}.dato,.dato:not(:last-child){padding:13px 6px;border:0!important;border-bottom:1px solid #e8eef5!important}.dato:last-child{border-bottom:0!important}}
+
+/* Opción 3 elegida: cinco tarjetas suaves con acentos cromáticos diferenciados */
+.datos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:0;padding:22px 20px;background:#fff;border-top:1px solid #e6edf5;border-radius:0;box-shadow:none}
+.dato,.dato:not(:last-child){position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:15px;min-width:0;min-height:150px;padding:19px 17px;border:1px solid transparent!important;border-radius:15px;background:#edf6ff;box-shadow:none;overflow:hidden}
+.dato:nth-child(1){background:linear-gradient(125deg,#f1f8ff,#e3f0ff)}
+.dato:nth-child(2){background:linear-gradient(125deg,#f1fcf8,#e4f7ef)}
+.dato:nth-child(3){background:linear-gradient(125deg,#fffaf0,#fff1da)}
+.dato:nth-child(4){background:linear-gradient(125deg,#f8f5ff,#efe8ff)}
+.dato:nth-child(5){background:linear-gradient(125deg,#fff5f8,#ffeaf1)}
+.dato::after{content:"";position:absolute;right:-17px;bottom:-28px;width:96px;height:96px;border-radius:50%;border:14px solid currentColor;opacity:.045;pointer-events:none}
+.dato-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:0 0 44px;border-radius:12px;background:#d8eaff;color:#1473d2;font-size:1.25rem}
+.dato:nth-child(2) .dato-icon{background:#d6f3e6;color:#089666}
+.dato:nth-child(3) .dato-icon{background:#ffedc9;color:#e58c00}
+.dato:nth-child(4) .dato-icon{background:#e8dfff;color:#7342ce}
+.dato:nth-child(5) .dato-icon{background:#ffdfeb;color:#cc3775}
+.dato-body{display:flex;flex-direction:column;gap:8px;min-width:0;width:100%}
+.dato dt{margin:0;color:#60718a;font-size:.73rem;font-weight:800;letter-spacing:.065em;line-height:1.4;text-transform:uppercase}
+.dato dd{margin:0;color:#143b68;font-size:.96rem;line-height:1.5;font-weight:800;overflow-wrap:break-word}
+.dato:nth-child(1) dd{font-size:1.5rem;line-height:1.15}
+.dato-chips{display:flex;flex-wrap:wrap;gap:6px}
+.dato-chips span{display:inline-flex;align-items:center;min-height:25px;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,.7);color:#254f7e;font-size:.73rem;font-weight:750;line-height:1.3}
+@media(max-width:1100px){.datos{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.dato,.dato:not(:last-child){border:1px solid transparent!important;min-height:140px}}
+@media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px;gap:10px}.dato,.dato:not(:last-child){padding:16px 13px;min-height:135px;border:1px solid transparent!important}}
+@media(max-width:450px){.datos{grid-template-columns:1fr}.dato,.dato:not(:last-child){min-height:0;flex-direction:row;gap:14px;align-items:flex-start;border:1px solid transparent!important}.dato-body{gap:6px}}
