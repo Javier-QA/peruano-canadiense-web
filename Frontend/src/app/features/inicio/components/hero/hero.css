@@ -12,3 +12,18 @@
 @media(max-width:768px){.hero-slides,.overlay{bottom:0}.hero-stage{min-height:0;padding:72px 20px 30px;display:flex;flex-direction:column;align-items:stretch}.side-buttons{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;margin-top:14px}.side-item{flex:none;justify-content:flex-start;padding:10px}.side-text{font-size:11px}}
 @media(max-width:550px){.side-buttons{grid-template-columns:1fr}.side-item{min-height:54px}.side-text{font-size:13px}}
 @media(min-width:769px){.hero-stage{box-sizing:border-box;padding-top:65px}.hero-content{max-width:590px}}
+
+/* Accesos institucionales discretos, integrados en una barra compacta */
+.hero{background:#123965}
+.hero-slides,.overlay{bottom:65px}
+.hero-stage{min-height:500px;padding-bottom:117px}
+.side-buttons{bottom:12px;left:50%;right:auto;transform:translateX(-50%);width:min(860px,calc(100% - 60px));display:flex;justify-content:center;gap:0;border:1px solid rgba(255,255,255,.22);border-radius:12px;overflow:hidden;background:rgba(9,41,83,.9);box-shadow:0 8px 22px rgba(4,28,63,.15)}
+.side-item{flex:1;justify-content:center;gap:11px;min-height:57px;box-shadow:none;border:0;border-radius:0;padding:10px 16px;background:transparent;backdrop-filter:none}
+.side-item+.side-item{border-left:1px solid rgba(255,255,255,.2)}
+.side-item:hover{background:rgba(255,255,255,.12);transform:none}
+.side-btn{width:32px;height:32px;background:rgba(255,255,255,.15);border-radius:7px}
+.side-btn img{width:24px;height:24px;filter:brightness(0) invert(1);opacity:.95}
+.side-text{color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
+.side-item:focus-visible{outline:2px solid white;outline-offset:-3px}
+@media(max-width:768px){.hero-slides,.overlay{bottom:0}.hero-stage{min-height:0;padding:72px 20px 30px}.side-buttons{position:static;transform:none;width:100%;display:flex;flex-wrap:wrap;margin-top:8px;border-radius:11px}.side-item{flex:1 1 140px;min-height:55px;padding:10px}.side-item+.side-item{border-left:1px solid rgba(255,255,255,.2)}.side-text{font-size:11px}}
+@media(max-width:480px){.side-buttons{flex-direction:column}.side-item{flex:auto;justify-content:flex-start;min-height:47px}.side-item+.side-item{border-left:0;border-top:1px solid rgba(255,255,255,.2)}.side-text{font-size:12px}}
