@@ -75,3 +75,16 @@
   .licencia-popup{top:0;bottom:auto;transform:translateX(-8px)}
   .licencia:hover .licencia-popup,.licencia:focus-within .licencia-popup{transform:translateX(0)}
 }
+
+/* Retoques finales: degradado suave, portada más compacta y botones equilibrados */
+@media(min-width:769px){
+ .hero{min-height:490px}
+ .hero-stage{padding-top:59px;padding-bottom:50px;gap:27px}
+ .overlay{background:linear-gradient(90deg,rgba(7,30,62,.84) 0%,rgba(8,35,69,.65) 28%,rgba(8,35,69,.33) 44%,rgba(8,35,69,.09) 66%,rgba(8,35,69,0) 100%)}
+ .btn-card .front,.btn-card .licencia-inner{gap:11px}
+ .btn-card .icon{min-width:20px;justify-content:center}
+ .btn-card .icon i{font-size:19px}
+ .btn-card span{line-height:1.25}
+ /* Se mantiene la alineación superior aprobada de la imagen emergente */
+ .licencia-popup{top:0;left:calc(100% + 12px)}
+}
