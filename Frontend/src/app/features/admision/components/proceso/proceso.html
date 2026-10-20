@@ -53,7 +53,7 @@
                 <a appButton variant="outline" routerLink="/programas">Ver carreras</a>
               </div>
               @if (hayTexto(copy().convocatoriaNota)) {
-                <p class="aviso">{{ copy().convocatoriaNota }}</p>
+                <div class="aviso" [innerHTML]="copy().convocatoriaNota"></div>
               }
             </div>
             <div class="escenario-afiche">
