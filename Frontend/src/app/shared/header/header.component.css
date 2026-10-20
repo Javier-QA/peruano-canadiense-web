@@ -396,3 +396,16 @@
 @media(max-width:991px){
  .menu li a.nav-active{border-left-color:#1173ca;background:#e9f3ff;color:#075da8}
 }
+
+/* Navegación según referencia: texto naranja activo y hover naranja suave */
+@media(min-width:992px){
+ .menu{gap:5px}
+ .menu li a{background:transparent!important;color:#303b56!important;border-radius:8px;box-shadow:none!important;font-weight:700;min-height:50px}
+ .menu li a:hover:not(.nav-active){background:#fff0e7!important;color:#ff6508!important}
+ .menu li a.nav-active{background:transparent!important;color:#ff6508!important;box-shadow:none!important}
+ .menu li a.nav-active::after{background:#ff6508!important;left:0;right:0;bottom:0;height:3px;border-radius:0}
+ .menu li a:focus-visible{outline-color:#ff6508}
+}
+@media(max-width:991px){
+ .menu li a.nav-active{background:#fff0e7!important;color:#ff6508!important;border-left-color:#ff6508!important}
+}
