@@ -1,9 +1,30 @@
-<app-page-hero
-  title="Noticias"
-  subtitle="Novedades, actividades y comunicados de la comunidad educativa"
-/>
-
 <section class="noticias-page">
+  <div class="noticias-banner">
+    <div class="noticias-banner-inner">
+      <div class="noticias-banner-intro">
+        <span class="noticias-eyebrow">NOTICIAS</span>
+        <h1>Últimas<br />Noticias</h1>
+        <p>Conoce las actividades, logros y eventos más importantes de nuestra institución.</p>
+        <span class="noticias-banner-line" aria-hidden="true"></span>
+      </div>
+      <div class="noticias-banner-feature">
+        @if (!loading() && !error() && destacada(); as item) {
+          <a class="noticia-destacada" [routerLink]="['/noticias', item.id]">
+            <div class="destacada-img"><img [appSrc]="item.image" [alt]="item.imageAlt" /></div>
+            <div class="destacada-body">
+              <span class="destacada-tag">Destacada</span>
+              <h2>{{ item.title }}</h2>
+              <p>{{ bajada(item.excerpt) }}</p>
+              <div class="destacada-meta">
+                <time [attr.datetime]="item.createdAt"><i class="fa-regular fa-calendar" aria-hidden="true"></i> {{ formatFecha(item.createdAt) }}</time>
+                <span class="leer">Leer noticia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
   <div class="noticias-wrap">
     @if (loading()) {
       <div class="noticias-skels" aria-busy="true" aria-label="Cargando noticias">
@@ -24,25 +45,6 @@
         <p>Cuando el instituto publique una novedad, aparecerá aquí.</p>
       </div>
     } @else {
-      @if (destacada(); as item) {
-        <a class="noticia-destacada" [routerLink]="['/noticias', item.id]">
-          <div class="destacada-img">
-            <img [appSrc]="item.image" [alt]="item.imageAlt" />
-          </div>
-          <div class="destacada-body">
-            <app-badge>Destacada</app-badge>
-            <h2>{{ item.title }}</h2>
-            <p>{{ bajada(item.excerpt) }}</p>
-            <div class="destacada-meta">
-              <time [attr.datetime]="item.createdAt">{{ formatFecha(item.createdAt) }}</time>
-              <span class="leer"
-                >Leer noticia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
-              ></span>
-            </div>
-          </div>
-        </a>
-      }
-
       <div class="noticias-list">
         <div class="noticias-toolbar">
           <h2>{{ query().trim() ? 'Resultados' : 'Más noticias' }}</h2>
@@ -52,10 +54,13 @@
               type="search"
               [value]="query()"
               (input)="onSearch($any($event.target).value)"
-              placeholder="Buscar noticias"
+              placeholder="Buscar noticias..."
               aria-label="Buscar noticias"
             />
           </label>
+          <button class="noticias-ver-todas" type="button" (click)="onSearch('')">
+            <i class="fa-solid fa-list" aria-hidden="true"></i> Ver todas
+          </button>
         </div>
 
         @if (paginadas().length === 0) {
@@ -69,12 +74,13 @@
                     <img [appSrc]="item.image" class="img-noticia" [alt]="item.imageAlt" />
                   </div>
                   <div class="noticia-cuerpo">
+                    <span class="noticia-category">INSTITUCIONAL</span>
                     <h3>{{ item.title }}</h3>
                     <p>{{ bajada(item.excerpt) }}</p>
                     <time [attr.datetime]="item.createdAt">{{ formatFecha(item.createdAt) }}</time>
                   </div>
                   <span class="fila-leer"
-                    >Leer <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+                    >Leer noticia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
                   ></span>
                 </a>
               </li>
