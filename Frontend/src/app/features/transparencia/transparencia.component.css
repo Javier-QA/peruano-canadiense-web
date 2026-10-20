@@ -41,3 +41,28 @@
 @media(max-width:800px){.svc-wrap{width:min(100% - 32px,680px);padding:30px 0 50px}.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.svc-split{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:520px){.svc-wrap{width:calc(100% - 28px)}.svc-grid{grid-template-columns:minmax(0,1fr)}.svc-card{min-height:0;padding:22px}.svc-panel,.svc-form{padding:22px 18px}.svc-half{grid-template-columns:minmax(0,1fr)}.svc-actions{flex-direction:column}.svc-actions [appButton]{width:100%}}
 @media(prefers-reduced-motion:reduce){.svc-card{transition:none}}
+
+/* Opción 1: clásico moderno, diez rubros en dos filas y paneles equilibrados */
+@media(min-width:1200px){
+ .svc-wrap{width:min(1440px,calc(100% - 64px));max-width:1440px;padding-top:36px}
+ .svc-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:15px;margin-bottom:28px}
+ .svc-card{min-height:194px;padding:19px 17px 17px;border-radius:13px}
+ .svc-icon{width:43px;height:43px;margin-bottom:12px;border-radius:11px;font-size:17px}
+ .svc-card h3{font-size:15px;margin-bottom:7px}
+ .svc-card p{font-size:13px;line-height:1.5;margin-bottom:12px}
+ .svc-split{grid-template-columns:minmax(0,1fr) minmax(0,1.22fr);gap:18px}
+ .svc-contact{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+}
+.svc-wrap{font-size:15px}
+.svc-lead{max-width:none;margin-bottom:23px;padding:16px 20px;border-left-width:3px;border-radius:11px;background:#fff}
+.svc-card{border-color:#e0eaf6;box-shadow:0 4px 17px rgba(16,69,126,.045)}
+.svc-card:hover{border-color:#a2c9f1;box-shadow:0 10px 24px rgba(16,69,126,.10)}
+.svc-badge{background:#dcecff;color:#0754a2}
+.svc-panel,.svc-form{border-radius:14px;padding:25px;box-shadow:0 5px 20px rgba(16,69,126,.045)}
+.svc-panel h2,.svc-form h3{font-size:21px}
+.svc-contact>div{padding:13px;gap:10px}
+.svc-contact>div>i{width:35px;height:35px;flex-basis:35px}
+.svc-form form{gap:14px}
+.svc-form .svc-muted{margin-bottom:8px}
+.svc-form input:not([type=checkbox]),.svc-form textarea{padding:11px 12px}
+@media(min-width:801px) and (max-width:1199px){.svc-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
