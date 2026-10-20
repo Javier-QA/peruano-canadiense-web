@@ -358,3 +358,6 @@
     max-height: 148px;
   }
 }
+
+/* Diseño editorial renovado para Inicio */
+.top-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;margin:0}.panel{border-radius:20px;padding:28px;border-color:var(--inst-border,#e2e9f2);box-shadow:0 16px 38px rgba(20,55,99,.065)}.panel__head{margin-bottom:22px;align-items:center}.panel__head h2{font-size:clamp(1.4rem,2.3vw,1.9rem);font-weight:800;letter-spacing:-.035em;color:var(--inst-text-heading,#153b68)}.panel__link{font-size:.86rem;font-weight:750}.feat{gap:10px}.feat__media{aspect-ratio:16/8.5;max-height:250px;border-radius:13px}.feat__title{font-size:1.17rem;font-weight:800;line-height:1.4}.feat__excerpt{font-size:.9rem;line-height:1.65}.feat--com{padding:20px;border-radius:14px}.rows{margin-top:20px;padding-top:10px}.row{padding:13px 7px;gap:14px}.row__thumb{width:52px;height:52px}.row:has(.row__thumb){grid-template-columns:52px 1fr auto}.row__text strong{font-size:.9rem}.panel__cta{margin-top:auto;padding-top:23px;font-size:.88rem;font-weight:750}@media(max-width:900px){.top-grid{grid-template-columns:1fr}}@media(max-width:540px){.panel{padding:20px 16px;border-radius:16px}.panel__head h2{font-size:1.4rem}.feat__media{max-height:200px}}
