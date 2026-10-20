@@ -35,6 +35,13 @@ export class NoticiaDetalle {
   readonly item = computed(() => this.news.getById(this.id()));
   readonly related = computed(() => this.news.related(this.id(), 3));
   readonly viewerOpen = signal(false);
+  readonly linkCopied = signal(false);
+
+  async copyLink(): Promise<void> {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      try { await navigator.clipboard.writeText(this.shareUrl()); this.linkCopied.set(true); } catch { this.linkCopied.set(false); }
+    }
+  }
 
   readonly shareUrl = computed(() => {
     const id = this.id();
