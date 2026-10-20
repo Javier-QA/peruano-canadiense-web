@@ -457,3 +457,29 @@ a.score-label:hover {
     align-items: flex-start;
   }
 }
+
+
+/* Rediseño institucional compartido: visores de documentos y trámites */
+.contenedor{padding:44px 24px 64px;background:linear-gradient(180deg,#f3f8ff 0%,#f8fbff 100%);align-items:flex-start}
+.viewer-shell{display:grid;grid-template-columns:minmax(220px,270px) minmax(0,1fr);gap:22px;align-items:stretch;max-width:1320px;height:auto;min-height:540px;overflow:visible;background:transparent;border:0;border-radius:0}
+.sidebar{width:auto;min-width:0;overflow:visible;display:flex;flex-direction:column;gap:5px;padding:16px 12px;background:#fff;border:1px solid #dbe8f8;border-radius:18px;box-shadow:0 8px 30px rgba(15,56,103,.055)}
+.nav-item{min-height:54px;padding:14px 16px;border-radius:11px;font-size:14px;font-weight:600;transition:background .18s,color .18s;gap:10px}
+.nav-item:hover{background:#edf5ff;color:#0755a3}
+.nav-item.active{background:linear-gradient(115deg,#083b78,#0966bb);color:#fff;box-shadow:0 5px 13px rgba(10,82,159,.16)}
+.nav-item.active .doc-label{color:#fff}
+.doc-label{font-weight:600;line-height:1.45}
+.panel{min-width:0;width:100%;height:auto;min-height:540px;overflow:visible;background:#fff;border:1px solid #dbe8f8;border-radius:18px;box-shadow:0 8px 30px rgba(15,56,103,.055)}
+.ficha{min-height:0;padding:32px 34px 38px}
+.ficha h2{font-size:clamp(1.65rem,2.6vw,2.4rem);color:#103d70;letter-spacing:-.025em;margin:0 0 16px}
+.ficha h3{color:#103d70}
+.ficha p,.ficha li,.ficha .det-content__html{font-size:15px;line-height:1.75;color:#365477;overflow-wrap:anywhere}
+.ficha p,.ficha app-alert,.score-list,.steps,.accounts,.check-list,.plain-list{max-width:none}
+.ficha app-alert{margin:20px 0;border-radius:12px}
+.ficha .alert-title{font-weight:750;color:#0a4c91}
+.cover,.cover-wide{width:100%;max-width:100%;margin:20px 0 0}
+.cover img,.afiche-body img{display:block;width:100%;height:auto;max-height:480px;object-fit:contain;object-position:center;border:1px solid #e1eaf5;border-radius:12px;background:#f5f9ff;box-shadow:none}
+.cover img{max-height:480px}
+.ficha .cta-row{margin-top:24px;gap:12px}
+.ficha .score-list li{border-color:#e1eaf5;padding:15px 0}
+@media(max-width:991px){.viewer-shell{grid-template-columns:1fr;gap:14px}.sidebar{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;padding:10px;max-height:none}.nav-item{flex:0 0 auto;width:auto;white-space:nowrap;min-height:44px}.panel{height:auto;min-height:400px;overflow:visible}}
+@media(max-width:600px){.contenedor{padding:22px 12px 40px}.viewer-shell{gap:12px}.sidebar{border-radius:14px}.panel{height:auto;min-height:0;border-radius:14px}.ficha{padding:24px 18px}.ficha h2{font-size:1.6rem}.cover img{max-height:320px}.cta-row{flex-direction:column}.cta-row [appButton]{width:100%}}
