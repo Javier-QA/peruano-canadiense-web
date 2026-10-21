@@ -252,7 +252,7 @@
 
 <app-dialog
   [open]="!!confirmar()"
-  title="¿Quieres quitar este programa?"
+  title="Quitar programa"
   (openChange)="confirmar.set($event ? confirmar() : null)"
 >
   <p>Dejará de verse en <code>/programas</code>.</p>
