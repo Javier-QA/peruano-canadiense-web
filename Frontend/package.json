@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "check": "npm run build && tsc --noEmit -p tsconfig.app.json",
+    "audit:production": "npm audit --omit=dev"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
