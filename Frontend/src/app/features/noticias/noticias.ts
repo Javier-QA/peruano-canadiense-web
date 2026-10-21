@@ -3,8 +3,6 @@ import { RouterLink } from '@angular/router';
 import { NewsService } from '../../core/services/news.service';
 import { InstitutionService } from '../../core/services/institution.service';
 import { AppSrc } from '../../core/directives/app-src';
-import { PageHero } from '../../shared/components/page-hero/page-hero';
-import { BadgeComponent } from '../../shared/ui';
 import { excerpt } from '../../core/utils/html';
 
 const PAGE_SIZE = 5;
@@ -12,7 +10,7 @@ const PAGE_SIZE = 5;
 @Component({
   selector: 'app-noticias',
   standalone: true,
-  imports: [RouterLink, PageHero, BadgeComponent, AppSrc],
+  imports: [RouterLink, AppSrc],
   templateUrl: './noticias.html',
   styleUrl: './noticias.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
