@@ -183,7 +183,7 @@ export class DialogComponent {
   /** Confirmaciones antiguas sin variante explícita conservan el estilo moderno. */
   get effectiveVariant(): 'default' | 'danger' | 'warning' | 'success' | 'logout' {
     if (this.variant !== 'default') return this.variant;
-    const title = this.title.trim().toLocaleLowerCase('es');
+    const title = this.title.trim().toLocaleLowerCase('es').replace(/^[¿¡\s]+/, '');
     if (/^(eliminar|borrar|quitar|suprimir|descartar)\b/.test(title)) return 'danger';
     if (/^(restaurar|restablecer|reponer|reiniciar)\b/.test(title)) return 'warning';
     if (/^cerrar sesi[oó]n\b/.test(title)) return 'logout';
