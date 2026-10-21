@@ -139,20 +139,60 @@ import { A11yModule } from '@angular/cdk/a11y';
       background:color-mix(in srgb,var(--confirm-color) 14%,var(--adm-surface));
       border-color:color-mix(in srgb,var(--confirm-color) 28%,var(--adm-line));
     }
-    .confirm-dialog { --confirm-color: #e1282d; --confirm-tint: #ffe7e9; position: relative; max-width: 430px; padding: 20px 20px 0; border: 1px solid #cfdae5; border-top: 4px solid var(--confirm-color); border-radius: 16px; background: linear-gradient(155deg, var(--confirm-tint), #f2f5f9 43%); text-align: center; box-shadow: 0 14px 38px rgba(17, 29, 48, .20); }
-    .confirm-warning { --confirm-color: #d68a14; --confirm-tint: #fff2d9; }
-    .confirm-success { --confirm-color: #21874e; --confirm-tint: #e5f6ea; }
-    .confirm-symbol { width: 58px; height: 58px; margin: 0 auto 8px; display: grid; place-items: center; border: 3px solid color-mix(in srgb, var(--confirm-color) 16%, transparent); border-radius: 18px; background: color-mix(in srgb, var(--confirm-color) 12%, white); color: var(--confirm-color); font-size: 1.3rem; }
-    .confirm-heading { justify-content: center; border: 0; padding: 0; margin: 0 0 8px; }
-    .confirm-heading h3 { flex: 1; text-align: center; font-size: 1.12rem; color: #14202c; }
-    .confirm-heading button { position: absolute; right: 10px; top: 10px; border: 1px solid #b5c9db; background: #edf3f9; color: #58748f; width: 30px; height: 30px; }
-    .confirm-dialog > div:nth-last-child(2) { color: #617a94; font-size: .88rem; }
-    .confirm-dialog > div:last-child { margin: 12px -20px 0; padding: 12px 16px 14px; border-top: 1px solid #bacbdc; background: rgba(229, 237, 245, .45); }
-    .confirm-dialog > div:last-child button { flex: 1; min-height: 38px; border-radius: 9px; }
-    .confirm-dialog > div:nth-last-child(2) { padding-top: 4px; padding-bottom: 4px; }
-    .confirm-dialog > div:last-child { gap: 10px; }
-    .confirm-dialog button:focus-visible { outline: 2px solid var(--confirm-color); outline-offset: 2px; }
-    @media(max-width: 540px) { .confirm-dialog { padding: 20px 14px 0; } .confirm-dialog > div:last-child { margin-inline: -14px; padding: 12px; flex-wrap: wrap; } }
+    /* Confirmaciones compactas y consistentes en todos los módulos del administrador. */
+    .confirm-dialog {
+      --confirm-color:var(--adm-danger,#dc3545);
+      width:min(100%,440px);
+      max-width:440px;
+      padding:26px;
+      border:1px solid var(--adm-line,#dbe4ef);
+      border-radius:16px;
+      background:var(--adm-surface,#fff);
+      text-align:left;
+      box-shadow:0 24px 70px rgba(12,33,62,.22);
+      gap:0;
+    }
+    .confirm-warning { --confirm-color:var(--adm-warn,#c88616); }
+    .confirm-success { --confirm-color:var(--adm-ok,#21874e); }
+    .confirm-symbol {
+      width:46px;height:46px;margin:0 0 14px;
+      display:grid;place-items:center;
+      border:1px solid color-mix(in srgb,var(--confirm-color) 22%,var(--adm-line,#e2e8f0));
+      border-radius:12px;
+      background:color-mix(in srgb,var(--confirm-color) 9%,var(--adm-surface,#fff));
+      color:var(--confirm-color);font-size:1.15rem;
+    }
+    .confirm-heading { justify-content:flex-start; border:0; padding:0; margin:0 0 5px; }
+    .confirm-heading h3 { flex:1; text-align:left; font-size:1.15rem; line-height:1.35; color:var(--adm-ink,#14202c); }
+    .confirm-heading button {
+      position:absolute;right:18px;top:18px;
+      border:1px solid var(--adm-line,#dbe4ef);
+      background:var(--adm-surface,#fff);
+      color:var(--adm-muted,#64748b);
+      width:32px;height:32px;
+    }
+    .confirm-dialog > .dialog-content {
+      color:var(--adm-muted,#61758a);
+      font-size:.92rem;line-height:1.55;
+      padding:0 0 8px;
+      text-align:left;
+    }
+    .confirm-dialog > div:last-child {
+      margin:16px 0 0;padding:16px 0 0;
+      border-top:1px solid var(--adm-line,#e2e8f0);
+      background:transparent;
+      gap:10px;
+    }
+    .confirm-dialog > div:last-child button {
+      flex:1;min-height:44px;border-radius:10px;
+      font-weight:650;
+    }
+    .confirm-dialog button:focus-visible { outline:2px solid var(--adm-brand,#1264b2);outline-offset:2px; }
+    @media(max-width:540px) {
+      .confirm-dialog {padding:22px 18px;max-width:calc(100vw - 28px)}
+      .confirm-heading button {right:14px;top:14px}
+      .confirm-dialog > div:last-child {margin:14px 0 0;padding:14px 0 0;flex-wrap:wrap}
+    }
     @media(prefers-reduced-motion: reduce) { .confirm-dialog { animation: none; transition: none; } }
   `,
 })
