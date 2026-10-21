@@ -446,7 +446,6 @@
   }
 }
 
-/* Oferta académica: selección y ficha de nivel editorial */
 .oferta{padding:40px 24px 90px;background:linear-gradient(180deg,#f2f7fd,#fff 58%,#f3f7fc)}
 .oferta-inner{max-width:1220px;margin:0 auto}
 .niveles{padding:8px;gap:10px;margin-bottom:28px;border-radius:15px;box-shadow:0 10px 26px rgba(15,49,91,.055)}
@@ -466,7 +465,6 @@
 @media(max-width:850px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{max-height:330px}.ficha-id{padding:29px}.oferta{padding:28px 16px 64px}}
 @media(max-width:550px){.carrusel{grid-auto-columns:minmax(180px,75%)}.columnas{grid-template-columns:1fr}.columna+.columna{border-left:0;border-top:1px solid var(--inst-border)}.columna{padding:24px}}
 
-/* Oferta académica: jerarquía visual, legibilidad y selección clara */
 .oferta{padding:46px 24px 96px;background:#f4f7fb}
 .oferta-inner{max-width:1240px;margin:0 auto}
 .niveles{display:inline-flex;max-width:100%;gap:6px;padding:6px;margin-bottom:27px;border:1px solid #dce6f0;border-radius:12px;background:#fff;box-shadow:none}
@@ -502,7 +500,6 @@
 @media(max-width:800px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{min-height:260px;max-height:360px}.columnas{grid-template-columns:1fr}.columna+.columna{border-left:0;border-top:1px solid #e2eaf3}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){.oferta{padding:28px 14px 60px}.niveles{display:flex;width:100%;box-sizing:border-box;flex-wrap:wrap}.nivel{flex:1;justify-content:center;padding:10px 9px;font-size:.83rem}.carrusel{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;overflow:visible;padding:0}.pick{grid-template-rows:110px 1fr;min-height:190px;border-radius:11px}.pick-copy{padding:11px}.pick-title{font-size:.85rem}.pick-marca{font-size:.65rem}.ficha{border-radius:14px}.ficha-id{padding:24px 20px}.ficha-id h2{font-size:1.85rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}.dato{padding:15px 12px}.grado{padding:16px 20px}.columna{padding:23px 20px}.cta-row{flex-direction:column}.cta-row [appButton]{width:100%;box-sizing:border-box}}
 
-/* Ficha técnica: indicadores claros, sin apariencia de tabla comprimida */
 .datos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:22px;background:#f3f7fc;border-top:1px solid #e2eaf3}
 .dato{display:flex;flex-direction:column;justify-content:flex-start;gap:11px;min-width:0;min-height:104px;margin:0;padding:19px 18px;background:#fff;border:1px solid #dfe9f3;border-radius:12px;box-shadow:0 3px 12px rgba(20,58,99,.035)}
 .dato dt{font-size:.72rem;line-height:1.35;letter-spacing:.075em;color:#667e99;font-weight:800}
@@ -514,7 +511,6 @@
 @media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px}.dato{padding:16px 14px;min-height:90px}.grado{padding:16px 19px}}
 @media(max-width:420px){.datos{grid-template-columns:1fr}.dato{min-height:0;gap:6px}}
 
-/* Presentación equilibrada de la información y acciones del programa */
 .ficha-hero{align-items:stretch;min-height:390px}
 .ficha-id{justify-content:center;align-items:flex-start;gap:0;padding:42px clamp(28px,4vw,58px);background:#fff}
 .ficha-id h2{margin:0 0 18px;font-size:clamp(2rem,2.7vw,2.75rem);line-height:1.14;letter-spacing:-.035em;font-weight:800;max-width:15ch}
@@ -528,10 +524,8 @@
 @media(max-width:800px){.ficha-id{padding:30px 26px}.ficha-id h2{max-width:none}}
 @media(max-width:550px){.ficha-id{padding:26px 20px}.ficha-id h2{font-size:1.9rem}.cta-row{align-items:stretch;gap:10px}.cta-row a[appButton]{width:100%;min-height:47px}}
 
-/* WhatsApp: texto e icono blancos para mejor contraste */
 .cta-row a[variant="whatsapp"],.cta-row a[variant="whatsapp"] i,.cta-row a[variant="whatsapp"] span{color:#fff}
 
-/* Cabecera académica refinada: imagen protagonista y contenido compacto */
 .ficha-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);min-height:370px;align-items:stretch;background:#fff}
 .ficha-foto{position:relative;min-height:370px;max-height:none;overflow:hidden;background:#e9f1f9}
 .ficha-foto img{display:block;width:100%;height:100%;min-height:370px;object-fit:cover;object-position:center}
@@ -547,7 +541,6 @@
 @media(max-width:800px){.ficha-hero{grid-template-columns:1fr;min-height:0}.ficha-foto{min-height:260px;max-height:350px}.ficha-foto img{min-height:260px;max-height:350px}.ficha-id{padding:29px 26px}.ficha-id h2{font-size:clamp(1.8rem,5vw,2.4rem)}}
 @media(max-width:550px){.ficha-foto,.ficha-foto img{min-height:220px;max-height:280px}.ficha-id{padding:25px 20px}.ficha-id h2{font-size:1.9rem}.ficha-lead{font-size:.94rem}.cta-row{flex-direction:column;width:100%;gap:10px}.cta-row a[appButton]{width:100%}}
 
-/* Diseño 3 aprobado: foto enmarcada, fondo suave y composición editorial */
 .ficha-hero{
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);
@@ -647,7 +640,6 @@
   .cta-row a[appButton]{width:100%;box-sizing:border-box}
 }
 
-/* Opción 2: portada académica azul con fotografía y ficha informativa blanca */
 .ficha{overflow:hidden;border-radius:20px;background:#fff;box-shadow:0 12px 36px rgba(12,48,87,.10)}
 .ficha-hero{display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.22fr);gap:0;padding:0;min-height:410px;background:linear-gradient(115deg,#07528d 0%,#0b477f 48%,#126ec4 100%);overflow:hidden}
 .ficha-foto{height:auto;min-height:410px;max-height:none;margin:0;border:0;border-radius:0;box-shadow:none;clip-path:polygon(0 0,100% 0,91% 100%,0 100%)}
@@ -671,7 +663,6 @@
 @media(max-width:800px){.ficha-hero{grid-template-columns:1fr}.ficha-foto{height:300px;min-height:0;clip-path:none}.ficha-foto img{height:100%;min-height:0}.ficha-id{padding:32px 26px 38px}.ficha-id h2{font-size:clamp(2rem,5vw,2.7rem)}.datos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){.ficha{border-radius:14px}.ficha-foto{height:235px}.ficha-id{padding:27px 20px 30px}.ficha-etiqueta{margin-bottom:16px}.ficha-id h2{font-size:2rem;margin-bottom:16px}.ficha-lead{font-size:.95rem}.cta-row{width:100%;flex-direction:column}.cta-row a[appButton]{width:100%}.datos{grid-template-columns:1fr;padding:13px}.dato{min-height:0;padding:16px}.dato dd{font-size:.95rem}}
 
-/* Fidelidad a la referencia elegida: hero amplio y ficha superpuesta */
 .ficha{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 34px rgba(12,47,89,.09)}
 .ficha-hero{position:relative;display:grid;grid-template-columns:minmax(0,40%) minmax(0,60%);min-height:480px;gap:0;padding:0;background:linear-gradient(116deg,#064777 0%,#09528f 45%,#0878d5 100%)}
 .ficha-foto{width:100%;height:480px;min-height:480px;max-height:none;margin:0;border-radius:0;clip-path:polygon(0 0,100% 0,86% 100%,0 100%);box-shadow:none}
@@ -700,7 +691,6 @@
 @media(max-width:700px){.ficha-hero{grid-template-columns:1fr;min-height:0}.ficha-foto{height:275px;min-height:0;clip-path:none}.ficha-id{padding:30px 24px 58px}.ficha-id h2{font-size:2.25rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:-22px;padding:20px 12px;gap:10px}.dato{min-height:110px}}
 @media(max-width:460px){.ficha-foto{height:225px}.ficha-id{padding:26px 20px 54px}.ficha-id h2{font-size:2rem}.cta-row{flex-direction:column;width:100%}.cta-row a[appButton]{width:100%}.datos{grid-template-columns:1fr}.dato{min-height:0}}
 
-/* Diseño final de referencia: fotografía enmarcada y panel editorial claro */
 .ficha{background:#fff;border:1px solid #e1eaf5;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(24,55,91,.07)}
 .ficha-hero{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.08fr);align-items:center;gap:clamp(24px,3vw,45px);min-height:0;padding:clamp(20px,2.4vw,32px);background:radial-gradient(circle at 102% 1%,#e5f2ff 0 12%,transparent 12.2%),linear-gradient(120deg,#f2f8ff 0%,#fff 65%);overflow:hidden}
 .ficha-foto{width:100%;height:clamp(265px,27vw,355px);min-height:0;max-height:none;margin:0;clip-path:none;border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(17,52,87,.12)}
@@ -725,7 +715,6 @@
 @media(max-width:750px){.ficha-hero{grid-template-columns:1fr;gap:22px;padding:22px}.ficha-foto{height:clamp(230px,45vw,350px)}.ficha-id{padding:0 2px 8px}.ficha-id h2{font-size:2.1rem}.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px}}
 @media(max-width:470px){.ficha-hero{padding:15px}.ficha-foto{height:225px}.ficha-id h2{font-size:1.85rem}.cta-row{flex-direction:column;width:100%}.cta-row a[appButton]{width:100%}.datos{grid-template-columns:1fr}}
 
-/* Datos académicos: banda compacta, sin tarjetas altas ni espacios vacíos */
 .datos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;padding:20px 22px;background:#fff;border-top:1px solid #e5ecf4;border-radius:0;box-shadow:none}
 .dato,.dato:not(:last-child){display:grid;grid-template-columns:36px minmax(0,1fr);align-items:start;column-gap:11px;row-gap:0;min-height:0;margin:0;padding:11px 14px;border:0;border-radius:0;background:transparent;box-shadow:none}
 .dato:not(:last-child){border-right:1px solid #e0e9f2}
@@ -739,7 +728,6 @@
 @media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:13px;row-gap:8px}.dato,.dato:not(:last-child){padding:10px 7px;border:0!important}.dato:nth-child(even){border-left:1px solid #e0e9f2!important}}
 @media(max-width:450px){.datos{grid-template-columns:1fr;gap:0}.dato,.dato:not(:last-child){padding:13px 6px;border:0!important;border-bottom:1px solid #e8eef5!important}.dato:last-child{border-bottom:0!important}}
 
-/* Opción 3 elegida: cinco tarjetas suaves con acentos cromáticos diferenciados */
 .datos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:0;padding:22px 20px;background:#fff;border-top:1px solid #e6edf5;border-radius:0;box-shadow:none}
 .dato,.dato:not(:last-child){position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:15px;min-width:0;min-height:150px;padding:19px 17px;border:1px solid transparent!important;border-radius:15px;background:#edf6ff;box-shadow:none;overflow:hidden}
 .dato:nth-child(1){background:linear-gradient(125deg,#f1f8ff,#e3f0ff)}
@@ -763,8 +751,6 @@
 @media(max-width:700px){.datos{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px;gap:10px}.dato,.dato:not(:last-child){padding:16px 13px;min-height:135px;border:1px solid transparent!important}}
 @media(max-width:450px){.datos{grid-template-columns:1fr}.dato,.dato:not(:last-child){min-height:0;flex-direction:row;gap:14px;align-items:flex-start;border:1px solid transparent!important}.dato-body{gap:6px}}
 
-
-/* Opción 2 aprobada: catálogo institucional con tarjetas consistentes */
 .carrusel{
   display:grid;
   grid-auto-flow:unset;
@@ -797,7 +783,6 @@
 @media(max-width:560px){.carrusel{grid-template-columns:1fr;gap:15px;padding:2px 0 16px}.pick{min-height:0;border-radius:15px}.pick-foto{height:190px}.pick-copy{padding:15px 17px 18px}.pick-title{font-size:1rem}}
 @media(prefers-reduced-motion:reduce){.pick{transition:none}}
 
-/* Portada y catálogo de programas: referencia institucional aprobada */
 .programas-banner{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:285px;padding:44px 22px 38px;color:#fff;text-align:center;background:linear-gradient(112deg,#0d4677 0%,#1266a8 65%,#087bce 100%)}
 .programas-banner::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.6;background:radial-gradient(circle at 0 90%,rgba(3,24,57,.45),transparent 48%),radial-gradient(circle at 92% 3%,rgba(61,153,248,.38),transparent 42%);pointer-events:none}
 .programas-banner::after{content:"";position:absolute;right:-75px;top:-120px;width:300px;height:300px;border:48px solid rgba(87,170,255,.22);border-radius:50%;pointer-events:none}
@@ -827,7 +812,6 @@
 @media(max-width:600px){.programas-banner{min-height:225px;padding:35px 17px}.programas-banner h1{font-size:clamp(2rem,7vw,2.65rem)}.programas-banner__eyebrow{font-size:.74rem}.programas-banner__inner::before,.programas-banner__inner::after{display:none}.oferta{padding:20px 15px 60px}.carrusel{grid-template-columns:1fr;gap:15px}.pick{min-height:0}.pick-foto{height:200px}.pick-copy{min-height:98px}}
 @media(prefers-reduced-motion:reduce){.pick,.pick-foto img{transition:none}}
 
-/* Solo colores institucionales: mantener dimensiones, fondos y diseño original */
 .datos .dato-icon,
 .datos .dato:nth-child(n) .dato-icon{color:#0967bc!important}
 .datos .dato-icon i{color:#0967bc!important}
