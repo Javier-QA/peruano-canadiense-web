@@ -157,7 +157,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     @media(max-width: 540px) { .confirm-dialog { padding: 20px 14px 0; } .confirm-dialog > div:last-child { margin-inline: -14px; padding: 12px; flex-wrap: wrap; } }
     /* Ajustar únicamente la alineación de textos, sin cambiar el diseño. */
     .confirm-dialog .confirm-heading { width:100%; display:flex; justify-content:center; align-items:center; } 
-    .confirm-dialog .confirm-heading h3 { display:block; width:100%; flex:1 1 auto; margin:0; text-align:center; } 
+    .confirm-dialog .confirm-heading h3 { display:flex; justify-content:center; align-items:center; width:100%; flex:1 1 auto; margin:0; padding:0 30px; text-align:center; box-sizing:border-box; } 
     .confirm-dialog .confirm-heading h3 span { display:block; text-align:center; }
     .confirm-dialog > .dialog-content { text-align:center; padding-right:0; }
     @media(prefers-reduced-motion: reduce) { .confirm-dialog { animation: none; transition: none; } }
