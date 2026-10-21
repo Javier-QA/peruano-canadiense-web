@@ -426,3 +426,11 @@
 .chat-fab{right:30px}
 .chat-window{right:30px}
 @media(max-width:600px){.chat-fab{right:20px}.chat-window{right:20px}}
+
+/* Pulso del chatbot sincronizado con el botón de WhatsApp */
+.chat-fab:not(.chat-fab--open){animation:chatbot-soft-pulse 1.8s ease-in-out infinite}
+@keyframes chatbot-soft-pulse{
+  0%,100%{box-shadow:0 0 0 1px rgba(255,102,0,.16),0 0 0 8px rgba(255,102,0,.06),0 0 15px 5px rgba(255,102,0,.12)}
+  50%{box-shadow:0 0 0 1px rgba(255,102,0,.2),0 0 0 17px rgba(255,102,0,.15),0 0 27px 13px rgba(255,102,0,.22)}
+}
+@media(prefers-reduced-motion:reduce){.chat-fab:not(.chat-fab--open){animation:none}}
