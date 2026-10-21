@@ -169,7 +169,7 @@
 
 <app-dialog
   [open]="!!confirmar()"
-  title="Eliminar cuenta"
+  title="¿Quieres eliminar esta cuenta?"
   (openChange)="confirmar.set($event ? confirmar() : null)"
  variant="danger">
   <p>La persona dejará de poder entrar al panel. Sus cambios anteriores se conservan.</p>
