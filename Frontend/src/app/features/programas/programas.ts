@@ -9,13 +9,12 @@ import {
 } from '../../core/constants/programs.constant';
 import { AppSrc } from '../../core/directives/app-src';
 import { htmlVacio } from '../../core/utils/html';
-import { PageHero } from '../../shared/components/page-hero/page-hero';
 import { ButtonDirective } from '../../shared/ui';
 
 @Component({
   selector: 'app-programas',
   standalone: true,
-  imports: [RouterLink, PageHero, ButtonDirective, AppSrc],
+  imports: [RouterLink, ButtonDirective, AppSrc],
   templateUrl: './programas.html',
   styleUrl: './programas.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
