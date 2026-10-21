@@ -209,7 +209,7 @@
 
 <app-dialog
   [open]="!!confirm()"
-  title="Quitar del directorio"
+  title="¿Quieres quitar esta persona del directorio?"
   (openChange)="confirm.set($event ? confirm() : null)"
 >
   <p>Dejará de verse en la web pública.</p>
