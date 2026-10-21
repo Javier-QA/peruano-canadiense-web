@@ -88,3 +88,19 @@
  /* Se mantiene la alineación superior aprobada de la imagen emergente */
  .licencia-popup{top:0;left:calc(100% + 12px)}
 }
+
+/* Legibilidad de textos en la portada institucional, sin alterar su distribución */
+@media(min-width:769px){
+ .hero-content::before{font-size:13px;padding:9px 15px;letter-spacing:.055em}
+ .hero-content h1{font-size:clamp(2.5rem,3.1vw,3.35rem);line-height:1.15}
+ .hero-content p{font-size:clamp(1.25rem,1.5vw,1.55rem);line-height:1.45}
+ .btn-card{min-height:58px;padding:14px 23px}
+ .btn-card span,.btn-card.licencia span{font-size:17px}
+ .btn-card .icon i,.btn-card.licencia .icon i{font-size:21px}
+ .btn-card.licencia{min-height:58px;padding:14px 23px}
+}
+@media(max-width:768px){
+ .hero-content::before{font-size:11px}
+ .hero-content p{font-size:1.1rem}
+ .btn-card span{font-size:15px}
+}
