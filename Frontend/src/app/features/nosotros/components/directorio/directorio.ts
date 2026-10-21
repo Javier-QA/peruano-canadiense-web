@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { InstitutionService } from '../../../../core/services/institution.service';
 import { FacultyMember } from '../../../../core/constants/faculty.constant';
 import { AppSrc } from '../../../../core/directives/app-src';
-import { BadgeComponent } from '../../../../shared/ui';
 
 type FacultyFilter = 'Todos' | FacultyMember['type'];
 
 @Component({
   selector: 'app-nosotros-directorio',
   standalone: true,
-  imports: [BadgeComponent, AppSrc],
+  imports: [AppSrc],
   templateUrl: './directorio.html',
   styleUrl: './directorio.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
