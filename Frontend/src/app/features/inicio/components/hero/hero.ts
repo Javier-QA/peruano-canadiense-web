@@ -7,11 +7,13 @@ import {
   computed,
   effect,
   inject,
+  input,
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { InstitutionService } from '../../../../core/services/institution.service';
 import { ContenidoStore } from '../../../../core/store/contenido.store';
+import type { InicioContent } from '../../../../core/constants/inicio.constant';
 
 @Component({
   selector: 'app-inicio-hero',
@@ -27,7 +29,11 @@ export class Hero {
   private readonly contenido = inject(ContenidoStore);
 
   readonly info = this.institution.info;
-  readonly copy = this.contenido.inicio.value;
+  readonly previewCopy = input<InicioContent | null>(null);
+
+  readonly copy = computed(() =>
+    this.previewCopy() ?? this.contenido.inicio.value()
+  );
   readonly heroImages = computed(() => this.copy().heroImages);
 
   readonly currentHeroIndex = signal(0);

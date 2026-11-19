@@ -9,10 +9,12 @@ import { REGLAMENTOS_SCHEMA, REGLAMENTOS_TABS } from './reglamentos.schema';
 
 const TABS: MarcoTab[] = REGLAMENTOS_TABS.map((t) => ({ id: t.id, label: t.label }));
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-reglamentos',
   standalone: true,
-  imports: [
+  imports: [ServiceLivePreview, 
     EditorModuloMarco,
     EditorEsquema,
     PanelEtiquetas,
@@ -20,6 +22,8 @@ const TABS: MarcoTab[] = REGLAMENTOS_TABS.map((t) => ({ id: t.id, label: t.label
     ReglamentosPanelDocumentos,
   ],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Reglamentos"
@@ -59,7 +63,16 @@ const TABS: MarcoTab[] = REGLAMENTOS_TABS.map((t) => ({ id: t.id, label: t.label
         <app-tabla-documentos modulo="reglamentos" [seccion]="activa()" />
       </div>
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="reglamentos"
+        titulo="Reglamentos"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminReglamentos extends EditorModuloBase<'reglamentos'> {

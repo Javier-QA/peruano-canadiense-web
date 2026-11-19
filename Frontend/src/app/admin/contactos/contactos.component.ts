@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { PortalApi } from '../../core/api/portal.api';
 import { InstitutionService } from '../../core/services/institution.service';
@@ -63,6 +64,7 @@ const SEDE_VACIA: Sede = {
 @Component({
   selector: 'app-admin-contactos',
   standalone: true,
+  imports: [GestionPreview],
   templateUrl: './contactos.component.html',
   styleUrl: './contactos.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

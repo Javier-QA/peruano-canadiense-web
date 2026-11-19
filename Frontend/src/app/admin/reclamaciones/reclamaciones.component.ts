@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PortalApi } from '../../core/api/portal.api';
 import { BandejaTramites, type ColumnaBandeja } from '../shared/bandeja-tramites/bandeja-tramites';
@@ -6,8 +7,11 @@ import type { TramiteAdmin, TramiteCambioEstado } from '../../core/api/api.types
 @Component({
   selector: 'app-admin-reclamaciones',
   standalone: true,
-  imports: [BandejaTramites],
+  imports: [GestionPreview, BandejaTramites],
   template: `
+<div class="gestion-live-grid">
+  <section class="gestion-live-editor">
+
     <app-bandeja-tramites
       titulo="Libro de reclamaciones"
       descripcion="Reclamos y quejas registrados desde el portal. Deben atenderse dentro del plazo legal."
@@ -18,7 +22,13 @@ import type { TramiteAdmin, TramiteCambioEstado } from '../../core/api/api.types
       [cargar]="cargar"
       [guardar]="guardar"
     />
-  `,
+  
+  </section>
+      <app-gestion-preview
+        modulo="reclamaciones"
+        titulo="Reclamaciones"
+      />
+</div>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminReclamacionesComponent {

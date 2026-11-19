@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { PortalApi } from '../../core/api/portal.api';
 import { AuthService } from '../../core/auth/auth.service';
@@ -26,7 +27,7 @@ const VACIO: UsuarioForm = {
 @Component({
   selector: 'app-admin-usuarios',
   standalone: true,
-  imports: [DialogComponent],
+  imports: [GestionPreview, DialogComponent],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

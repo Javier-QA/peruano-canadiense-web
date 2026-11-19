@@ -1,0 +1,464 @@
+
+/* ===================================================
+   PERUANO CANADIENSE — ADMIN STUDIO
+   Extensión visual del administrador original.
+   Conserva las funciones y los estilos existentes.
+=================================================== */
+
+:host {
+  display: block;
+}
+
+/* Variables para el modo claro */
+
+.studio-shell {
+  --studio-chrome: #ffffff;
+  --studio-toolbar-bg: #f9fafc;
+  --studio-toolbar-border: #e0e5ed;
+  --studio-toolbar-text: #526076;
+  --studio-strong: #233047;
+  --studio-guide-bg: #ffffff;
+  --studio-guide-text: #526176;
+  --studio-input-bg: #f5f7fa;
+  --studio-accent: #c52240;
+  --studio-accent-soft: rgba(197, 34, 64, 0.10);
+  --studio-shadow: 0 5px 18px rgba(17, 31, 52, 0.04);
+}
+
+/* Variables para el modo oscuro existente */
+
+.studio-shell[data-modo="oscuro"] {
+  --studio-chrome: #121b29;
+  --studio-toolbar-bg: #172232;
+  --studio-toolbar-border: #314157;
+  --studio-toolbar-text: #b4c0d1;
+  --studio-strong: #f1f5fc;
+  --studio-guide-bg: #1a2738;
+  --studio-guide-text: #c4cfdf;
+  --studio-input-bg: #202e41;
+  --studio-accent: #e2405b;
+  --studio-accent-soft: rgba(226, 64, 91, 0.16);
+  --studio-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Barra superior */
+
+.studio-shell .studio-topbar {
+  background: var(--studio-chrome);
+  border-bottom: 1px solid var(--studio-toolbar-border);
+}
+
+.studio-shell .studio-topbar .topbar-left {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 13px;
+  min-width: 0;
+}
+
+.studio-header-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.studio-header-overline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--studio-toolbar-text);
+  font-size: 0.61rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.studio-header-divider {
+  color: var(--studio-accent);
+  font-size: 0.85rem;
+}
+
+.studio-shell .topbar-heads {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.studio-shell .topbar-title {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--studio-strong);
+}
+
+.studio-shell .topbar-date {
+  color: var(--studio-toolbar-text);
+}
+
+/* Identificador de sesión */
+
+.studio-session-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--studio-toolbar-border);
+  border-radius: 9px;
+  color: var(--studio-toolbar-text);
+  font-size: 0.69rem;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.studio-session-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #159a61;
+  box-shadow: 0 0 0 3px rgba(21, 154, 97, 0.11);
+}
+
+/* Barra contextual */
+
+.studio-toolbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 11px 24px;
+  background: var(--studio-toolbar-bg);
+  border-bottom: 1px solid var(--studio-toolbar-border);
+  box-shadow: var(--studio-shadow);
+}
+
+.studio-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--studio-strong);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.studio-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--studio-toolbar-text);
+  text-decoration: none;
+}
+
+.studio-breadcrumb a:hover {
+  color: var(--studio-accent);
+}
+
+.studio-breadcrumb > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-chevron {
+  font-size: 0.55rem;
+  opacity: 0.55;
+}
+
+.studio-toolbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.studio-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 35px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--studio-toolbar-text);
+  font: inherit;
+  font-size: 0.71rem;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color .18s ease,
+    background-color .18s ease,
+    color .18s ease;
+}
+
+.studio-tool i {
+  font-size: 0.8rem;
+}
+
+.studio-tool:hover {
+  background: var(--studio-input-bg);
+  border-color: var(--studio-toolbar-border);
+  color: var(--studio-strong);
+}
+
+.studio-tool:focus-visible {
+  outline: 2px solid var(--studio-accent);
+  outline-offset: 2px;
+}
+
+.studio-tool-guide {
+  background: var(--studio-accent-soft);
+  color: var(--studio-accent);
+  border-color: transparent;
+}
+
+.studio-tool-guide:hover,
+.studio-tool-guide.is-active {
+  color: var(--studio-accent);
+  border-color: var(--studio-accent);
+  background: var(--studio-accent-soft);
+}
+
+/* Panel contextual */
+
+.studio-guide {
+  margin: 16px 24px 0;
+  padding: 21px 24px;
+  background: var(--studio-guide-bg);
+  border: 1px solid var(--studio-toolbar-border);
+  border-left: 4px solid var(--studio-accent);
+  border-radius: 12px;
+  color: var(--studio-guide-text);
+  box-shadow: var(--studio-shadow);
+  animation: studio-guide-enter .2s ease both;
+}
+
+.studio-guide-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.studio-guide-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--studio-accent);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.studio-guide h3 {
+  margin: 0 0 7px;
+  color: var(--studio-strong);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.studio-guide p {
+  margin: 0;
+  max-width: 75ch;
+  font-size: 0.81rem;
+  line-height: 1.65;
+}
+
+.studio-guide-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  background: var(--studio-input-bg);
+  color: var(--studio-strong);
+  border: 1px solid var(--studio-toolbar-border);
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.studio-guide-steps {
+  margin: 17px 0;
+  padding-left: 21px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.79rem;
+  line-height: 1.6;
+}
+
+.studio-guide-steps li::marker {
+  color: var(--studio-accent);
+  font-weight: 800;
+}
+
+.studio-guide-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--studio-toolbar-border);
+  border-radius: 9px;
+  background: var(--studio-input-bg);
+  color: var(--studio-guide-text);
+  font-size: 0.73rem;
+  line-height: 1.6;
+}
+
+.studio-guide-note i {
+  margin-top: 2px;
+  color: var(--studio-accent);
+}
+
+/* Contenedor de los módulos originales */
+
+.studio-main {
+  min-width: 0;
+  animation: studio-workspace-enter .22s ease both;
+}
+
+/* Animaciones ligeras */
+
+@keyframes studio-guide-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes studio-workspace-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Adaptación a pantallas medianas */
+
+@media (max-width: 1120px) {
+  .studio-session-indicator {
+    display: none;
+  }
+
+  .studio-toolbar {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .studio-tool {
+    padding: 8px 10px;
+  }
+}
+
+/* Adaptación a móviles */
+
+@media (max-width: 700px) {
+  .studio-header-overline {
+    font-size: 0.55rem;
+    letter-spacing: 0.06em;
+  }
+
+  .studio-header-overline .studio-header-divider {
+    display: none;
+  }
+
+  .studio-shell .topbar-title {
+    font-size: 0.95rem;
+  }
+
+  .studio-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 11px 13px;
+  }
+
+  .studio-toolbar-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .studio-tool {
+    flex: 1 1 auto;
+  }
+
+  .studio-guide {
+    margin: 13px 12px 0;
+    padding: 16px;
+  }
+
+  .studio-guide h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-guide,
+  .studio-main {
+    animation: none;
+  }
+
+  .studio-tool {
+    transition: none;
+  }
+}
+
+/* ===== ADMIN STUDIO WORKBENCH 2026 ===== */
+
+.studio-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  flex: 1;
+  min-width: 0;
+  align-items: stretch;
+  background: var(--adm-bg);
+}
+
+.studio-workbench > .studio-main {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 24px;
+}
+
+.studio-workbench > app-admin-studio-inspector {
+  min-width: 0;
+  border-left: 1px solid var(--adm-line);
+}
+
+.studio-shell[data-modo="oscuro"] .studio-workbench {
+  background: #101927;
+}
+
+@media (max-width: 1200px) {
+  .studio-workbench {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studio-workbench > app-admin-studio-inspector {
+    border-top: 1px solid var(--adm-line);
+    border-left: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .studio-workbench > .studio-main {
+    padding: 16px;
+  }
+}

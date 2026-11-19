@@ -1,3 +1,5 @@
+﻿<div class="gestion-live-grid">
+  <section class="gestion-live-editor">
 @if (actual(); as config) {
   <app-bandeja-tramites
     [titulo]="config.titulo"
@@ -23,3 +25,10 @@
     </div>
   </app-bandeja-tramites>
 }
+
+  </section>
+      <app-gestion-preview
+        modulo="solicitudes"
+        titulo="Otras solicitudes"
+      />
+</div>

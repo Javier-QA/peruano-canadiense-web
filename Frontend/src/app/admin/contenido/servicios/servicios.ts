@@ -6,11 +6,15 @@ import { SERVICIOS_TABS } from './servicios.schema';
 
 const TABS: MarcoTab[] = SERVICIOS_TABS.map((t) => ({ id: t.id, label: t.label }));
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-servicios',
   standalone: true,
-  imports: [EditorModuloMarco, ServiciosPanelHub],
+  imports: [ServiceLivePreview, EditorModuloMarco, ServiciosPanelHub],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Servicios"
@@ -25,7 +29,16 @@ const TABS: MarcoTab[] = SERVICIOS_TABS.map((t) => ({ id: t.id, label: t.label }
         (pedirEliminar)="confirmarEliminar($event)"
       />
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="servicios"
+        titulo="Servicios"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminServicios extends EditorModuloBase<'servicios'> {

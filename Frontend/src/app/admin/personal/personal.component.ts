@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FacultyMember } from '../../core/constants/faculty.constant';
 import { FacultyStore } from '../../core/store/faculty.store';
@@ -35,7 +36,7 @@ const VACIO: PersonaForm = {
 @Component({
   selector: 'app-admin-personal',
   standalone: true,
-  imports: [DialogComponent, SelectorArchivo, AppSrc],
+  imports: [GestionPreview, DialogComponent, SelectorArchivo, AppSrc],
   templateUrl: './personal.component.html',
   styleUrl: './personal.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

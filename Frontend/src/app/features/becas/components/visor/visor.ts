@@ -4,6 +4,8 @@ import {
   Component,
   ElementRef,
   computed,
+  input,
+  effect,
   inject,
   signal,
   viewChild,
@@ -12,6 +14,7 @@ import { RouterLink } from '@angular/router';
 import { InstitutionService } from '../../../../core/services/institution.service';
 import { BECAS_DOCS } from '../../../../core/constants/becas.constant';
 import { ContenidoStore } from '../../../../core/store/contenido.store';
+import type { BecasContent } from '../../../../core/constants/becas.constant';
 import { DocumentosStore } from '../../../../core/store/documentos.store';
 import { ListaDocs } from '../../../../core/store/lista-docs';
 import { AlertComponent, ButtonDirective } from '../../../../shared/ui';
@@ -30,12 +33,27 @@ export class Visor {
   private readonly documentos = inject(DocumentosStore);
 
   readonly docs = BECAS_DOCS;
-  readonly copy = this.contenido.becas.value;
+  readonly previewCopy = input<BecasContent | null>(null);
+  readonly previewTab = input<string | null>(null);
+
+  readonly copy = computed<BecasContent>(() =>
+    this.previewCopy() ?? this.contenido.becas.value()
+  );
   readonly info = this.institution.info;
   readonly whatsappUrl = this.institution.whatsappUrl;
   readonly docsRelacion = computed(() => this.documentos.deSeccion('becas', 'relacion'));
 
   readonly activeId = signal(BECAS_DOCS[0].id);
+  private readonly sincronizarTab = effect(() => {
+    const destino = this.previewTab();
+    const encontrado = this.docs.find(
+      doc => doc.id === destino
+    );
+
+    if (encontrado && this.activeId() !== encontrado.id) {
+      this.activeId.set(encontrado.id);
+    }
+  });
   private readonly panel = viewChild<ElementRef<HTMLElement>>('panel');
 
   readonly activeDoc = computed(

@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { NewsService, NEWS_CATEGORY_LABEL } from '../../core/services/news.service';
 import { NewsCategory, NewsItem } from '../../core/models/news.model';
@@ -37,7 +38,7 @@ const VACIO: NoticiaForm = {
 @Component({
   selector: 'app-admin-noticias',
   standalone: true,
-  imports: [DialogComponent, SelectorArchivo, AppSrc, EditorQuill],
+  imports: [GestionPreview, DialogComponent, SelectorArchivo, AppSrc, EditorQuill],
   templateUrl: './noticias.component.html',
   styleUrl: './noticias.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

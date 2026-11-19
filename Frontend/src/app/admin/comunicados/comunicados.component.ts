@@ -1,11 +1,15 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-comunicados',
   standalone: true,
-  imports: [RouterLink],
+  imports: [GestionPreview, RouterLink],
   template: `
+<div class="gestion-live-grid">
+  <section class="gestion-live-editor">
+
     <div class="admin-page">
       <header class="page-header">
         <div>
@@ -29,7 +33,13 @@ import { RouterLink } from '@angular/router';
         </div>
       </div>
     </div>
-  `,
+  
+  </section>
+      <app-gestion-preview
+        modulo="comunicados"
+        titulo="Comunicados"
+      />
+</div>`,
   styles: `
     .comunicados-aviso { display: flex; align-items: flex-start; gap: 13px; padding: 16px 19px; border: 1px solid var(--adm-brand-border); border-radius: 14px; background: color-mix(in srgb, var(--adm-brand-soft) 35%, var(--adm-surface)); color: var(--adm-ink); }
     .comunicados-aviso-icono { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 34px; width: 34px; height: 34px; border-radius: 10px; background: var(--adm-brand-soft); color: var(--adm-brand); font-size: 1rem; }

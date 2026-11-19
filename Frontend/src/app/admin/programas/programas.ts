@@ -52,10 +52,12 @@ const VACIO: ProgramaForm = {
   featured: false,
 };
 
+import { ServiceLivePreview } from '../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-programas',
   standalone: true,
-  imports: [DialogComponent, CampoLista, SelectorArchivo, EditorQuill, SeccionBloque],
+  imports: [ServiceLivePreview, DialogComponent, CampoLista, SelectorArchivo, EditorQuill, SeccionBloque],
   templateUrl: './programas.html',
   styles: `
     .form-secciones {
@@ -64,6 +66,7 @@ const VACIO: ProgramaForm = {
       gap: 22px;
     }
   `,
+  styleUrl: '../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminProgramas {
@@ -78,6 +81,34 @@ export class AdminProgramas {
   readonly formAbierto = signal(false);
   readonly editandoId = signal<string | null>(null);
   readonly form = signal<ProgramaForm>({ ...VACIO });
+
+  readonly vistaProgramas = computed<Program[]>(() => {
+    const lista = this.items();
+
+    if (!this.formAbierto()) return lista;
+
+    const form = this.form();
+    if (!form.title.trim()) return lista;
+
+    const id = this.editandoId() ?? 'preview-programa';
+
+    const anterior = lista.find(item => item.id === id);
+
+    const preview = {
+      ...(anterior ?? {}),
+      ...form,
+      id,
+      durationSemesters:
+        form.durationSemesters === ''
+          ? undefined
+          : form.durationSemesters,
+    } as Program;
+
+    return [
+      ...lista.filter(item => item.id !== id),
+      preview,
+    ];
+  });
   readonly confirmar = signal<Program | null>(null);
   readonly cargando = signal(false);
 

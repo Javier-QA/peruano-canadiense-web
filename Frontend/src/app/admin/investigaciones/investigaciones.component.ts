@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RepositorioService } from '../../core/services/repositorio.service';
 import type { TesisItem } from '../../core/constants/repositorio.constant';
@@ -27,7 +28,7 @@ const VACIO: TesisForm = {
 @Component({
   selector: 'app-admin-investigaciones',
   standalone: true,
-  imports: [DialogComponent, EditorQuill],
+  imports: [GestionPreview, DialogComponent, EditorQuill],
   templateUrl: './investigaciones.component.html',
   styleUrl: './investigaciones.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

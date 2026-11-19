@@ -1,3 +1,5 @@
+<div class="live-editor-grid">
+  <section class="live-editor-input">
 <div class="admin-page">
   <header class="page-header">
     <div>
@@ -261,3 +263,14 @@
     <button type="button" class="btn-danger" (click)="eliminar()">Eliminar</button>
   </div>
 </app-dialog>
+
+  </section>
+
+  <app-service-live-preview
+    modulo="programas"
+    titulo="Programas de estudio"
+    [programas]="vistaProgramas()"
+    [borrador]="null"
+    [cambios]="formAbierto()"
+  />
+</div>

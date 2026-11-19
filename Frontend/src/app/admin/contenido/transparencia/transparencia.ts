@@ -7,11 +7,15 @@ import { TRANSPARENCIA_SCHEMA, TRANSPARENCIA_TABS } from './transparencia.schema
 
 const TABS: MarcoTab[] = TRANSPARENCIA_TABS.map((t) => ({ id: t.id, label: t.label }));
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-transparencia',
   standalone: true,
-  imports: [EditorModuloMarco, EditorEsquema, TransparenciaPanelRubros],
+  imports: [ServiceLivePreview, EditorModuloMarco, EditorEsquema, TransparenciaPanelRubros],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Transparencia"
@@ -33,7 +37,16 @@ const TABS: MarcoTab[] = TRANSPARENCIA_TABS.map((t) => ({ id: t.id, label: t.lab
         }
       }
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="transparencia"
+        titulo="Transparencia"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminTransparencia extends EditorModuloBase<'transparencia'> {

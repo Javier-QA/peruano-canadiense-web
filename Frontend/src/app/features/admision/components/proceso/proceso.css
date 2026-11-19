@@ -540,3 +540,43 @@
 .ficha:has(.lista) .cta-row{margin-top:8px;justify-content:flex-start;align-items:center}
 .ficha:has(.lista) .cta-row [appButton]{min-height:46px;padding:12px 24px;line-height:1.3;white-space:normal;text-align:center}
 @media(max-width:520px){.ficha:has(.lista) .cta-row [appButton]{width:100%}}
+
+
+/* Solo cuando Admisión se muestra dentro del administrador */
+
+:host(.preview-mode) .proceso {
+  padding: 14px;
+  background: #f3f7fd;
+}
+
+:host(.preview-mode) .proceso-inner {
+  max-width: none;
+}
+
+:host(.preview-mode) .pasos {
+  gap: 4px;
+}
+
+:host(.preview-mode) .paso {
+  padding: 8px 10px;
+  font-size: 0.79rem;
+}
+
+:host(.preview-mode) .escenario-copy {
+  padding: 24px;
+}
+
+:host(.preview-mode) .escenario-afiche {
+  padding: 18px;
+}
+
+:host(.preview-mode) .escenario-copy h1,
+:host(.preview-mode) .escenario-copy h2 {
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+}
+
+/* Los CTA se muestran, pero no navegan desde la vista previa. */
+
+:host(.preview-mode) .cta-row a {
+  pointer-events: none;
+}

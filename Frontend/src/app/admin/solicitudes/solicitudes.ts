@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { PortalApi } from '../../core/api/portal.api';
 import { BandejaTramites, type ColumnaBandeja } from '../shared/bandeja-tramites/bandeja-tramites';
@@ -13,7 +14,7 @@ type Pestana = 'acceso' | 'citas' | 'apoyo';
 @Component({
   selector: 'app-admin-solicitudes',
   standalone: true,
-  imports: [BandejaTramites],
+  imports: [GestionPreview, BandejaTramites],
   templateUrl: './solicitudes.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DocumentosStore } from '../../core/store/documentos.store';
@@ -13,7 +14,7 @@ import { excerpt } from '../../core/utils/html';
 @Component({
   selector: 'app-admin-documentos',
   standalone: true,
-  imports: [RouterLink, DialogComponent],
+  imports: [GestionPreview, RouterLink, DialogComponent],
   templateUrl: './documentos.component.html',
   styleUrl: './documentos.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

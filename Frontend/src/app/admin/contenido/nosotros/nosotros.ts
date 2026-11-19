@@ -5,6 +5,7 @@ import { EditorModuloMarco, type MarcoTab } from '../../shared/editor-modulo/edi
 import { NosotrosPanelHistoria } from './panel-historia';
 import { NosotrosPanelIdentidad } from './panel-identidad';
 import { NosotrosPanelPilares } from './panel-pilares';
+import { AdminLivePreview } from '../../shared/admin-live-preview/admin-live-preview';
 
 const TABS: MarcoTab[] = [
   { id: 'identidad', label: 'Portada' },
@@ -15,8 +16,10 @@ const TABS: MarcoTab[] = [
 @Component({
   selector: 'app-admin-nosotros',
   standalone: true,
-  imports: [EditorModuloMarco, NosotrosPanelIdentidad, NosotrosPanelPilares, NosotrosPanelHistoria],
+  imports: [EditorModuloMarco, NosotrosPanelIdentidad, NosotrosPanelPilares, NosotrosPanelHistoria, AdminLivePreview],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Nosotros"
@@ -64,7 +67,18 @@ const TABS: MarcoTab[] = [
         }
       }
     </app-editor-modulo-marco>
+      </section>
+
+      <app-admin-live-preview
+        modulo="nosotros"
+        titulo="Nosotros"
+        [borrador]="draft()"
+        [pestana]="activa()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminNosotros extends EditorModuloBase<'nosotros'> {

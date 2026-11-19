@@ -1,4 +1,5 @@
-﻿import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PortalApi } from '../../core/api/portal.api';
 import {
   BandejaTramites,
@@ -12,8 +13,11 @@ import type {
 @Component({
   selector: 'app-admin-accesibilidad',
   standalone: true,
-  imports: [BandejaTramites],
+  imports: [GestionPreview, BandejaTramites],
   template: `
+<div class="gestion-live-grid">
+  <section class="gestion-live-editor">
+
     <app-bandeja-tramites
       titulo="Reportes de accesibilidad"
       descripcion="Reportes enviados desde la herramienta Ayuda de accesibilidad del portal."
@@ -24,7 +28,13 @@ import type {
       [cargar]="cargar"
       [guardar]="guardar"
     />
-  `,
+  
+  </section>
+      <app-gestion-preview
+        modulo="accesibilidad"
+        titulo="Reportes de accesibilidad"
+      />
+</div>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminAccesibilidadComponent {

@@ -8,9 +8,11 @@ import {
   afterNextRender,
   computed,
   inject,
+  input,
   viewChild,
 } from '@angular/core';
 import { ContenidoStore } from '../../../../core/store/contenido.store';
+import type { InicioContent } from '../../../../core/constants/inicio.constant';
 
 @Component({
   selector: 'app-inicio-logos-carousel',
@@ -27,7 +29,11 @@ export class LogosCarousel {
   private readonly carousel = viewChild<ElementRef<HTMLElement>>('carousel');
   private readonly track = viewChild<ElementRef<HTMLElement>>('track');
 
-  readonly items = computed(() => this.contenido.inicio.value().logos);
+  readonly previewCopy = input<InicioContent | null>(null);
+
+  readonly items = computed(() =>
+    (this.previewCopy() ?? this.contenido.inicio.value()).logos
+  );
 
   // Los logotipos institucionales tienen copias locales en public/assets.
   // Usarlas evita depender de identificadores de archivos antiguos o enlaces rotos.
@@ -56,6 +62,7 @@ export class LogosCarousel {
 
   constructor() {
     afterNextRender(() => {
+      if (this.previewCopy() !== null) return;
       this.cloneItems();
       this.ngZone.runOutsideAngular(() => {
         this.startAutoScroll();

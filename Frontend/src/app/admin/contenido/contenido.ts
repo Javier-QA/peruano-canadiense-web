@@ -9,11 +9,12 @@ import { DocumentosStore } from '../../core/store/documentos.store';
 import { FacultyStore } from '../../core/store/faculty.store';
 import { DialogComponent } from '../../shared/ui';
 import { ToastService } from '../shared/toast/toast';
+import { AdminLivePreview, type ModuloVista } from '../shared/admin-live-preview/admin-live-preview';
 
 @Component({
   selector: 'app-admin-contenido',
   standalone: true,
-  imports: [RouterLink, DialogComponent],
+  imports: [RouterLink, DialogComponent, AdminLivePreview],
   template: `
     <div class="admin-page">
       <header class="page-header">
@@ -50,6 +51,41 @@ import { ToastService } from '../shared/toast/toast';
           </a>
         }
       </div>
+
+      <section class="contenido-vista-rapida">
+        <div class="vista-rapida-cabecera">
+          <div>
+            <h2>Vista rÃ¡pida del portal</h2>
+            <p>Selecciona una pÃ¡gina para visualizar su contenido.</p>
+          </div>
+
+          <label for="modulo-vista">
+            PÃ¡gina
+            <select
+              id="modulo-vista"
+              [value]="vistaRapida()"
+              (change)="cambiarVista($any($event.target).value)"
+            >
+              <option value="inicio">Inicio</option>
+              <option value="nosotros">Nosotros</option>
+              <option value="becas">Becas y crÃ©ditos</option>
+              <option value="costos">Costos</option>
+              <option value="estadisticas">EstadÃ­sticas</option>
+              <option value="horarios">Horarios</option>
+              <option value="inversiones">Inversiones</option>
+              <option value="licenciamiento">Licenciamiento</option>
+            </select>
+          </label>
+        </div>
+
+        <app-admin-live-preview
+          [modulo]="vistaRapida()"
+          [titulo]="tituloVista()"
+          [borrador]="datosVista()"
+          [pestana]="tabVista()"
+          [soloLectura]="true"
+        />
+      </section>
     </div>
 
     <app-dialog
@@ -122,6 +158,58 @@ import { ToastService } from '../shared/toast/toast';
     @media (max-width: 1350px) { .classic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     @media (max-width: 1000px) { .classic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 650px) { .classic-grid { grid-template-columns: 1fr; gap: 14px; } .classic-card { min-height: 150px; padding: 16px; } .page-header { padding: 16px; } }
+    .contenido-vista-rapida {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+      margin-top: 12px;
+    }
+
+    .vista-rapida-cabecera {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 18px 20px;
+      border: 1px solid var(--adm-line);
+      border-radius: 14px;
+      background: var(--adm-surface);
+    }
+
+    .vista-rapida-cabecera h2 {
+      margin: 0 0 5px;
+      font-size: 1.1rem;
+      color: var(--adm-ink);
+    }
+
+    .vista-rapida-cabecera p {
+      margin: 0;
+      font-size: .8rem;
+      color: var(--adm-ink-soft);
+    }
+
+    .vista-rapida-cabecera label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--adm-ink);
+    }
+
+    .vista-rapida-cabecera select {
+      min-width: 210px;
+      min-height: 39px;
+      padding: 8px 12px;
+      border: 1px solid var(--adm-line);
+      border-radius: 9px;
+      background: var(--adm-surface);
+      color: var(--adm-ink);
+      font: inherit;
+    }
+
     @media (prefers-reduced-motion: reduce) { .classic-card { transition: none; } }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -137,6 +225,50 @@ export class AdminContenido {
   readonly confirmar = signal(false);
   readonly remoto = environment.useRemoteApi;
   readonly restaurando = signal(false);
+
+  readonly vistaRapida = signal<ModuloVista>('inicio');
+
+  readonly datosVista = computed(() =>
+    this.contenido.de(this.vistaRapida()).value()
+  );
+
+  readonly tituloVista = computed(() =>
+    MODULO_META.find(
+      modulo => modulo.id === this.vistaRapida()
+    )?.titulo ?? this.vistaRapida()
+  );
+
+  readonly tabVista = computed(() => {
+    const tabs: Record<ModuloVista, string> = {
+      inicio: 'portada',
+      nosotros: 'identidad',
+      becas: 'relacion',
+      costos: 'tarifario',
+      estadisticas: 'cifras',
+      horarios: 'atencion',
+      inversiones: 'informe',
+      licenciamiento: 'identidad',
+    };
+
+    return tabs[this.vistaRapida()];
+  });
+
+  cambiarVista(valor: string): void {
+    const opciones: ModuloVista[] = [
+      'inicio',
+      'nosotros',
+      'becas',
+      'costos',
+      'estadisticas',
+      'horarios',
+      'inversiones',
+      'licenciamiento',
+    ];
+
+    if (opciones.includes(valor as ModuloVista)) {
+      this.vistaRapida.set(valor as ModuloVista);
+    }
+  }
 
   readonly filas = computed(() =>
     MODULO_META.map((mod) => {

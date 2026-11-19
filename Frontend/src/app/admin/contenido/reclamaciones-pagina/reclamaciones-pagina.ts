@@ -21,11 +21,15 @@ const CAMPOS_PASO: CampoTarjeta[] = [
   },
 ];
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-reclamaciones-pagina',
   standalone: true,
-  imports: [EditorModuloMarco, EditorEsquema, PanelEtiquetas, PanelTarjetas],
+  imports: [ServiceLivePreview, EditorModuloMarco, EditorEsquema, PanelEtiquetas, PanelTarjetas],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Libro de reclamaciones"
@@ -80,6 +84,14 @@ const CAMPOS_PASO: CampoTarjeta[] = [
         }
       }
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="reclamaciones"
+        titulo="Libro de reclamaciones"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
   styles: `
     .dos-listas {
@@ -88,6 +100,7 @@ const CAMPOS_PASO: CampoTarjeta[] = [
       gap: 26px;
     }
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminReclamacionesPagina extends EditorModuloBase<'reclamaciones'> {

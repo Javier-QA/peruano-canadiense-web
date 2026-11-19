@@ -9,6 +9,7 @@ import { EditorModuloMarco, type MarcoTab } from '../../shared/editor-modulo/edi
 import { InicioPanelLogos } from './panel-logos';
 import { InicioPanelPortada } from './panel-portada';
 import { InicioPanelServicios } from './panel-servicios';
+import { AdminLivePreview } from '../../shared/admin-live-preview/admin-live-preview';
 
 const TABS: MarcoTab[] = [
   { id: 'portada', label: 'Portada' },
@@ -19,8 +20,10 @@ const TABS: MarcoTab[] = [
 @Component({
   selector: 'app-admin-inicio',
   standalone: true,
-  imports: [EditorModuloMarco, InicioPanelPortada, InicioPanelServicios, InicioPanelLogos],
+  imports: [EditorModuloMarco, InicioPanelPortada, InicioPanelServicios, InicioPanelLogos, AdminLivePreview],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Inicio"
@@ -56,7 +59,18 @@ const TABS: MarcoTab[] = [
         }
       }
     </app-editor-modulo-marco>
+      </section>
+
+      <app-admin-live-preview
+        modulo="inicio"
+        titulo="Inicio"
+        [borrador]="draft()"
+        [pestana]="activa()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminInicio extends EditorModuloBase<'inicio'> {

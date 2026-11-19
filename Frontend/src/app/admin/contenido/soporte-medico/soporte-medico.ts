@@ -22,11 +22,15 @@ const CAMPOS_EMERGENCIA: CampoTarjeta[] = [
   { key: 'icon', label: 'Ícono', tipo: 'seleccion', opciones: ICONOS_PORTAL, iconoPreview: true },
 ];
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-soporte-medico',
   standalone: true,
-  imports: [EditorModuloMarco, EditorEsquema, PanelServiciosBienestar, PanelTarjetas],
+  imports: [ServiceLivePreview, EditorModuloMarco, EditorEsquema, PanelServiciosBienestar, PanelTarjetas],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Soporte médico"
@@ -61,7 +65,16 @@ const CAMPOS_EMERGENCIA: CampoTarjeta[] = [
         }
       }
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="soporte-medico"
+        titulo="Soporte medico"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminSoporteMedico extends EditorModuloBase<'soporte-medico'> {

@@ -1,13 +1,16 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { EditorModuloBase } from '../../shared/editor-modulo/editor-modulo-base';
 import { EditorEsquemaMarco } from '../../shared/editor-modulo/editor-esquema-marco';
+import { AdminLivePreview } from '../../shared/admin-live-preview/admin-live-preview';
 import { ESTADISTICAS_SCHEMA, ESTADISTICAS_TABS } from './estadisticas.schema';
 
 @Component({
   selector: 'app-admin-estadisticas',
   standalone: true,
-  imports: [EditorEsquemaMarco],
+  imports: [EditorEsquemaMarco, AdminLivePreview],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-esquema-marco
       [editor]="this"
       modulo="estadisticas"
@@ -18,7 +21,18 @@ import { ESTADISTICAS_SCHEMA, ESTADISTICAS_TABS } from './estadisticas.schema';
       [schema]="schema"
       [(activa)]="activa"
     />
+      </section>
+
+      <app-admin-live-preview
+        modulo="estadisticas"
+        titulo="Estadisticas"
+        [borrador]="draft()"
+        [pestana]="activa()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminEstadisticas extends EditorModuloBase<'estadisticas'> {

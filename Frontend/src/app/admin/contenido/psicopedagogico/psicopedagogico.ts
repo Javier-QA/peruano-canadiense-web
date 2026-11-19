@@ -7,11 +7,15 @@ import { PSICOPEDAGOGICO_SCHEMA, PSICOPEDAGOGICO_TABS } from './psicopedagogico.
 
 const TABS: MarcoTab[] = PSICOPEDAGOGICO_TABS.map((t) => ({ id: t.id, label: t.label }));
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-psicopedagogico',
   standalone: true,
-  imports: [EditorModuloMarco, EditorEsquema, PanelServiciosBienestar],
+  imports: [ServiceLivePreview, EditorModuloMarco, EditorEsquema, PanelServiciosBienestar],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Psicopedagógico"
@@ -33,7 +37,16 @@ const TABS: MarcoTab[] = PSICOPEDAGOGICO_TABS.map((t) => ({ id: t.id, label: t.l
         }
       }
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="psicopedagogico"
+        titulo="Psicopedagogico"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminPsicopedagogico extends EditorModuloBase<'psicopedagogico'> {

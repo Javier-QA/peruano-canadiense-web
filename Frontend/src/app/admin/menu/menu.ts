@@ -24,10 +24,12 @@ const nuevoBorrador = (zona: MenuZona): Borrador => ({
  * del pie. Antes estaban escritos en el HTML, así que añadir una página al menú
  * exigía un programador y un despliegue.
  */
+import { ServiceLivePreview } from '../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-menu',
   standalone: true,
-  imports: [DialogComponent],
+  imports: [DialogComponent, ServiceLivePreview],
   templateUrl: './menu.html',
   styles: `
     /* Columna Orden compacta: número destacado y controles discretos. */
@@ -48,7 +50,8 @@ const nuevoBorrador = (zona: MenuZona): Borrador => ({
       flex: 0 0 34px; margin: 0;
     }
     .menu-order-controls .btn-icon:disabled { opacity: .35; cursor: not-allowed; }
-  `,  changeDetection: ChangeDetectionStrategy.OnPush,
+  `,  styleUrl: '../shared/admin-live-preview/admin-live-layout.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminMenu {
   private readonly api = inject(PortalApi);
@@ -66,6 +69,28 @@ export class AdminMenu {
   readonly formAbierto = signal(false);
   readonly editandoId = signal<string | null>(null);
   readonly form = signal<Borrador>(nuevoBorrador('principal'));
+
+  readonly vistaMenu = computed<MenuItem[]>(() => {
+    const lista = this.items();
+
+    if (!this.formAbierto()) return lista;
+
+    const form = this.form();
+
+    if (!form.etiqueta.trim()) return lista;
+
+    const id = this.editandoId() ?? 'preview-menu';
+
+    const preview = {
+      ...form,
+      id,
+    } as MenuItem;
+
+    return [
+      ...lista.filter(item => item.id !== id),
+      preview,
+    ];
+  });
 
   /** Los enlaces de cada zona, en su orden, incluidos los ocultos. */
   readonly porZona = computed(() => {

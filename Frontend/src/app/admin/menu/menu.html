@@ -1,3 +1,5 @@
+<div class="live-editor-grid">
+  <section class="live-editor-input">
 <div class="admin-page">
   <header class="page-header">
     <div>
@@ -199,3 +201,14 @@
     <button type="button" class="btn-danger" (click)="confirmarEliminacion()">Eliminar</button>
   </div>
 </app-dialog>
+
+  </section>
+
+  <app-service-live-preview
+    modulo="menu"
+    titulo="MenÃº de navegaciÃ³n"
+    [menuItems]="vistaMenu()"
+    [borrador]="null"
+    [cambios]="formAbierto()"
+  />
+</div>

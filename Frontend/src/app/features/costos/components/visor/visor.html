@@ -47,7 +47,7 @@
               </div>
               <h3>Cuentas institucionales</h3>
               <div class="accounts">
-                @for (account of info().bankAccounts; track account.accountNumber) {
+                @for (account of previewAccounts() ?? info().bankAccounts; track account.accountNumber) {
                   <app-card>
                     <app-card-header>
                       <app-card-title class="text-base">{{ account.bank }}</app-card-title>
@@ -89,7 +89,7 @@
               </div>
               <div class="det-content__html" [innerHTML]="copy().reinstatementNote"></div>
               <p>
-                El monto es {{ formatFee(info().fees.reinstatement) }}. Correo:
+                El monto es {{ formatFee((previewFees() ?? info().fees).reinstatement) }}. Correo:
                 {{ info().contact.emailAdmin }}.
               </p>
               <figure class="cover cover-wide">

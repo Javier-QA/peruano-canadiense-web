@@ -13,6 +13,7 @@ import { SeccionBloque } from '../../shared/seccion-bloque/seccion-bloque';
 import { TablaDocumentos } from '../../shared/tabla-documentos/tabla-documentos';
 import { CostosPanelMatricula } from './panel-matricula';
 import { CostosPanelTarifario } from './panel-tarifario';
+import { AdminLivePreview } from '../../shared/admin-live-preview/admin-live-preview';
 
 const TABS: MarcoTab[] = [
   { id: 'tarifario', label: 'Tarifario' },
@@ -55,8 +56,11 @@ function aMonto(texto: string): number {
     TablaDocumentos,
     CostosPanelTarifario,
     CostosPanelMatricula,
+    AdminLivePreview,
   ],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Costos"
@@ -122,6 +126,18 @@ function aMonto(texto: string): number {
         <app-tabla-documentos modulo="costos" [seccion]="activa()" />
       </div>
     </app-editor-modulo-marco>
+      </section>
+
+      <app-admin-live-preview
+        modulo="costos"
+        titulo="Costos"
+        [borrador]="draft()"
+        [pestana]="activa()"
+        [fees]="fees()"
+        [accounts]="accounts()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
   styles: `
     .nota {
@@ -134,6 +150,7 @@ function aMonto(texto: string): number {
       font-size: 0.85rem;
     }
   `,
+  styleUrls: ['../../shared/admin-live-preview/admin-live-layout.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminCostos extends EditorModuloBase<'costos'> {

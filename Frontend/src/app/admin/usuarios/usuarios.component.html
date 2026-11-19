@@ -1,3 +1,5 @@
+﻿<div class="gestion-live-grid">
+  <section class="gestion-live-editor">
 <div class="admin-page">
   <header class="page-header">
     <div>
@@ -178,3 +180,10 @@
     <button type="button" class="btn-danger" [disabled]="eliminando()" (click)="eliminar()">{{ eliminando() ? 'Eliminando…' : 'Eliminar' }}</button>
   </div>
 </app-dialog>
+
+  </section>
+      <app-gestion-preview
+        modulo="usuarios"
+        titulo="Usuarios"
+      />
+</div>

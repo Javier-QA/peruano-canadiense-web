@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, input } from '@angular/core';
 import { ContenidoStore } from '../../../../core/store/contenido.store';
+import type { AboutContent } from '../../../../core/constants/about.constant';
 import { AppSrc } from '../../../../core/directives/app-src';
 import { htmlVacio } from '../../../../core/utils/html';
 import { ButtonDirective } from '../../../../shared/ui';
@@ -14,7 +15,11 @@ import { ButtonDirective } from '../../../../shared/ui';
 })
 export class Historia {
   private readonly contenido = inject(ContenidoStore);
-  readonly copy = this.contenido.nosotros.value;
+  readonly previewCopy = input<AboutContent | null>(null);
+
+  readonly copy = computed(() =>
+    this.previewCopy() ?? this.contenido.nosotros.value()
+  );
   readonly expanded = signal(false);
   readonly tieneCronologia = computed(() => !htmlVacio(this.copy().historyTimeline));
 }

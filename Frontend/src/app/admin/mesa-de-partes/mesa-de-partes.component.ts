@@ -1,3 +1,4 @@
+﻿import { GestionPreview } from '../shared/gestion-preview/gestion-preview';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PortalApi } from '../../core/api/portal.api';
 import { BandejaTramites, type ColumnaBandeja } from '../shared/bandeja-tramites/bandeja-tramites';
@@ -6,8 +7,11 @@ import type { TramiteAdmin, TramiteCambioEstado } from '../../core/api/api.types
 @Component({
   selector: 'app-admin-mesa-de-partes',
   standalone: true,
-  imports: [BandejaTramites],
+  imports: [GestionPreview, BandejaTramites],
   template: `
+<div class="gestion-live-grid">
+  <section class="gestion-live-editor">
+
     <app-bandeja-tramites
       titulo="Mesa de partes virtual"
       descripcion="Documentos recibidos por el portal. El estado que fije aquí es el que ve el ciudadano al consultar su código."
@@ -19,7 +23,13 @@ import type { TramiteAdmin, TramiteCambioEstado } from '../../core/api/api.types
       [cargar]="cargar"
       [guardar]="guardar"
     />
-  `,
+  
+  </section>
+      <app-gestion-preview
+        modulo="mesa-de-partes"
+        titulo="Mesa de Partes"
+      />
+</div>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminMesaDePartesComponent {

@@ -8,11 +8,15 @@ import { PROCEDIMIENTOS_SCHEMA, PROCEDIMIENTOS_TABS } from './procedimientos.sch
 
 const TABS: MarcoTab[] = PROCEDIMIENTOS_TABS.map((t) => ({ id: t.id, label: t.label }));
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-procedimientos',
   standalone: true,
-  imports: [EditorModuloMarco, EditorEsquema, PanelEtiquetas, TablaDocumentos],
+  imports: [ServiceLivePreview, EditorModuloMarco, EditorEsquema, PanelEtiquetas, TablaDocumentos],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Procedimientos"
@@ -45,7 +49,16 @@ const TABS: MarcoTab[] = PROCEDIMIENTOS_TABS.map((t) => ({ id: t.id, label: t.la
         <app-tabla-documentos modulo="procedimientos" [seccion]="activa()" />
       </div>
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="procedimientos"
+        titulo="Procedimientos"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminProcedimientos extends EditorModuloBase<'procedimientos'> {

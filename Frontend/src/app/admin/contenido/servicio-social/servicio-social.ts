@@ -8,11 +8,15 @@ import { SERVICIO_SOCIAL_SCHEMA, SERVICIO_SOCIAL_TABS } from './servicio-social.
 
 const TABS: MarcoTab[] = SERVICIO_SOCIAL_TABS.map((t) => ({ id: t.id, label: t.label }));
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-servicio-social',
   standalone: true,
-  imports: [EditorModuloMarco, EditorEsquema, PanelEtiquetas, PanelServiciosBienestar],
+  imports: [ServiceLivePreview, EditorModuloMarco, EditorEsquema, PanelEtiquetas, PanelServiciosBienestar],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Servicio social"
@@ -48,7 +52,16 @@ const TABS: MarcoTab[] = SERVICIO_SOCIAL_TABS.map((t) => ({ id: t.id, label: t.l
         }
       }
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="servicio-social"
+        titulo="Servicio social"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminServicioSocial extends EditorModuloBase<'servicio-social'> {

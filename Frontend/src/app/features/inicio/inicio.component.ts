@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import type { InicioContent } from '../../core/constants/inicio.constant';
 import { Hero } from './components/hero/hero';
 import { Gestion } from './components/gestion/gestion';
 import { OtrosServicios } from './components/otros-servicios/otros-servicios';
@@ -14,4 +15,6 @@ import { StatBarComponent } from '../../shared/components/stat-bar/stat-bar.comp
   styleUrl: './inicio.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InicioComponent {}
+export class InicioComponent {
+  readonly previewCopy = input<InicioContent | null>(null);
+}

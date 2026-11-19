@@ -22,11 +22,15 @@ const CAMPOS_SECCION: CampoTarjeta[] = [
   },
 ];
 
+import { ServiceLivePreview } from '../../shared/service-live-preview/service-live-preview';
+
 @Component({
   selector: 'app-admin-privacidad',
   standalone: true,
-  imports: [EditorModuloMarco, EditorEsquema, PanelTarjetas],
+  imports: [ServiceLivePreview, EditorModuloMarco, EditorEsquema, PanelTarjetas],
   template: `
+    <div class="live-editor-grid">
+      <section class="live-editor-input">
     <app-editor-modulo-marco
       [editor]="this"
       titulo="Privacidad"
@@ -54,7 +58,16 @@ const CAMPOS_SECCION: CampoTarjeta[] = [
         }
       }
     </app-editor-modulo-marco>
+      </section>
+      <app-service-live-preview
+        modulo="privacidad"
+        titulo="Privacidad"
+        [borrador]="draft()"
+        [cambios]="dirty()"
+      />
+    </div>
   `,
+  styleUrl: '../../shared/admin-live-preview/admin-live-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminPrivacidad extends EditorModuloBase<'privacidad'> {
